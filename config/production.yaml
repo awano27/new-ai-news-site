@@ -1,0 +1,78 @@
+# Production Configuration for Daily AI News
+
+# Basic settings
+hours_lookback: 24
+max_items_per_category: 10
+translate_to_ja: true
+translate_engine: "deepl"
+
+# AI/ML settings
+gemini_model: "gemini-2.5-flash-002"
+gemini_url_context_batch: 20
+embedding_model: "sentence-transformers/all-MiniLM-L12-v2"
+reranker_model: "cross-encoder/ms-marco-MiniLM-L-12-v2"
+ner_model: "dbmdz/bert-large-cased-finetuned-conll03-english"
+
+# Data source configuration
+tier1_sources:
+  - "arxiv"
+  - "openai"
+  - "anthropic"
+  - "deepmind"
+  - "papers-with-code"
+  - "google-ai"
+  - "meta-ai"
+  - "microsoft-research"
+  - "hugging-face"
+
+tier2_sources:
+  - "github-trending"
+  - "towards-data-science"
+  - "techcrunch"
+  - "venturebeat"
+  - "reddit-ml"
+  - "hackernews"
+
+# Evaluation weights
+engineer_weights:
+  technical_depth: 0.35
+  implementation: 0.25
+  novelty: 0.20
+  reproducibility: 0.15
+  community_impact: 0.05
+
+business_weights:
+  business_impact: 0.40
+  roi_potential: 0.25
+  market_validation: 0.20
+  implementation_ease: 0.10
+  strategic_value: 0.05
+
+# Performance settings
+cache_ttl_seconds: 3600
+vector_index_size: 100000
+batch_processing_size: 50
+parallel_workers: 8
+
+# Search settings
+search_hybrid_weight: 0.7
+search_top_k: 100
+rerank_top_k: 20
+
+# Time value settings
+half_life_hours: 72
+evergreen_boost_factor: 1.5
+trend_window_days: 7
+
+# Quality thresholds
+min_content_length: 500
+max_summary_length: 300
+faithfulness_threshold: 0.8
+bias_detection_sensitivity: "medium"
+recommendation_threshold: 0.75
+noise_filter_threshold: 0.3
+
+# Output settings
+output_dir: "dist"
+template_dir: "templates"
+static_dir: "static"

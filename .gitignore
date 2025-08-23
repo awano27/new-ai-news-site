@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+*.log
+*.db
+*.sqlite3
+dist/
+build/
+*.egg-info/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Data files
+data/
+cache/
+outputs/
+*.csv
+*.json
+
+# Credentials
+*.pem
+*.key
+secrets/
+credentials/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+*.html
+!templates/*.html
+!improved-requirements-doc.html
+static/
+public/
+
+# Logs
+logs/
+*.log
+
+# Vector databases
+vector_db/
+chroma_db/
+qdrant_data/
+
+# ML models cache
+models/
+.cache/
+
+# Test artifacts
+test_output/
+test_results/
+*.test.db
+
+# Keep docs directory for GitHub Pages
+# docs/  # Commented out to keep GitHub Pages deployment

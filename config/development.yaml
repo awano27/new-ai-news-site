@@ -1,0 +1,68 @@
+# Development Configuration for Daily AI News
+
+# Basic settings (reduced for testing)
+hours_lookback: 6
+max_items_per_category: 5
+translate_to_ja: false
+translate_engine: "google"
+
+# AI/ML settings (lighter models for development)
+gemini_model: "gemini-2.5-flash-002"
+gemini_url_context_batch: 5
+embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+ner_model: "en_core_web_sm"
+
+# Limited sources for testing
+tier1_sources:
+  - "arxiv"
+  - "openai"
+  - "anthropic"
+
+tier2_sources:
+  - "towards-data-science"
+  - "hackernews"
+
+# Same evaluation weights as production
+engineer_weights:
+  technical_depth: 0.35
+  implementation: 0.25
+  novelty: 0.20
+  reproducibility: 0.15
+  community_impact: 0.05
+
+business_weights:
+  business_impact: 0.40
+  roi_potential: 0.25
+  market_validation: 0.20
+  implementation_ease: 0.10
+  strategic_value: 0.05
+
+# Performance settings (reduced for development)
+cache_ttl_seconds: 300
+vector_index_size: 1000
+batch_processing_size: 10
+parallel_workers: 2
+
+# Search settings
+search_hybrid_weight: 0.7
+search_top_k: 20
+rerank_top_k: 5
+
+# Time value settings
+half_life_hours: 24
+evergreen_boost_factor: 1.2
+trend_window_days: 3
+
+# Quality thresholds (relaxed for testing)
+min_content_length: 100
+max_summary_length: 150
+faithfulness_threshold: 0.6
+bias_detection_sensitivity: "low"
+recommendation_threshold: 0.5
+noise_filter_threshold: 0.5
+
+# Output settings
+output_dir: "dev_dist"
+template_dir: "templates"
+static_dir: "static"

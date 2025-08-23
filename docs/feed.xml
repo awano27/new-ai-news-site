@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Daily AI News</title>
+        <description>Curated AI news and insights for technical and business professionals</description>
+        <link>https://your-username.github.io/new-ai-news-site</link>
+        <atom:link href="https://your-username.github.io/new-ai-news-site/feed.xml" rel="self" type="application/rss+xml"/>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 24 Aug 2025 06:59:43 </lastBuildDate>
+        <generator>Daily AI News Generator</generator>
+
+        <item>
+            <title><![CDATA[Accelerating life sciences research]]></title>
+            <description><![CDATA[Discover how a specialized AI model, GPT-4b micro, helped OpenAI and Retro Bio engineer more effective proteins for stem cell therapy and longevity research....]]></description>
+            <link>https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences</link>
+            <guid>https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences</guid>
+            <pubDate>Fri, 22 Aug 2025 08:30:00 </pubDate>
+            <source url="https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences">OpenAI Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Scaling domain expertise in complex, regulated domains]]></title>
+            <description><![CDATA[Discover how Blue J is transforming tax research with AI-powered tools built on GPT-4.1. By combining domain expertise with Retrieval-Augmented Generation, Blue J delivers fast, accurate, and fully-cited tax answers—trusted by professionals across the US, Canada, and the UK....]]></description>
+            <link>https://openai.com/index/blue-j</link>
+            <guid>https://openai.com/index/blue-j</guid>
+            <pubDate>Thu, 21 Aug 2025 10:00:00 </pubDate>
+            <source url="https://openai.com/index/blue-j">OpenAI Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Mixi reimagines communication with ChatGPT]]></title>
+            <description><![CDATA[Discover how MIXI, a leader in digital entertainment and lifestyle services in Japan, uses ChatGPT Enterprise to transform productivity, boost AI adoption across teams, and create a secure environment for innovation....]]></description>
+            <link>https://openai.com/index/mixi</link>
+            <guid>https://openai.com/index/mixi</guid>
+            <pubDate>Wed, 20 Aug 2025 17:00:00 </pubDate>
+            <source url="https://openai.com/index/mixi">OpenAI Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Q&A with DoorDash’s CPO, Mariana Garavaglia]]></title>
+            <description><![CDATA[Learn how DoorDash is scaling AI adoption to empower employees to build, learn, and innovate faster in a conversation with Chief People Officer Mariana Garavaglia....]]></description>
+            <link>https://openai.com/index/doordash-mariana-garavaglia</link>
+            <guid>https://openai.com/index/doordash-mariana-garavaglia</guid>
+            <pubDate>Mon, 18 Aug 2025 00:00:00 </pubDate>
+            <source url="https://openai.com/index/doordash-mariana-garavaglia">OpenAI Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[OpenAI’s letter to Governor Newsom on harmonized regulation]]></title>
+            <description><![CDATA[We’ve just sent a letter to Gov. Gavin Newsom calling for California to lead the way in harmonizing state-based AI regulation with national—and, by virtue of US leadership, emerging global—standards....]]></description>
+            <link>https://openai.com/global-affairs/letter-to-governor-newsom-on-harmonized-regulation</link>
+            <guid>https://openai.com/global-affairs/letter-to-governor-newsom-on-harmonized-regulation</guid>
+            <pubDate>Tue, 12 Aug 2025 00:00:00 </pubDate>
+            <source url="https://openai.com/global-affairs/letter-to-governor-newsom-on-harmonized-regulation">OpenAI Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Introducing Gemma 3 270M: The compact model for hyper-efficient AI]]></title>
+            <description><![CDATA[Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model....]]></description>
+            <link>https://deepmind.google/discover/blog/introducing-gemma-3-270m-the-compact-model-for-hyper-efficient-ai/</link>
+            <guid>https://deepmind.google/discover/blog/introducing-gemma-3-270m-the-compact-model-for-hyper-efficient-ai/</guid>
+            <pubDate>Thu, 14 Aug 2025 16:00:00 </pubDate>
+            <source url="https://deepmind.google/discover/blog/introducing-gemma-3-270m-the-compact-model-for-hyper-efficient-ai/">DeepMind Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[How AI is helping advance the science of bioacoustics to save endangered species]]></title>
+            <description><![CDATA[Our new Perch model helps conservationists analyze audio faster to protect endangered species, from Hawaiian honeycreepers to coral reefs....]]></description>
+            <link>https://deepmind.google/discover/blog/how-ai-is-helping-advance-the-science-of-bioacoustics-to-save-endangered-species/</link>
+            <guid>https://deepmind.google/discover/blog/how-ai-is-helping-advance-the-science-of-bioacoustics-to-save-endangered-species/</guid>
+            <pubDate>Thu, 07 Aug 2025 14:59:00 </pubDate>
+            <source url="https://deepmind.google/discover/blog/how-ai-is-helping-advance-the-science-of-bioacoustics-to-save-endangered-species/">DeepMind Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Genie 3: A new frontier for world models]]></title>
+            <description><![CDATA[Genie 3 can generate dynamic worlds that you can navigate in real time at 24 frames per second, retaining consistency for a few minutes at a resolution of 720p....]]></description>
+            <link>https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/</link>
+            <guid>https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/</guid>
+            <pubDate>Tue, 05 Aug 2025 14:00:00 </pubDate>
+            <source url="https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/">DeepMind Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Rethinking how we measure AI intelligence]]></title>
+            <description><![CDATA[Game Arena is a new, open-source platform for rigorous evaluation of AI models. It allows for head-to-head comparison of frontier systems in environments with clear winning conditions....]]></description>
+            <link>https://deepmind.google/discover/blog/rethinking-how-we-measure-ai-intelligence/</link>
+            <guid>https://deepmind.google/discover/blog/rethinking-how-we-measure-ai-intelligence/</guid>
+            <pubDate>Mon, 04 Aug 2025 16:07:00 </pubDate>
+            <source url="https://deepmind.google/discover/blog/rethinking-how-we-measure-ai-intelligence/">DeepMind Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Try Deep Think in the Gemini app]]></title>
+            <description><![CDATA[Deep Think utilizes extended, parallel thinking and novel reinforcement learning techniques for significantly improved problem-solving....]]></description>
+            <link>https://deepmind.google/discover/blog/try-deep-think-in-the-gemini-app/</link>
+            <guid>https://deepmind.google/discover/blog/try-deep-think-in-the-gemini-app/</guid>
+            <pubDate>Fri, 01 Aug 2025 11:09:00 </pubDate>
+            <source url="https://deepmind.google/discover/blog/try-deep-think-in-the-gemini-app/">DeepMind Blog</source>
+        </item>
+        <item>
+            <title><![CDATA[Is Google behind a mysterious new AI image generator?]]></title>
+            <description><![CDATA[Article URL: https://www.businessinsider.com/bananas-google-viral-ai-model-2025-8
+Comments URL: https://news.ycombinator.com/item?id=44999427
+Points: 1
+# Comments: 0...]]></description>
+            <link>https://www.businessinsider.com/bananas-google-viral-ai-model-2025-8</link>
+            <guid>https://www.businessinsider.com/bananas-google-viral-ai-model-2025-8</guid>
+            <pubDate>Sat, 23 Aug 2025 21:52:21 </pubDate>
+            <source url="https://www.businessinsider.com/bananas-google-viral-ai-model-2025-8">Hacker News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[People Beg Developers "Don't Grant AI Sentience, Please."]]></title>
+            <description><![CDATA[Article URL: https://totalapexgaming.com/tech/ai-fear-may-be-real/
+Comments URL: https://news.ycombinator.com/item?id=44999424
+Points: 1
+# Comments: 0...]]></description>
+            <link>https://totalapexgaming.com/tech/ai-fear-may-be-real/</link>
+            <guid>https://totalapexgaming.com/tech/ai-fear-may-be-real/</guid>
+            <pubDate>Sat, 23 Aug 2025 21:52:00 </pubDate>
+            <source url="https://totalapexgaming.com/tech/ai-fear-may-be-real/">Hacker News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[Introduction to Machine Learning]]></title>
+            <description><![CDATA[Article URL: https://princeton-introml.github.io/
+Comments URL: https://news.ycombinator.com/item?id=44999083
+Points: 3
+# Comments: 0...]]></description>
+            <link>https://princeton-introml.github.io/</link>
+            <guid>https://princeton-introml.github.io/</guid>
+            <pubDate>Sat, 23 Aug 2025 20:58:21 </pubDate>
+            <source url="https://princeton-introml.github.io/">Hacker News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[God in the Machine: Inside the Growing AI Religious Movement]]></title>
+            <description><![CDATA[Article URL: https://decrypt.co/336447/god-machine-inside-growing-ai-religious-movement
+Comments URL: https://news.ycombinator.com/item?id=44998651
+Points: 2
+# Comments: 0...]]></description>
+            <link>https://decrypt.co/336447/god-machine-inside-growing-ai-religious-movement</link>
+            <guid>https://decrypt.co/336447/god-machine-inside-growing-ai-religious-movement</guid>
+            <pubDate>Sat, 23 Aug 2025 19:57:23 </pubDate>
+            <source url="https://decrypt.co/336447/god-machine-inside-growing-ai-religious-movement">Hacker News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[Political Pollsters Are Trying to Save Money by Polling AI]]></title>
+            <description><![CDATA[Article URL: https://futurism.com/ai-polling-inaccuracy
+Comments URL: https://news.ycombinator.com/item?id=44998214
+Points: 9
+# Comments: 6...]]></description>
+            <link>https://futurism.com/ai-polling-inaccuracy</link>
+            <guid>https://futurism.com/ai-polling-inaccuracy</guid>
+            <pubDate>Sat, 23 Aug 2025 19:00:03 </pubDate>
+            <source url="https://futurism.com/ai-polling-inaccuracy">Hacker News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[A new model predicts how molecules will dissolve in different solvents]]></title>
+            <description><![CDATA[Solubility predictions could make it easier to design and synthesize new drugs, while minimizing the use of more hazardous solvents....]]></description>
+            <link>https://news.mit.edu/2025/new-model-predicts-how-molecules-will-dissolve-in-different-solvents-0819</link>
+            <guid>https://news.mit.edu/2025/new-model-predicts-how-molecules-will-dissolve-in-different-solvents-0819</guid>
+            <pubDate>Tue, 19 Aug 2025 09:00:00 </pubDate>
+            <source url="https://news.mit.edu/2025/new-model-predicts-how-molecules-will-dissolve-in-different-solvents-0819">MIT News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[Researchers glimpse the inner workings of protein language models]]></title>
+            <description><![CDATA[A new approach can reveal the features AI models use to predict proteins that might make good drug or vaccine targets....]]></description>
+            <link>https://news.mit.edu/2025/researchers-glimpse-inner-workings-protein-language-models-0818</link>
+            <guid>https://news.mit.edu/2025/researchers-glimpse-inner-workings-protein-language-models-0818</guid>
+            <pubDate>Mon, 18 Aug 2025 19:00:00 </pubDate>
+            <source url="https://news.mit.edu/2025/researchers-glimpse-inner-workings-protein-language-models-0818">MIT News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[How AI could speed the development of RNA vaccines and other RNA therapies]]></title>
+            <description><![CDATA[MIT engineers used a machine-learning model to design nanoparticles that can deliver RNA to cells more efficiently....]]></description>
+            <link>https://news.mit.edu/2025/how-ai-could-speed-development-rna-vaccines-and-other-rna-therapies-0815</link>
+            <guid>https://news.mit.edu/2025/how-ai-could-speed-development-rna-vaccines-and-other-rna-therapies-0815</guid>
+            <pubDate>Fri, 15 Aug 2025 09:00:00 </pubDate>
+            <source url="https://news.mit.edu/2025/how-ai-could-speed-development-rna-vaccines-and-other-rna-therapies-0815">MIT News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[Using generative AI, researchers design compounds that can kill drug-resistant bacteria]]></title>
+            <description><![CDATA[The team used two different AI approaches to design novel antibiotics, including one that showed promise against MRSA....]]></description>
+            <link>https://news.mit.edu/2025/using-generative-ai-researchers-design-compounds-kill-drug-resistant-bacteria-0814</link>
+            <guid>https://news.mit.edu/2025/using-generative-ai-researchers-design-compounds-kill-drug-resistant-bacteria-0814</guid>
+            <pubDate>Thu, 14 Aug 2025 15:00:00 </pubDate>
+            <source url="https://news.mit.edu/2025/using-generative-ai-researchers-design-compounds-kill-drug-resistant-bacteria-0814">MIT News AI</source>
+        </item>
+        <item>
+            <title><![CDATA[A new way to test how well AI systems classify text]]></title>
+            <description><![CDATA[As large language models increasingly dominate our everyday lives, new systems for checking their reliability are more important than ever....]]></description>
+            <link>https://news.mit.edu/2025/new-way-test-how-well-ai-systems-classify-text-0813</link>
+            <guid>https://news.mit.edu/2025/new-way-test-how-well-ai-systems-classify-text-0813</guid>
+            <pubDate>Wed, 13 Aug 2025 19:00:00 </pubDate>
+            <source url="https://news.mit.edu/2025/new-way-test-how-well-ai-systems-classify-text-0813">MIT News AI</source>
+        </item>
+    </channel>
+</rss>

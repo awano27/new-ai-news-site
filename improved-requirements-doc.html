@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily AI News システム要件定義書（改善版）</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #020617;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--light);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--primary);
+            padding: 24px 16px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar h1 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 16px;
+        }
+
+        .nav-item {
+            color: #94a3b8;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 32px 48px;
+            max-width: 1600px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.5rem; margin: 32px 0 16px; }
+        h3 { font-size: 1.1rem; margin: 24px 0 12px; }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            margin-bottom: 16px;
+        }
+
+        .stats-card {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-left: 3px solid var(--accent);
+        }
+
+        .tier-card {
+            border-left: 4px solid var(--success);
+            background: linear-gradient(to right, rgba(16, 185, 129, 0.05), transparent);
+        }
+
+        .tier-card.tier-1 {
+            border-left-color: var(--danger);
+            background: linear-gradient(to right, rgba(239, 68, 68, 0.05), transparent);
+        }
+
+        .tier-card.tier-2 {
+            border-left-color: var(--warning);
+            background: linear-gradient(to right, rgba(245, 158, 11, 0.05), transparent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: white;
+            display: inline-block;
+        }
+
+        .badge.high { background: #dc2626; }
+        .badge.medium { background: #f59e0b; }
+        .badge.low { background: #059669; }
+        .badge.critical { background: #7c3aed; }
+
+        .color-palette {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .color-item {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            padding: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .ui-option {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .source-item {
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .algorithm-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 16px;
+            }
+        }
+
+        @media print {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>要件定義書 v2.0</h1>
+        <nav>
+            <a href="#overview" class="nav-item">プロジェクト概要</a>
+            <a href="#sources" class="nav-item">情報取得先戦略</a>
+            <a href="#evaluation" class="nav-item">評価システム</a>
+            <a href="#search" class="nav-item">検索・選別機能</a>
+            <a href="#personas" class="nav-item">ペルソナ設定</a>
+            <a href="#schema" class="nav-item">データスキーマ</a>
+            <a href="#functions" class="nav-item">機能要件</a>
+            <a href="#ui-design" class="nav-item">UI設計</a>
+            <a href="#architecture" class="nav-item">システム構成</a>
+            <a href="#technical" class="nav-item">技術仕様</a>
+            <a href="#schedule" class="nav-item">開発スケジュール</a>
+            <a href="#settings" class="nav-item">設定情報</a>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <section id="overview">
+            <h1>Daily AI News システム要件定義書（改善版）</h1>
+            
+            <div class="card">
+                <h2>エグゼクティブサマリー</h2>
+                <p>Daily AI News は、AIエンジニアとAI活用ビジネスマンのための<strong>知的情報プラットフォーム</strong>です。世界中の高品質なAI関連情報を自動収集・分析し、ペルソナ別の有益性評価に基づいて最適化された情報を提供します。単なるニュースアグリゲーターを超え、<strong>意思決定支援システム</strong>として、技術的深度とビジネス価値の両面から情報を評価・選別します。</p>
+                <p><strong>核心価値：</strong>情報の量ではなく質を追求し、ユーザーの時間対効果を最大化。記事検索、評価、選別の三位一体システムにより、ノイズを排除し真に有益な情報のみを提供します。</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 24px 0;">
+                <div class="card stats-card">
+                    <div class="stats-value">50+</div>
+                    <div>厳選情報源</div>
+                </div>
+                <div class="card stats-card">
+                    <div class="stats-value">5層</div>
+                    <div>評価アルゴリズム</div>
+                </div>
+                <div class="card stats-card">
+                    <div class="stats-value">2</div>
+                    <div>専門ペルソナ</div>
+                </div>
+                <div class="card stats-card">
+                    <div class="stats-value">95%</div>
+                    <div>ノイズ削減率</div>
+                </div>
+            </div>
+
+            <div class="card feature-card">
+                <h3>🎯 改善版の主要目標</h3>
+                <ul>
+                    <li><strong>情報源の階層化：</strong>Tier制による信頼性の高い情報源の優先的処理</li>
+                    <li><strong>多層評価システム：</strong>技術的深度、実装可能性、ビジネス価値を独立評価</li>
+                    <li><strong>高度な検索機能：</strong>BM25、セマンティック検索、エンティティ検索の統合</li>
+                    <li><strong>アクショナブルな情報：</strong>読むだけでなく、次の行動につながる情報の提供</li>
+                    <li><strong>透明性の確保：</strong>評価スコアの内訳と根拠の可視化</li>
+                    <li><strong>差別化機能：</strong>実装難易度インジケーター、ROI計算機などの専門ツール</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="sources">
+            <h2>情報取得先戦略</h2>
+            
+            <div class="card tier-card tier-1">
+                <h3>🔴 Tier 1: 最重要ソース（必須）</h3>
+                <p>信頼性と影響力が最も高い一次情報源。全記事を収集対象とする。</p>
+                
+                <div class="source-grid">
+                    <div class="source-item">
+                        <h4>研究・技術系</h4>
+                        <ul>
+                            <li>arXiv (AI/ML/CV/NLP)</li>
+                            <li>Papers with Code</li>
+                            <li>Google AI Blog</li>
+                            <li>OpenAI Blog</li>
+                            <li>Anthropic News</li>
+                            <li>DeepMind Blog</li>
+                            <li>Meta AI Research</li>
+                            <li>Microsoft Research</li>
+                            <li>Hugging Face Blog</li>
+                        </ul>
+                    </div>
+                    <div class="source-item">
+                        <h4>ビジネス・戦略系</h4>
+                        <ul>
+                            <li>MIT Technology Review</li>
+                            <li>VentureBeat (AI)</li>
+                            <li>The Information (AI)</li>
+                            <li>CB Insights (AI)</li>
+                            <li>McKinsey Insights</li>
+                            <li>Gartner (AI trends)</li>
+                        </ul>
+                    </div>
+                    <div class="source-item">
+                        <h4>日本語専門メディア</h4>
+                        <ul>
+                            <li>AI-SCHOLAR</li>
+                            <li>Ledge.ai</li>
+                            <li>AIsmiley</li>
+                            <li>日経xTECH (AI)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tier-card tier-2">
+                <h3>🟡 Tier 2: 重要ソース</h3>
+                <p>高品質だが更新頻度や専門性がTier 1に次ぐ情報源。重要度スコアで選別。</p>
+                
+                <div class="source-grid">
+                    <div class="source-item">
+                        <h4>開発者コミュニティ</h4>
+                        <ul>
+                            <li>GitHub Trending (AI/ML)</li>
+                            <li>Towards Data Science</li>
+                            <li>Machine Learning Mastery</li>
+                            <li>PyImageSearch</li>
+                            <li>Reddit (r/MachineLearning)</li>
+                        </ul>
+                    </div>
+                    <div class="source-item">
+                        <h4>テック系メディア</h4>
+                        <ul>
+                            <li>TechCrunch (AI tag)</li>
+                            <li>The Verge (AI)</li>
+                            <li>Wired (AI coverage)</li>
+                            <li>Ars Technica (AI)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 ソース評価基準</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>評価軸</th>
+                            <th>Tier 1要件</th>
+                            <th>Tier 2要件</th>
+                            <th>重み</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>信頼性（E-E-A-T）</td>
+                            <td>90%以上</td>
+                            <td>70%以上</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>独自性</td>
+                            <td>一次情報源</td>
+                            <td>二次情報OK</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>更新頻度</td>
+                            <td>週3回以上</td>
+                            <td>週1回以上</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td>技術的深度</td>
+                            <td>実装詳細あり</td>
+                            <td>概要レベル</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>影響力</td>
+                            <td>業界標準</td>
+                            <td>コミュニティ認知</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="evaluation">
+            <h2>多層評価システム</h2>
+            
+            <div class="algorithm-box">
+                <h3>🧠 改良版評価アルゴリズム</h3>
+                <p>5つの独立した評価軸による多角的スコアリングシステム</p>
+            </div>
+
+            <div class="card">
+                <h3>評価レイヤー構造</h3>
+                <pre>
+class ArticleEvaluator:
+    def __init__(self):
+        self.weights = {
+            'engineer': {
+                'technical_depth': 0.35,      # 技術的深度
+                'implementation': 0.25,        # 実装可能性
+                'novelty': 0.20,              # 新規性
+                'reproducibility': 0.15,      # 再現性
+                'community_impact': 0.05      # コミュニティ影響
+            },
+            'business': {
+                'business_impact': 0.40,      # ビジネス影響度
+                'roi_potential': 0.25,        # ROI可能性
+                'market_validation': 0.20,    # 市場検証
+                'implementation_ease': 0.10,  # 導入容易性
+                'strategic_value': 0.05       # 戦略的価値
+            }
+        }
+    
+    def evaluate_article(self, article, persona):
+        """記事の有益性を多層的に評価"""
+        
+        # Layer 1: コンテンツ品質スコア
+        quality_score = self.assess_quality(article)
+        
+        # Layer 2: ペルソナ別関連性スコア
+        relevance_score = self.calculate_relevance(article, persona)
+        
+        # Layer 3: 時間的価値スコア
+        temporal_score = self.calculate_temporal_value(article)
+        
+        # Layer 4: 信頼性スコア（E-E-A-T準拠）
+        trust_score = self.calculate_trust_score(article)
+        
+        # Layer 5: アクショナビリティスコア
+        action_score = self.calculate_actionability(article, persona)
+        
+        return {
+            'total_score': self.weighted_sum(
+                quality_score, relevance_score, 
+                temporal_score, trust_score, action_score
+            ),
+            'breakdown': {
+                'quality': quality_score,
+                'relevance': relevance_score,
+                'temporal': temporal_score,
+                'trust': trust_score,
+                'actionability': action_score
+            },
+            'recommendation': self.generate_recommendation(scores)
+        }
+</pre>
+            </div>
+
+            <div class="card feature-card">
+                <h3>📈 評価メトリクス詳細</h3>
+                
+                <h4>エンジニア向け評価指標</h4>
+                <ul>
+                    <li><strong>技術的深度：</strong>アルゴリズム詳細、数式、実装の具体性</li>
+                    <li><strong>実装可能性：</strong>コード、ライブラリ、環境構築情報の有無</li>
+                    <li><strong>新規性：</strong>SOTA更新、新手法、ベンチマーク改善</li>
+                    <li><strong>再現性：</strong>データセット公開、ハイパーパラメータ明記</li>
+                    <li><strong>コミュニティ影響：</strong>GitHub Star、引用数、議論の活発さ</li>
+                </ul>
+                
+                <h4>ビジネスマン向け評価指標</h4>
+                <ul>
+                    <li><strong>ビジネス影響度：</strong>市場規模、競争優位性、破壊的イノベーション度</li>
+                    <li><strong>ROI可能性：</strong>投資対効果、回収期間、成功事例</li>
+                    <li><strong>市場検証：</strong>導入企業数、資金調達額、顧客事例</li>
+                    <li><strong>導入容易性：</strong>必要リソース、技術要件、導入期間</li>
+                    <li><strong>戦略的価値：</strong>長期的影響、エコシステム形成、標準化可能性</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>時間的価値の計算</h3>
+                <pre>
+def calculate_temporal_value(article):
+    """鮮度と持続的価値のバランスを評価"""
+    
+    # 1. 鮮度スコア（指数減衰）
+    freshness = exp(-hours_since_publish / HALF_LIFE_HOURS)
+    
+    # 2. 持続的価値（エバーグリーン度）
+    evergreen_score = assess_evergreen_potential(article)
+    
+    # 3. イベント駆動価値（重要イベントとの関連）
+    event_relevance = calculate_event_relevance(article)
+    
+    # 4. トレンド同期性
+    trend_alignment = measure_trend_alignment(article)
+    
+    return weighted_average([
+        (freshness, 0.3),
+        (evergreen_score, 0.3),
+        (event_relevance, 0.25),
+        (trend_alignment, 0.15)
+    ])
+</pre>
+            </div>
+        </section>
+
+        <section id="search">
+            <h2>高度な検索・選別機能</h2>
+            
+            <div class="card">
+                <h3>🔍 ハイブリッド検索エンジン</h3>
+                <pre>
+class HybridSearchEngine:
+    def __init__(self):
+        # 多言語対応埋め込みモデル
+        self.semantic_model = "sentence-transformers/all-MiniLM-L12-v2"
+        
+        # リランキングモデル
+        self.reranker = "cross-encoder/ms-marco-MiniLM-L-12-v2"
+        
+        # エンティティ認識
+        self.ner_model = "dbmdz/bert-large-cased-finetuned-conll03-english"
+        
+    def search(self, query, filters=None, persona=None):
+        """多層検索アルゴリズム"""
+        
+        # 1. キーワード検索（BM25）
+        keyword_results = self.bm25_search(query)
+        
+        # 2. セマンティック検索（埋め込みベクトル）
+        semantic_results = self.semantic_search(query)
+        
+        # 3. エンティティベース検索
+        entities = self.extract_entities(query)
+        entity_results = self.entity_search(entities)
+        
+        # 4. グラフベース関連検索
+        graph_results = self.graph_search(query)
+        
+        # 5. 結果の統合とスコアリング
+        combined = self.merge_results({
+            'keyword': keyword_results,
+            'semantic': semantic_results,
+            'entity': entity_results,
+            'graph': graph_results
+        })
+        
+        # 6. パーソナライズドフィルタリング
+        if persona:
+            combined = self.apply_persona_optimization(combined, persona)
+        
+        # 7. Cross-Encoderによるリランキング
+        return self.rerank(combined, query)
+    
+    def apply_persona_optimization(self, results, persona):
+        """ペルソナ別最適化"""
+        if persona == 'engineer':
+            # 技術的深度でブースト
+            return self.boost_by_technical_depth(results)
+        elif persona == 'business':
+            # ビジネス価値でブースト
+            return self.boost_by_business_value(results)
+</pre>
+            </div>
+
+            <div class="card feature-card">
+                <h3>選別フィルタリング機能</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>フィルタタイプ</th>
+                            <th>説明</th>
+                            <th>エンジニア向け</th>
+                            <th>ビジネス向け</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>実装レベル</td>
+                            <td>記事の技術的詳細度</td>
+                            <td><span class="badge high">必須</span></td>
+                            <td><span class="badge low">オプション</span></td>
+                        </tr>
+                        <tr>
+                            <td>ROI指標</td>
+                            <td>投資対効果の明確さ</td>
+                            <td><span class="badge low">オプション</span></td>
+                            <td><span class="badge high">必須</span></td>
+                        </tr>
+                        <tr>
+                            <td>エビデンス</td>
+                            <td>根拠・引用の有無</td>
+                            <td><span class="badge high">必須</span></td>
+                            <td><span class="badge high">必須</span></td>
+                        </tr>
+                        <tr>
+                            <td>実績・事例</td>
+                            <td>導入事例の有無</td>
+                            <td><span class="badge medium">推奨</span></td>
+                            <td><span class="badge high">必須</span></td>
+                        </tr>
+                        <tr>
+                            <td>新規性</td>
+                            <td>最新技術・トレンド</td>
+                            <td><span class="badge high">必須</span></td>
+                            <td><span class="badge medium">推奨</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="personas">
+            <h2>ペルソナ設定（詳細版）</h2>
+            
+            <div class="card">
+                <h3>👨‍💻 ペルソナ1: AIエンジニア（田中さん、28歳）</h3>
+                <p><strong>職業:</strong> スタートアップのMLエンジニア / 研究開発エンジニア</p>
+                <p><strong>技術スタック:</strong> Python, PyTorch, TensorFlow, Transformers, CUDA</p>
+                <p><strong>主要ニーズ:</strong></p>
+                <ul>
+                    <li>最新論文の実装詳細とコード</li>
+                    <li>SOTA手法のベンチマーク比較</li>
+                    <li>プロダクション向け最適化テクニック</li>
+                    <li>オープンソースツール・ライブラリ情報</li>
+                    <li>技術的なブレークスルーと理論的背景</li>
+                </ul>
+                <p><strong>有益さKPI（改訂版）:</strong></p>
+                <ul>
+                    <li><strong>技術的新規性（35%）:</strong> SOTA更新、新アーキテクチャ、理論的貢献</li>
+                    <li><strong>実装可能性（25%）:</strong> コード公開、環境構築ガイド、計算リソース要件</li>
+                    <li><strong>再現性（20%）:</strong> データセット入手、ハイパーパラメータ、実験設定</li>
+                    <li><strong>実務寄与（15%）:</strong> 推論速度改善、メモリ効率、精度向上</li>
+                    <li><strong>学習価値（5%）:</strong> 新概念、手法の汎用性、転用可能性</li>
+                </ul>
+                <p><strong>情報消費パターン:</strong> 朝の通勤時間（30分）、昼休み（15分）、実装詰まり時の調査（随時）</p>
+                <p><strong>判断基準:</strong> 「今のプロジェクトに使えるか」「キャリアアップに繋がるか」</p>
+            </div>
+
+            <div class="card">
+                <h3>💼 ペルソナ2: AI活用ビジネスマン（佐藤さん、45歳）</h3>
+                <p><strong>職業:</strong> 事業開発マネージャー / デジタル変革推進室長 / 元VCパートナー</p>
+                <p><strong>背景:</strong> MBA取得、テクノロジー企業での事業開発経験10年以上</p>
+                <p><strong>主要ニーズ:</strong></p>
+                <ul>
+                    <li>AI導入によるROI事例と成功要因</li>
+                    <li>競合他社のAI戦略と差別化ポイント</li>
+                    <li>投資・M&A動向とバリュエーション</li>
+                    <li>規制動向とコンプライアンス要件</li>
+                    <li>パートナーシップ・エコシステム情報</li>
+                </ul>
+                <p><strong>有益さKPI（改訂版）:</strong></p>
+                <ul>
+                    <li><strong>事業影響度（40%）:</strong> 売上インパクト、コスト削減額、市場シェア変化</li>
+                    <li><strong>投資判断材料（25%）:</strong> 資金調達額、バリュエーション、成長率</li>
+                    <li><strong>戦略的価値（20%）:</strong> 競争優位性、参入障壁、ネットワーク効果</li>
+                    <li><strong>実現可能性（10%）:</strong> 導入期間、必要投資、人材要件</li>
+                    <li><strong>リスク評価（5%）:</strong> 規制リスク、技術的負債、市場受容性</li>
+                </ul>
+                <p><strong>情報消費パターン:</strong> 朝のメールチェック時（20分）、会議間の空き時間（10分）、週末のまとめ読み（1時間）</p>
+                <p><strong>判断基準:</strong> 「経営会議で報告すべきか」「投資判断に影響するか」「競合に遅れを取らないか」</p>
+            </div>
+        </section>
+
+        <section id="schema">
+            <h2>拡張データスキーマ</h2>
+            
+            <div class="card">
+                <h3>📋 記事スキーマ v2.0</h3>
+                <pre>
+article_schema:
+  # 基本情報
+  id: string                    # URLハッシュまたは一意識別子
+  title: string                 # 記事タイトル
+  url: string                   # 元記事URL
+  source: string                # 情報源名
+  source_tier: enum[1, 2, 3]   # 情報源ティア
+  
+  # 時間情報
+  published_date: datetime      # 公開日時
+  event_date: datetime         # 実際の出来事の日時
+  crawled_date: datetime       # 収集日時
+  freshness_score: float       # 鮮度スコア (0-1)
+  evergreen_score: float       # 持続的価値スコア (0-1)
+  
+  # 技術的メタデータ（エンジニア向け）
+  technical:
+    difficulty_level: enum[beginner, intermediate, advanced, research]
+    implementation_ready: boolean      # すぐ実装可能か
+    code_available: boolean           # コード公開有無
+    paper_link: string               # 論文リンク
+    github_repo: string              # GitHubリポジトリ
+    colab_notebook: string           # Colabノートブック
+    benchmark_results: {
+      dataset: string
+      metric: string
+      score: float
+      sota_comparison: float        # SOTA比較 (%)
+    }
+    reproducibility_score: float    # 再現性スコア (0-1)
+    dependencies: array[string]     # 必要ライブラリ
+    compute_requirements: {
+      gpu: string                   # GPU要件
+      memory: string                # メモリ要件
+      training_time: string         # 学習時間
+    }
+    
+  # ビジネスメタデータ（ビジネスマン向け）
+  business:
+    market_size: string             # 市場規模
+    growth_rate: float              # 成長率 (%)
+    roi_indicators: {
+      payback_period: string        # 投資回収期間
+      cost_reduction: string        # コスト削減額
+      revenue_increase: string      # 売上増加額
+    }
+    case_studies: [{
+      company: string
+      industry: string
+      results: string
+      timeline: string
+    }]
+    implementation_cost: enum[low, medium, high, enterprise]
+    time_to_value: string           # 価値実現までの期間
+    competitive_advantage: string   # 競争優位性の説明
+    funding_info: {
+      amount: string
+      round: string
+      investors: array[string]
+    }
+    
+  # 評価メトリクス
+  evaluation:
+    # ペルソナ別スコア
+    engineer_score: float           # エンジニア向け総合スコア
+    business_score: float           # ビジネス向け総合スコア
+    
+    # 詳細スコアブレークダウン
+    score_breakdown: {
+      quality: float
+      relevance: float
+      temporal: float
+      trust: float
+      actionability: float
+    }
+    
+    # ユーザー評価
+    user_ratings: {
+      likes: integer
+      stars: float                  # 平均星評価
+      bookmarks: integer
+      feedback_count: integer
+    }
+    
+    # 検証状態
+    expert_validation: boolean      # 専門家による検証済み
+    fact_check_status: enum[verified, partial, unverified]
+    
+  # エンティティと関連性
+  entities:
+    companies: array[string]        # 関連企業
+    technologies: array[string]     # 技術・フレームワーク
+    people: array[string]           # 人物
+    concepts: array[string]         # 概念・手法
+    products: array[string]         # 製品・サービス
+    
+  # 関連性グラフ
+  relationships:
+    related_articles: array[id]     # 関連記事ID
+    prerequisite_articles: array[id] # 前提知識記事
+    follow_up_articles: array[id]   # 続報・深掘り記事
+    
+  # 根拠と信頼性
+  evidence:
+    primary_sources: [{
+      type: enum[paper, press_release, documentation, code]
+      url: string
+      credibility_score: float
+    }]
+    citations: array[string]         # 引用リスト
+    supporting_data: array          # 裏付けデータ
+    
+  # バイアス評価
+  bias_assessment:
+    detected_biases: array[string]  # 検出されたバイアス
+    neutrality_score: float         # 中立性スコア
+    transparency_score: float       # 透明性スコア
+    
+  # 要約と洞察
+  summaries:
+    executive_summary: string        # エグゼクティブサマリー
+    technical_summary: string        # 技術要約
+    business_implications: string    # ビジネス示唆
+    key_takeaways: array[string]    # 主要ポイント
+    action_items: array[string]     # アクションアイテム
+    
+  # 忠実性チェック
+  faithfulness:
+    summary_accuracy: float         # 要約の正確性
+    evidence_links: array[url]      # 根拠リンク
+    consistency_score: float        # 一貫性スコア
+</pre>
+            </div>
+        </section>
+
+        <section id="functions">
+            <h2>機能要件（拡張版）</h2>
+            
+            <div class="mermaid">
+                flowchart TB
+                    subgraph "情報収集層"
+                        A[Tier 1 RSS] --> C[統合パイプライン]
+                        B[Tier 2 RSS] --> C
+                        D[X Posts CSV] --> C
+                        E[GitHub Trending] --> C
+                    end
+                    
+                    subgraph "分析・評価層"
+                        C --> F[Gemini URL Context分析]
+                        F --> G[多層評価エンジン]
+                        G --> H[ペルソナ最適化]
+                        I[ユーザー評価DB] --> G
+                    end
+                    
+                    subgraph "検索・選別層"
+                        H --> J[ハイブリッド検索]
+                        J --> K[パーソナライズド選別]
+                        K --> L[リランキング]
+                    end
+                    
+                    subgraph "配信層"
+                        L --> M[HTML生成]
+                        M --> N[GitHub Pages]
+                        M --> O[API/RSS出力]
+                    end
+            </div>
+
+            <div class="card feature-card">
+                <h3>🚀 差別化機能一覧</h3>
+                
+                <h4>AIエンジニア向け特化機能</h4>
+                <ul>
+                    <li><strong>実装難易度インジケーター:</strong> 5段階の技術的難易度表示と必要スキルセット</li>
+                    <li><strong>再現性スコアカード:</strong> コード・データ・環境の入手可能性を可視化</li>
+                    <li><strong>ベンチマーク比較ダッシュボード:</strong> SOTA結果との自動比較とトレンド</li>
+                    <li><strong>依存関係グラフ:</strong> 前提知識と関連技術のビジュアル表示</li>
+                    <li><strong>コード実行環境リンク:</strong> Colab/Kaggle Kernelへの直接リンク</li>
+                    <li><strong>計算リソース見積もり:</strong> GPU時間とコスト概算</li>
+                </ul>
+                
+                <h4>ビジネスマン向け特化機能</h4>
+                <ul>
+                    <li><strong>ROI計算シミュレーター:</strong> 導入効果の概算と感度分析</li>
+                    <li><strong>競合分析マトリクス:</strong> 業界他社の動向との比較表示</li>
+                    <li><strong>段階的導入ロードマップ:</strong> PoC→パイロット→本番展開の計画</li>
+                    <li><strong>リスク評価ヒートマップ:</strong> 技術・市場・規制リスクの可視化</li>
+                    <li><strong>ステークホルダー向けレポート生成:</strong> 経営層向けサマリー自動作成</li>
+                    <li><strong>投資判断チェックリスト:</strong> デューデリジェンス項目の確認</li>
+                </ul>
+                
+                <h4>共通強化機能</h4>
+                <ul>
+                    <li><strong>根拠トレーサビリティ:</strong> すべての主張に対する出典リンク</li>
+                    <li><strong>バイアス検出アラート:</strong> 偏った情報の警告表示</li>
+                    <li><strong>トレンド予測:</strong> 今後注目される可能性の高いトピック</li>
+                    <li><strong>専門家コメント統合:</strong> 業界エキスパートの見解追加</li>
+                    <li><strong>多言語要約:</strong> 日英中の3言語サマリー</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>主要処理フロー</h3>
+                <pre>
+async def process_article_pipeline(article_url):
+    """記事処理の完全パイプライン"""
+    
+    # 1. コンテンツ取得（Gemini URL Context）
+    content = await gemini_client.extract_with_context(
+        url=article_url,
+        schema=ARTICLE_SCHEMA,
+        model="gemini-2.5-flash-lite"
+    )
+    
+    # 2. エンティティ抽出と分類
+    entities = extract_entities(content)
+    category = classify_article(content, entities)
+    
+    # 3. 多層評価実行
+    engineer_eval = evaluator.evaluate(content, persona='engineer')
+    business_eval = evaluator.evaluate(content, persona='business')
+    
+    # 4. 関連記事検索
+    related = search_engine.find_related(
+        content=content,
+        entities=entities,
+        limit=5
+    )
+    
+    # 5. 忠実性チェック
+    faithfulness = verify_faithfulness(
+        original=content,
+        summary=content.summaries,
+        evidence=content.evidence
+    )
+    
+    # 6. バイアス検出
+    bias_report = detect_biases(content)
+    
+    # 7. アクション生成
+    actions = generate_action_items(
+        content=content,
+        persona_scores={
+            'engineer': engineer_eval,
+            'business': business_eval
+        }
+    )
+    
+    return {
+        'article': content,
+        'evaluations': {
+            'engineer': engineer_eval,
+            'business': business_eval
+        },
+        'related': related,
+        'faithfulness': faithfulness,
+        'bias': bias_report,
+        'actions': actions
+    }
+</pre>
+            </div>
+        </section>
+
+        <section id="ui-design">
+            <h2>UI設計（改善版）</h2>
+            
+            <div class="ui-option">
+                <h3>推奨UI: インテリジェントダッシュボード</h3>
+                <p><strong>コンセプト:</strong> 情報の質と意思決定支援を重視した高密度インターフェース</p>
+                
+                <h4>主要コンポーネント</h4>
+                <ul>
+                    <li><strong>スマートフィルターバー:</strong> ペルソナ切替、評価スコア範囲、実装レベル、ROI指標</li>
+                    <li><strong>評価スコアカード:</strong> 5軸レーダーチャート表示、スコア内訳の透明化</li>
+                    <li><strong>エビデンストレイル:</strong> 根拠リンクのインライン表示</li>
+                    <li><strong>アクションパネル:</strong> 次のステップ提案、関連リソースへのクイックアクセス</li>
+                    <li><strong>比較ビュー:</strong> 複数記事の並列比較、差分ハイライト</li>
+                    <li><strong>パーソナライズドフィード:</strong> 学習したユーザー嗜好に基づく動的順位付け</li>
+                </ul>
+                
+                <h4>インタラクション設計</h4>
+                <ul>
+                    <li>ワンクリック評価: 記事の有益性を即座にフィードバック</li>
+                    <li>ドラッグ&ドロップ比較: 記事を比較エリアにドラッグして分析</li>
+                    <li>インテリジェント検索: 自然言語クエリと提案による絞り込み</li>
+                    <li>プログレッシブディスクロージャー: 詳細情報の段階的表示</li>
+                </ul>
+                
+                <p><strong>画像生成プロンプト:</strong> "Modern AI news dashboard with smart filters, radar chart score cards, evidence trail sidebar, action panels, comparison view, dark theme with blue accents, high information density, Japanese UI, professional business interface"</p>
+            </div>
+
+            <h3>カラーパレット（拡張版）</h3>
+            <div class="color-palette">
+                <div class="color-item" style="background: #0f172a;">Primary<br>#0f172a</div>
+                <div class="color-item" style="background: #3b82f6;">Accent<br>#3b82f6</div>
+                <div class="color-item" style="background: #10b981;">Success<br>#10b981</div>
+                <div class="color-item" style="background: #f59e0b;">Warning<br>#f59e0b</div>
+                <div class="color-item" style="background: #ef4444;">Danger<br>#ef4444</div>
+                <div class="color-item" style="background: #8b5cf6;">Research<br>#8b5cf6</div>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <h2>システム構成（拡張版）</h2>
+            
+            <div class="mermaid">
+                graph TB
+                    subgraph "データ収集層"
+                        A1[Tier 1 Sources API]
+                        A2[Tier 2 Sources RSS]
+                        A3[GitHub API]
+                        A4[X/Twitter API]
+                    end
+                    
+                    subgraph "処理・分析層"
+                        B1[Gemini URL Context]
+                        B2[NER/Entity Extraction]
+                        B3[Embedding Generation]
+                        B4[Translation Service]
+                        B5[Bias Detection]
+                    end
+                    
+                    subgraph "評価・選別層"
+                        C1[Multi-Layer Evaluator]
+                        C2[Persona Optimizer]
+                        C3[Ranking Engine]
+                        C4[Faithfulness Checker]
+                    end
+                    
+                    subgraph "ストレージ層"
+                        D1[Article Database]
+                        D2[Vector Index]
+                        D3[User Evaluation DB]
+                        D4[Cache Layer]
+                    end
+                    
+                    subgraph "配信層"
+                        E1[Static Site Generator]
+                        E2[API Gateway]
+                        E3[RSS Generator]
+                        E4[Email Digest]
+                    end
+                    
+                    A1 --> B1
+                    A2 --> B1
+                    A3 --> B2
+                    A4 --> B2
+                    
+                    B1 --> C1
+                    B2 --> C1
+                    B3 --> D2
+                    B4 --> C1
+                    B5 --> C4
+                    
+                    C1 --> D1
+                    C2 --> D1
+                    C3 --> D1
+                    C4 --> D1
+                    
+                    D1 --> E1
+                    D2 --> E2
+                    D3 --> C2
+                    D4 --> E1
+                    
+                    E1 --> F[GitHub Pages]
+            </div>
+        </section>
+
+        <section id="technical">
+            <h2>技術仕様（拡張版）</h2>
+            
+            <div class="card">
+                <h3>技術スタック v2.0</h3>
+                <table>
+                    <thead>
+                        <tr><th>レイヤー</th><th>技術</th><th>バージョン</th><th>用途</th><th>選定理由</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ランタイム</td>
+                            <td>Python</td>
+                            <td>3.11+</td>
+                            <td>メイン処理</td>
+                            <td>AI/MLライブラリの充実</td>
+                        </tr>
+                        <tr>
+                            <td>フィード解析</td>
+                            <td>feedparser + BeautifulSoup4</td>
+                            <td>最新</td>
+                            <td>RSS/HTML解析</td>
+                            <td>安定性と柔軟性</td>
+                        </tr>
+                        <tr>
+                            <td>AI分析</td>
+                            <td>Gemini API (URL Context)</td>
+                            <td>2.5-flash-lite</td>
+                            <td>コンテンツ分析</td>
+                            <td>コスト効率と精度</td>
+                        </tr>
+                        <tr>
+                            <td>埋め込みモデル</td>
+                            <td>sentence-transformers</td>
+                            <td>all-MiniLM-L12-v2</td>
+                            <td>セマンティック検索</td>
+                            <td>多言語対応と速度</td>
+                        </tr>
+                        <tr>
+                            <td>リランキング</td>
+                            <td>Cross-Encoder</td>
+                            <td>ms-marco-MiniLM</td>
+                            <td>検索結果最適化</td>
+                            <td>精度向上</td>
+                        </tr>
+                        <tr>
+                            <td>エンティティ認識</td>
+                            <td>spaCy + transformers</td>
+                            <td>3.7+</td>
+                            <td>固有表現抽出</td>
+                            <td>精度と処理速度</td>
+                        </tr>
+                        <tr>
+                            <td>ベクトルDB</td>
+                            <td>Qdrant / Pinecone</td>
+                            <td>最新</td>
+                            <td>ベクトル検索</td>
+                            <td>スケーラビリティ</td>
+                        </tr>
+                        <tr>
+                            <td>キャッシュ</td>
+                            <td>Redis</td>
+                            <td>7.0+</td>
+                            <td>高速キャッシュ</td>
+                            <td>パフォーマンス</td>
+                        </tr>
+                        <tr>
+                            <td>評価DB</td>
+                            <td>PostgreSQL + TimescaleDB</td>
+                            <td>15+</td>
+                            <td>時系列データ</td>
+                            <td>分析機能</td>
+                        </tr>
+                        <tr>
+                            <td>フロントエンド</td>
+                            <td>React + TypeScript</td>
+                            <td>18+</td>
+                            <td>インタラクティブUI</td>
+                            <td>型安全性とエコシステム</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>パフォーマンス要件</h3>
+                <ul>
+                    <li><strong>収集処理:</strong> 1000記事/時間の処理能力</li>
+                    <li><strong>評価処理:</strong> 記事あたり500ms以内</li>
+                    <li><strong>検索レスポンス:</strong> 200ms以内（キャッシュヒット時50ms）</li>
+                    <li><strong>ページ読み込み:</strong> FCP 1.5秒以内、TTI 3秒以内</li>
+                    <li><strong>API応答:</strong> p95で500ms以内</li>
+                    <li><strong>可用性:</strong> 99.9%以上（GitHub Pages SLA準拠）</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>品質メトリクス</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>メトリクス</th>
+                            <th>目標値</th>
+                            <th>測定方法</th>
+                            <th>改善施策</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>関連性精度</td>
+                            <td>nDCG@10 > 0.8</td>
+                            <td>ユーザー評価との相関</td>
+                            <td>モデルファインチューニング</td>
+                        </tr>
+                        <tr>
+                            <td>検索再現率</td>
+                            <td>Recall@10 > 0.7</td>
+                            <td>テストセット評価</td>
+                            <td>ハイブリッド検索最適化</td>
+                        </tr>
+                        <tr>
+                            <td>要約忠実性</td>
+                            <td>ROUGE-L > 0.6</td>
+                            <td>自動評価</td>
+                            <td>根拠リンク強化</td>
+                        </tr>
+                        <tr>
+                            <td>ユーザー満足度</td>
+                            <td>4.5/5.0以上</td>
+                            <td>フィードバック集計</td>
+                            <td>継続的改善</td>
+                        </tr>
+                        <tr>
+                            <td>ノイズ削減率</td>
+                            <td>95%以上</td>
+                            <td>手動サンプリング</td>
+                            <td>フィルター調整</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="schedule">
+            <h2>開発スケジュール（改訂版）</h2>
+            
+            <div class="mermaid">
+                gantt
+                    title Daily AI News 開発スケジュール v2.0
+                    dateFormat YYYY-MM-DD
+                    
+                    section Phase 1: 基盤
+                    情報源統合（Tier制）         :2024-01-01, 10d
+                    Gemini URL Context実装       :2024-01-08, 7d
+                    基本評価エンジン            :2024-01-10, 14d
+                    
+                    section Phase 2: インテリジェンス
+                    多層評価システム            :2024-01-20, 21d
+                    ハイブリッド検索            :2024-01-25, 14d
+                    エンティティ抽出            :2024-02-01, 10d
+                    
+                    section Phase 3: 差別化機能
+                    エンジニア向け機能          :2024-02-10, 14d
+                    ビジネス向け機能            :2024-02-15, 14d
+                    忠実性・バイアス検出        :2024-02-20, 10d
+                    
+                    section Phase 4: 最適化
+                    パフォーマンス調整          :2024-03-01, 7d
+                    A/Bテスト実施               :2024-03-05, 14d
+                    フィードバック反映          :2024-03-15, 7d
+                    
+                    section Release
+                    ベータリリース              :2024-03-20, 3d
+                    本番リリース                :2024-03-25, 3d
+            </div>
+
+            <div class="card">
+                <h3>マイルストーン</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>フェーズ</th>
+                            <th>完了条件</th>
+                            <th>成功指標</th>
+                            <th>リスク</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Phase 1</td>
+                            <td>Tier 1ソース接続完了</td>
+                            <td>収集記事数 > 500/日</td>
+                            <td>API制限</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 2</td>
+                            <td>評価精度80%達成</td>
+                            <td>nDCG@10 > 0.8</td>
+                            <td>モデル精度</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 3</td>
+                            <td>差別化機能実装</td>
+                            <td>ユーザーテスト合格</td>
+                            <td>複雑性増大</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 4</td>
+                            <td>パフォーマンス目標達成</td>
+                            <td>応答時間 < 500ms</td>
+                            <td>スケーラビリティ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="settings">
+            <h2>設定情報（拡張版）</h2>
+            
+            <div class="card feature-card">
+                <h3>環境変数設定 v2.0</h3>
+                <pre>
+# 基本設定
+HOURS_LOOKBACK=24
+MAX_ITEMS_PER_CATEGORY=10
+TRANSLATE_TO_JA=1
+TRANSLATE_ENGINE=deepl
+
+# AI/ML設定
+GEMINI_API_KEY=***********
+GEMINI_MODEL=gemini-2.5-flash-lite
+GEMINI_URL_CONTEXT_BATCH=20
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L12-v2
+RERANKER_MODEL=cross-encoder/ms-marco-MiniLM-L-12-v2
+NER_MODEL=dbmdz/bert-large-cased-finetuned-conll03-english
+
+# データソース設定
+TIER1_SOURCES=arxiv,openai,anthropic,deepmind,papers-with-code
+TIER2_SOURCES=github-trending,towards-data-science,techcrunch
+X_POSTS_CSV=https://docs.google.com/spreadsheets/d/****/export?format=csv
+GITHUB_TOKEN=***********
+
+# 評価設定
+ENGINEER_WEIGHT_PRESET=technical_depth:0.35,implementation:0.25,novelty:0.20
+BUSINESS_WEIGHT_PRESET=business_impact:0.40,roi:0.25,market:0.20
+EVALUATION_DB_URL=postgresql://user:pass@host/db
+RECOMMENDATION_THRESHOLD=0.75
+NOISE_FILTER_THRESHOLD=0.3
+
+# パフォーマンス設定
+CACHE_TTL_SECONDS=3600
+VECTOR_INDEX_SIZE=100000
+BATCH_PROCESSING_SIZE=50
+PARALLEL_WORKERS=8
+
+# 検索設定
+SEARCH_HYBRID_WEIGHT=0.7  # BM25 vs Semantic
+SEARCH_TOP_K=100
+RERANK_TOP_K=20
+
+# 時間的価値設定
+HALF_LIFE_HOURS=72
+EVERGREEN_BOOST_FACTOR=1.5
+TREND_WINDOW_DAYS=7
+
+# 品質設定
+MIN_CONTENT_LENGTH=500
+MAX_SUMMARY_LENGTH=300
+FAITHFULNESS_THRESHOLD=0.8
+BIAS_DETECTION_SENSITIVITY=medium
+</pre>
+            </div>
+
+            <div class="card">
+                <h3>プロジェクト設定</h3>
+                <ul>
+                    <li><strong>リポジトリURL:</strong> https://github.com/user/daily-ai-news-v2</li>
+                    <li><strong>本番URL:</strong> https://user.github.io/daily-ai-news-v2/</li>
+                    <li><strong>ステージングURL:</strong> https://staging.daily-ai-news.dev/</li>
+                    <li><strong>API エンドポイント:</strong> https://api.daily-ai-news.dev/v2/</li>
+                    <li><strong>ビルドコマンド:</strong> python build.py --config production.yaml</li>
+                    <li><strong>テストコマンド:</strong> pytest tests/ --cov=src/</li>
+                    <li><strong>デプロイ:</strong> GitHub Actions (main branch auto-deploy)</li>
+                    <li><strong>モニタリング:</strong> Datadog / Sentry統合</li>
+                </ul>
+                
+                <p><strong>次のステップ:</strong></p>
+                <ol>
+                    <li>環境変数をGitHub Secretsに設定</li>
+                    <li>Tier 1情報源のAPIキー取得</li>
+                    <li>ベクトルDBのセットアップ</li>
+                    <li>評価用テストセットの準備</li>
+                    <li>A/Bテストフレームワークの実装</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mermaid初期化
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                curve: 'basis'
+            }
+        });
+
+        // サイドバーナビゲーション
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+                
+                const target = this.getAttribute('href');
+                document.querySelector(target).scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // スクロール連動でアクティブ項目更新
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
