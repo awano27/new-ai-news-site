@@ -302,10 +302,107 @@ class IntegratedCollector:
                     break
             
             print(f"X articles collected: {len(x_articles)}")
+            # Fallback to local CSV if Google Sheet returns nothing
+            if len(x_articles) == 0:
+                print("⚠️ No X articles from Google Sheet. Trying local CSV fallback…")
+                fallback = self.collect_x_from_local_csv()
+                if fallback:
+                    print(f"✅ Fallback X articles: {len(fallback)}")
+                    return fallback
             return x_articles
-            
+        
         except Exception as e:
             print(f"X articles collection error: {str(e)}")
+            # Fallback on exception as well
+            fallback = self.collect_x_from_local_csv()
+            if fallback:
+                print(f"✅ Fallback X articles after error: {len(fallback)}")
+                return fallback
+            return []
+
+    def collect_x_from_local_csv(self):
+        """参考/x_articles.csv または x_articles_backup.csv からX記事を読み込むフォールバック"""
+        try:
+            ref_dir = self.project_root / '参考'
+            primary = ref_dir / 'x_articles.csv'
+            backup = ref_dir / 'x_articles_backup.csv'
+            csv_path = None
+            if primary.exists() and primary.stat().st_size > 0:
+                csv_path = primary
+            elif backup.exists() and backup.stat().st_size > 0:
+                csv_path = backup
+            else:
+                print("❌ No local CSV found for X articles fallback")
+                return []
+
+            print(f"📂 Reading X articles from local CSV: {csv_path}")
+            rows = []
+            with open(csv_path, 'r', encoding='utf-8') as f:
+                sample = f.read(2048)
+                f.seek(0)
+                # Determine if file has headers; use DictReader if so
+                has_header = any(h in sample for h in ['created_at', 'username', 'tweet_url', 'content'])
+                if has_header:
+                    reader = csv.DictReader(f)
+                    for r in reader:
+                        rows.append([
+                            r.get('created_at',''),
+                            r.get('username',''),
+                            r.get('content',''),
+                            r.get('link',''),
+                            r.get('tweet_url','')
+                        ])
+                else:
+                    reader = csv.reader(f)
+                    for r in reader:
+                        rows.append(r)
+
+            # Skip header if present in first row
+            if rows and isinstance(rows[0][0], str) and rows[0][0].lower().startswith('created'):
+                rows = rows[1:]
+
+            x_articles = []
+            for row in rows:
+                if not row or len(row) < 3:
+                    continue
+                created_at = (row[0] or '').strip()
+                username = (row[1] or '').strip().replace('@','')
+                content = (row[2] or '').strip()
+                first_link = (row[3] or '').strip() if len(row) > 3 else ''
+                tweet_link = (row[4] or '').strip() if len(row) > 4 else ''
+
+                if not content or not username:
+                    continue
+
+                # AI-related filter
+                if not self.is_ai_related(content):
+                    continue
+
+                article_url = first_link or tweet_link or (f"https://twitter.com/{username}")
+                article = {
+                    'id': f"x_{hashlib.md5(f'{username}_{content}'.encode()).hexdigest()[:8]}",
+                    'title': self.extract_title(content),
+                    'url': article_url,
+                    'source': f'X(@{username})',
+                    'source_tier': 2,
+                    'published_date': self.parse_date(created_at) if created_at else datetime.now().strftime('%Y-%m-%d'),
+                    'content': content[:200] + "..." if len(content) > 200 else content,
+                    'tags': ['x_post', 'ai_2025', 'community']
+                }
+
+                engineer_eval = self.evaluator.evaluate_article(article, 'engineer')
+                business_eval = self.evaluator.evaluate_article(article, 'business')
+                article['evaluation'] = { 'engineer': engineer_eval, 'business': business_eval }
+                article['total_score'] = engineer_eval['total_score']
+
+                x_articles.append(article)
+                if len(x_articles) >= 30:
+                    break
+
+            print(f"Local CSV X articles collected: {len(x_articles)}")
+            return x_articles
+        except Exception as e:
+            print(f"Fallback CSV read error: {e}")
             return []
     
     def collect_rss_articles(self):
