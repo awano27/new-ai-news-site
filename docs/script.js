@@ -197,9 +197,14 @@
     const scorePct = Math.round((personaEval.total_score || 0) * 100);
     const rec = personaEval.recommendation || 'consider';
     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
+    const baseText = article.content || '';
+    const origText = article.original_content || '';
+    const labeled = deriveLabeledKeyPoints(baseText || origText, 1);
+    const mini = labeled.length ? `${labeled[0].label?`<span class=\\\"kp-label\\\">${labeled[0].label}</span> `:''}${highlightKeywords(labeled[0].text)}` : '';
     row.innerHTML = `
       <div class="left">
         <div class="title"><a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></div>
+        ${mini ? `<div class=\"mini-highlight\">${mini}</div>` : ''}
         <div class="source">${escapeHtml(article.source)} • ${article.published_date || ''}</div>
       </div>
       <div class="right">
@@ -253,6 +258,36 @@
     const uniq = [];
     picks.forEach(p => { if (!uniq.some(u => u.slice(0,12) === p.slice(0,12))) uniq.push(p); });
     return uniq;
+  }
+  function deriveLabeledKeyPoints(text, count = 3) {
+    const categories = [
+      { key: '発表', patterns: [/発表|公開|ローンチ|リリース/] },
+      { key: '性能', patterns: [/性能|精度|スコア|ベンチマーク|速度|高速|低遅延|throughput|latency/i] },
+      { key: '導入', patterns: [/導入|使い方|セットアップ|手順|サンプル|コード|チュートリアル/] },
+      { key: '影響', patterns: [/影響|価値|ROI|コスト|効率|生産性|採用|事業|ビジネス/] },
+      { key: '研究', patterns: [/研究|論文|arXiv|paper/i] },
+      { key: '注意', patterns: [/リスク|注意|制限|制約|課題|バグ|脆弱性/] }
+    ];
+    const sents = splitSentences(text || '').filter(s => s.length > 20);
+    const results = [];
+    const used = new Set();
+    for (const cat of categories) {
+      let bestIdx = -1, bestScore = -1;
+      for (let i=0;i<sents.length;i++) {
+        if (used.has(i)) continue;
+        const s = sents[i];
+        if (cat.patterns.some(re => re.test(s))) {
+          const score = s.length + cat.patterns.reduce((acc,re)=>acc+(re.test(s)?50:0),0);
+          if (score > bestScore) { bestScore = score; bestIdx = i; }
+        }
+      }
+      if (bestIdx >= 0) { used.add(bestIdx); results.push({ label: cat.key, text: sents[bestIdx] }); }
+      if (results.length >= count) break;
+    }
+    if (results.length < count) {
+      extractKeyPoints(text, count - results.length).forEach(p => results.push({ label: '', text: p }));
+    }
+    return results.slice(0, count);
   }
   function highlightKeywords(text) {
     if (!text) return '';
