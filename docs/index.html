@@ -1,164 +1,96 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily AI News – 改良版</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily AI News – 改良版</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Header with title and persona toggle -->
-    <header class="header">
-        <div class="container">
-            <h1>Daily AI News</h1>
-            <p>X記事とRSS記事をまとめた最新AIニュース</p>
-            <!-- Persona toggle integrated in header -->
-            <div class="persona-toggle">
-                <button class="active" data-persona="engineer">技術者向け</button>
-                <button data-persona="business">ビジネス向け</button>
+  <header class="header">
+    <div class="container">
+      <h1>Daily AI News</h1>
+      <p>X記事とRSS記事をまとめた最新AIニュース</p>
+      <div class="persona-toggle">
+        <button class="active" data-persona="engineer">技術者向け</button>
+        <button data-persona="business">ビジネス向け</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替" title="テーマ切替">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><div class="value" id="stat-total">0</div><div class="label">記事数</div></div>
+        <div class="stat-item"><div class="value" id="stat-avg-score">0%</div><div class="label">平均スコア</div></div>
+        <div class="stat-item"><div class="value" id="stat-tier1">0</div><div class="label">高信頼ソース</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="filters">
+    <div class="container">
+      <button class="filters-toggle" type="button" aria-expanded="true" aria-controls="filters-content">フィルタを表示/非表示</button>
+      <div id="filters-content" class="filters-content">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="source-tier-filter">ソース種別</label>
+            <select id="source-tier-filter">
+              <option value="all">すべて</option>
+              <option value="1">高信頼ソース</option>
+              <option value="2">一般ソース</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="min-score-filter">最低スコア</label>
+            <div class="range-wrap">
+              <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
+              <output id="min-score-value">0%</output>
             </div>
+          </div>
+          <div class="search-box">
+            <input id="search-input" type="text" placeholder="キーワードで検索…" />
+          </div>
         </div>
-    </header>
-
-    <!-- Summary statistics -->
-    <section class="summary-stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="value" id="stat-total">0</div>
-                    <div class="label">記事数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="value" id="stat-avg-score">0%</div>
-                    <div class="label">平均スコア</div>
-                </div>
-                <div class="stat-item">
-                    <div class="value" id="stat-tier1">0</div>
-                    <div class="label">高信頼ソース</div>
-                </div>
-            </div>
+        <div class="legend" aria-label="推奨度の説明">
+          <div class="legend-row">
+            <div class="legend-item"><span class="legend-chip must_read"></span><span class="legend-text"><strong>必読</strong> 重要で読むべき</span></div>
+            <div class="legend-item"><span class="legend-chip recommended"></span><span class="legend-text"><strong>注目</strong> 有益でおすすめ</span></div>
+            <div class="legend-item"><span class="legend-chip consider"></span><span class="legend-text"><strong>参考</strong> 興味があれば</span></div>
+            <div class="legend-item"><span class="legend-chip skip"></span><span class="legend-text"><strong>見送り</strong> 今回は優先度低</span></div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Filter panel -->
-    <section class="filters">
-        <div class="container">
-            <div class="filter-row">
-                <div class="filter-group">
-                    <label for="source-tier-filter">ソース種別</label>
-                    <select id="source-tier-filter">
-                        <option value="all">すべて</option>
-                        <option value="1">高信頼ソース</option>
-                        <option value="2">一般ソース</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="min-score-filter">最低スコア</label>
-                    <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
-                </div>
-                <div class="search-box">
-                    <input id="search-input" type="text" placeholder="キーワードで検索…" />
-                </div>
-            </div>
-        </div>
-    </section>
+  <nav class="rec-nav" aria-label="推奨度ナビ">
+    <div class="container">
+      <div class="nav-row">
+        <button class="nav-item" data-target="x">X最新 <span class="count" id="nav-count-x">0</span></button>
+        <button class="nav-item" data-target="must_read">必読 <span class="count" id="nav-count-must_read">0</span></button>
+        <button class="nav-item" data-target="recommended">注目 <span class="count" id="nav-count-recommended">0</span></button>
+        <button class="nav-item" data-target="consider">参考 <span class="count" id="nav-count-consider">0</span></button>
+        <button class="nav-item" data-target="skip">見送り <span class="count" id="nav-count-skip">0</span></button>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Articles container -->
-    <main>
-        <div class="container">
-            <div class="articles-grid" id="articles-container"></div>
-        </div>
-    </main>
+  <main>
+    <div class="container">
+      <div class="articles-grid" id="articles-container"></div>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">© 2025 Daily AI News – 改良版</div>
-    </footer>
+  <footer class="footer">
+    <div class="container">© 2025 Daily AI News – 改良版</div>
+  </footer>
 
-    <script>
-        // Persona-specific metric labels
-        const metricLabels = {
-            engineer: ['技術的新規性', '実装可能性', '再現性', '実務寄与', '学習価値'],
-            business: ['事業影響度', '投資判断材料', '戦略的価値', '実現可能性', 'リスク評価']
-        };
-
-        const breakdownOrder = {
-            engineer: ['temporal', 'relevance', 'trust', 'quality', 'actionability'],
-            business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
-        };
-
-        // Current real-time articles data
-        const articles = [
-  {
-    "id": "rss_4b236c36",
-    "title": "[R] Building a deep learning image model system to identify BJJ positions in matches",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1mylqrb/r_building_a_deep_learning_image_model_system_to/",
-    "source": "Reddit MachineLearning",
-    "source_tier": 1,
-    "published_date": "2025-08-24",
-    "content": "[r] building a ディープラーニング image モデル システム to identify bjj positions in matchesに関する記事。",
-    "original_content": "Hey all, I'm working on developing AI models that can classify and track positions throughout BJJ matches - and I'm keen to get some thoughts on this idea early on. You can check it out here: https://...",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.47987717931676643,
-        "breakdown": {
-          "quality": 0.5608,
-          "relevance": 0.54,
-          "temporal": 0.6383858965838319,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "consider"
-      },
-      "business": {
-        "total_score": 0.31787717924776127,
-        "breakdown": {
-          "quality": 0.5608,
-          "relevance": 0.0,
-          "temporal": 0.638385896238806,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.47987717931676643
-  },
+  <script>
+    // Placeholder: replaced by collect_integrated.py
+    const articles = [
   {
     "id": "rss_8fd7e5fc",
     "title": "[R] routers to foundation models?",
@@ -175,11 +107,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.4634771800058035,
+        "total_score": 0.4633645613408134,
         "breakdown": {
           "quality": 0.4232,
           "relevance": 0.6,
-          "temporal": 0.6383859000290174,
+          "temporal": 0.6378228067040669,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -201,11 +133,11 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.2834771799638592,
+        "total_score": 0.28336456129892296,
         "breakdown": {
           "quality": 0.4232,
           "relevance": 0.0,
-          "temporal": 0.6383858998192957,
+          "temporal": 0.6378228064946145,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -227,7 +159,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.4634771800058035
+    "total_score": 0.4633645613408134
   },
   {
     "id": "rss_2ff45547",
@@ -245,11 +177,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.4271269985419661,
+        "total_score": 0.42701443624790014,
         "breakdown": {
           "quality": 0.5258,
           "relevance": 0.42,
-          "temporal": 0.5983849927098301,
+          "temporal": 0.5978221812395004,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -271,11 +203,11 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.3011269984459003,
+        "total_score": 0.3010144361566871,
         "breakdown": {
           "quality": 0.5258,
           "relevance": 0.0,
-          "temporal": 0.598384992229501,
+          "temporal": 0.5978221807834355,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -297,7 +229,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.4271269985419661
+    "total_score": 0.42701443624790014
   },
   {
     "id": "rss_67976af9",
@@ -315,11 +247,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3989769991691001,
+        "total_score": 0.39886443688132334,
         "breakdown": {
           "quality": 0.5252,
           "relevance": 0.3,
-          "temporal": 0.6383849958455006,
+          "temporal": 0.6378221844066168,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -341,11 +273,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.30897699907472564,
+        "total_score": 0.3088644367874078,
         "breakdown": {
           "quality": 0.5252,
           "relevance": 0.0,
-          "temporal": 0.6383849953736279,
+          "temporal": 0.6378221839370389,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -367,7 +299,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3989769991691001
+    "total_score": 0.39886443688132334
   },
   {
     "id": "x_3eb7746f",
@@ -384,11 +316,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.39372754644542785,
+        "total_score": 0.39361485276541497,
         "breakdown": {
           "quality": 0.2922,
           "relevance": 0.46,
-          "temporal": 0.6383877322271387,
+          "temporal": 0.6378242638270746,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -410,11 +342,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23572754636999532,
+        "total_score": 0.23561485269143073,
         "breakdown": {
           "quality": 0.2922,
           "relevance": 0.0,
-          "temporal": 0.6383877318499764,
+          "temporal": 0.6378242634571536,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -436,7 +368,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.39372754644542785
+    "total_score": 0.39361485276541497
   },
   {
     "id": "rss_c4c79b10",
@@ -454,11 +386,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.38712718017696346,
+        "total_score": 0.38701456150297,
         "breakdown": {
           "quality": 0.3618,
           "relevance": 0.31,
-          "temporal": 0.718385900884817,
+          "temporal": 0.7178228075148498,
           "trust": 0.2,
           "actionability": 0.30000000000000004
         },
@@ -480,11 +412,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.29412718011912087,
+        "total_score": 0.2940145614512826,
         "breakdown": {
           "quality": 0.3618,
           "relevance": 0.0,
-          "temporal": 0.7183859005956041,
+          "temporal": 0.7178228072564128,
           "trust": 0.2,
           "actionability": 0.30000000000000004
         },
@@ -506,7 +438,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.38712718017696346
+    "total_score": 0.38701456150297
   },
   {
     "id": "rss_880287b1",
@@ -524,11 +456,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3648647725818144,
+        "total_score": 0.3648069819585926,
         "breakdown": {
           "quality": 0.46340000000000003,
           "relevance": 0.38,
-          "temporal": 0.42507386290907173,
+          "temporal": 0.42478490979296324,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -550,11 +482,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2508647725500331,
+        "total_score": 0.2508069819266788,
         "breakdown": {
           "quality": 0.46340000000000003,
           "relevance": 0.0,
-          "temporal": 0.42507386275016545,
+          "temporal": 0.42478490963339377,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -576,7 +508,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3648647725818144
+    "total_score": 0.3648069819585926
   },
   {
     "id": "x_0b0ba60d",
@@ -593,11 +525,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.358277546034101,
+        "total_score": 0.3581648523552925,
         "breakdown": {
           "quality": 0.2784,
           "relevance": 0.38,
-          "temporal": 0.5983877301705051,
+          "temporal": 0.5978242617764624,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -619,11 +551,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22427754596712512,
+        "total_score": 0.22416485228840266,
         "breakdown": {
           "quality": 0.2784,
           "relevance": 0.0,
-          "temporal": 0.5983877298356255,
+          "temporal": 0.5978242614420133,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -645,7 +577,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.358277546034101
+    "total_score": 0.3581648523552925
   },
   {
     "id": "x_a80536cd",
@@ -662,11 +594,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.35772754819153696,
+        "total_score": 0.35761485452042807,
         "breakdown": {
           "quality": 0.2442,
           "relevance": 0.38,
-          "temporal": 0.6383877409576847,
+          "temporal": 0.6378242726021404,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -688,11 +620,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22372754813234108,
+        "total_score": 0.2236148544562409,
         "breakdown": {
           "quality": 0.2442,
           "relevance": 0.0,
-          "temporal": 0.6383877406617053,
+          "temporal": 0.6378242722812044,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -714,7 +646,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.35772754819153696
+    "total_score": 0.35761485452042807
   },
   {
     "id": "x_22f9c06a",
@@ -731,11 +663,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.35292754415370187,
+        "total_score": 0.35281485139214674,
         "breakdown": {
           "quality": 0.321,
           "relevance": 0.3,
-          "temporal": 0.638387720768509,
+          "temporal": 0.6378242569607334,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -757,11 +689,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2529275439710403,
+        "total_score": 0.2528148513046494,
         "breakdown": {
           "quality": 0.321,
           "relevance": 0.0,
-          "temporal": 0.6383877198552013,
+          "temporal": 0.6378242565232469,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -783,7 +715,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.35292754415370187
+    "total_score": 0.35281485139214674
   },
   {
     "id": "x_3ad224d3",
@@ -800,11 +732,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3525775454235379,
+        "total_score": 0.35246485199212807,
         "breakdown": {
           "quality": 0.2636,
           "relevance": 0.38,
-          "temporal": 0.6383877271176892,
+          "temporal": 0.6378242599606403,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -826,11 +758,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22857754526489293,
+        "total_score": 0.22846485191409,
         "breakdown": {
           "quality": 0.2636,
           "relevance": 0.0,
-          "temporal": 0.6383877263244646,
+          "temporal": 0.6378242595704497,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -852,7 +784,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3525775454235379
+    "total_score": 0.35246485199212807
   },
   {
     "id": "x_dc74e249",
@@ -869,11 +801,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.34327754374102204,
+        "total_score": 0.3431648512019499,
         "breakdown": {
           "quality": 0.2584,
           "relevance": 0.2,
-          "temporal": 0.71838771870511,
+          "temporal": 0.7178242560097493,
           "trust": 0.30000000000000004,
           "actionability": 0.30000000000000004
         },
@@ -895,11 +827,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2732775435086359,
+        "total_score": 0.2731648510958721,
         "breakdown": {
           "quality": 0.2584,
           "relevance": 0.0,
-          "temporal": 0.7183877175431795,
+          "temporal": 0.7178242554793604,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -921,7 +853,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.34327754374102204
+    "total_score": 0.3431648512019499
   },
   {
     "id": "rss_b53bb754",
@@ -939,11 +871,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3368151161507358,
+        "total_score": 0.336757264534232,
         "breakdown": {
           "quality": 0.4592,
           "relevance": 0.24,
-          "temporal": 0.42507558075367896,
+          "temporal": 0.4247863226711598,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -965,11 +897,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2648151161151336,
+        "total_score": 0.26475726450006304,
         "breakdown": {
           "quality": 0.4592,
           "relevance": 0.0,
-          "temporal": 0.42507558057566786,
+          "temporal": 0.4247863225003152,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -991,7 +923,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3368151161507358
+    "total_score": 0.336757264534232
   },
   {
     "id": "x_6d68b975",
@@ -1008,11 +940,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3357275451025271,
+        "total_score": 0.33561485183672746,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.24,
-          "temporal": 0.6383877255126355,
+          "temporal": 0.6378242591836374,
           "trust": 0.35000000000000003,
           "actionability": 0.2
         },
@@ -1034,11 +966,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26372754504637563,
+        "total_score": 0.2636148518066609,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.0,
-          "temporal": 0.6383877252318779,
+          "temporal": 0.6378242590333043,
           "trust": 0.35000000000000003,
           "actionability": 0.2
         },
@@ -1060,7 +992,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3357275451025271
+    "total_score": 0.33561485183672746
   },
   {
     "id": "rss_8019be00",
@@ -1078,11 +1010,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.33482717954340113,
+        "total_score": 0.334714560874951,
         "breakdown": {
           "quality": 0.4206,
           "relevance": 0.2,
-          "temporal": 0.5983858977170053,
+          "temporal": 0.597822804374755,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1104,11 +1036,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2748271794598507,
+        "total_score": 0.2747145607958997,
         "breakdown": {
           "quality": 0.4206,
           "relevance": 0.0,
-          "temporal": 0.5983858972992533,
+          "temporal": 0.5978228039794983,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1130,7 +1062,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.33482717954340113
+    "total_score": 0.334714560874951
   },
   {
     "id": "rss_9c54ebf0",
@@ -1148,11 +1080,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3300271803755225,
+        "total_score": 0.32991456170803046,
         "breakdown": {
           "quality": 0.4014,
           "relevance": 0.2,
-          "temporal": 0.5983859018776123,
+          "temporal": 0.5978228085401525,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1174,11 +1106,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.27002718030516426,
+        "total_score": 0.2699145616384383,
         "breakdown": {
           "quality": 0.4014,
           "relevance": 0.0,
-          "temporal": 0.598385901525821,
+          "temporal": 0.5978228081921915,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1200,7 +1132,77 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3300271803755225
+    "total_score": 0.32991456170803046
+  },
+  {
+    "id": "rss_038a936c",
+    "title": "[P] AI Learns to play Sonic 2 Emerald Hill (Deep Reinforcement...",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1mz9ruc/p_ai_learns_to_play_sonic_2_emerald_hill_deep/",
+    "source": "Reddit MachineLearning",
+    "source_tier": 1,
+    "published_date": "2025-08-24",
+    "content": "AI・技術分野に関する[p] ai learns to play sonic 2 emerald hill (deep reinforcement...の記事。最新の動向や技術開発について。",
+    "original_content": "Hello everyone!!! I have several Reinforcement Learning projects underway. One is Sonic 2 with PPO. The other is developing an environment that supports games not available with Farama Group's stable-...",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.328714562068829,
+        "breakdown": {
+          "quality": 0.3966,
+          "relevance": 0.2,
+          "temporal": 0.5978228103441446,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.26871456199180455,
+        "breakdown": {
+          "quality": 0.3966,
+          "relevance": 0.0,
+          "temporal": 0.5978228099590227,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.328714562068829
   },
   {
     "id": "rss_5e39d46b",
@@ -1218,11 +1220,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.32827717969697146,
+        "total_score": 0.3281645610350806,
         "breakdown": {
           "quality": 0.3624,
           "relevance": 0.2,
-          "temporal": 0.6383858984848572,
+          "temporal": 0.6378228051754031,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1244,11 +1246,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.29227717964454103,
+        "total_score": 0.29216456098237975,
         "breakdown": {
           "quality": 0.3624,
           "relevance": 0.08,
-          "temporal": 0.6383858982227051,
+          "temporal": 0.6378228049118987,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1270,7 +1272,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.32827717969697146
+    "total_score": 0.3281645610350806
   },
   {
     "id": "rss_58629d5e",
@@ -1288,11 +1290,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.327076805353422,
+        "total_score": 0.32696424456172135,
         "breakdown": {
           "quality": 0.3576,
           "relevance": 0.2,
-          "temporal": 0.6383840267671097,
+          "temporal": 0.6378212228086069,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1314,11 +1316,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26707680529524136,
+        "total_score": 0.26696424450496675,
         "breakdown": {
           "quality": 0.3576,
           "relevance": 0.0,
-          "temporal": 0.6383840264762068,
+          "temporal": 0.6378212225248339,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1340,7 +1342,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.327076805353422
+    "total_score": 0.32696424456172135
   },
   {
     "id": "x_272a2d56",
@@ -1357,11 +1359,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.32652754883254376,
+        "total_score": 0.3264148551704079,
         "breakdown": {
           "quality": 0.23540000000000003,
           "relevance": 0.22999999999999998,
-          "temporal": 0.7183877441627186,
+          "temporal": 0.7178242758520397,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -1383,11 +1385,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2715275487405364,
+        "total_score": 0.27141485507345153,
         "breakdown": {
           "quality": 0.23540000000000003,
           "relevance": 0.08,
-          "temporal": 0.718387743702682,
+          "temporal": 0.7178242753672575,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1409,7 +1411,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.32652754883254376
+    "total_score": 0.3264148551704079
   },
   {
     "id": "x_48821433",
@@ -1426,11 +1428,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.31312754712736424,
+        "total_score": 0.3130148534485019,
         "breakdown": {
           "quality": 0.2858,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6383877356368212,
+          "temporal": 0.6378242672425092,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1452,11 +1454,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23412754709827371,
+        "total_score": 0.23401485341911088,
         "breakdown": {
           "quality": 0.2858,
           "relevance": 0.0,
-          "temporal": 0.6383877354913685,
+          "temporal": 0.6378242670955543,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1478,7 +1480,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.31312754712736424
+    "total_score": 0.3130148534485019
   },
   {
     "id": "x_e1df15ed",
@@ -1495,11 +1497,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.309827546945041,
+        "total_score": 0.30971485326539944,
         "breakdown": {
           "quality": 0.2726,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6383877347252047,
+          "temporal": 0.637824266326997,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1521,11 +1523,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2308275468608137,
+        "total_score": 0.2307148531802669,
         "breakdown": {
           "quality": 0.2726,
           "relevance": 0.0,
-          "temporal": 0.6383877343040684,
+          "temporal": 0.6378242659013345,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1547,7 +1549,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.309827546945041
+    "total_score": 0.30971485326539944
   },
   {
     "id": "rss_7ebbd0c2",
@@ -1565,11 +1567,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3092731761314408,
+        "total_score": 0.30919252282056764,
         "breakdown": {
           "quality": 0.3858,
           "relevance": 0.2,
-          "temporal": 0.5141158806572037,
+          "temporal": 0.5137126141028384,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1591,11 +1593,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.33927317608490504,
+        "total_score": 0.33919252276949263,
         "breakdown": {
           "quality": 0.3858,
           "relevance": 0.3,
-          "temporal": 0.5141158804245252,
+          "temporal": 0.5137126138474628,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1617,7 +1619,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3092731761314408
+    "total_score": 0.30919252282056764
   },
   {
     "id": "rss_6415c1f9",
@@ -1635,11 +1637,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3090769987872046,
+        "total_score": 0.3089644364972155,
         "breakdown": {
           "quality": 0.34559999999999996,
           "relevance": 0.15,
-          "temporal": 0.6383849939360228,
+          "temporal": 0.6378221824860774,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1661,11 +1663,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2640769987439073,
+        "total_score": 0.26396443645363593,
         "breakdown": {
           "quality": 0.34559999999999996,
           "relevance": 0.0,
-          "temporal": 0.6383849937195364,
+          "temporal": 0.6378221822681798,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1687,7 +1689,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3090769987872046
+    "total_score": 0.3089644364972155
   },
   {
     "id": "rss_363dc807",
@@ -1705,11 +1707,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.30902344508864943,
+        "total_score": 0.30894275027593865,
         "breakdown": {
           "quality": 0.4448,
           "relevance": 0.15,
-          "temporal": 0.5141172254432471,
+          "temporal": 0.5137137513796931,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1731,11 +1733,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2640234450394474,
+        "total_score": 0.2639427502359982,
         "breakdown": {
           "quality": 0.4448,
           "relevance": 0.0,
-          "temporal": 0.5141172251972371,
+          "temporal": 0.5137137511799911,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1757,7 +1759,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.30902344508864943
+    "total_score": 0.30894275027593865
   },
   {
     "id": "x_6e7574f1",
@@ -1774,11 +1776,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.30692754583418813,
+        "total_score": 0.3068148522039459,
         "breakdown": {
           "quality": 0.265,
           "relevance": 0.2,
-          "temporal": 0.6783877291709404,
+          "temporal": 0.677824261019729,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1800,11 +1802,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24692754564611433,
+        "total_score": 0.24681485209719237,
         "breakdown": {
           "quality": 0.265,
           "relevance": 0.0,
-          "temporal": 0.6783877282305717,
+          "temporal": 0.6778242604859619,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1826,7 +1828,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.30692754583418813
+    "total_score": 0.3068148522039459
   },
   {
     "id": "rss_d49c79a0",
@@ -1844,11 +1846,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3021765987191896,
+        "total_score": 0.3020641520250793,
         "breakdown": {
           "quality": 0.21200000000000002,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6383829935959479,
+          "temporal": 0.6378207601253963,
           "trust": 0.15000000000000002,
           "actionability": 0.30000000000000004
         },
@@ -1870,11 +1872,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2331765986572883,
+        "total_score": 0.23306415196731128,
         "breakdown": {
           "quality": 0.21200000000000002,
           "relevance": 0.0,
-          "temporal": 0.6383829932864413,
+          "temporal": 0.6378207598365563,
           "trust": 0.15000000000000002,
           "actionability": 0.30000000000000004
         },
@@ -1896,7 +1898,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3021765987191896
+    "total_score": 0.3020641520250793
   },
   {
     "id": "x_7311e9e9",
@@ -1913,11 +1915,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3013275427549879,
+        "total_score": 0.3012148507573691,
         "breakdown": {
           "quality": 0.2786,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6383877137749394,
+          "temporal": 0.6378242537868454,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1939,11 +1941,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2323275425733412,
+        "total_score": 0.23221485067088532,
         "breakdown": {
           "quality": 0.2786,
           "relevance": 0.0,
-          "temporal": 0.6383877128667057,
+          "temporal": 0.6378242533544263,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1965,7 +1967,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3013275427549879
+    "total_score": 0.3012148507573691
   },
   {
     "id": "x_d32ddf09",
@@ -1982,11 +1984,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.30092754865630916,
+        "total_score": 0.3008148549910216,
         "breakdown": {
           "quality": 0.269,
           "relevance": 0.22999999999999998,
-          "temporal": 0.5983877432815456,
+          "temporal": 0.5978242749551079,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2008,11 +2010,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.266927548623836,
+        "total_score": 0.2668148549562254,
         "breakdown": {
           "quality": 0.269,
           "relevance": 0.15,
-          "temporal": 0.5983877431191797,
+          "temporal": 0.5978242747811269,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2034,7 +2036,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.30092754865630916
+    "total_score": 0.3008148549910216
   },
   {
     "id": "rss_61aee377",
@@ -2052,11 +2054,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3001765991727942,
+        "total_score": 0.3000641524760752,
         "breakdown": {
           "quality": 0.19,
           "relevance": 0.2,
-          "temporal": 0.638382995863971,
+          "temporal": 0.637820762380376,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -2078,11 +2080,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24017659910751032,
+        "total_score": 0.2400641524115507,
         "breakdown": {
           "quality": 0.19,
           "relevance": 0.0,
-          "temporal": 0.6383829955375515,
+          "temporal": 0.6378207620577534,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -2104,7 +2106,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3001765991727942
+    "total_score": 0.3000641524760752
   },
   {
     "id": "x_3bcfde01",
@@ -2121,11 +2123,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2988775480646887,
+        "total_score": 0.29876485438664846,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.2,
-          "temporal": 0.7183877403234431,
+          "temporal": 0.7178242719332422,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2147,11 +2149,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23887754799399183,
+        "total_score": 0.23876485431536684,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.0,
-          "temporal": 0.7183877399699592,
+          "temporal": 0.7178242715768343,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2173,7 +2175,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2988775480646887
+    "total_score": 0.29876485438664846
   },
   {
     "id": "rss_8c109bd4",
@@ -2191,11 +2193,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.29881477241613497,
+        "total_score": 0.2987569817919119,
         "breakdown": {
           "quality": 0.4152,
           "relevance": 0.2,
-          "temporal": 0.4250738620806749,
+          "temporal": 0.42478490895955934,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2217,11 +2219,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.3738147723765387,
+        "total_score": 0.37375698175132577,
         "breakdown": {
           "quality": 0.4152,
           "relevance": 0.44999999999999996,
-          "temporal": 0.42507386188269325,
+          "temporal": 0.42478490875662855,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2243,7 +2245,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.29881477241613497
+    "total_score": 0.2987569817919119
   },
   {
     "id": "rss_052e6a66",
@@ -2261,11 +2263,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2938647721802937,
+        "total_score": 0.2938069815544655,
         "breakdown": {
           "quality": 0.3954,
           "relevance": 0.2,
-          "temporal": 0.4250738609014685,
+          "temporal": 0.42478490777232736,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2287,11 +2289,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23386477214625473,
+        "total_score": 0.23380698151994989,
         "breakdown": {
           "quality": 0.3954,
           "relevance": 0.0,
-          "temporal": 0.42507386073127373,
+          "temporal": 0.4247849075997494,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2313,7 +2315,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2938647721802937
+    "total_score": 0.2938069815544655
   },
   {
     "id": "x_6934c707",
@@ -2330,11 +2332,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2929775472772144,
+        "total_score": 0.2928648535971459,
         "breakdown": {
           "quality": 0.2372,
           "relevance": 0.22999999999999998,
-          "temporal": 0.5983877363860719,
+          "temporal": 0.5978242679857294,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2356,11 +2358,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21397754720820888,
+        "total_score": 0.21386485352890477,
         "breakdown": {
           "quality": 0.2372,
           "relevance": 0.0,
-          "temporal": 0.5983877360410444,
+          "temporal": 0.5978242676445238,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2382,7 +2384,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2929775472772144
+    "total_score": 0.2928648535971459
   },
   {
     "id": "rss_054d7c2f",
@@ -2400,11 +2402,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2908047401067828,
+        "total_score": 0.2907632876141374,
         "breakdown": {
           "quality": 0.4062,
           "relevance": 0.2,
-          "temporal": 0.321273700533914,
+          "temporal": 0.3210664380706869,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -2426,11 +2428,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23080474007953056,
+        "total_score": 0.23076328758493164,
         "breakdown": {
           "quality": 0.4062,
           "relevance": 0.0,
-          "temporal": 0.3212737003976527,
+          "temporal": 0.3210664379246583,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -2452,7 +2454,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2908047401067828
+    "total_score": 0.2907632876141374
   },
   {
     "id": "rss_e09846be",
@@ -2470,11 +2472,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2903765988524634,
+        "total_score": 0.2902641521635874,
         "breakdown": {
           "quality": 0.1708,
           "relevance": 0.22999999999999998,
-          "temporal": 0.718382994262317,
+          "temporal": 0.7178207608179369,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2496,11 +2498,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26637659879597425,
+        "total_score": 0.26626415210277893,
         "breakdown": {
           "quality": 0.1708,
           "relevance": 0.15,
-          "temporal": 0.7183829939798712,
+          "temporal": 0.7178207605138947,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2522,7 +2524,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2903765988524634
+    "total_score": 0.2902641521635874
   },
   {
     "id": "x_479dc345",
@@ -2539,11 +2541,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2902775467576438,
+        "total_score": 0.2901648530752026,
         "breakdown": {
           "quality": 0.2404,
           "relevance": 0.2,
-          "temporal": 0.6383877337882186,
+          "temporal": 0.637824265376013,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2565,11 +2567,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.27527754667104865,
+        "total_score": 0.27516485299007015,
         "breakdown": {
           "quality": 0.2404,
           "relevance": 0.15,
-          "temporal": 0.638387733355243,
+          "temporal": 0.6378242649503505,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2591,7 +2593,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2902775467576438
+    "total_score": 0.2901648530752026
   },
   {
     "id": "rss_d9c83a78",
@@ -2609,11 +2611,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.28886477250470577,
+        "total_score": 0.28880698187811416,
         "breakdown": {
           "quality": 0.4074,
           "relevance": 0.2,
-          "temporal": 0.3850738625235286,
+          "temporal": 0.38478490939057053,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2635,11 +2637,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2288647724649357,
+        "total_score": 0.22880698184030307,
         "breakdown": {
           "quality": 0.4074,
           "relevance": 0.0,
-          "temporal": 0.38507386232467855,
+          "temporal": 0.3847849092015153,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2661,7 +2663,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.28886477250470577
+    "total_score": 0.28880698187811416
   },
   {
     "id": "x_f4e47035",
@@ -2678,11 +2680,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.287677546290842,
+        "total_score": 0.2875648526120413,
         "breakdown": {
           "quality": 0.23,
           "relevance": 0.2,
-          "temporal": 0.6383877314542099,
+          "temporal": 0.6378242630602065,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2704,11 +2706,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.272677546227587,
+        "total_score": 0.2725648525488676,
         "breakdown": {
           "quality": 0.23,
           "relevance": 0.15,
-          "temporal": 0.6383877311379347,
+          "temporal": 0.6378242627443378,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2730,7 +2732,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.287677546290842
+    "total_score": 0.2875648526120413
   },
   {
     "id": "rss_60951625",
@@ -2748,11 +2750,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.28651477224923994,
+        "total_score": 0.2864569816250576,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.2,
-          "temporal": 0.42507386124619967,
+          "temporal": 0.4247849081252882,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2774,11 +2776,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22651477222214772,
+        "total_score": 0.22645698159817362,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.4250738611107385,
+          "temporal": 0.4247849079908682,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2800,7 +2802,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.28651477224923994
+    "total_score": 0.2864569816250576
   },
   {
     "id": "rss_21aed703",
@@ -2818,11 +2820,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.28362659826727626,
+        "total_score": 0.2835141515798264,
         "breakdown": {
           "quality": 0.2438,
           "relevance": 0.2,
-          "temporal": 0.6383829913363812,
+          "temporal": 0.6378207578991318,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2844,11 +2846,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22362659819455072,
+        "total_score": 0.22351415150786974,
         "breakdown": {
           "quality": 0.2438,
           "relevance": 0.0,
-          "temporal": 0.6383829909727534,
+          "temporal": 0.6378207575393485,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2870,7 +2872,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.28362659826727626
+    "total_score": 0.2835141515798264
   },
   {
     "id": "x_80b00e60",
@@ -2887,11 +2889,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.281527543245468,
+        "total_score": 0.2814148509816865,
         "breakdown": {
           "quality": 0.2674,
           "relevance": 0.2,
-          "temporal": 0.59838771622734,
+          "temporal": 0.5978242549084323,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2913,11 +2915,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22152754300564015,
+        "total_score": 0.22141485087527085,
         "breakdown": {
           "quality": 0.2674,
           "relevance": 0.0,
-          "temporal": 0.5983877150282007,
+          "temporal": 0.5978242543763541,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2939,7 +2941,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.281527543245468
+    "total_score": 0.2814148509816865
   },
   {
     "id": "x_d73f8909",
@@ -2956,11 +2958,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2782275449259543,
+        "total_score": 0.2781148517461898,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.2,
-          "temporal": 0.5983877246297713,
+          "temporal": 0.5978242587309488,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2982,11 +2984,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21822754469728906,
+        "total_score": 0.21811485164653072,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.0,
-          "temporal": 0.5983877234864452,
+          "temporal": 0.5978242582326534,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3008,7 +3010,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2782275449259543
+    "total_score": 0.2781148517461898
   },
   {
     "id": "rss_3da7683d",
@@ -3026,11 +3028,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27767659961658936,
+        "total_score": 0.2775641529230173,
         "breakdown": {
           "quality": 0.19,
           "relevance": 0.2,
-          "temporal": 0.6383829980829466,
+          "temporal": 0.6378207646150862,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -3052,11 +3054,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21767659954961416,
+        "total_score": 0.21756415285579012,
         "breakdown": {
           "quality": 0.19,
           "relevance": 0.0,
-          "temporal": 0.6383829977480707,
+          "temporal": 0.6378207642789506,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -3078,7 +3080,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27767659961658936
+    "total_score": 0.2775641529230173
   },
   {
     "id": "rss_d653d261",
@@ -3096,11 +3098,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2775601357054386,
+        "total_score": 0.2775388532862609,
         "breakdown": {
           "quality": 0.384,
           "relevance": 0.2,
-          "temporal": 0.28280067852719293,
+          "temporal": 0.28269426643130435,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3122,11 +3124,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21756013569336352,
+        "total_score": 0.21753885327445655,
         "breakdown": {
           "quality": 0.384,
           "relevance": 0.0,
-          "temporal": 0.28280067846681745,
+          "temporal": 0.28269426637228257,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3148,7 +3150,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2775601357054386
+    "total_score": 0.2775388532862609
   },
   {
     "id": "x_1dc565a1",
@@ -3165,11 +3167,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2769275474744212,
+        "total_score": 0.27681485375930304,
         "breakdown": {
           "quality": 0.217,
           "relevance": 0.2,
-          "temporal": 0.638387737372106,
+          "temporal": 0.6378242687965151,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3191,11 +3193,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21692754739560616,
+        "total_score": 0.21681485368160275,
         "breakdown": {
           "quality": 0.217,
           "relevance": 0.0,
-          "temporal": 0.6383877369780306,
+          "temporal": 0.6378242684080135,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3217,7 +3219,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2769275474744212
+    "total_score": 0.27681485375930304
   },
   {
     "id": "x_aed7bc17",
@@ -3234,11 +3236,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27482754857174363,
+        "total_score": 0.2747148549035243,
         "breakdown": {
           "quality": 0.2086,
           "relevance": 0.2,
-          "temporal": 0.638387742858718,
+          "temporal": 0.6378242745176216,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3260,11 +3262,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21482754848751634,
+        "total_score": 0.2147148548204188,
         "breakdown": {
           "quality": 0.2086,
           "relevance": 0.0,
-          "temporal": 0.6383877424375817,
+          "temporal": 0.6378242741020939,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3286,7 +3288,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27482754857174363
+    "total_score": 0.2747148549035243
   },
   {
     "id": "rss_eb020ad1",
@@ -3304,11 +3306,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27197659901212146,
+        "total_score": 0.2718641523213515,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.2,
-          "temporal": 0.6383829950606071,
+          "temporal": 0.6378207616067575,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3330,11 +3332,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2119765989421019,
+        "total_score": 0.21186415225209748,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.0,
-          "temporal": 0.6383829947105095,
+          "temporal": 0.6378207612604871,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3356,7 +3358,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27197659901212146
+    "total_score": 0.2718641523213515
   },
   {
     "id": "x_5f7729a8",
@@ -3373,11 +3375,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27137754777175366,
+        "total_score": 0.27126485409273865,
         "breakdown": {
           "quality": 0.1948,
           "relevance": 0.2,
-          "temporal": 0.6383877388587681,
+          "temporal": 0.6378242704636932,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3399,11 +3401,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21137754770680728,
+        "total_score": 0.21126485402720013,
         "breakdown": {
           "quality": 0.1948,
           "relevance": 0.0,
-          "temporal": 0.6383877385340364,
+          "temporal": 0.6378242701360005,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3425,7 +3427,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27137754777175366
+    "total_score": 0.27126485409273865
   },
   {
     "id": "rss_766bce5f",
@@ -3443,11 +3445,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.267915855718507,
+        "total_score": 0.26790060619841793,
         "breakdown": {
           "quality": 0.36419999999999997,
           "relevance": 0.2,
-          "temporal": 0.2593292785925351,
+          "temporal": 0.25925303099208974,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3469,11 +3471,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2079158557109993,
+        "total_score": 0.20790060619096562,
         "breakdown": {
           "quality": 0.36419999999999997,
           "relevance": 0.0,
-          "temporal": 0.2593292785549965,
+          "temporal": 0.25925303095482805,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3495,7 +3497,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.267915855718507
+    "total_score": 0.26790060619841793
   },
   {
     "id": "rss_6e65cb62",
@@ -3513,11 +3515,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.267776599461667,
+        "total_score": 0.26766415276153704,
         "breakdown": {
           "quality": 0.1804,
           "relevance": 0.2,
-          "temporal": 0.6383829973083348,
+          "temporal": 0.6378207638076852,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3539,11 +3541,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2077765994011187,
+        "total_score": 0.20766415270072863,
         "breakdown": {
           "quality": 0.1804,
           "relevance": 0.0,
-          "temporal": 0.6383829970055934,
+          "temporal": 0.637820763503643,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3565,7 +3567,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.267776599461667
+    "total_score": 0.26766415276153704
   },
   {
     "id": "rss_87c6c15f",
@@ -3583,11 +3585,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26717659978165953,
+        "total_score": 0.2670641530811192,
         "breakdown": {
           "quality": 0.178,
           "relevance": 0.2,
-          "temporal": 0.6383829989082974,
+          "temporal": 0.6378207654055958,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3609,11 +3611,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20717659971197827,
+        "total_score": 0.20706415301254077,
         "breakdown": {
           "quality": 0.178,
           "relevance": 0.0,
-          "temporal": 0.6383829985598911,
+          "temporal": 0.6378207650627038,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3635,7 +3637,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26717659978165953
+    "total_score": 0.2670641530811192
   },
   {
     "id": "rss_15bcbd07",
@@ -3653,11 +3655,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26542717986880787,
+        "total_score": 0.26531456119791286,
         "breakdown": {
           "quality": 0.351,
           "relevance": 0.0,
-          "temporal": 0.6383858993440394,
+          "temporal": 0.6378228059895643,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3679,11 +3681,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26542717982348096,
+        "total_score": 0.2653145611519685,
         "breakdown": {
           "quality": 0.351,
           "relevance": 0.0,
-          "temporal": 0.6383858991174047,
+          "temporal": 0.6378228057598425,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3705,7 +3707,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26542717986880787
+    "total_score": 0.26531456119791286
   },
   {
     "id": "x_3cac75e2",
@@ -3722,11 +3724,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.264377548381302,
+        "total_score": 0.26426485471231403,
         "breakdown": {
           "quality": 0.2308,
           "relevance": 0.2,
-          "temporal": 0.55838774190651,
+          "temporal": 0.5578242735615702,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3748,11 +3750,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2493775482913243,
+        "total_score": 0.24926485462110065,
         "breakdown": {
           "quality": 0.2308,
           "relevance": 0.15,
-          "temporal": 0.5583877414566214,
+          "temporal": 0.5578242731055031,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3774,7 +3776,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.264377548381302
+    "total_score": 0.26426485471231403
   },
   {
     "id": "x_53b9766a",
@@ -3791,11 +3793,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26327754614911014,
+        "total_score": 0.26316485247691035,
         "breakdown": {
           "quality": 0.1624,
           "relevance": 0.2,
-          "temporal": 0.6383877307455507,
+          "temporal": 0.6378242623845516,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3817,11 +3819,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20327754609735604,
+        "total_score": 0.2031648524191419,
         "breakdown": {
           "quality": 0.1624,
           "relevance": 0.0,
-          "temporal": 0.6383877304867801,
+          "temporal": 0.6378242620957093,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3843,7 +3845,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26327754614911014
+    "total_score": 0.26316485247691035
   },
   {
     "id": "rss_f5663fac",
@@ -3861,11 +3863,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26147659858118016,
+        "total_score": 0.26136415189298984,
         "breakdown": {
           "quality": 0.1552,
           "relevance": 0.2,
-          "temporal": 0.6383829929059006,
+          "temporal": 0.6378207594649492,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3887,11 +3889,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2014765985328092,
+        "total_score": 0.20136415184535655,
         "breakdown": {
           "quality": 0.1552,
           "relevance": 0.0,
-          "temporal": 0.6383829926640457,
+          "temporal": 0.6378207592267827,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3913,7 +3915,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26147659858118016
+    "total_score": 0.26136415189298984
   },
   {
     "id": "rss_a86335b8",
@@ -3931,11 +3933,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2613769986694901,
+        "total_score": 0.26126443637897645,
         "breakdown": {
           "quality": 0.3348,
           "relevance": 0.0,
-          "temporal": 0.6383849933474504,
+          "temporal": 0.6378221818948823,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3957,11 +3959,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2613769986322815,
+        "total_score": 0.26126443634215346,
         "breakdown": {
           "quality": 0.3348,
           "relevance": 0.0,
-          "temporal": 0.6383849931614073,
+          "temporal": 0.6378221817107672,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3983,7 +3985,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2613769986694901
+    "total_score": 0.26126443637897645
   },
   {
     "id": "rss_91f1c20b",
@@ -4001,11 +4003,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.25997659846515747,
+        "total_score": 0.2598641517723864,
         "breakdown": {
           "quality": 0.1492,
           "relevance": 0.2,
-          "temporal": 0.6383829923257873,
+          "temporal": 0.6378207588619321,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4027,11 +4029,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.19997659842118387,
+        "total_score": 0.19986415172813143,
         "breakdown": {
           "quality": 0.1492,
           "relevance": 0.0,
-          "temporal": 0.6383829921059192,
+          "temporal": 0.637820758640657,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4053,7 +4055,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.25997659846515747
+    "total_score": 0.2598641517723864
   },
   {
     "id": "rss_22348016",
@@ -4071,11 +4073,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.25957699896715886,
+        "total_score": 0.2594644366793036,
         "breakdown": {
           "quality": 0.3276,
           "relevance": 0.0,
-          "temporal": 0.6383849948357944,
+          "temporal": 0.6378221833965179,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4097,11 +4099,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2595769989323181,
+        "total_score": 0.25946443664383184,
         "breakdown": {
           "quality": 0.3276,
           "relevance": 0.0,
-          "temporal": 0.6383849946615905,
+          "temporal": 0.6378221832191593,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4123,7 +4125,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.25957699896715886
+    "total_score": 0.2594644366793036
   },
   {
     "id": "x_4d532536",
@@ -4140,11 +4142,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2524275470502405,
+        "total_score": 0.25231485337147724,
         "breakdown": {
           "quality": 0.15100000000000002,
           "relevance": 0.2,
-          "temporal": 0.5983877352512024,
+          "temporal": 0.597824266857386,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4166,11 +4168,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.1924275470066047,
+        "total_score": 0.1923148533278975,
         "breakdown": {
           "quality": 0.15100000000000002,
           "relevance": 0.0,
-          "temporal": 0.5983877350330233,
+          "temporal": 0.5978242666394873,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4192,7 +4194,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2524275470502405
+    "total_score": 0.25231485337147724
   },
   {
     "id": "x_c36ca9f6",
@@ -4209,11 +4211,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.24512754791551505,
+        "total_score": 0.2450148542366531,
         "breakdown": {
           "quality": 0.1858,
           "relevance": 0.2,
-          "temporal": 0.5183877395775751,
+          "temporal": 0.5178242711832653,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4235,11 +4237,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.19712754785361308,
+        "total_score": 0.19701485417449288,
         "breakdown": {
           "quality": 0.1858,
           "relevance": 0.04,
-          "temporal": 0.5183877392680653,
+          "temporal": 0.5178242708724642,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4261,7 +4263,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.24512754791551505
+    "total_score": 0.2450148542366531
   },
   {
     "id": "rss_7449abf9",
@@ -4279,11 +4281,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.24432317602600834,
+        "total_score": 0.2442425227097032,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.5141158801300416,
+          "temporal": 0.513712613548516,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4305,11 +4307,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24432317598335063,
+        "total_score": 0.24424252267097324,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.5141158799167531,
+          "temporal": 0.5137126133548663,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4331,7 +4333,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.24432317602600834
+    "total_score": 0.2442425227097032
   },
   {
     "id": "rss_d8d55602",
@@ -4349,11 +4351,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.23191477232808527,
+        "total_score": 0.2318569817003328,
         "breakdown": {
           "quality": 0.3876,
           "relevance": 0.0,
-          "temporal": 0.42507386164042626,
+          "temporal": 0.42478490850166417,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4375,11 +4377,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23191477229196228,
+        "total_score": 0.23185698166737823,
         "breakdown": {
           "quality": 0.3876,
           "relevance": 0.0,
-          "temporal": 0.4250738614598114,
+          "temporal": 0.42478490833689125,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4401,7 +4403,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.23191477232808527
+    "total_score": 0.2318569817003328
   },
   {
     "id": "x_c3861536",
@@ -4418,11 +4420,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.22292754235008816,
+        "total_score": 0.2228148505729154,
         "breakdown": {
           "quality": 0.241,
           "relevance": 0.0,
-          "temporal": 0.6383877117504407,
+          "temporal": 0.6378242528645768,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4444,11 +4446,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22292754215254307,
+        "total_score": 0.22281485048305327,
         "breakdown": {
           "quality": 0.241,
           "relevance": 0.0,
-          "temporal": 0.6383877107627153,
+          "temporal": 0.6378242524152663,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4470,7 +4472,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.22292754235008816
+    "total_score": 0.2228148505729154
   },
   {
     "id": "x_ac40b6e6",
@@ -4487,11 +4489,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2119775476300218,
+        "total_score": 0.21186485394983767,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.0,
-          "temporal": 0.6383877381501089,
+          "temporal": 0.6378242697491883,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4513,11 +4515,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21197754756236936,
+        "total_score": 0.2118648538812587,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.0,
-          "temporal": 0.6383877378118468,
+          "temporal": 0.6378242694062934,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4539,7 +4541,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2119775476300218
+    "total_score": 0.21186485394983767
   },
   {
     "id": "x_5bf8bfaa",
@@ -4556,11 +4558,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.21182754447302127,
+        "total_score": 0.2117148515465338,
         "breakdown": {
           "quality": 0.1966,
           "relevance": 0.0,
-          "temporal": 0.6383877223651062,
+          "temporal": 0.6378242577326689,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4582,11 +4584,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21182754432249462,
+        "total_score": 0.2117148514806575,
         "breakdown": {
           "quality": 0.1966,
           "relevance": 0.0,
-          "temporal": 0.638387721612473,
+          "temporal": 0.6378242574032873,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4608,7 +4610,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.21182754447302127
+    "total_score": 0.2117148515465338
   },
   {
     "id": "x_6ca9e71d",
@@ -4625,11 +4627,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.20462754657092302,
+        "total_score": 0.20451485289108673,
         "breakdown": {
           "quality": 0.1678,
           "relevance": 0.0,
-          "temporal": 0.638387732854615,
+          "temporal": 0.6378242644554334,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4651,11 +4653,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20462754651747767,
+        "total_score": 0.20451485283737214,
         "breakdown": {
           "quality": 0.1678,
           "relevance": 0.0,
-          "temporal": 0.638387732587388,
+          "temporal": 0.6378242641868606,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4677,165 +4679,11 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.20462754657092302
+    "total_score": 0.20451485289108673
   }
 ];
-
-        let filteredArticles = [...articles];
-        let currentPersona = 'engineer';
-
-        // Human-readable names for source tiers
-        const tierTexts = {
-            1: '高信頼ソース',
-            2: '一般ソース'
-        };
-
-        function renderArticles() {
-            const container = document.getElementById('articles-container');
-            container.innerHTML = '';
-            
-            // Sort by recommendation priority first then by score
-            const recPriority = { must_read: 0, recommended: 1, consider: 2, skip: 3 };
-            const sorted = [...filteredArticles].sort((a, b) => {
-                const aRec = (a.evaluation && a.evaluation[currentPersona] && a.evaluation[currentPersona].recommendation) || 'consider';
-                const bRec = (b.evaluation && b.evaluation[currentPersona] && b.evaluation[currentPersona].recommendation) || 'consider';
-                if (recPriority[aRec] !== recPriority[bRec]) {
-                    return recPriority[aRec] - recPriority[bRec];
-                }
-                return getPersonaScore(b) - getPersonaScore(a);
-            });
-            
-            // Group by recommendation and insert headings for clarity
-            let lastRec = null;
-            sorted.forEach(article => {
-                const evalData = article.evaluation && article.evaluation[currentPersona];
-                const rec = (evalData && evalData.recommendation) || 'consider';
-                if (rec !== lastRec) {
-                    const heading = document.createElement('h2');
-                    heading.className = `rec-heading rec-${rec}`;
-                    heading.textContent = getRecommendationText(rec);
-                    container.appendChild(heading);
-                    lastRec = rec;
-                }
-                container.appendChild(createArticleCard(article));
-            });
-        }
-
-        function createArticleCard(article) {
-            const card = document.createElement('div');
-            card.className = 'article-card';
-            const evaluation = article.evaluation || {};
-            const personaEval = evaluation[currentPersona] || {};
-            const breakdown = personaEval.breakdown || {};
-            const totalPercentage = Math.round((personaEval.total_score || 0) * 100);
-            
-            // Determine the order of breakdown keys for this persona
-            const order = breakdownOrder[currentPersona] || ['quality','relevance','temporal','trust','actionability'];
-            
-            // Build HTML for breakdown items in the desired order
-            let breakdownHtml = '';
-            order.forEach((key, idx) => {
-                const val = Math.round(((breakdown[key] || 0) * 100));
-                const label = (metricLabels[currentPersona] && metricLabels[currentPersona][idx]) || key;
-                breakdownHtml += `<div class="score-item"><div class="score-value">${val}</div><div class="score-label">${label}</div></div>`;
-            });
-            
-            card.innerHTML = `
-                <span class="source-tier tier-${article.source_tier}">${tierTexts[article.source_tier] || ''}</span>
-                <h3 class="article-title">
-                    <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
-                </h3>
-                <div class="article-meta">
-                    <span>${escapeHtml(article.source)}</span> • <span>${article.published_date}</span>
-                </div>
-                <div class="article-content">${escapeHtml(article.content)}</div>
-                <div class="evaluation-panel">
-                    <div class="score-display">
-                        <div class="total-score">${totalPercentage}</div>
-                        <div class="score-label-text">総合評価</div>
-                        <div class="score-bar"><div class="score-bar-fill" style="width: ${totalPercentage}%"></div></div>
-                    </div>
-                    <div class="score-breakdown">
-                        ${breakdownHtml}
-                    </div>
-                    <div class="recommendation rec-${personaEval.recommendation || 'consider'}">
-                        ${getRecommendationText(personaEval.recommendation || 'consider')}
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        function getRecommendationText(rec) {
-            const texts = { must_read: '必読', recommended: '推奨', consider: '検討', skip: 'スキップ' };
-            return texts[rec] || rec;
-        }
-
-        function getPersonaScore(article) {
-            const evalData = article.evaluation && article.evaluation[currentPersona];
-            return evalData ? evalData.total_score : 0;
-        }
-
-        function applyFilters() {
-            const tierFilter = document.getElementById('source-tier-filter').value;
-            const minScore = parseFloat(document.getElementById('min-score-filter').value || 0);
-            const searchQuery = document.getElementById('search-input').value.toLowerCase();
-            
-            filteredArticles = articles.filter(article => {
-                if (tierFilter !== 'all' && article.source_tier !== parseInt(tierFilter)) return false;
-                if (getPersonaScore(article) < minScore) return false;
-                if (searchQuery) {
-                    const haystack = (article.title + article.content + article.source).toLowerCase();
-                    if (!haystack.includes(searchQuery)) return false;
-                }
-                return true;
-            });
-            
-            renderArticles();
-            updateSummaryStats();
-        }
-
-        function updateSummaryStats() {
-            const totalEl = document.getElementById('stat-total');
-            const avgEl = document.getElementById('stat-avg-score');
-            const tier1El = document.getElementById('stat-tier1');
-            
-            totalEl.textContent = filteredArticles.length;
-            const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
-            avgEl.textContent = Math.round(avgScore * 100) + '%';
-            const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
-            tier1El.textContent = tier1Count;
-        }
-
-        // Event listeners
-        document.getElementById('source-tier-filter').addEventListener('change', applyFilters);
-        document.getElementById('min-score-filter').addEventListener('input', applyFilters);
-        document.getElementById('search-input').addEventListener('input', applyFilters);
-
-        // Attach persona toggle events on header
-        document.querySelectorAll('.header .persona-toggle button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // update active class
-                document.querySelectorAll('.header .persona-toggle button').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                // update global persona
-                currentPersona = btn.dataset.persona;
-                // re-apply filters and re-render
-                applyFilters();
-            });
-        });
-
-        // Initial render
-        document.addEventListener('DOMContentLoaded', () => {
-            renderArticles();
-            updateSummaryStats();
-        });
-    </script>
+    window.articles = articles;
+  </script>
 </body>
 </html>
+
