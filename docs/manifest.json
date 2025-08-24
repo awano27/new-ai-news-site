@@ -1,0 +1,16 @@
+{
+  "name": "Daily AI News",
+  "short_name": "AI News",
+  "description": "AI情報の質的評価プラットフォーム",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

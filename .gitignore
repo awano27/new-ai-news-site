@@ -54,9 +54,11 @@ node_modules/
 package-lock.json
 
 # Build outputs
-*.html
+# *.html  # Commented out to allow docs/*.html for GitHub Pages
 !templates/*.html
 !improved-requirements-doc.html
+!docs/*.html
+!docs/**/*.html
 static/
 public/
 
@@ -80,3 +82,6 @@ test_results/
 
 # Keep docs directory for GitHub Pages
 # docs/  # Commented out to keep GitHub Pages deployment
+!docs/
+!docs/*
+!docs/**/*

@@ -1,0 +1,48 @@
+# GitHub Pages Configuration
+title: "Daily AI News"
+description: "AI技術の最新動向を評価付きで提供するインテリジェント情報プラットフォーム"
+url: "https://awano27.github.io"
+baseurl: "/new-ai-news-site"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .pytest_cache
+  - __pycache__
+
+# Include specific files
+include:
+  - _pages
+  
+# Site settings
+lang: ja
+timezone: Asia/Tokyo
+
+# SEO settings
+google_analytics: 
+twitter:
+  username: 
+facebook:
+  app_id: 
+  publisher: 
+
+# Navigation
+header_pages:
+  - index.html
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag

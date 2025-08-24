@@ -1,47 +1,104 @@
-# Daily AI News - GitHub Pages
+# 🤖 Daily AI News
 
-This directory contains the generated static site for Daily AI News.
+**AI技術の最新動向を評価付きで提供するインテリジェント情報プラットフォーム**
 
-## Site Structure
+🌐 **Live Demo**: [https://awano27.github.io/new-ai-news-site/](https://awano27.github.io/new-ai-news-site/)
 
-- `index.html` - Main dashboard page
-- `styles.css` - Responsive CSS styling  
-- `script.js` - Interactive JavaScript functionality
-- `feed.xml` - RSS feed for syndication
-- `sitemap.xml` - XML sitemap for SEO
+---
 
-## Features
+## 🎯 主要機能
 
-- **Persona-based Optimization**: Switch between Engineer and Business perspectives
-- **Interactive Dashboard**: Search, filter, and sort articles
-- **Responsive Design**: Optimized for desktop, tablet, and mobile
-- **RSS Feed**: Subscribe to daily AI news updates
-- **Performance Optimized**: Minified assets and fast loading
+### ✅ **多層評価システム**
+- **5軸評価**: 品質・関連性・時間的価値・信頼性・実行性
+- **ペルソナ最適化**: エンジニア向け・ビジネス向け評価
+- **評価順ソート**: 高品質記事が上位表示
 
-## Deployment
+### ✅ **統合収集システム**  
+- **X記事**: リアルタイムのAI関連投稿
+- **RSS記事**: MIT Tech Review、Reddit、VentureBeatなど
+- **日本語要約**: 英語記事の自動日本語要約
 
-This site is automatically deployed via GitHub Actions:
-- **Trigger**: Push to main branch or daily schedule (6 AM UTC)
-- **Process**: Generate sample articles → Build site → Deploy to Pages
-- **URL**: Available at GitHub Pages URL
+### ✅ **インテリジェント表示**
+- **リアルタイム評価切替**: エンジニア⇄ビジネス
+- **詳細スコア表示**: 5軸スコア内訳の可視化  
+- **推奨度表示**: 必読・推奨・検討・スキップ
 
-## Development
+---
 
-To regenerate the site locally:
+## 📊 技術仕様
 
-```bash
-python -c "
-import asyncio
-from src.generators.static_site_generator import StaticSiteGenerator
-from src.config.settings import Settings
-
-async def generate():
-    settings = Settings()
-    settings.output_dir = 'docs'
-    generator = StaticSiteGenerator(settings)
-    # Add your articles here
-    await generator.generate_complete_site(articles)
-
-asyncio.run(generate())
-"
+### **評価アルゴリズム**
 ```
+総合スコア = 品質(25%) + 関連性(30%) + 時間的価値(20%) + 信頼性(15%) + 実行性(10%)
+```
+
+### **対応ソース**
+- **Tier 1**: MIT Technology Review AI, Reddit MachineLearning, VentureBeat AI
+- **Tier 2**: X/Twitter AI関連投稿, Hacker News AI
+
+### **ペルソナ別最適化**
+- **エンジニア**: 実装・コード・技術的深度を重視
+- **ビジネス**: ROI・市場・戦略・ビジネス価値を重視
+
+---
+
+## 🚀 サイト構成
+
+- `index.html` - メインダッシュボード（評価システム統合）
+- `styles.css` - レスポンシブCSS
+- `script.js` - インタラクティブ機能
+- `feed.xml` - RSS配信用
+- `sitemap.xml` - SEO用サイトマップ
+
+---
+
+## 🔧 使用方法
+
+1. **サイトにアクセス**: [Daily AI News](https://awano27.github.io/new-ai-news-site/)
+2. **ペルソナ選択**: エンジニア・ビジネスを切替
+3. **記事閲覧**: 評価順で表示された記事をチェック
+4. **詳細確認**: 評価内訳と推奨度を確認
+
+---
+
+## 📈 評価システム
+
+### **多層評価（5軸）**
+- **品質評価**: テキスト品質、技術キーワード密度、ソース権威性
+- **関連性評価**: ペルソナ別キーワード分析  
+- **時間的価値評価**: 鮮度スコア + 持続的価値
+- **信頼性評価**: E-E-A-T準拠（経験・専門知識・権威性）
+- **実行性評価**: アクションにつながる具体的情報
+
+### **ペルソナ別最適化**
+- **エンジニア**: `implementation`, `code`, `pytorch`等を高評価
+- **ビジネス**: `roi`, `strategy`, `market`等を高評価
+
+---
+
+## 🔄 デプロイメント
+
+GitHub Pagesで自動デプロイ:
+- **トリガー**: mainブランチへのプッシュ
+- **プロセス**: 記事収集 → 評価 → HTML生成 → デプロイ
+- **URL**: https://awano27.github.io/new-ai-news-site/
+
+---
+
+## 🎨 技術スタック
+
+- **フロントエンド**: HTML5, CSS3, Vanilla JavaScript
+- **バックエンド**: Python (収集・評価)
+- **評価システム**: 独自多層評価アルゴリズム
+- **デプロイ**: GitHub Pages
+- **レスポンシブ**: CSS Grid & Flexbox
+
+---
+
+## 📱 対応デバイス
+
+- **デスクトップ**: フル機能（評価詳細表示）
+- **タブレット**: 最適化レイアウト  
+- **モバイル**: タッチ対応UI
+
+**🌟 今すぐアクセス**: [Daily AI News](https://awano27.github.io/new-ai-news-site/)
