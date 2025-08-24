@@ -87,7 +87,7 @@
             business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
         };
 
-        // Sample articles data
+        // Sample articles data (expanded from CSV backup)
         const articles = [
             {
                 id: "demo-001",
@@ -112,31 +112,177 @@
                 }
             },
             {
-                id: "demo-002",
-                title: "Meta Llama 2: Open Source Large Language Model", 
-                url: "https://llama.meta.com/",
-                source: "Meta AI",
+                id: "x-001",
+                title: "RAG (Retrieval Augmented Generation) revolutionizing AI knowledge systems",
+                url: "https://arxiv.org/",
+                source: "X(@AndrewYNg)",
                 source_tier: 1,
-                published_date: "2024-11-05",
-                content: "Meta has released Llama 2, a collection of foundation language models ranging from 7B to 70B parameters. Trained on 2 trillion tokens, these models outperform other open source language models on most benchmarks.",
-                summary_note: "※ 英語記事を日本語要約：Meta Llama 2オープンソース大規模言語モデルのリリース",
+                published_date: "2025-01-23",
+                content: "RAG (Retrieval Augmented Generation) is revolutionizing how AI systems handle knowledge. New paper shows 40% improvement in factual accuracy. This could be the key to solving hallucinations in LLMs. #AI #MachineLearning",
                 evaluation: {
                     engineer: {
-                        total_score: 0.89,
-                        breakdown: { quality: 0.92, relevance: 0.88, temporal: 0.85, trust: 0.95, actionability: 0.85 },
+                        total_score: 0.87,
+                        breakdown: { quality: 0.90, relevance: 0.85, temporal: 0.92, trust: 0.88, actionability: 0.80 },
                         recommendation: "recommended"
                     },
                     business: {
-                        total_score: 0.82,
-                        breakdown: { quality: 0.92, relevance: 0.78, temporal: 0.85, trust: 0.95, actionability: 0.60 },
+                        total_score: 0.74,
+                        breakdown: { quality: 0.90, relevance: 0.70, temporal: 0.92, trust: 0.88, actionability: 0.60 },
+                        recommendation: "recommended"
+                    }
+                }
+            },
+            {
+                id: "x-002",
+                title: "Multimodal AI models showing incredible progress",
+                url: "https://github.com/anthropics",
+                source: "X(@ylecun)",
+                source_tier: 1,
+                published_date: "2025-01-23",
+                content: "Multimodal AI models are showing incredible progress. New Claude can now understand complex diagrams and generate code from sketches. The future of human-AI interaction is visual. 🔥 #AI #MultiModal",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.85,
+                        breakdown: { quality: 0.88, relevance: 0.82, temporal: 0.90, trust: 0.85, actionability: 0.80 },
+                        recommendation: "recommended"
+                    },
+                    business: {
+                        total_score: 0.78,
+                        breakdown: { quality: 0.88, relevance: 0.72, temporal: 0.90, trust: 0.85, actionability: 0.75 },
+                        recommendation: "recommended"
+                    }
+                }
+            },
+            {
+                id: "x-003",
+                title: "AI Agents: The Next Frontier in Autonomous AI",
+                url: "https://openai.com/",
+                source: "X(@karpathy)",
+                source_tier: 1,
+                published_date: "2025-01-23",
+                content: "AI Agents are the next frontier. OpenAI's new agent framework can autonomously debug code, manage tasks, and even write documentation. We're moving from tools to colleagues. Thread 🧵 #AIAgents",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.91,
+                        breakdown: { quality: 0.93, relevance: 0.90, temporal: 0.95, trust: 0.90, actionability: 0.87 },
+                        recommendation: "must_read"
+                    },
+                    business: {
+                        total_score: 0.83,
+                        breakdown: { quality: 0.93, relevance: 0.78, temporal: 0.95, trust: 0.90, actionability: 0.75 },
+                        recommendation: "recommended"
+                    }
+                }
+            },
+            {
+                id: "x-004",
+                title: "Fine-tuning LLMs for medical diagnosis becomes 50x cheaper",
+                url: "https://arxiv.org/",
+                source: "X(@emilywillingham)",
+                source_tier: 2,
+                published_date: "2025-01-23",
+                content: "Fine-tuning LLMs for medical diagnosis just got 50x cheaper with new LoRA techniques. Healthcare AI is about to accelerate dramatically. #HealthcareAI #FineTuning #LLM",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.79,
+                        breakdown: { quality: 0.82, relevance: 0.78, temporal: 0.88, trust: 0.75, actionability: 0.72 },
+                        recommendation: "recommended"
+                    },
+                    business: {
+                        total_score: 0.85,
+                        breakdown: { quality: 0.82, relevance: 0.88, temporal: 0.88, trust: 0.75, actionability: 0.92 },
+                        recommendation: "recommended"
+                    }
+                }
+            },
+            {
+                id: "x-005",
+                title: "Diffusion models for real-time 3D scene generation",
+                url: "https://arxiv.org/",
+                source: "X(@hardmaru)",
+                source_tier: 1,
+                published_date: "2025-01-23",
+                content: "New paper on diffusion models for 3D generation is mind-blowing. We can now generate complex 3D scenes from text prompts in real-time. #GenerativeAI #3D #Diffusion",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.86,
+                        breakdown: { quality: 0.88, relevance: 0.83, temporal: 0.92, trust: 0.82, actionability: 0.85 },
+                        recommendation: "recommended"
+                    },
+                    business: {
+                        total_score: 0.71,
+                        breakdown: { quality: 0.88, relevance: 0.65, temporal: 0.92, trust: 0.82, actionability: 0.58 },
+                        recommendation: "consider"
+                    }
+                }
+            },
+            {
+                id: "x-006",
+                title: "GitHub Copilot Enterprise: Fine-tuning on company codebases",
+                url: "https://github.com/features/copilot",
+                source: "X(@gdb)",
+                source_tier: 1,
+                published_date: "2025-01-24",
+                content: "GitHub Copilot now supports fine-tuning on your company's codebase. This changes everything for enterprise development. Productivity gains are going to be massive. #GitHubCopilot #AI #Programming",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.94,
+                        breakdown: { quality: 0.92, relevance: 0.95, temporal: 0.95, trust: 0.95, actionability: 0.93 },
+                        recommendation: "must_read"
+                    },
+                    business: {
+                        total_score: 0.89,
+                        breakdown: { quality: 0.92, relevance: 0.88, temporal: 0.95, trust: 0.95, actionability: 0.85 },
+                        recommendation: "must_read"
+                    }
+                }
+            },
+            {
+                id: "x-007",
+                title: "GPT-5 training progressing faster than expected",
+                url: "https://openai.com/",
+                source: "X(@sama)",
+                source_tier: 1,
+                published_date: "2025-01-24",
+                content: "GPT-5 training is progressing faster than expected. New architecture improvements are showing 10x better performance on reasoning tasks. The future is accelerating. #GPT5 #OpenAI",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.93,
+                        breakdown: { quality: 0.95, relevance: 0.92, temporal: 0.98, trust: 0.90, actionability: 0.90 },
+                        recommendation: "must_read"
+                    },
+                    business: {
+                        total_score: 0.87,
+                        breakdown: { quality: 0.95, relevance: 0.85, temporal: 0.98, trust: 0.90, actionability: 0.75 },
+                        recommendation: "recommended"
+                    }
+                }
+            },
+            {
+                id: "x-008",
+                title: "Deep learning evolving beyond gradient descent",
+                url: "https://arxiv.org/",
+                source: "X(@fchollet)",
+                source_tier: 1,
+                published_date: "2025-01-24",
+                content: "Deep learning is evolving beyond gradient descent. New meta-learning approaches are achieving human-level sample efficiency. This is the path to artificial general intelligence. #DeepLearning #AGI",
+                evaluation: {
+                    engineer: {
+                        total_score: 0.88,
+                        breakdown: { quality: 0.90, relevance: 0.87, temporal: 0.92, trust: 0.85, actionability: 0.86 },
+                        recommendation: "recommended"
+                    },
+                    business: {
+                        total_score: 0.76,
+                        breakdown: { quality: 0.90, relevance: 0.68, temporal: 0.92, trust: 0.85, actionability: 0.65 },
                         recommendation: "recommended"
                     }
                 }
             },
             {
                 id: "demo-003",
-                title: "CursorとClaude Codeを使ったFigmaプラグインの開発について書きました",
-                url: "https://note.com/shingo2000/n/n8550f5361d89",
+                title: "CursorとClaude Codeを使ったFigmaプラグインの開発について書きました", 
+                url: "https://note.com/shingo2000/",
                 source: "X(@shingo2000)",
                 source_tier: 2,
                 published_date: "2024-11-04",
@@ -157,7 +303,7 @@
             {
                 id: "demo-004", 
                 title: "[R] routers to foundation models?",
-                url: "https://www.reddit.com/r/MachineLearning/comments/1myj9jk/r_routers_to_foundation_models/",
+                url: "https://www.reddit.com/r/MachineLearning/",
                 source: "Reddit MachineLearning",
                 source_tier: 1,
                 published_date: "2024-11-03",
