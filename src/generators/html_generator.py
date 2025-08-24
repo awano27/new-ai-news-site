@@ -235,7 +235,8 @@ class HTMLGenerator:
             dashboard_content,
             title="Daily AI News - AI情報の質的評価プラットフォーム",
             description="AIエンジニアとビジネスマン向けに厳選されたAI情報を、独自の多層評価システムで分析・提供",
-            persona=persona
+            persona=persona,
+            articles=articles
         )
         
         # Write to output file
@@ -526,7 +527,7 @@ class HTMLGenerator:
         }
         return options
     
-    def _generate_complete_page(self, content: str, title: str, description: str, persona: str = "engineer") -> str:
+    def _generate_complete_page(self, content: str, title: str, description: str, persona: str = "engineer", articles: List[Article] = None) -> str:
         """Generate complete HTML page."""
         # Load base template
         base_template = self.template_engine.load_template("base.html")
@@ -537,11 +538,20 @@ class HTMLGenerator:
         # Generate JavaScript
         scripts = self._generate_javascript(persona)
         
+        # Add articles data as JSON for JavaScript consumption
+        articles_json = ""
+        if articles:
+            processed_articles = self._process_articles(articles, persona)
+            articles_json = f'<script id="articles-data" type="application/json">{json.dumps(processed_articles, ensure_ascii=False, indent=2)}</script>'
+        
+        # Embed articles JSON data before content
+        full_content = articles_json + content
+        
         # Render complete page
         return self.template_engine.render(base_template, {
             "title": title,
             "description": description,
-            "content": content,
+            "content": full_content,
             "styles": styles,
             "scripts": scripts
         })
