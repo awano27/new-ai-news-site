@@ -42,6 +42,17 @@
         </div>
     </section>
 
+    <nav class="rec-nav" aria-label="推奨度ナビ">
+        <div class="container">
+            <div class="nav-row">
+                <button class="nav-item" data-target="must_read">必読 <span class="count" id="nav-count-must_read">0</span></button>
+                <button class="nav-item" data-target="recommended">注目 <span class="count" id="nav-count-recommended">0</span></button>
+                <button class="nav-item" data-target="consider">参考 <span class="count" id="nav-count-consider">0</span></button>
+                <button class="nav-item" data-target="skip">見送り <span class="count" id="nav-count-skip">0</span></button>
+            </div>
+        </div>
+    </nav>
+
     <!-- Filter panel -->
     <section class="filters">
         <div class="container">
@@ -78,6 +89,17 @@
             </div>
         </div>
     </section>
+
+    <nav class="rec-nav" aria-label="推奨度ナビ">
+        <div class="container">
+            <div class="nav-row">
+                <button class="nav-item" data-target="must_read">必読 <span class="count" id="nav-count-must_read">0</span></button>
+                <button class="nav-item" data-target="recommended">注目 <span class="count" id="nav-count-recommended">0</span></button>
+                <button class="nav-item" data-target="consider">参考 <span class="count" id="nav-count-consider">0</span></button>
+                <button class="nav-item" data-target="skip">見送り <span class="count" id="nav-count-skip">0</span></button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Articles container -->
     <main>
@@ -4736,43 +4758,7 @@
             return `<span>${label}</span><span class="rec-subtext">${sub}</span>`;
         }
 
-        function getPersonaScore(article) {
-            const evalData = article.evaluation && article.evaluation[currentPersona];
-            return evalData ? evalData.total_score : 0;
-        }
-
-        function applyFilters() {
-            const tierFilter = document.getElementById('source-tier-filter').value;
-            const minScore = parseFloat(document.getElementById('min-score-filter').value || 0);
-            const searchQuery = document.getElementById('search-input').value.toLowerCase();
-            
-            filteredArticles = articles.filter(article => {
-                if (tierFilter !== 'all' && article.source_tier !== parseInt(tierFilter)) return false;
-                if (getPersonaScore(article) < minScore) return false;
-                if (searchQuery) {
-                    const haystack = (article.title + article.content + article.source).toLowerCase();
-                    if (!haystack.includes(searchQuery)) return false;
-                }
-                return true;
-            });
-            
-            renderArticles();
-            updateSummaryStats();
-        }
-
-        function updateSummaryStats() {
-            const totalEl = document.getElementById('stat-total');
-            const avgEl = document.getElementById('stat-avg-score');
-            const tier1El = document.getElementById('stat-tier1');
-            
-            totalEl.textContent = filteredArticles.length;
-            const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
-            avgEl.textContent = Math.round(avgScore * 100) + '%';
-            const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
-            tier1El.textContent = tier1Count;
-        }
-
-        // Initialization moved to script.js
+        window.articles = articles;
     </script>
 </body>
 </html>

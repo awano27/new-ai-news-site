@@ -261,6 +261,7 @@ h1, h2, h3 {
 
 /* Recommendation sections */
 .rec-section { margin-bottom: 1.5rem; }
+.rec-section { scroll-margin-top: 6rem; }
 .rec-heading {
     display: flex;
     align-items: center;
@@ -274,6 +275,8 @@ h1, h2, h3 {
 .rec-section.collapsed .rec-content { display: none; }
 .rec-section .compact-list .extra { display: none; }
 .rec-section.expanded .compact-list .extra { display: flex; }
+.rec-section .cards-grid .extra { display: none; }
+.rec-section.expanded .cards-grid .extra { display: block; }
 
 /* Show more button */
 .show-more {
@@ -303,6 +306,13 @@ h1, h2, h3 {
 .mini-bar { width: 80px; height: 6px; background: var(--border-color); border-radius: 9999px; overflow: hidden; }
 .mini-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--success-color), var(--primary-color)); }
 .compact-item .recommendation { margin-top: 0; padding: 0.15rem 0.5rem; font-size: 0.7rem; }
+
+/* Recommendation top navigation */
+.rec-nav { position: sticky; top: 0.5rem; z-index: 9; margin: 0 0 1rem; background: transparent; }
+.rec-nav .nav-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.rec-nav .nav-item { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: 9999px; background: var(--surface-color); color: var(--text-color); font-size: 0.85rem; cursor: pointer; }
+.rec-nav .nav-item .count { color: var(--text-light); font-variant-numeric: tabular-nums; }
+.rec-nav .nav-item.active { border-color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
 
 /* Article card - Enhanced visual design */
 .article-card {

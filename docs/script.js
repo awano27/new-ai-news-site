@@ -102,6 +102,7 @@
       const section = document.createElement('section');
       section.className = `rec-section rec-${rec}` + (rec === 'consider' || rec === 'skip' ? ' collapsed' : '');
       section.dataset.rec = rec;
+      section.id = `sec-${rec}`;
 
       const heading = document.createElement('h2');
       heading.className = `rec-heading rec-${rec}`;
@@ -115,9 +116,13 @@
       content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
 
       if (rec === 'must_read' || rec === 'recommended') {
-        items
-          .sort((a,b) => getPersonaScore(b) - getPersonaScore(a))
-          .forEach(article => content.appendChild(createArticleCard(article)));
+        const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+        const limitTop = 8;
+        sorted.forEach((article, idx) => {
+          const el = createArticleCard(article);
+          if (idx >= limitTop) el.classList.add('extra');
+          content.appendChild(el);
+        });
       } else {
         const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
         const limit = 5;
@@ -133,8 +138,19 @@
         btn.textContent = 'もっと見る';
         section.appendChild(btn);
       }
+      if ((rec === 'must_read' || rec === 'recommended') && items.length > 8) {
+        const btn = document.createElement('button');
+        btn.className = 'show-more';
+        btn.type = 'button';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = 'もっと見る';
+        section.appendChild(btn);
+      }
       container.appendChild(section);
     });
+
+    // Update nav counts
+    updateRecNavCounts(groups);
 
     if (!container.children.length) {
       const empty = document.createElement('div');
@@ -272,6 +288,34 @@
         e.preventDefault();
         e.target.closest('.rec-section')?.classList.toggle('collapsed');
       }
+    });
+
+    // Rec nav interactions
+    document.querySelectorAll('.rec-nav .nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        const el = document.getElementById(`sec-${target}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Observe sections to update nav active state
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const rec = entry.target.dataset.rec;
+          document.querySelectorAll('.rec-nav .nav-item').forEach(i => i.classList.toggle('active', i.getAttribute('data-target') === rec));
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    document.querySelectorAll('.rec-section').forEach(sec => obs.observe(sec));
+  }
+
+  function updateRecNavCounts(groups) {
+    const ids = ['must_read','recommended','consider','skip'];
+    ids.forEach(id => {
+      const el = document.getElementById(`nav-count-${id}`);
+      if (el) el.textContent = (groups[id] || []).length;
     });
   }
 
