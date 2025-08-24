@@ -100,7 +100,7 @@
       if (!items || items.length === 0) return;
 
       const section = document.createElement('section');
-      section.className = `rec-section rec-${rec}` + (rec === 'consider' || rec === 'skip' ? ' collapsed' : '');
+      section.className = `rec-section rec-${rec}` + (rec === 'skip' ? ' collapsed' : '');
       section.dataset.rec = rec;
       section.id = `sec-${rec}`;
 
