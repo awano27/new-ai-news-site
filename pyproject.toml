@@ -3,7 +3,7 @@ name = "daily-ai-news"
 version = "2.0.0"
 description = "AI News Aggregation and Evaluation Platform"
 authors = ["Your Name <you@example.com>"]
-readme = "README.md"
+readme = "docs/README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
