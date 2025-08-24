@@ -449,7 +449,7 @@ class IntegratedCollector:
             return datetime.now().strftime('%Y-%m-%d')
     
     def generate_html(self, all_articles):
-        """統合記事データからHTMLを生成"""
+        """統合記事データからHTMLを生成（改善版テンプレート使用）"""
         print(f"Generating integrated HTML... ({len(all_articles)} articles total)")
         
         # 記事は既にソート済み（念のため再度ソート）
@@ -461,309 +461,284 @@ class IntegratedCollector:
             score = article.get('total_score', 0)
             print(f"{i+1}. {article['title'][:40]}... - Score: {score:.3f}")
         
-        # 統計情報を計算
-        x_count = len([a for a in all_articles if a['source'].startswith('X(')])
-        rss_count = len([a for a in all_articles if not a['source'].startswith('X(')])
-        tier1_count = len([a for a in all_articles if a['source_tier'] == 1])
-        
-        articles_json = json.dumps(all_articles, ensure_ascii=False, indent=2)
-        
-        html_content = f"""<!DOCTYPE html>
+        # クリーンなHTMLテンプレートを読み込み
+        template_path = self.project_root / "docs" / "index_clean.html"
+        try:
+            with open(template_path, 'r', encoding='utf-8') as f:
+                template_content = f.read()
+            
+            # 記事データをJSONとして挿入
+            articles_json = json.dumps(all_articles, ensure_ascii=False, indent=2)
+            
+            # プレースホルダーを実際のデータで置換
+            html_content = template_content.replace(
+                'const articles = [];',
+                f'const articles = {articles_json};'
+            )
+            
+            return html_content
+            
+        except FileNotFoundError:
+            print("Warning: Clean template not found, using fallback template")
+            # フォールバック: 改善版テンプレートを直接作成
+            articles_json = json.dumps(all_articles, ensure_ascii=False, indent=2)
+            
+            html_content = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily AI News - 統合版</title>
-    <style>
-        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; line-height: 1.6; }}
-        .header {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 0; }}
-        .container {{ max-width: 1200px; margin: 0 auto; padding: 0 20px; }}
-        .header h1 {{ font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }}
-        .header p {{ font-size: 1.1rem; opacity: 0.9; }}
-        .stats {{ background: white; margin: 20px 0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }}
-        .stats-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }}
-        .stat-item {{ text-align: center; }}
-        .stat-value {{ font-size: 2.2rem; font-weight: bold; color: #667eea; margin-bottom: 5px; }}
-        .stat-label {{ color: #6b7280; font-size: 0.9rem; font-weight: 500; }}
-        .filters {{ background: white; margin: 20px 0; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }}
-        .filter-group {{ display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }}
-        .filter-item {{ display: flex; flex-direction: column; }}
-        .filter-item label {{ font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: #374151; }}
-        .filter-item select, .filter-item input {{ padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.9rem; }}
-        .articles-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 25px; margin: 20px 0; }}
-        .article-card {{ background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s; }}
-        .article-card:hover {{ transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }}
-        .article-header {{ padding: 20px; }}
-        .article-title {{ font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }}
-        .article-title a {{ color: #1a202c; text-decoration: none; }}
-        .article-title a:hover {{ color: #667eea; }}
-        .article-meta {{ display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #6b7280; margin-bottom: 15px; }}
-        .source {{ padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; }}
-        .source.tier-1 {{ background: #10b981; color: white; }}
-        .source.tier-2 {{ background: #3b82f6; color: white; }}
-        .article-content {{ padding: 0 20px 15px; color: #4b5563; line-height: 1.6; }}
-        .summary-note {{ padding: 0 20px 15px; font-size: 0.85rem; color: #9ca3af; font-style: italic; }}
-        .evaluation-panel {{ padding: 15px 20px; background: #f8fafc; border-top: 1px solid #f3f4f6; }}
-        .score-display {{ display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }}
-        .total-score {{ font-size: 1.8rem; font-weight: bold; color: #10b981; }}
-        .persona-toggle {{ display: flex; gap: 8px; }}
-        .persona-btn {{ padding: 4px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }}
-        .persona-btn.active {{ background: #667eea; color: white; border-color: #667eea; }}
-        .score-breakdown {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; }}
-        .score-item {{ text-align: center; padding: 6px 4px; background: white; border-radius: 4px; border: 1px solid #e5e7eb; }}
-        .score-value {{ font-size: 0.9rem; font-weight: bold; color: #374151; }}
-        .score-label {{ font-size: 0.7rem; color: #6b7280; }}
-        .recommendation {{ display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-top: 8px; }}
-        .rec-must_read {{ background: #dcfce7; color: #16a34a; }}
-        .rec-recommended {{ background: #dbeafe; color: #2563eb; }}
-        .rec-consider {{ background: #fef3c7; color: #d97706; }}
-        .rec-skip {{ background: #fee2e2; color: #dc2626; }}
-        .article-actions {{ padding: 20px; border-top: 1px solid #f3f4f6; }}
-        .read-more {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; transition: all 0.3s; }}
-        .read-more:hover {{ transform: translateY(-2px); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }}
-        .footer {{ background: #1a202c; color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }}
-        @media (max-width: 768px) {{
-            .articles-grid {{ grid-template-columns: 1fr; }}
-            .header h1 {{ font-size: 2rem; }}
-            .stats-grid {{ grid-template-columns: repeat(2, 1fr); }}
-        }}
-    </style>
+    <title>Daily AI News – 改良版</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header with title and persona toggle -->
     <header class="header">
         <div class="container">
-            <h1>Daily AI News - 統合版</h1>
-            <p>X記事 + RSS記事を統合した最新AI情報</p>
+            <h1>Daily AI News</h1>
+            <p>X記事とRSS記事をまとめた最新AIニュース</p>
+            <!-- Persona toggle integrated in header -->
+            <div class="persona-toggle">
+                <button class="active" data-persona="engineer">技術者向け</button>
+                <button data-persona="business">ビジネス向け</button>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="stats">
+    <!-- Summary statistics -->
+    <section class="summary-stats">
+        <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-value">{len(all_articles)}</div>
-                    <div class="stat-label">総記事数</div>
+                    <div class="value" id="stat-total">0</div>
+                    <div class="label">記事数</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">{x_count}</div>
-                    <div class="stat-label">X記事</div>
+                    <div class="value" id="stat-avg-score">0%</div>
+                    <div class="label">平均スコア</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">{rss_count}</div>
-                    <div class="stat-label">RSS記事</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">{tier1_count}</div>
-                    <div class="stat-label">Tier1記事</div>
+                    <div class="value" id="stat-tier1">0</div>
+                    <div class="label">高信頼ソース</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="filters">
-            <div class="filter-group">
-                <div class="filter-item">
-                    <label>ソース種別</label>
-                    <select id="source-type-filter">
-                        <option value="all">すべて</option>
-                        <option value="x">X記事のみ</option>
-                        <option value="rss">RSS記事のみ</option>
-                    </select>
-                </div>
-                <div class="filter-item">
-                    <label>Tier</label>
-                    <select id="tier-filter">
-                        <option value="all">すべて</option>
-                        <option value="1">Tier 1</option>
-                        <option value="2">Tier 2</option>
-                    </select>
-                </div>
-                <div class="filter-item">
-                    <label>検索</label>
-                    <input type="text" id="search-input" placeholder="キーワードで検索...">
-                </div>
-            </div>
-        </div>
-
-        <div class="articles-grid" id="articles-container">
-            <!-- 記事はJavaScriptで動的生成 -->
-        </div>
-    </div>
-
-    <footer class="footer">
+    <!-- Filter panel -->
+    <section class="filters">
         <div class="container">
-            <p>&copy; 2025 Daily AI News - X記事 + RSS記事統合版</p>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="source-tier-filter">ソース種別</label>
+                    <select id="source-tier-filter">
+                        <option value="all">すべて</option>
+                        <option value="1">高信頼ソース</option>
+                        <option value="2">一般ソース</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="min-score-filter">最低スコア</label>
+                    <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
+                </div>
+                <div class="search-box">
+                    <input id="search-input" type="text" placeholder="キーワードで検索…" />
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Articles container -->
+    <main>
+        <div class="container">
+            <div class="articles-grid" id="articles-container"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">© 2025 Daily AI News – 改良版</div>
     </footer>
 
     <script>
+        // Persona-specific metric labels
+        const metricLabels = {{
+            engineer: ['技術的新規性', '実装可能性', '再現性', '実務寄与', '学習価値'],
+            business: ['事業影響度', '投資判断材料', '戦略的価値', '実現可能性', 'リスク評価']
+        }};
+
+        const breakdownOrder = {{
+            engineer: ['temporal', 'relevance', 'trust', 'quality', 'actionability'],
+            business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
+        }};
+
+        // Current real-time articles data
         const articles = {articles_json};
+
         let filteredArticles = [...articles];
-        
+        let currentPersona = 'engineer';
+
+        // Human-readable names for source tiers
+        const tierTexts = {{
+            1: '高信頼ソース',
+            2: '一般ソース'
+        }};
+
         function renderArticles() {{
             const container = document.getElementById('articles-container');
             container.innerHTML = '';
             
-            filteredArticles.forEach(article => {{
-                const card = document.createElement('div');
-                card.className = 'article-card';
-                
-                const escapeHtml = (text) => {{
-                    const div = document.createElement('div');
-                    div.textContent = text;
-                    return div.innerHTML;
-                }};
-                
-                const tierClass = `tier-${{article.source_tier}}`;
-                const isRssArticle = !article.source.startsWith('X(');
-                const evaluation = article.evaluation || {{}};
-                const engineerEval = evaluation.engineer || {{}};
-                const businessEval = evaluation.business || {{}};
-                
-                // デフォルトは engineer 評価を使用
-                let currentEval = engineerEval;
-                let currentPersona = 'engineer';
-                
-                const getRecommendationText = (rec) => {{
-                    const texts = {{
-                        'must_read': '必読',
-                        'recommended': '推奨',
-                        'consider': '検討',
-                        'skip': 'スキップ'
-                    }};
-                    return texts[rec] || rec;
-                }};
-                
-                card.innerHTML = `
-                    <div class="article-header">
-                        <h3 class="article-title">
-                            <a href="${{encodeURI(article.url)}}" target="_blank" rel="noopener noreferrer">
-                                ${{escapeHtml(article.title)}}
-                            </a>
-                        </h3>
-                        <div class="article-meta">
-                            <span class="source ${{tierClass}}">${{escapeHtml(article.source)}}</span>
-                            <span>${{article.published_date}}</span>
-                        </div>
-                    </div>
-                    <div class="article-content">
-                        ${{escapeHtml(article.content)}}
-                    </div>
-                    ${{isRssArticle ? '<div class="summary-note">※ この記事は日本語要約版です</div>' : ''}}
-                    <div class="evaluation-panel">
-                        <div class="score-display">
-                            <div class="total-score" data-score="${{(currentEval.total_score || 0).toFixed(2)}}">${{Math.round((currentEval.total_score || 0) * 100)}}</div>
-                            <div class="persona-toggle">
-                                <button class="persona-btn active" data-persona="engineer">エンジニア</button>
-                                <button class="persona-btn" data-persona="business">ビジネス</button>
-                            </div>
-                        </div>
-                        <div class="score-breakdown">
-                            <div class="score-item">
-                                <div class="score-value">${{Math.round((currentEval.breakdown?.quality || 0) * 100)}}</div>
-                                <div class="score-label">品質</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${{Math.round((currentEval.breakdown?.relevance || 0) * 100)}}</div>
-                                <div class="score-label">関連性</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${{Math.round((currentEval.breakdown?.temporal || 0) * 100)}}</div>
-                                <div class="score-label">時間的価値</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${{Math.round((currentEval.breakdown?.trust || 0) * 100)}}</div>
-                                <div class="score-label">信頼性</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${{Math.round((currentEval.breakdown?.actionability || 0) * 100)}}</div>
-                                <div class="score-label">実行性</div>
-                            </div>
-                        </div>
-                        <div class="recommendation rec-${{currentEval.recommendation || 'consider'}}">
-                            ${{getRecommendationText(currentEval.recommendation || 'consider')}}
-                        </div>
-                    </div>
-                    <div class="article-actions">
-                        <a href="${{encodeURI(article.url)}}" class="read-more" target="_blank">
-                            ${{isRssArticle ? '元記事を読む（英語）' : '記事を読む'}}
-                        </a>
-                    </div>
-                `;
-                
-                // ペルソナ切り替えイベント
-                const personaBtns = card.querySelectorAll('.persona-btn');
-                personaBtns.forEach(btn => {{
-                    btn.addEventListener('click', () => {{
-                        const persona = btn.dataset.persona;
-                        const evalData = persona === 'engineer' ? engineerEval : businessEval;
-                        
-                        // ボタンの状態更新
-                        personaBtns.forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        
-                        // スコア表示更新
-                        const scoreDisplay = card.querySelector('.total-score');
-                        scoreDisplay.textContent = Math.round((evalData.total_score || 0) * 100);
-                        
-                        // 内訳スコア更新
-                        const scoreItems = card.querySelectorAll('.score-item .score-value');
-                        const breakdown = evalData.breakdown || {{}};
-                        scoreItems[0].textContent = Math.round((breakdown.quality || 0) * 100);
-                        scoreItems[1].textContent = Math.round((breakdown.relevance || 0) * 100);
-                        scoreItems[2].textContent = Math.round((breakdown.temporal || 0) * 100);
-                        scoreItems[3].textContent = Math.round((breakdown.trust || 0) * 100);
-                        scoreItems[4].textContent = Math.round((breakdown.actionability || 0) * 100);
-                        
-                        // 推奨レベル更新
-                        const recElement = card.querySelector('.recommendation');
-                        recElement.className = `recommendation rec-${{evalData.recommendation || 'consider'}}`;
-                        recElement.textContent = getRecommendationText(evalData.recommendation || 'consider');
-                    }});
-                }});
-                
-                container.appendChild(card);
+            // Sort by recommendation priority first then by score
+            const recPriority = {{ must_read: 0, recommended: 1, consider: 2, skip: 3 }};
+            const sorted = [...filteredArticles].sort((a, b) => {{
+                const aRec = (a.evaluation && a.evaluation[currentPersona] && a.evaluation[currentPersona].recommendation) || 'consider';
+                const bRec = (b.evaluation && b.evaluation[currentPersona] && b.evaluation[currentPersona].recommendation) || 'consider';
+                if (recPriority[aRec] !== recPriority[bRec]) {{
+                    return recPriority[aRec] - recPriority[bRec];
+                }}
+                return getPersonaScore(b) - getPersonaScore(a);
+            }});
+            
+            // Group by recommendation and insert headings for clarity
+            let lastRec = null;
+            sorted.forEach(article => {{
+                const evalData = article.evaluation && article.evaluation[currentPersona];
+                const rec = (evalData && evalData.recommendation) || 'consider';
+                if (rec !== lastRec) {{
+                    const heading = document.createElement('h2');
+                    heading.className = `rec-heading rec-${{rec}}`;
+                    heading.textContent = getRecommendationText(rec);
+                    container.appendChild(heading);
+                    lastRec = rec;
+                }}
+                container.appendChild(createArticleCard(article));
             }});
         }}
-        
+
+        function createArticleCard(article) {{
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            const evaluation = article.evaluation || {{}};
+            const personaEval = evaluation[currentPersona] || {{}};
+            const breakdown = personaEval.breakdown || {{}};
+            const totalPercentage = Math.round((personaEval.total_score || 0) * 100);
+            
+            // Determine the order of breakdown keys for this persona
+            const order = breakdownOrder[currentPersona] || ['quality','relevance','temporal','trust','actionability'];
+            
+            // Build HTML for breakdown items in the desired order
+            let breakdownHtml = '';
+            order.forEach((key, idx) => {{
+                const val = Math.round(((breakdown[key] || 0) * 100));
+                const label = (metricLabels[currentPersona] && metricLabels[currentPersona][idx]) || key;
+                breakdownHtml += `<div class="score-item"><div class="score-value">${{val}}</div><div class="score-label">${{label}}</div></div>`;
+            }});
+            
+            card.innerHTML = `
+                <span class="source-tier tier-${{article.source_tier}}">${{tierTexts[article.source_tier] || ''}}</span>
+                <h3 class="article-title">
+                    <a href="${{article.url}}" target="_blank" rel="noopener noreferrer">${{escapeHtml(article.title)}}</a>
+                </h3>
+                <div class="article-meta">
+                    <span>${{escapeHtml(article.source)}}</span> • <span>${{article.published_date}}</span>
+                </div>
+                <div class="article-content">${{escapeHtml(article.content)}}</div>
+                <div class="evaluation-panel">
+                    <div class="score-display">
+                        <div class="total-score">${{totalPercentage}}</div>
+                        <div class="score-label-text">総合評価</div>
+                        <div class="score-bar"><div class="score-bar-fill" style="width: ${{totalPercentage}}%"></div></div>
+                    </div>
+                    <div class="score-breakdown">
+                        ${{breakdownHtml}}
+                    </div>
+                    <div class="recommendation rec-${{personaEval.recommendation || 'consider'}}">
+                        ${{getRecommendationText(personaEval.recommendation || 'consider')}}
+                    </div>
+                </div>
+            `;
+            return card;
+        }}
+
+        function escapeHtml(text) {{
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }}
+
+        function getRecommendationText(rec) {{
+            const texts = {{ must_read: '必読', recommended: '推奨', consider: '検討', skip: 'スキップ' }};
+            return texts[rec] || rec;
+        }}
+
+        function getPersonaScore(article) {{
+            const evalData = article.evaluation && article.evaluation[currentPersona];
+            return evalData ? evalData.total_score : 0;
+        }}
+
         function applyFilters() {{
-            const sourceTypeFilter = document.getElementById('source-type-filter').value;
-            const tierFilter = document.getElementById('tier-filter').value;
+            const tierFilter = document.getElementById('source-tier-filter').value;
+            const minScore = parseFloat(document.getElementById('min-score-filter').value || 0);
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
             
             filteredArticles = articles.filter(article => {{
-                // ソース種別フィルター
-                if (sourceTypeFilter === 'x' && !article.source.startsWith('X(')) return false;
-                if (sourceTypeFilter === 'rss' && article.source.startsWith('X(')) return false;
-                
-                // Tierフィルター
                 if (tierFilter !== 'all' && article.source_tier !== parseInt(tierFilter)) return false;
-                
-                // 検索フィルター
-                if (searchQuery && 
-                    !article.title.toLowerCase().includes(searchQuery) &&
-                    !article.content.toLowerCase().includes(searchQuery) &&
-                    !article.source.toLowerCase().includes(searchQuery)) return false;
-                
+                if (getPersonaScore(article) < minScore) return false;
+                if (searchQuery) {{
+                    const haystack = (article.title + article.content + article.source).toLowerCase();
+                    if (!haystack.includes(searchQuery)) return false;
+                }}
                 return true;
             }});
             
             renderArticles();
+            updateSummaryStats();
         }}
-        
-        // イベントリスナーを設定
-        document.getElementById('source-type-filter').addEventListener('change', applyFilters);
-        document.getElementById('tier-filter').addEventListener('change', applyFilters);
+
+        function updateSummaryStats() {{
+            const totalEl = document.getElementById('stat-total');
+            const avgEl = document.getElementById('stat-avg-score');
+            const tier1El = document.getElementById('stat-tier1');
+            
+            totalEl.textContent = filteredArticles.length;
+            const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
+            avgEl.textContent = Math.round(avgScore * 100) + '%';
+            const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
+            tier1El.textContent = tier1Count;
+        }}
+
+        // Event listeners
+        document.getElementById('source-tier-filter').addEventListener('change', applyFilters);
+        document.getElementById('min-score-filter').addEventListener('input', applyFilters);
         document.getElementById('search-input').addEventListener('input', applyFilters);
-        
-        // ページ読み込み時に記事を表示
-        document.addEventListener('DOMContentLoaded', renderArticles);
+
+        // Attach persona toggle events on header
+        document.querySelectorAll('.header .persona-toggle button').forEach(btn => {{
+            btn.addEventListener('click', () => {{
+                // update active class
+                document.querySelectorAll('.header .persona-toggle button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // update global persona
+                currentPersona = btn.dataset.persona;
+                // re-apply filters and re-render
+                applyFilters();
+            }});
+        }});
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {{
+            renderArticles();
+            updateSummaryStats();
+        }});
     </script>
 </body>
 </html>"""
-        
-        return html_content
+            
+            return html_content
     
+
+
+
     def save_html(self, html_content):
         """HTMLファイルを保存"""
         output_path = self.docs_path / "index.html"

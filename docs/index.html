@@ -3,130 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily AI News - 統合版</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; line-height: 1.6; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 700; }
-        .header p { font-size: 1.1rem; opacity: 0.9; }
-        .stats { background: white; margin: 20px 0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 2.2rem; font-weight: bold; color: #667eea; margin-bottom: 5px; }
-        .stat-label { color: #6b7280; font-size: 0.9rem; font-weight: 500; }
-        .filters { background: white; margin: 20px 0; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
-        .filter-item { display: flex; flex-direction: column; }
-        .filter-item label { font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: #374151; }
-        .filter-item select, .filter-item input { padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.9rem; }
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 25px; margin: 20px 0; }
-        .article-card { background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s; }
-        .article-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-        .article-header { padding: 20px; }
-        .article-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
-        .article-title a { color: #1a202c; text-decoration: none; }
-        .article-title a:hover { color: #667eea; }
-        .article-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #6b7280; margin-bottom: 15px; }
-        .source { padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 500; }
-        .source.tier-1 { background: #10b981; color: white; }
-        .source.tier-2 { background: #3b82f6; color: white; }
-        .article-content { padding: 0 20px 15px; color: #4b5563; line-height: 1.6; }
-        .summary-note { padding: 0 20px 15px; font-size: 0.85rem; color: #9ca3af; font-style: italic; }
-        .evaluation-panel { padding: 15px 20px; background: #f8fafc; border-top: 1px solid #f3f4f6; }
-        .score-display { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .total-score { font-size: 1.8rem; font-weight: bold; color: #10b981; }
-        .persona-toggle { display: flex; gap: 8px; }
-        .persona-btn { padding: 4px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
-        .persona-btn.active { background: #667eea; color: white; border-color: #667eea; }
-        .score-breakdown { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; }
-        .score-item { text-align: center; padding: 6px 4px; background: white; border-radius: 4px; border: 1px solid #e5e7eb; }
-        .score-value { font-size: 0.9rem; font-weight: bold; color: #374151; }
-        .score-label { font-size: 0.7rem; color: #6b7280; }
-        .recommendation { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-top: 8px; }
-        .rec-must_read { background: #dcfce7; color: #16a34a; }
-        .rec-recommended { background: #dbeafe; color: #2563eb; }
-        .rec-consider { background: #fef3c7; color: #d97706; }
-        .rec-skip { background: #fee2e2; color: #dc2626; }
-        .article-actions { padding: 20px; border-top: 1px solid #f3f4f6; }
-        .read-more { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; transition: all 0.3s; }
-        .read-more:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
-        .footer { background: #1a202c; color: white; text-align: center; padding: 40px 20px; margin-top: 40px; }
-        @media (max-width: 768px) {
-            .articles-grid { grid-template-columns: 1fr; }
-            .header h1 { font-size: 2rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
+    <title>Daily AI News – 改良版</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header with title and persona toggle -->
     <header class="header">
         <div class="container">
-            <h1>Daily AI News - 統合版</h1>
-            <p>X記事 + RSS記事を統合した最新AI情報</p>
+            <h1>Daily AI News</h1>
+            <p>X記事とRSS記事をまとめた最新AIニュース</p>
+            <!-- Persona toggle integrated in header -->
+            <div class="persona-toggle">
+                <button class="active" data-persona="engineer">技術者向け</button>
+                <button data-persona="business">ビジネス向け</button>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="stats">
+    <!-- Summary statistics -->
+    <section class="summary-stats">
+        <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-value">66</div>
-                    <div class="stat-label">総記事数</div>
+                    <div class="value" id="stat-total">0</div>
+                    <div class="label">記事数</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">30</div>
-                    <div class="stat-label">X記事</div>
+                    <div class="value" id="stat-avg-score">0%</div>
+                    <div class="label">平均スコア</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">36</div>
-                    <div class="stat-label">RSS記事</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">26</div>
-                    <div class="stat-label">Tier1記事</div>
+                    <div class="value" id="stat-tier1">0</div>
+                    <div class="label">高信頼ソース</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="filters">
-            <div class="filter-group">
-                <div class="filter-item">
-                    <label>ソース種別</label>
-                    <select id="source-type-filter">
-                        <option value="all">すべて</option>
-                        <option value="x">X記事のみ</option>
-                        <option value="rss">RSS記事のみ</option>
-                    </select>
-                </div>
-                <div class="filter-item">
-                    <label>Tier</label>
-                    <select id="tier-filter">
-                        <option value="all">すべて</option>
-                        <option value="1">Tier 1</option>
-                        <option value="2">Tier 2</option>
-                    </select>
-                </div>
-                <div class="filter-item">
-                    <label>検索</label>
-                    <input type="text" id="search-input" placeholder="キーワードで検索...">
-                </div>
-            </div>
-        </div>
-
-        <div class="articles-grid" id="articles-container">
-            <!-- 記事はJavaScriptで動的生成 -->
-        </div>
-    </div>
-
-    <footer class="footer">
+    <!-- Filter panel -->
+    <section class="filters">
         <div class="container">
-            <p>&copy; 2025 Daily AI News - X記事 + RSS記事統合版</p>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="source-tier-filter">ソース種別</label>
+                    <select id="source-tier-filter">
+                        <option value="all">すべて</option>
+                        <option value="1">高信頼ソース</option>
+                        <option value="2">一般ソース</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="min-score-filter">最低スコア</label>
+                    <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
+                </div>
+                <div class="search-box">
+                    <input id="search-input" type="text" placeholder="キーワードで検索…" />
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Articles container -->
+    <main>
+        <div class="container">
+            <div class="articles-grid" id="articles-container"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">© 2025 Daily AI News – 改良版</div>
     </footer>
 
     <script>
+        // Persona-specific metric labels
+        const metricLabels = {
+            engineer: ['技術的新規性', '実装可能性', '再現性', '実務寄与', '学習価値'],
+            business: ['事業影響度', '投資判断材料', '戦略的価値', '実現可能性', 'リスク評価']
+        };
+
+        const breakdownOrder = {
+            engineer: ['temporal', 'relevance', 'trust', 'quality', 'actionability'],
+            business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
+        };
+
+        // Current real-time articles data (placeholder - will be replaced with actual data)
         const articles = [
   {
     "id": "rss_4b236c36",
@@ -144,11 +105,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.4850937481692623,
+        "total_score": 0.4829311028706156,
         "breakdown": {
           "quality": 0.5608,
           "relevance": 0.54,
-          "temporal": 0.6644687408463115,
+          "temporal": 0.6536555143530778,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -170,11 +131,11 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.3230937480320003,
+        "total_score": 0.3209311027316486,
         "breakdown": {
           "quality": 0.5608,
           "relevance": 0.0,
-          "temporal": 0.6644687401600015,
+          "temporal": 0.6536555136582427,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -196,7 +157,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.4850937481692623
+    "total_score": 0.4829311028706156
   },
   {
     "id": "rss_8fd7e5fc",
@@ -214,11 +175,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.46869374887743376,
+        "total_score": 0.46653110390079167,
         "breakdown": {
           "quality": 0.4232,
           "relevance": 0.6,
-          "temporal": 0.6644687443871689,
+          "temporal": 0.6536555195039581,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -240,11 +201,11 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.28869374879608006,
+        "total_score": 0.2865311038230821,
         "breakdown": {
           "quality": 0.4232,
           "relevance": 0.0,
-          "temporal": 0.6644687439804002,
+          "temporal": 0.6536555191154105,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -266,7 +227,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.46869374887743376
+    "total_score": 0.46653110390079167
   },
   {
     "id": "x_3eb7746f",
@@ -283,11 +244,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3989442855708264,
+        "total_score": 0.39678165213219174,
         "breakdown": {
           "quality": 0.2922,
           "relevance": 0.46,
-          "temporal": 0.6644714278541317,
+          "temporal": 0.6536582606609582,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -309,11 +270,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24094428542962132,
+        "total_score": 0.2387816519995246,
         "breakdown": {
           "quality": 0.2922,
           "relevance": 0.0,
-          "temporal": 0.6644714271481065,
+          "temporal": 0.6536582599976231,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -335,7 +296,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3989442855708264
+    "total_score": 0.39678165213219174
   },
   {
     "id": "rss_64cac59c",
@@ -353,11 +314,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.37239300359373295,
+        "total_score": 0.3702299817218454,
         "breakdown": {
           "quality": 0.3380000000000001,
           "relevance": 0.4,
-          "temporal": 0.6644650179686644,
+          "temporal": 0.6536499086092269,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -379,11 +340,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.25239300348442595,
+        "total_score": 0.2502299816150837,
         "breakdown": {
           "quality": 0.3380000000000001,
           "relevance": 0.0,
-          "temporal": 0.6644650174221295,
+          "temporal": 0.6536499080754182,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -405,7 +366,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.37239300359373295
+    "total_score": 0.3702299817218454
   },
   {
     "id": "rss_880287b1",
@@ -423,11 +384,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.36754299865036466,
+        "total_score": 0.36643256161588345,
         "breakdown": {
           "quality": 0.46340000000000003,
           "relevance": 0.38,
-          "temporal": 0.4384649932518232,
+          "temporal": 0.4329128080794172,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -449,11 +410,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.25354299859258844,
+        "total_score": 0.2524325615572958,
         "breakdown": {
           "quality": 0.46340000000000003,
           "relevance": 0.0,
-          "temporal": 0.43846499296294206,
+          "temporal": 0.432912807786479,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -475,7 +436,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.36754299865036466
+    "total_score": 0.36643256161588345
   },
   {
     "id": "x_0b0ba60d",
@@ -492,11 +453,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3634942847877476,
+        "total_score": 0.36133165135929246,
         "breakdown": {
           "quality": 0.2784,
           "relevance": 0.38,
-          "temporal": 0.6244714239387379,
+          "temporal": 0.613658256796462,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -518,11 +479,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2294942846454674,
+        "total_score": 0.2273316512241751,
         "breakdown": {
           "quality": 0.2784,
           "relevance": 0.0,
-          "temporal": 0.6244714232273368,
+          "temporal": 0.6136582561208753,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -544,7 +505,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3634942847877476
+    "total_score": 0.36133165135929246
   },
   {
     "id": "x_a80536cd",
@@ -561,11 +522,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3629442891113459,
+        "total_score": 0.36078165562038966,
         "breakdown": {
           "quality": 0.2442,
           "relevance": 0.38,
-          "temporal": 0.6644714455567293,
+          "temporal": 0.6536582781019484,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -587,11 +548,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2289442890149394,
+        "total_score": 0.2267816555269277,
         "breakdown": {
           "quality": 0.2442,
           "relevance": 0.0,
-          "temporal": 0.6644714450746969,
+          "temporal": 0.6536582776346385,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -613,7 +574,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3629442891113459
+    "total_score": 0.36078165562038966
   },
   {
     "id": "x_22f9c06a",
@@ -630,11 +591,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.35814428293416267,
+        "total_score": 0.3559816495422091,
         "breakdown": {
           "quality": 0.321,
           "relevance": 0.3,
-          "temporal": 0.6644714146708128,
+          "temporal": 0.6536582477110453,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -656,11 +617,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.25814428276715357,
+        "total_score": 0.25598164938818935,
         "breakdown": {
           "quality": 0.321,
           "relevance": 0.0,
-          "temporal": 0.6644714138357677,
+          "temporal": 0.6536582469409465,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -682,7 +643,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.35814428293416267
+    "total_score": 0.3559816495422091
   },
   {
     "id": "x_3ad224d3",
@@ -699,11 +660,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3577942840724043,
+        "total_score": 0.3556316506616528,
         "breakdown": {
           "quality": 0.2636,
           "relevance": 0.38,
-          "temporal": 0.6644714203620212,
+          "temporal": 0.653658253308264,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -725,11 +686,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23379428393012408,
+        "total_score": 0.23163165052058476,
         "breakdown": {
           "quality": 0.2636,
           "relevance": 0.0,
-          "temporal": 0.6644714196506202,
+          "temporal": 0.6536582526029235,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -751,77 +712,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3577942840724043
-  },
-  {
-    "id": "rss_9a86bfa5",
-    "title": "Ever Wondered What’s Hiding in the “System Prompt” of Your Favorite AI Tool? I Scraped 10k+ Lines of Them",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1myhawv/ever_wondered_whats_hiding_in_the_system_prompt/",
-    "source": "Reddit LocalLLaMA",
-    "source_tier": 1,
-    "published_date": "2025-08-24",
-    "content": "ever wondered what’s hiding in the “システム prompt” of your favorite ai ツール? i scraped 10k+ lines of themに関する記事。",
-    "original_content": "So… turns out a lot of the magic in today’s “smart” AI tools isn’t just the model, it’s the system prompt quietly steering it behind the scenes. I’ve been extracting these for months, and I published ...",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.35014335264164165,
-        "breakdown": {
-          "quality": 0.429,
-          "relevance": 0.2,
-          "temporal": 0.6644667632082077,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2901433524853858,
-        "breakdown": {
-          "quality": 0.429,
-          "relevance": 0.0,
-          "temporal": 0.6644667624269288,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.35014335264164165
+    "total_score": 0.3556316506616528
   },
   {
     "id": "rss_cd8ad306",
@@ -839,11 +730,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3487433538124849,
+        "total_score": 0.3465805773318267,
         "breakdown": {
           "quality": 0.4554,
           "relevance": 0.2,
-          "temporal": 0.6244667690624244,
+          "temporal": 0.6136528866591331,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -865,11 +756,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2887433536264832,
+        "total_score": 0.28658057715190566,
         "breakdown": {
           "quality": 0.4554,
           "relevance": 0.0,
-          "temporal": 0.6244667681324156,
+          "temporal": 0.6136528857595281,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -891,7 +782,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3487433538124849
+    "total_score": 0.3465805773318267
   },
   {
     "id": "x_dc74e249",
@@ -908,11 +799,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3484942825657393,
+        "total_score": 0.34633164917361176,
         "breakdown": {
           "quality": 0.2584,
           "relevance": 0.2,
-          "temporal": 0.7444714128286962,
+          "temporal": 0.7336582458680587,
           "trust": 0.30000000000000004,
           "actionability": 0.30000000000000004
         },
@@ -934,11 +825,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2784942823628914,
+        "total_score": 0.27633164894048184,
         "breakdown": {
           "quality": 0.2584,
           "relevance": 0.0,
-          "temporal": 0.744471411814457,
+          "temporal": 0.7336582447024091,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -960,7 +851,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3484942825657393
+    "total_score": 0.34633164917361176
   },
   {
     "id": "x_6d68b975",
@@ -977,11 +868,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.34094428378676866,
+        "total_score": 0.33878165038056673,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.24,
-          "temporal": 0.6644714189338432,
+          "temporal": 0.6536582519028336,
           "trust": 0.35000000000000003,
           "actionability": 0.2
         },
@@ -1003,11 +894,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26894428373157686,
+        "total_score": 0.26678165032665985,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.0,
-          "temporal": 0.6644714186578842,
+          "temporal": 0.653658251633299,
           "trust": 0.35000000000000003,
           "actionability": 0.2
         },
@@ -1029,147 +920,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.34094428378676866
-  },
-  {
-    "id": "rss_8019be00",
-    "title": "[D] Neurips 2025: Are there post conference events on the last day of the conference?",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1myptun/d_neurips_2025_are_there_post_conference_events/",
-    "source": "Reddit MachineLearning",
-    "source_tier": 1,
-    "published_date": "2025-08-24",
-    "content": "AI・技術分野に関する[d] neurips 2025: are there post conference events on the last day of the conference?の記事。最新の動向や技術開発について。",
-    "original_content": "Context:  Neurips 2025 conference is from Tue, Nov 2 to Sun, Nov 7 This is my first time attending the conference. As I need to travel again right after the conference for personal reasons, I am figur...",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.34004374861652853,
-        "breakdown": {
-          "quality": 0.4206,
-          "relevance": 0.2,
-          "temporal": 0.6244687430826424,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2800437484609888,
-        "breakdown": {
-          "quality": 0.4206,
-          "relevance": 0.0,
-          "temporal": 0.624468742304944,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.34004374861652853
-  },
-  {
-    "id": "rss_f4bad33b",
-    "title": "Lightcap AI – Weighted Language Model Agent",
-    "url": "https://lightcap.ai/index.php",
-    "source": "Hacker News AI",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "lightcap ai – weighted 言語モデル agentに関する記事。",
-    "original_content": "Article URL: https://lightcap.ai/index.php\nComments URL: https://news.ycombinator.com/item?id=45001390\nPoints: 3\n# Comments: 1",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3396430023447664,
-        "breakdown": {
-          "quality": 0.231,
-          "relevance": 0.38,
-          "temporal": 0.6644650117238319,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2256430022483612,
-        "breakdown": {
-          "quality": 0.231,
-          "relevance": 0.0,
-          "temporal": 0.664465011241806,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.3396430023447664
+    "total_score": 0.33878165038056673
   },
   {
     "id": "rss_b53bb754",
@@ -1187,11 +938,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3394934894523023,
+        "total_score": 0.33838315479934006,
         "breakdown": {
           "quality": 0.4592,
           "relevance": 0.24,
-          "temporal": 0.43846744726151143,
+          "temporal": 0.4329157739967001,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -1213,11 +964,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.26749348938845335,
+        "total_score": 0.26638315473967333,
         "breakdown": {
           "quality": 0.4592,
           "relevance": 0.0,
-          "temporal": 0.4384674469422668,
+          "temporal": 0.4329157736983666,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -1239,17 +990,17 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3394934894523023
+    "total_score": 0.33838315479934006
   },
   {
-    "id": "rss_8826e404",
-    "title": "[D] cool applications of ML in fixed income markets?",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1mypa4v/d_cool_applications_of_ml_in_fixed_income_markets/",
+    "id": "rss_8019be00",
+    "title": "[D] Neurips 2025: Are there post conference events on the last day of the conference?",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1myptun/d_neurips_2025_are_there_post_conference_events/",
     "source": "Reddit MachineLearning",
     "source_tier": 1,
     "published_date": "2025-08-24",
-    "content": "[d] cool アプリケーションs of ml in fixed income 市場s?に関する記事。AI技術のビジネス面での動きや市場動向について。",
-    "original_content": "I’m curious about how machine learning is being applied in fixed income markets. What are some of the most interesting or surprising applications you’ve come across?    submitted by    /u/Conversation...",
+    "content": "AI・技術分野に関する[d] neurips 2025: are there post conference events on the last day of the conference?の記事。最新の動向や技術開発について。",
+    "original_content": "Context:  Neurips 2025 conference is from Tue, Nov 2 to Sun, Nov 7 This is my first time attending the conference. As I need to travel again right after the conference for personal reasons, I am figur...",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -1257,11 +1008,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.33724374783667976,
+        "total_score": 0.3378811032973178,
         "breakdown": {
-          "quality": 0.37739999999999996,
+          "quality": 0.4206,
           "relevance": 0.2,
-          "temporal": 0.6644687391833985,
+          "temporal": 0.6136555164865889,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1283,11 +1034,81 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.4122437477277303,
+        "total_score": 0.2778811031481996,
+        "breakdown": {
+          "quality": 0.4206,
+          "relevance": 0.0,
+          "temporal": 0.6136555157409976,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.3378811032973178
+  },
+  {
+    "id": "rss_8826e404",
+    "title": "[D] cool applications of ML in fixed income markets?",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1mypa4v/d_cool_applications_of_ml_in_fixed_income_markets/",
+    "source": "Reddit MachineLearning",
+    "source_tier": 1,
+    "published_date": "2025-08-24",
+    "content": "[d] cool アプリケーションs of ml in fixed income 市場s?に関する記事。AI技術のビジネス面での動きや市場動向について。",
+    "original_content": "I’m curious about how machine learning is being applied in fixed income markets. What are some of the most interesting or surprising applications you’ve come across?    submitted by    /u/Conversation...",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.33508110231439747,
+        "breakdown": {
+          "quality": 0.37739999999999996,
+          "relevance": 0.2,
+          "temporal": 0.6536555115719873,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.4100811021995835,
         "breakdown": {
           "quality": 0.37739999999999996,
           "relevance": 0.44999999999999996,
-          "temporal": 0.6644687386386513,
+          "temporal": 0.6536555109979172,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1309,7 +1130,77 @@
         "recommendation": "consider"
       }
     },
-    "total_score": 0.33724374783667976
+    "total_score": 0.33508110231439747
+  },
+  {
+    "id": "rss_5e39d46b",
+    "title": "[D] Exploring Local-First AI Workflow Automation",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1myr68a/d_exploring_localfirst_ai_workflow_automation/",
+    "source": "Reddit MachineLearning",
+    "source_tier": 1,
+    "published_date": "2025-08-24",
+    "content": "[d] exploring local-first ai workflow automationに関する記事。",
+    "original_content": "[D] Exploring Local-First AI Workflow Automation Hi all,  I’ve been experimenting with an open-source approach to AI workflow automation that runs entirely locally (no cloud dependencies), while still...",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.331331103601855,
+        "breakdown": {
+          "quality": 0.3624,
+          "relevance": 0.2,
+          "temporal": 0.6536555180092751,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.3,
+          "payback_months": 10,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.29533110349299174,
+        "breakdown": {
+          "quality": 0.3624,
+          "relevance": 0.08,
+          "temporal": 0.6536555174649585,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.3,
+          "payback_months": 15,
+          "roi_percentage": 225
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.331331103601855
   },
   {
     "id": "x_272a2d56",
@@ -1326,11 +1217,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.33174429046963816,
+        "total_score": 0.32958165678603946,
         "breakdown": {
           "quality": 0.23540000000000003,
           "relevance": 0.22999999999999998,
-          "temporal": 0.7444714523481907,
+          "temporal": 0.7336582839301972,
           "trust": 0.1,
           "actionability": 0.4
         },
@@ -1352,11 +1243,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.27674429029116077,
+        "total_score": 0.2745816566148675,
         "breakdown": {
           "quality": 0.23540000000000003,
           "relevance": 0.08,
-          "temporal": 0.7444714514558035,
+          "temporal": 0.7336582830743372,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1378,7 +1269,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.33174429046963816
+    "total_score": 0.32958165678603946
   },
   {
     "id": "x_48821433",
@@ -1395,11 +1286,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.31834428710508733,
+        "total_score": 0.3161816535096186,
         "breakdown": {
           "quality": 0.2858,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6644714355254364,
+          "temporal": 0.6536582675480929,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1421,11 +1312,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23934428700581373,
+        "total_score": 0.23718165344205994,
         "breakdown": {
           "quality": 0.2858,
           "relevance": 0.0,
-          "temporal": 0.6644714350290684,
+          "temporal": 0.6536582672102994,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1447,7 +1338,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.31834428710508733
+    "total_score": 0.3161816535096186
   },
   {
     "id": "x_e1df15ed",
@@ -1464,11 +1355,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.31504428656356237,
+        "total_score": 0.31288165311966853,
         "breakdown": {
           "quality": 0.2726,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6644714328178116,
+          "temporal": 0.6536582655983425,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1490,11 +1381,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.236044286383293,
+        "total_score": 0.23388165294674634,
         "breakdown": {
           "quality": 0.2726,
           "relevance": 0.0,
-          "temporal": 0.6644714319164647,
+          "temporal": 0.6536582647337315,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1516,7 +1407,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.31504428656356237
+    "total_score": 0.31288165311966853
   },
   {
     "id": "rss_7ebbd0c2",
@@ -1534,11 +1425,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.313010941918217,
+        "total_score": 0.31146120219028695,
         "breakdown": {
           "quality": 0.3858,
           "relevance": 0.2,
-          "temporal": 0.5328047095910848,
+          "temporal": 0.5250560109514346,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1560,11 +1451,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.3430109418172971,
+        "total_score": 0.34146120209623143,
         "breakdown": {
           "quality": 0.3858,
           "relevance": 0.3,
-          "temporal": 0.5328047090864851,
+          "temporal": 0.5250560104811568,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1586,7 +1477,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.313010941918217
+    "total_score": 0.31146120219028695
   },
   {
     "id": "rss_363dc807",
@@ -1604,11 +1495,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.31276128011619786,
+        "total_score": 0.3112116772247635,
         "breakdown": {
           "quality": 0.4448,
           "relevance": 0.15,
-          "temporal": 0.5328064005809894,
+          "temporal": 0.5250583861238174,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1630,11 +1521,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2677612800273468,
+        "total_score": 0.2662116771472611,
         "breakdown": {
           "quality": 0.4448,
           "relevance": 0.0,
-          "temporal": 0.5328064001367339,
+          "temporal": 0.5250583857363056,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1656,7 +1547,77 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.31276128011619786
+    "total_score": 0.3112116772247635
+  },
+  {
+    "id": "rss_6471d7e6",
+    "title": "Show HN: Start and Up – AI Music Album and Visualizer Produced by Claude Code",
+    "url": "https://cen.so/startup/",
+    "source": "Hacker News AI",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "show hn: start and up – ai music album and visualizer produced by Claude codeに関する記事。AI技術の最新動向や新機能について報告。",
+    "original_content": "Like many others, I've been experimenting with using Claude Code for non-coding tasks. The coding portion of this one was a small percentage of the project. All songs are generated by Suno, but each o...",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.31102998233371276,
+        "breakdown": {
+          "quality": 0.2492,
+          "relevance": 0.26999999999999996,
+          "temporal": 0.6136499116685636,
+          "trust": 0.1,
+          "actionability": 0.30000000000000004
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": true,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2200299822013982,
+        "breakdown": {
+          "quality": 0.2492,
+          "relevance": 0.0,
+          "temporal": 0.6136499110069908,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": true,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.31102998233371276
   },
   {
     "id": "x_6e7574f1",
@@ -1673,11 +1634,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.31214428447594966,
+        "total_score": 0.3099816510474024,
         "breakdown": {
           "quality": 0.265,
           "relevance": 0.2,
-          "temporal": 0.7044714223797481,
+          "temporal": 0.6936582552370116,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1699,11 +1660,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.25214428428062796,
+        "total_score": 0.24998165085802806,
         "breakdown": {
           "quality": 0.265,
           "relevance": 0.0,
-          "temporal": 0.7044714214031396,
+          "temporal": 0.6936582542901402,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1725,7 +1686,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.31214428447594966
+    "total_score": 0.3099816510474024
   },
   {
     "id": "rss_b80fe34b",
@@ -1743,11 +1704,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3110109960346986,
+        "total_score": 0.3094612992085427,
         "breakdown": {
           "quality": 0.4098,
           "relevance": 0.2,
-          "temporal": 0.4928049801734931,
+          "temporal": 0.4850564960427136,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1769,11 +1730,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.25101099592838594,
+        "total_score": 0.24946129910871828,
         "breakdown": {
           "quality": 0.4098,
           "relevance": 0.0,
-          "temporal": 0.4928049796419296,
+          "temporal": 0.48505649554359137,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -1795,7 +1756,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3110109960346986
+    "total_score": 0.3094612992085427
   },
   {
     "id": "x_7311e9e9",
@@ -1812,11 +1773,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3065442816927051,
+        "total_score": 0.30438164827049585,
         "breakdown": {
           "quality": 0.2786,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6644714084635251,
+          "temporal": 0.653658241352479,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1838,11 +1799,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23754428152211216,
+        "total_score": 0.2353816481028243,
         "breakdown": {
           "quality": 0.2786,
           "relevance": 0.0,
-          "temporal": 0.6644714076105607,
+          "temporal": 0.6536582405141214,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1864,7 +1825,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3065442816927051
+    "total_score": 0.30438164827049585
   },
   {
     "id": "x_d32ddf09",
@@ -1881,11 +1842,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.30614429012558525,
+        "total_score": 0.3039816564545469,
         "breakdown": {
           "quality": 0.269,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6244714506279261,
+          "temporal": 0.6136582822727343,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1907,11 +1868,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.27214429004745655,
+        "total_score": 0.2699816563985397,
         "breakdown": {
           "quality": 0.269,
           "relevance": 0.15,
-          "temporal": 0.6244714502372827,
+          "temporal": 0.6136582819926983,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1933,7 +1894,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.30614429012558525
+    "total_score": 0.3039816564545469
   },
   {
     "id": "x_3bcfde01",
@@ -1950,11 +1911,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3040942888905786,
+        "total_score": 0.301931655397061,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.2,
-          "temporal": 0.7444714444528928,
+          "temporal": 0.733658276985305,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -1976,11 +1937,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2440942887486567,
+        "total_score": 0.24193165524969204,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.0,
-          "temporal": 0.7444714437432837,
+          "temporal": 0.7336582762484603,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2002,77 +1963,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3040942888905786
-  },
-  {
-    "id": "rss_cc6084bc",
-    "title": "I started building a permissions broker for AI agent for myself",
-    "url": "https://github.com/kagehq/keys",
-    "source": "Hacker News AI",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "i started building a permissions broker for ai agent for myselfに関する記事。",
-    "original_content": "Article URL: https://github.com/kagehq/keys\nComments URL: https://news.ycombinator.com/item?id=45001284\nPoints: 3\n# Comments: 0",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.30299300154521286,
-        "breakdown": {
-          "quality": 0.1804,
-          "relevance": 0.2,
-          "temporal": 0.6644650077260641,
-          "trust": 0.30000000000000004,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.24299300143196367,
-        "breakdown": {
-          "quality": 0.1804,
-          "relevance": 0.0,
-          "temporal": 0.6644650071598182,
-          "trust": 0.30000000000000004,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.30299300154521286
+    "total_score": 0.301931655397061
   },
   {
     "id": "rss_8c109bd4",
@@ -2090,11 +1981,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.3014929983487874,
+        "total_score": 0.3003825612160138,
         "breakdown": {
           "quality": 0.4152,
           "relevance": 0.2,
-          "temporal": 0.438464991743937,
+          "temporal": 0.43291280608006916,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2116,11 +2007,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.3764929982713231,
+        "total_score": 0.3753825611408923,
         "breakdown": {
           "quality": 0.4152,
           "relevance": 0.44999999999999996,
-          "temporal": 0.4384649913566153,
+          "temporal": 0.4329128057044614,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2142,7 +2033,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.3014929983487874
+    "total_score": 0.3003825612160138
   },
   {
     "id": "rss_65430739",
@@ -2160,11 +2051,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.30059299773330483,
+        "total_score": 0.2994825605907796,
         "breakdown": {
           "quality": 0.41159999999999997,
           "relevance": 0.2,
-          "temporal": 0.43846498866652417,
+          "temporal": 0.4329128029538977,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2186,11 +2077,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24059299766504055,
+        "total_score": 0.23948256051691597,
         "breakdown": {
           "quality": 0.41159999999999997,
           "relevance": 0.0,
-          "temporal": 0.43846498832520275,
+          "temporal": 0.43291280258458,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2212,7 +2103,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.30059299773330483
+    "total_score": 0.2994825605907796
   },
   {
     "id": "rss_efc80b84",
@@ -2222,7 +2113,7 @@
     "source_tier": 2,
     "published_date": "2025-08-24",
     "content": "should ai pay for ウェブ content? early proposal (hccp)に関する記事。",
-    "original_content": "Article URL: https://github.com/aidanmorgan/fypm\nComments URL: https://news.ycombinator.com/item?id=45002378\nPoints: 1\n# Comments: 1",
+    "original_content": "Article URL: https://github.com/aidanmorgan/fypm\nComments URL: https://news.ycombinator.com/item?id=45002378\nPoints: 2\n# Comments: 1",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -2230,11 +2121,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2996930033267372,
+        "total_score": 0.29752998146491716,
         "breakdown": {
           "quality": 0.16720000000000002,
           "relevance": 0.2,
-          "temporal": 0.6644650166336858,
+          "temporal": 0.6536499073245856,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -2256,11 +2147,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23969300322352272,
+        "total_score": 0.23752998136235587,
         "breakdown": {
           "quality": 0.16720000000000002,
           "relevance": 0.0,
-          "temporal": 0.6644650161176135,
+          "temporal": 0.6536499068117793,
           "trust": 0.30000000000000004,
           "actionability": 0.2
         },
@@ -2282,7 +2173,77 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2996930033267372
+    "total_score": 0.29752998146491716
+  },
+  {
+    "id": "rss_593da7f8",
+    "title": "[D] AAAI considered 2nd tier now?",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1mxrt1y/d_aaai_considered_2nd_tier_now/",
+    "source": "Reddit MachineLearning",
+    "source_tier": 1,
+    "published_date": "2025-08-23",
+    "content": "AI・技術分野に関する[d] aaai considered 2nd tier now?の記事。最新の動向や技術開発について。",
+    "original_content": "Isn’t AAAI in the same tier as NeurIPS/ICML/ICLR? ICLR literally has >30% acceptance rate.    submitted by    /u/Healthy_Horse_2183   [link]   [comments]",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.29656167582520654,
+        "breakdown": {
+          "quality": 0.35819999999999996,
+          "relevance": 0.2,
+          "temporal": 0.4850583791260327,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.23656167576275322,
+        "breakdown": {
+          "quality": 0.35819999999999996,
+          "relevance": 0.0,
+          "temporal": 0.48505837881376607,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.29656167582520654
   },
   {
     "id": "x_6934c707",
@@ -2299,11 +2260,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2981942874140182,
+        "total_score": 0.2960316538012061,
         "breakdown": {
           "quality": 0.2372,
           "relevance": 0.22999999999999998,
-          "temporal": 0.6244714370700908,
+          "temporal": 0.6136582690060302,
           "trust": 0.1,
           "actionability": 0.30000000000000004
         },
@@ -2325,11 +2286,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.219194287276397,
+        "total_score": 0.21703165366538862,
         "breakdown": {
           "quality": 0.2372,
           "relevance": 0.0,
-          "temporal": 0.6244714363819849,
+          "temporal": 0.6136582683269429,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2351,147 +2312,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2981942874140182
-  },
-  {
-    "id": "rss_593da7f8",
-    "title": "[D] AAAI considered 2nd tier now?",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1mxrt1y/d_aaai_considered_2nd_tier_now/",
-    "source": "Reddit MachineLearning",
-    "source_tier": 1,
-    "published_date": "2025-08-23",
-    "content": "AI・技術分野に関する[d] aaai considered 2nd tier now?の記事。最新の動向や技術開発について。",
-    "original_content": "Isn’t AAAI in the same tier as NeurIPS/ICML/ICLR? ICLR literally has >30% acceptance rate.    submitted by    /u/Healthy_Horse_2183   [link]   [comments]",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.29811127869303966,
-        "breakdown": {
-          "quality": 0.35819999999999996,
-          "relevance": 0.2,
-          "temporal": 0.4928063934651983,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.23811127862010983,
-        "breakdown": {
-          "quality": 0.35819999999999996,
-          "relevance": 0.0,
-          "temporal": 0.4928063931005493,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.29811127869303966
-  },
-  {
-    "id": "rss_aa2574c0",
-    "title": "[P] Tried to fix the insane cost of Al agents... not sure if I got it right. Honest feedback? - World's first all-in-one Al SDK",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1mym2ic/p_tried_to_fix_the_insane_cost_of_al_agents_not/",
-    "source": "Reddit MachineLearning",
-    "source_tier": 1,
-    "published_date": "2025-08-24",
-    "content": "[p] tried to fix the insane cost of al agents... not sure if i got it right. honest feedback? - world's first all-in-one al sdkに関する記事。",
-    "original_content": "Hi everyone, I’ve been frustrated by how complicated + expensive it is to build with AI agents. Usually you have to: manage the flow/orchestration yourself, glue together multiple libraries, and then ...",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.29719374715001146,
-        "breakdown": {
-          "quality": 0.4572,
-          "relevance": 0.0,
-          "temporal": 0.6644687357500572,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.342193746935338,
-        "breakdown": {
-          "quality": 0.4572,
-          "relevance": 0.15,
-          "temporal": 0.66446873467669,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.29719374715001146
+    "total_score": 0.2960316538012061
   },
   {
     "id": "rss_052e6a66",
@@ -2509,11 +2330,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2965429978976175,
+        "total_score": 0.29543256074821134,
         "breakdown": {
           "quality": 0.3954,
           "relevance": 0.2,
-          "temporal": 0.43846498948808754,
+          "temporal": 0.43291280374105673,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2535,11 +2356,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23654299783082522,
+        "total_score": 0.2354325606806379,
         "breakdown": {
           "quality": 0.3954,
           "relevance": 0.0,
-          "temporal": 0.43846498915412624,
+          "temporal": 0.4329128034031894,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2561,77 +2382,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2965429978976175
-  },
-  {
-    "id": "rss_8f61c020",
-    "title": "Kioxia's 5TB, 64 GB/s flash module puts NAND toward the memory bus for AI GPU",
-    "url": "https://www.tomshardware.com/pc-components/gpus/kioxias-new-5tb-64-gb-s-flash-module-puts-nand-toward-the-memory-bus-for-ai-gpus-hbf-prototype-adopts-familiar-ssd-form-factor",
-    "source": "Hacker News AI",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "kioxia's 5tb, 64 gb/s flash module puts nand toward the memory bus for ai GPUに関する記事。",
-    "original_content": "Article URL: https://www.tomshardware.com/pc-components/gpus/kioxias-new-5tb-64-gb-s-flash-module-puts-nand-toward-the-memory-bus-for-ai-gpus-hbf-prototype-adopts-familiar-ssd-form-factor\nComments URL...",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.296193001849122,
-        "breakdown": {
-          "quality": 0.2372,
-          "relevance": 0.22999999999999998,
-          "temporal": 0.66446500924561,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2271930017172369,
-        "breakdown": {
-          "quality": 0.2372,
-          "relevance": 0.0,
-          "temporal": 0.6644650085861843,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.296193001849122
+    "total_score": 0.29543256074821134
   },
   {
     "id": "x_479dc345",
@@ -2648,11 +2399,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.29549428618546253,
+        "total_score": 0.293331652757372,
         "breakdown": {
           "quality": 0.2404,
           "relevance": 0.2,
-          "temporal": 0.6644714309273125,
+          "temporal": 0.6536582637868598,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2674,11 +2425,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2804942860137945,
+        "total_score": 0.2783316525714981,
         "breakdown": {
           "quality": 0.2404,
           "relevance": 0.15,
-          "temporal": 0.6644714300689722,
+          "temporal": 0.6536582628574904,
           "trust": 0.15000000000000002,
           "actionability": 0.2
         },
@@ -2700,76 +2451,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.29549428618546253
-  },
-  {
-    "id": "x_f4e47035",
-    "title": "【AIエージェントによる投資手法が主流になる時代】",
-    "url": "https://x.com/tommy_love123/status/1959077501730426947/photo/1",
-    "source": "X(@tommy_love123)",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "【AIエージェントによる投資手法が主流になる時代】\n実はこの考えかたは研究として既に始まっており、時代はAIによる投資が今後主流となると予見しています。 https://t.co/oRTtEiy6mg https://t.co/AOXmZcprit",
-    "tags": [
-      "x_post",
-      "ai_2025",
-      "community"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.29289428527408073,
-        "breakdown": {
-          "quality": 0.23,
-          "relevance": 0.2,
-          "temporal": 0.6644714263704035,
-          "trust": 0.15000000000000002,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.27789428515043674,
-        "breakdown": {
-          "quality": 0.23,
-          "relevance": 0.15,
-          "temporal": 0.6644714257521834,
-          "trust": 0.15000000000000002,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.29289428527408073
+    "total_score": 0.293331652757372
   },
   {
     "id": "rss_054d7c2f",
@@ -2787,11 +2469,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2927238783827221,
+        "total_score": 0.2919282888445525,
         "breakdown": {
           "quality": 0.4062,
           "relevance": 0.2,
-          "temporal": 0.3308693919136105,
+          "temporal": 0.3268914442227625,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -2813,11 +2495,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23272387832708408,
+        "total_score": 0.23192828879484562,
         "breakdown": {
           "quality": 0.4062,
           "relevance": 0.0,
-          "temporal": 0.3308693916354203,
+          "temporal": 0.3268914439742281,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -2839,7 +2521,76 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2927238783827221
+    "total_score": 0.2919282888445525
+  },
+  {
+    "id": "x_f4e47035",
+    "title": "【AIエージェントによる投資手法が主流になる時代】",
+    "url": "https://x.com/tommy_love123/status/1959077501730426947/photo/1",
+    "source": "X(@tommy_love123)",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "【AIエージェントによる投資手法が主流になる時代】\n実はこの考えかたは研究として既に始まっており、時代はAIによる投資が今後主流となると予見しています。 https://t.co/oRTtEiy6mg https://t.co/AOXmZcprit",
+    "tags": [
+      "x_post",
+      "ai_2025",
+      "community"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2907316518539059,
+        "breakdown": {
+          "quality": 0.23,
+          "relevance": 0.2,
+          "temporal": 0.6536582592695295,
+          "trust": 0.15000000000000002,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.27573165172683967,
+        "breakdown": {
+          "quality": 0.23,
+          "relevance": 0.15,
+          "temporal": 0.653658258634198,
+          "trust": 0.15000000000000002,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.2907316518539059
   },
   {
     "id": "rss_d9c83a78",
@@ -2857,11 +2608,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2915429985044521,
+        "total_score": 0.2904325614102876,
         "breakdown": {
           "quality": 0.4074,
           "relevance": 0.2,
-          "temporal": 0.3984649925222602,
+          "temporal": 0.39291280705143783,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2883,11 +2634,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23154299843765974,
+        "total_score": 0.23043256131665518,
         "breakdown": {
           "quality": 0.4074,
           "relevance": 0.0,
-          "temporal": 0.3984649921882988,
+          "temporal": 0.39291280658327593,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2909,7 +2660,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2915429985044521
+    "total_score": 0.2904325614102876
   },
   {
     "id": "rss_60951625",
@@ -2927,11 +2678,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.28919299803396215,
+        "total_score": 0.28808256088605405,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.2,
-          "temporal": 0.43846499016981044,
+          "temporal": 0.43291280443027014,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2953,11 +2704,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22919299798041787,
+        "total_score": 0.22808256083088102,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.4384649899020893,
+          "temporal": 0.4329128041544051,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -2979,7 +2730,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.28919299803396215
+    "total_score": 0.28808256088605405
   },
   {
     "id": "x_80b00e60",
@@ -2996,11 +2747,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2867442821335229,
+        "total_score": 0.28458164870525166,
         "breakdown": {
           "quality": 0.2674,
           "relevance": 0.2,
-          "temporal": 0.624471410667614,
+          "temporal": 0.6136582435262581,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3022,11 +2773,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2267442819152643,
+        "total_score": 0.2245816484913742,
         "breakdown": {
           "quality": 0.2674,
           "relevance": 0.0,
-          "temporal": 0.6244714095763212,
+          "temporal": 0.6136582424568708,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3048,7 +2799,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2867442821335229
+    "total_score": 0.28458164870525166
   },
   {
     "id": "x_d73f8909",
@@ -3065,11 +2816,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2834442836229852,
+        "total_score": 0.2812816502212963,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.2,
-          "temporal": 0.6244714181149257,
+          "temporal": 0.6136582511064814,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3091,11 +2842,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22344428342192924,
+        "total_score": 0.2212816500287716,
         "breakdown": {
           "quality": 0.2542,
           "relevance": 0.0,
-          "temporal": 0.6244714171096462,
+          "temporal": 0.6136582501438579,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3117,7 +2868,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2834442836229852
+    "total_score": 0.2812816502212963
   },
   {
     "id": "x_1dc565a1",
@@ -3134,11 +2885,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.28214428774337713,
+        "total_score": 0.27998165412534765,
         "breakdown": {
           "quality": 0.217,
           "relevance": 0.2,
-          "temporal": 0.6644714387168856,
+          "temporal": 0.6536582706267382,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3160,11 +2911,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22214428758389432,
+        "total_score": 0.2199816539716779,
         "breakdown": {
           "quality": 0.217,
           "relevance": 0.0,
-          "temporal": 0.6644714379194714,
+          "temporal": 0.6536582698583895,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3186,76 +2937,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.28214428774337713
-  },
-  {
-    "id": "x_aed7bc17",
-    "title": "YouTube動画を秒で字幕コピー・要約できる神AIツール発見",
-    "url": "https://x.com/unikoukokun/status/1959136770341446077/photo/1",
-    "source": "X(@unikoukokun)",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "YouTube動画を秒で字幕コピー・要約できる神AIツール発見！\nこれさえあれば、ダラダラ動画を観る時間を削減・自由な時間を増やせちゃいます！\nこの作り方を知りたい人は、いいね と 「🦄」（ユニコーン）が含まれるリプを送ると、自動返信で受け取れます。 https://t.co/cxO0i18dC6",
-    "tags": [
-      "x_post",
-      "ai_2025",
-      "community"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.2800442899370729,
-        "breakdown": {
-          "quality": 0.2086,
-          "relevance": 0.2,
-          "temporal": 0.6644714496853645,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.22004428975787865,
-        "breakdown": {
-          "quality": 0.2086,
-          "relevance": 0.0,
-          "temporal": 0.6644714487893932,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.2800442899370729
+    "total_score": 0.27998165412534765
   },
   {
     "id": "rss_d653d261",
@@ -3273,11 +2955,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27854545411408127,
+        "total_score": 0.27813698483280863,
         "breakdown": {
           "quality": 0.384,
           "relevance": 0.2,
-          "temporal": 0.28772727057040626,
+          "temporal": 0.285684924164043,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3299,11 +2981,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2185454540902541,
+        "total_score": 0.21813698481066013,
         "breakdown": {
           "quality": 0.384,
           "relevance": 0.0,
-          "temporal": 0.28772727045127044,
+          "temporal": 0.28568492405330054,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3325,7 +3007,76 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27854545411408127
+    "total_score": 0.27813698483280863
+  },
+  {
+    "id": "x_aed7bc17",
+    "title": "YouTube動画を秒で字幕コピー・要約できる神AIツール発見",
+    "url": "https://x.com/unikoukokun/status/1959136770341446077/photo/1",
+    "source": "X(@unikoukokun)",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "YouTube動画を秒で字幕コピー・要約できる神AIツール発見！\nこれさえあれば、ダラダラ動画を観る時間を削減・自由な時間を増やせちゃいます！\nこの作り方を知りたい人は、いいね と 「🦄」（ユニコーン）が含まれるリプを送ると、自動返信で受け取れます。 https://t.co/cxO0i18dC6",
+    "tags": [
+      "x_post",
+      "ai_2025",
+      "community"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.27788165630157724,
+        "breakdown": {
+          "quality": 0.2086,
+          "relevance": 0.2,
+          "temporal": 0.653658281507886,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.21788165615910893,
+        "breakdown": {
+          "quality": 0.2086,
+          "relevance": 0.0,
+          "temporal": 0.6536582807955444,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.27788165630157724
   },
   {
     "id": "rss_7ade5d14",
@@ -3343,11 +3094,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27809300392093705,
+        "total_score": 0.27592998202217844,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.2,
-          "temporal": 0.6644650196046851,
+          "temporal": 0.6536499101108922,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3369,11 +3120,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21809300378475133,
+        "total_score": 0.2159299818926642,
         "breakdown": {
           "quality": 0.2008,
           "relevance": 0.0,
-          "temporal": 0.6644650189237564,
+          "temporal": 0.653649909463321,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3395,7 +3146,77 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27809300392093705
+    "total_score": 0.27592998202217844
+  },
+  {
+    "id": "rss_082bdfde",
+    "title": "'It's almost tragic': Bubble or not, the AI backlash is validating",
+    "url": "https://fortune.com/2025/08/24/is-ai-a-bubble-market-crash-gary-marcus-openai-gpt5/",
+    "source": "Hacker News AI",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "'it's almost tragic': bubble or not, the ai backlash is validatingに関する記事。 OpenAIが関連する動向について。",
+    "original_content": "Article URL: https://fortune.com/2025/08/24/is-ai-a-bubble-market-crash-gary-marcus-openai-gpt5/\nComments URL: https://news.ycombinator.com/item?id=45003087\nPoints: 2\n# Comments: 0",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2745799834156818,
+        "breakdown": {
+          "quality": 0.19540000000000002,
+          "relevance": 0.2,
+          "temporal": 0.6536499170784088,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.21457998328476735,
+        "breakdown": {
+          "quality": 0.19540000000000002,
+          "relevance": 0.0,
+          "temporal": 0.6536499164238367,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.2745799834156818
   },
   {
     "id": "x_5f7729a8",
@@ -3412,11 +3233,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.27659428830891414,
+        "total_score": 0.27443165482438747,
         "breakdown": {
           "quality": 0.1948,
           "relevance": 0.2,
-          "temporal": 0.6644714415445705,
+          "temporal": 0.6536582741219372,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3438,11 +3259,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21659428818777882,
+        "total_score": 0.21443165463431307,
         "breakdown": {
           "quality": 0.1948,
           "relevance": 0.0,
-          "temporal": 0.6644714409388941,
+          "temporal": 0.6536582731715652,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3464,77 +3285,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.27659428830891414
-  },
-  {
-    "id": "rss_ddf7c3c1",
-    "title": "The Science of Intelligent Exploration: Why We Need Exploration in AI",
-    "url": "https://richardcsuwandi.github.io/blog/2025/exploration-in-ai/",
-    "source": "Hacker News AI",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "the science of intelligent exploration: why we need exploration in aiに関する記事。",
-    "original_content": "Article URL: https://richardcsuwandi.github.io/blog/2025/exploration-in-ai/\nComments URL: https://news.ycombinator.com/item?id=45001725\nPoints: 2\n# Comments: 0",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.2747930028783994,
-        "breakdown": {
-          "quality": 0.1876,
-          "relevance": 0.2,
-          "temporal": 0.664465014391997,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.21479300275726576,
-        "breakdown": {
-          "quality": 0.1876,
-          "relevance": 0.0,
-          "temporal": 0.6644650137863288,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.2747930028783994
+    "total_score": 0.27443165482438747
   },
   {
     "id": "rss_d8787860",
@@ -3552,11 +3303,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2740933533920995,
+        "total_score": 0.2719305778785904,
         "breakdown": {
           "quality": 0.3648,
           "relevance": 0.0,
-          "temporal": 0.6644667669604972,
+          "temporal": 0.6536528893929517,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3578,11 +3329,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.27409335326845674,
+        "total_score": 0.27193057777672847,
         "breakdown": {
           "quality": 0.3648,
           "relevance": 0.0,
-          "temporal": 0.6644667663422834,
+          "temporal": 0.6536528888836424,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3604,7 +3355,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2740933533920995
+    "total_score": 0.2719305778785904
   },
   {
     "id": "rss_15bcbd07",
@@ -3622,11 +3373,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2706437491888716,
+        "total_score": 0.26848110419202725,
         "breakdown": {
           "quality": 0.351,
           "relevance": 0.0,
-          "temporal": 0.6644687459443577,
+          "temporal": 0.6536555209601362,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3648,11 +3399,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2706437491017837,
+        "total_score": 0.2684811041066168,
         "breakdown": {
           "quality": 0.351,
           "relevance": 0.0,
-          "temporal": 0.6644687455089182,
+          "temporal": 0.6536555205330841,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -3674,146 +3425,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2706437491888716
-  },
-  {
-    "id": "x_3cac75e2",
-    "title": "🚨BREAKING: AI can now build you a business in 24 hours",
-    "url": "https://x.com/sukh_saroy/status/1959133209033416796/photo/1",
-    "source": "X(@sukh_saroy)",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "🚨BREAKING: AI can now build you a business in 24 hours.\n\nHere are 10 insane Grok 4 prompts to turn any idea into income — starting today. 👇 https://t.co/JhqYa2CJS5",
-    "tags": [
-      "x_post",
-      "ai_2025",
-      "community"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.26959428948478664,
-        "breakdown": {
-          "quality": 0.2308,
-          "relevance": 0.2,
-          "temporal": 0.5844714474239332,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.25459428930344213,
-        "breakdown": {
-          "quality": 0.2308,
-          "relevance": 0.15,
-          "temporal": 0.5844714465172105,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.26959428948478664
-  },
-  {
-    "id": "rss_ad1276fd",
-    "title": "The GenAI Divide State of AI in Business 2025 [pdf]",
-    "url": "https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf",
-    "source": "Hacker News AI",
-    "source_tier": 2,
-    "published_date": "2025-08-24",
-    "content": "the genai divide state of ai in ビジネス 2025 [pdf]に関する記事。",
-    "original_content": "Article URL: https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf\nComments URL: https://news.ycombinator.com/item?id=45001700\nPoints: 5\n# Comments: 1",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.26879300258846717,
-        "breakdown": {
-          "quality": 0.1636,
-          "relevance": 0.2,
-          "temporal": 0.6644650129423357,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2987930024848944,
-        "breakdown": {
-          "quality": 0.1636,
-          "relevance": 0.3,
-          "temporal": 0.6644650124244718,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "total_score": 0.26879300258846717
+    "total_score": 0.26848110419202725
   },
   {
     "id": "rss_766bce5f",
@@ -3831,11 +3443,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26862186718838965,
+        "total_score": 0.26832918616107865,
         "breakdown": {
           "quality": 0.36419999999999997,
           "relevance": 0.2,
-          "temporal": 0.2628593359419483,
+          "temporal": 0.2613959308053931,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3857,11 +3469,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20862186717509995,
+        "total_score": 0.20832918614819307,
         "breakdown": {
           "quality": 0.36419999999999997,
           "relevance": 0.0,
-          "temporal": 0.26285933587549976,
+          "temporal": 0.26139593074096523,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -3883,7 +3495,286 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26862186718838965
+    "total_score": 0.26832918616107865
+  },
+  {
+    "id": "rss_ac26c406",
+    "title": "YouTube used AI to edit videos without telling users",
+    "url": "https://www.bbc.com/future/article/20250822-youtube-is-using-ai-to-edit-videos-without-permission",
+    "source": "Hacker News AI",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "youtube used ai to edit videos without telling ユーザーsに関する記事。",
+    "original_content": "Article URL: https://www.bbc.com/future/article/20250822-youtube-is-using-ai-to-edit-videos-without-permission\nComments URL: https://news.ycombinator.com/item?id=45003073\nPoints: 2\n# Comments: 0",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2675299831139486,
+        "breakdown": {
+          "quality": 0.16720000000000002,
+          "relevance": 0.2,
+          "temporal": 0.6536499155697428,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2975299830096371,
+        "breakdown": {
+          "quality": 0.16720000000000002,
+          "relevance": 0.3,
+          "temporal": 0.6536499150481854,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.2675299831139486
+  },
+  {
+    "id": "x_3cac75e2",
+    "title": "🚨BREAKING: AI can now build you a business in 24 hours",
+    "url": "https://x.com/sukh_saroy/status/1959133209033416796/photo/1",
+    "source": "X(@sukh_saroy)",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "🚨BREAKING: AI can now build you a business in 24 hours.\n\nHere are 10 insane Grok 4 prompts to turn any idea into income — starting today. 👇 https://t.co/JhqYa2CJS5",
+    "tags": [
+      "x_post",
+      "ai_2025",
+      "community"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2674316559648339,
+        "breakdown": {
+          "quality": 0.2308,
+          "relevance": 0.2,
+          "temporal": 0.5736582798241696,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2524316557985626,
+        "breakdown": {
+          "quality": 0.2308,
+          "relevance": 0.15,
+          "temporal": 0.5736582789928129,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.2674316559648339
+  },
+  {
+    "id": "rss_9c92d3ba",
+    "title": "Fear not, even AI engineers will be replaced by AI",
+    "url": "https://doch88.github.io/2025/08/17/fear-not-even-ai-engineers-will-be-replaced-by-ai.html",
+    "source": "Hacker News AI",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "fear not, even ai engineers will be replaced by aiに関する記事。",
+    "original_content": "Article URL: https://doch88.github.io/2025/08/17/fear-not-even-ai-engineers-will-be-replaced-by-ai.html\nComments URL: https://news.ycombinator.com/item?id=45003094\nPoints: 1\n# Comments: 1",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2669299836883618,
+        "breakdown": {
+          "quality": 0.1648,
+          "relevance": 0.2,
+          "temporal": 0.6536499184418089,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2069299835738992,
+        "breakdown": {
+          "quality": 0.1648,
+          "relevance": 0.0,
+          "temporal": 0.6536499178694959,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.2669299836883618
+  },
+  {
+    "id": "rss_1d28a127",
+    "title": "Designing AI tools that support critical thinking",
+    "url": "https://vaughntan.org/aiux",
+    "source": "Hacker News AI",
+    "source_tier": 2,
+    "published_date": "2025-08-24",
+    "content": "designing ai ツールs that support critical thinkingに関する記事。",
+    "original_content": "Article URL: https://vaughntan.org/aiux\nComments URL: https://news.ycombinator.com/item?id=45003015\nPoints: 1\n# Comments: 0",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.26647998262739503,
+        "breakdown": {
+          "quality": 0.163,
+          "relevance": 0.2,
+          "temporal": 0.6536499131369751,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2064799825262339,
+        "breakdown": {
+          "quality": 0.163,
+          "relevance": 0.0,
+          "temporal": 0.6536499126311694,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "total_score": 0.26647998262739503
   },
   {
     "id": "x_53b9766a",
@@ -3900,11 +3791,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.26849428500887323,
+        "total_score": 0.2663316515850714,
         "breakdown": {
           "quality": 0.1624,
           "relevance": 0.2,
-          "temporal": 0.6644714250443662,
+          "temporal": 0.6536582579253569,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3926,11 +3817,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2084942849088829,
+        "total_score": 0.20633165148285826,
         "breakdown": {
           "quality": 0.1624,
           "relevance": 0.0,
-          "temporal": 0.6644714245444143,
+          "temporal": 0.6536582574142913,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -3952,17 +3843,17 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.26849428500887323
+    "total_score": 0.2663316515850714
   },
   {
-    "id": "rss_e3715886",
-    "title": "Mirage2.net AI World Generator",
-    "url": "https://news.ycombinator.com/item?id=45001356",
-    "source": "Hacker News AI",
-    "source_tier": 2,
+    "id": "rss_22348016",
+    "title": "Mistral Large soon?",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1myrdtb/mistral_large_soon/",
+    "source": "Reddit LocalLLaMA",
+    "source_tier": 1,
     "published_date": "2025-08-24",
-    "content": "mirage2.net ai world generatorに関する記事。",
-    "original_content": "The world's first AI world generator powered by real-time AI technology. Transform images into interactive worlds instantly with Mirage2's revolutionary world creation platform.\n\nComments URL: https:/...",
+    "content": "mistral large soon?に関する記事。",
+    "original_content": "source https://mistral.ai/news/mistral-medium-3    submitted by    /u/secopsml   [link]   [comments]",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -3970,12 +3861,12 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.263093002106083,
+        "total_score": 0.2626305780994661,
         "breakdown": {
-          "quality": 0.1408,
-          "relevance": 0.2,
-          "temporal": 0.6644650105304148,
-          "trust": 0.1,
+          "quality": 0.3276,
+          "relevance": 0.0,
+          "temporal": 0.6536528904973304,
+          "trust": 0.2,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -3996,12 +3887,12 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20309300201075298,
+        "total_score": 0.2626305780249074,
         "breakdown": {
-          "quality": 0.1408,
+          "quality": 0.3276,
           "relevance": 0.0,
-          "temporal": 0.6644650100537648,
-          "trust": 0.1,
+          "temporal": 0.6536528901245371,
+          "trust": 0.2,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -4022,17 +3913,17 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.263093002106083
+    "total_score": 0.2626305780994661
   },
   {
-    "id": "rss_4dfc7af9",
-    "title": "Google AI Gemini",
-    "url": "https://news.ycombinator.com/item?id=45002152",
+    "id": "rss_572201d5",
+    "title": "The AI vibe shift is upon us",
+    "url": "https://www.cnn.com/2025/08/22/business/ai-vibe-shift-nightcap",
     "source": "Hacker News AI",
     "source_tier": 2,
     "published_date": "2025-08-24",
-    "content": "Google ai geminiに関する記事。",
-    "original_content": "I was speaking with Jimmy and it brought up the fact that there's a fourth letter to the left beyond a darkweb  Create by AI Immediately it started backpiling telling it wasn't allowed to speak of it ...",
+    "content": "the ai vibe shift is upon usに関する記事。",
+    "original_content": "Article URL: https://www.cnn.com/2025/08/22/business/ai-vibe-shift-nightcap\nComments URL: https://news.ycombinator.com/item?id=45003052\nPoints: 33\n# Comments: 22",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -4040,11 +3931,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.25889300306583396,
+        "total_score": 0.2603299828514197,
         "breakdown": {
-          "quality": 0.124,
+          "quality": 0.1384,
           "relevance": 0.2,
-          "temporal": 0.6644650153291698,
+          "temporal": 0.6536499142570984,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4066,11 +3957,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.1988930030020417,
+        "total_score": 0.2003299827705608,
         "breakdown": {
-          "quality": 0.124,
+          "quality": 0.1384,
           "relevance": 0.0,
-          "temporal": 0.6644650150102085,
+          "temporal": 0.6536499138528038,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4092,7 +3983,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.25889300306583396
+    "total_score": 0.2603299828514197
   },
   {
     "id": "x_4d532536",
@@ -4109,11 +4000,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2576442868251859,
+        "total_score": 0.255481653341597,
         "breakdown": {
           "quality": 0.15100000000000002,
           "relevance": 0.2,
-          "temporal": 0.6244714341259295,
+          "temporal": 0.613658266707985,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4135,11 +4026,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.19764428670835132,
+        "total_score": 0.19548165326108669,
         "breakdown": {
           "quality": 0.15100000000000002,
           "relevance": 0.0,
-          "temporal": 0.6244714335417564,
+          "temporal": 0.6136582663054333,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4161,7 +4052,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2576442868251859
+    "total_score": 0.255481653341597
   },
   {
     "id": "rss_44e9489a",
@@ -4179,11 +4070,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.25526099678273945,
+        "total_score": 0.25371129969361933,
         "breakdown": {
           "quality": 0.3948,
           "relevance": 0.0,
-          "temporal": 0.5328049839136972,
+          "temporal": 0.5250564984680965,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4205,11 +4096,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.34526099668413057,
+        "total_score": 0.3437112996085929,
         "breakdown": {
           "quality": 0.3948,
           "relevance": 0.3,
-          "temporal": 0.5328049834206527,
+          "temporal": 0.5250564980429648,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4231,7 +4122,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.25526099678273945
+    "total_score": 0.25371129969361933
   },
   {
     "id": "x_c36ca9f6",
@@ -4248,11 +4139,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.25034428858559,
+        "total_score": 0.24818165509427215,
         "breakdown": {
           "quality": 0.1858,
           "relevance": 0.2,
-          "temporal": 0.5444714429279499,
+          "temporal": 0.5336582754713606,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4274,11 +4165,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20234428846445474,
+        "total_score": 0.20018165497210644,
         "breakdown": {
           "quality": 0.1858,
           "relevance": 0.04,
-          "temporal": 0.5444714423222734,
+          "temporal": 0.5336582748605321,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4300,7 +4191,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.25034428858559
+    "total_score": 0.24818165509427215
   },
   {
     "id": "rss_7449abf9",
@@ -4318,11 +4209,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.2480609416958336,
+        "total_score": 0.24651120196806497,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.5328047084791678,
+          "temporal": 0.525056009840325,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4344,11 +4235,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24806094161725467,
+        "total_score": 0.24651120189131565,
         "breakdown": {
           "quality": 0.366,
           "relevance": 0.0,
-          "temporal": 0.5328047080862734,
+          "temporal": 0.5250560094565782,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4370,7 +4261,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.2480609416958336
+    "total_score": 0.24651120196806497
   },
   {
     "id": "rss_d8d55602",
@@ -4388,11 +4279,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.23459299817840268,
+        "total_score": 0.23348256103809434,
         "breakdown": {
           "quality": 0.3876,
           "relevance": 0.0,
-          "temporal": 0.4384649908920134,
+          "temporal": 0.4329128051904717,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4414,11 +4305,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23459299811455442,
+        "total_score": 0.23348256096818454,
         "breakdown": {
           "quality": 0.3876,
           "relevance": 0.0,
-          "temporal": 0.4384649905727721,
+          "temporal": 0.4329128048409227,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -4440,7 +4331,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.23459299817840268
+    "total_score": 0.23348256103809434
   },
   {
     "id": "x_c3861536",
@@ -4457,11 +4348,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.22814428131317172,
+        "total_score": 0.2259816479145001,
         "breakdown": {
           "quality": 0.241,
           "relevance": 0.0,
-          "temporal": 0.6644714065658583,
+          "temporal": 0.6536582395725005,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4483,11 +4374,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.22814428115010493,
+        "total_score": 0.22598164774962898,
         "breakdown": {
           "quality": 0.241,
           "relevance": 0.0,
-          "temporal": 0.6644714057505247,
+          "temporal": 0.6536582387481447,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4509,7 +4400,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.22814428131317172
+    "total_score": 0.2259816479145001
   },
   {
     "id": "x_ac40b6e6",
@@ -4526,11 +4417,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.21719428804334828,
+        "total_score": 0.21503165444703903,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.0,
-          "temporal": 0.6644714402167413,
+          "temporal": 0.6536582722351949,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4552,11 +4443,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.21719428790572715,
+        "total_score": 0.21503165430037013,
         "breakdown": {
           "quality": 0.1972,
           "relevance": 0.0,
-          "temporal": 0.6644714395286355,
+          "temporal": 0.6536582715018506,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4578,7 +4469,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.21719428804334828
+    "total_score": 0.21503165444703903
   },
   {
     "id": "x_5bf8bfaa",
@@ -4595,11 +4486,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.21704428322087332,
+        "total_score": 0.21488164982819585,
         "breakdown": {
           "quality": 0.1966,
           "relevance": 0.0,
-          "temporal": 0.6644714161043666,
+          "temporal": 0.653658249140979,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4621,11 +4512,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2170442830925703,
+        "total_score": 0.21488164969867918,
         "breakdown": {
           "quality": 0.1966,
           "relevance": 0.0,
-          "temporal": 0.6644714154628513,
+          "temporal": 0.6536582484933958,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4647,7 +4538,7 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.21704428322087332
+    "total_score": 0.21488164982819585
   },
   {
     "id": "x_6ca9e71d",
@@ -4664,11 +4555,11 @@
     ],
     "evaluation": {
       "engineer": {
-        "total_score": 0.20984428581345538,
+        "total_score": 0.2076816523712724,
         "breakdown": {
           "quality": 0.1678,
           "relevance": 0.0,
-          "temporal": 0.6644714290672766,
+          "temporal": 0.6536582618563618,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4690,11 +4581,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.20984428570808916,
+        "total_score": 0.20768165226100826,
         "breakdown": {
           "quality": 0.1678,
           "relevance": 0.0,
-          "temporal": 0.6644714285404456,
+          "temporal": 0.653658261305041,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -4716,169 +4607,165 @@
         "recommendation": "skip"
       }
     },
-    "total_score": 0.20984428581345538
+    "total_score": 0.2076816523712724
   }
 ];
+
         let filteredArticles = [...articles];
-        
+        let currentPersona = 'engineer';
+
+        // Human-readable names for source tiers
+        const tierTexts = {
+            1: '高信頼ソース',
+            2: '一般ソース'
+        };
+
         function renderArticles() {
             const container = document.getElementById('articles-container');
             container.innerHTML = '';
             
-            filteredArticles.forEach(article => {
-                const card = document.createElement('div');
-                card.className = 'article-card';
-                
-                const escapeHtml = (text) => {
-                    const div = document.createElement('div');
-                    div.textContent = text;
-                    return div.innerHTML;
-                };
-                
-                const tierClass = `tier-${article.source_tier}`;
-                const isRssArticle = !article.source.startsWith('X(');
-                const evaluation = article.evaluation || {};
-                const engineerEval = evaluation.engineer || {};
-                const businessEval = evaluation.business || {};
-                
-                // デフォルトは engineer 評価を使用
-                let currentEval = engineerEval;
-                let currentPersona = 'engineer';
-                
-                const getRecommendationText = (rec) => {
-                    const texts = {
-                        'must_read': '必読',
-                        'recommended': '推奨',
-                        'consider': '検討',
-                        'skip': 'スキップ'
-                    };
-                    return texts[rec] || rec;
-                };
-                
-                card.innerHTML = `
-                    <div class="article-header">
-                        <h3 class="article-title">
-                            <a href="${encodeURI(article.url)}" target="_blank" rel="noopener noreferrer">
-                                ${escapeHtml(article.title)}
-                            </a>
-                        </h3>
-                        <div class="article-meta">
-                            <span class="source ${tierClass}">${escapeHtml(article.source)}</span>
-                            <span>${article.published_date}</span>
-                        </div>
-                    </div>
-                    <div class="article-content">
-                        ${escapeHtml(article.content)}
-                    </div>
-                    ${isRssArticle ? '<div class="summary-note">※ この記事は日本語要約版です</div>' : ''}
-                    <div class="evaluation-panel">
-                        <div class="score-display">
-                            <div class="total-score" data-score="${(currentEval.total_score || 0).toFixed(2)}">${Math.round((currentEval.total_score || 0) * 100)}</div>
-                            <div class="persona-toggle">
-                                <button class="persona-btn active" data-persona="engineer">エンジニア</button>
-                                <button class="persona-btn" data-persona="business">ビジネス</button>
-                            </div>
-                        </div>
-                        <div class="score-breakdown">
-                            <div class="score-item">
-                                <div class="score-value">${Math.round((currentEval.breakdown?.quality || 0) * 100)}</div>
-                                <div class="score-label">品質</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${Math.round((currentEval.breakdown?.relevance || 0) * 100)}</div>
-                                <div class="score-label">関連性</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${Math.round((currentEval.breakdown?.temporal || 0) * 100)}</div>
-                                <div class="score-label">時間的価値</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${Math.round((currentEval.breakdown?.trust || 0) * 100)}</div>
-                                <div class="score-label">信頼性</div>
-                            </div>
-                            <div class="score-item">
-                                <div class="score-value">${Math.round((currentEval.breakdown?.actionability || 0) * 100)}</div>
-                                <div class="score-label">実行性</div>
-                            </div>
-                        </div>
-                        <div class="recommendation rec-${currentEval.recommendation || 'consider'}">
-                            ${getRecommendationText(currentEval.recommendation || 'consider')}
-                        </div>
-                    </div>
-                    <div class="article-actions">
-                        <a href="${encodeURI(article.url)}" class="read-more" target="_blank">
-                            ${isRssArticle ? '元記事を読む（英語）' : '記事を読む'}
-                        </a>
-                    </div>
-                `;
-                
-                // ペルソナ切り替えイベント
-                const personaBtns = card.querySelectorAll('.persona-btn');
-                personaBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const persona = btn.dataset.persona;
-                        const evalData = persona === 'engineer' ? engineerEval : businessEval;
-                        
-                        // ボタンの状態更新
-                        personaBtns.forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        
-                        // スコア表示更新
-                        const scoreDisplay = card.querySelector('.total-score');
-                        scoreDisplay.textContent = Math.round((evalData.total_score || 0) * 100);
-                        
-                        // 内訳スコア更新
-                        const scoreItems = card.querySelectorAll('.score-item .score-value');
-                        const breakdown = evalData.breakdown || {};
-                        scoreItems[0].textContent = Math.round((breakdown.quality || 0) * 100);
-                        scoreItems[1].textContent = Math.round((breakdown.relevance || 0) * 100);
-                        scoreItems[2].textContent = Math.round((breakdown.temporal || 0) * 100);
-                        scoreItems[3].textContent = Math.round((breakdown.trust || 0) * 100);
-                        scoreItems[4].textContent = Math.round((breakdown.actionability || 0) * 100);
-                        
-                        // 推奨レベル更新
-                        const recElement = card.querySelector('.recommendation');
-                        recElement.className = `recommendation rec-${evalData.recommendation || 'consider'}`;
-                        recElement.textContent = getRecommendationText(evalData.recommendation || 'consider');
-                    });
-                });
-                
-                container.appendChild(card);
+            // Sort by recommendation priority first then by score
+            const recPriority = { must_read: 0, recommended: 1, consider: 2, skip: 3 };
+            const sorted = [...filteredArticles].sort((a, b) => {
+                const aRec = (a.evaluation && a.evaluation[currentPersona] && a.evaluation[currentPersona].recommendation) || 'consider';
+                const bRec = (b.evaluation && b.evaluation[currentPersona] && b.evaluation[currentPersona].recommendation) || 'consider';
+                if (recPriority[aRec] !== recPriority[bRec]) {
+                    return recPriority[aRec] - recPriority[bRec];
+                }
+                return getPersonaScore(b) - getPersonaScore(a);
+            });
+            
+            // Group by recommendation and insert headings for clarity
+            let lastRec = null;
+            sorted.forEach(article => {
+                const evalData = article.evaluation && article.evaluation[currentPersona];
+                const rec = (evalData && evalData.recommendation) || 'consider';
+                if (rec !== lastRec) {
+                    const heading = document.createElement('h2');
+                    heading.className = `rec-heading rec-${rec}`;
+                    heading.textContent = getRecommendationText(rec);
+                    container.appendChild(heading);
+                    lastRec = rec;
+                }
+                container.appendChild(createArticleCard(article));
             });
         }
-        
+
+        function createArticleCard(article) {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            const evaluation = article.evaluation || {};
+            const personaEval = evaluation[currentPersona] || {};
+            const breakdown = personaEval.breakdown || {};
+            const totalPercentage = Math.round((personaEval.total_score || 0) * 100);
+            
+            // Determine the order of breakdown keys for this persona
+            const order = breakdownOrder[currentPersona] || ['quality','relevance','temporal','trust','actionability'];
+            
+            // Build HTML for breakdown items in the desired order
+            let breakdownHtml = '';
+            order.forEach((key, idx) => {
+                const val = Math.round(((breakdown[key] || 0) * 100));
+                const label = (metricLabels[currentPersona] && metricLabels[currentPersona][idx]) || key;
+                breakdownHtml += `<div class="score-item"><div class="score-value">${val}</div><div class="score-label">${label}</div></div>`;
+            });
+            
+            card.innerHTML = `
+                <span class="source-tier tier-${article.source_tier}">${tierTexts[article.source_tier] || ''}</span>
+                <h3 class="article-title">
+                    <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
+                </h3>
+                <div class="article-meta">
+                    <span>${escapeHtml(article.source)}</span> • <span>${article.published_date}</span>
+                </div>
+                <div class="article-content">${escapeHtml(article.content)}</div>
+                <div class="evaluation-panel">
+                    <div class="score-display">
+                        <div class="total-score">${totalPercentage}</div>
+                        <div class="score-label-text">総合評価</div>
+                        <div class="score-bar"><div class="score-bar-fill" style="width: ${totalPercentage}%"></div></div>
+                    </div>
+                    <div class="score-breakdown">
+                        ${breakdownHtml}
+                    </div>
+                    <div class="recommendation rec-${personaEval.recommendation || 'consider'}">
+                        ${getRecommendationText(personaEval.recommendation || 'consider')}
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getRecommendationText(rec) {
+            const texts = { must_read: '必読', recommended: '推奨', consider: '検討', skip: 'スキップ' };
+            return texts[rec] || rec;
+        }
+
+        function getPersonaScore(article) {
+            const evalData = article.evaluation && article.evaluation[currentPersona];
+            return evalData ? evalData.total_score : 0;
+        }
+
         function applyFilters() {
-            const sourceTypeFilter = document.getElementById('source-type-filter').value;
-            const tierFilter = document.getElementById('tier-filter').value;
+            const tierFilter = document.getElementById('source-tier-filter').value;
+            const minScore = parseFloat(document.getElementById('min-score-filter').value || 0);
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
             
             filteredArticles = articles.filter(article => {
-                // ソース種別フィルター
-                if (sourceTypeFilter === 'x' && !article.source.startsWith('X(')) return false;
-                if (sourceTypeFilter === 'rss' && article.source.startsWith('X(')) return false;
-                
-                // Tierフィルター
                 if (tierFilter !== 'all' && article.source_tier !== parseInt(tierFilter)) return false;
-                
-                // 検索フィルター
-                if (searchQuery && 
-                    !article.title.toLowerCase().includes(searchQuery) &&
-                    !article.content.toLowerCase().includes(searchQuery) &&
-                    !article.source.toLowerCase().includes(searchQuery)) return false;
-                
+                if (getPersonaScore(article) < minScore) return false;
+                if (searchQuery) {
+                    const haystack = (article.title + article.content + article.source).toLowerCase();
+                    if (!haystack.includes(searchQuery)) return false;
+                }
                 return true;
             });
             
             renderArticles();
+            updateSummaryStats();
         }
-        
-        // イベントリスナーを設定
-        document.getElementById('source-type-filter').addEventListener('change', applyFilters);
-        document.getElementById('tier-filter').addEventListener('change', applyFilters);
+
+        function updateSummaryStats() {
+            const totalEl = document.getElementById('stat-total');
+            const avgEl = document.getElementById('stat-avg-score');
+            const tier1El = document.getElementById('stat-tier1');
+            
+            totalEl.textContent = filteredArticles.length;
+            const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
+            avgEl.textContent = Math.round(avgScore * 100) + '%';
+            const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
+            tier1El.textContent = tier1Count;
+        }
+
+        // Event listeners
+        document.getElementById('source-tier-filter').addEventListener('change', applyFilters);
+        document.getElementById('min-score-filter').addEventListener('input', applyFilters);
         document.getElementById('search-input').addEventListener('input', applyFilters);
-        
-        // ページ読み込み時に記事を表示
-        document.addEventListener('DOMContentLoaded', renderArticles);
+
+        // Attach persona toggle events on header
+        document.querySelectorAll('.header .persona-toggle button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // update active class
+                document.querySelectorAll('.header .persona-toggle button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // update global persona
+                currentPersona = btn.dataset.persona;
+                // re-apply filters and re-render
+                applyFilters();
+            });
+        });
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderArticles();
+            updateSummaryStats();
+        });
     </script>
 </body>
 </html>
