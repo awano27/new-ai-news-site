@@ -1,239 +1,284 @@
+// Externalized UI logic for docs index
+(() => {
+  const tierTexts = { 1: '高信頼ソース', 2: '一般ソース' };
+  const metricLabels = {
+    engineer: ['技術的新規性', '実装可能性', '再現性', '実務寄与', '学習価値'],
+    business: ['事業影響度', '投資判断材料', '戦略的価値', '実現可能性', 'リスク評価']
+  };
+  const breakdownOrder = {
+    engineer: ['temporal', 'relevance', 'trust', 'quality', 'actionability'],
+    business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
+  };
 
-        class DashboardController {
-            constructor() {
-                this.currentPersona = 'engineer';
-                this.articles = [];
-                this.filteredArticles = [];
-                this.init();
-            }
-            
-            init() {
-                this.setupPersonaToggle();
-                this.setupFilters();
-                this.setupSearch();
-                this.loadArticles();
-            }
-            
-            setupPersonaToggle() {
-                const toggles = document.querySelectorAll('.persona-toggle button');
-                toggles.forEach(toggle => {
-                    toggle.addEventListener('click', (e) => {
-                        const persona = e.target.dataset.persona;
-                        this.switchPersona(persona);
-                    });
-                });
-            }
-            
-            setupFilters() {
-                const filterSelects = document.querySelectorAll('.filter-group select');
-                filterSelects.forEach(select => {
-                    select.addEventListener('change', () => this.applyFilters());
-                });
-                
-                const scoreInputs = document.querySelectorAll('.filter-group input[type="range"]');
-                scoreInputs.forEach(input => {
-                    input.addEventListener('input', () => this.applyFilters());
-                });
-            }
-            
-            setupSearch() {
-                const searchInput = document.querySelector('#search-input');
-                if (searchInput) {
-                    searchInput.addEventListener('input', (e) => {
-                        this.searchArticles(e.target.value);
-                    });
-                }
-            }
-            
-            switchPersona(persona) {
-                this.currentPersona = persona;
-                
-                // Update active button
-                document.querySelectorAll('.persona-toggle button').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.persona === persona);
-                });
-                
-                // Update body class
-                document.body.className = `persona-${persona}`;
-                
-                // Re-render articles with new persona
-                this.renderArticles();
-            }
-            
-            loadArticles() {
-                // Get articles data from embedded JSON or API
-                const articleData = document.querySelector('#articles-data');
-                if (articleData) {
-                    this.articles = JSON.parse(articleData.textContent);
-                    this.filteredArticles = [...this.articles];
-                    this.renderArticles();
-                    this.updateSummaryStats();
-                }
-            }
-            
-            applyFilters() {
-                const sourceTier = document.querySelector('#source-tier-filter')?.value;
-                const minScore = parseFloat(document.querySelector('#min-score-filter')?.value || 0);
-                const difficultyLevel = document.querySelector('#difficulty-filter')?.value;
-                
-                this.filteredArticles = this.articles.filter(article => {
-                    // Source tier filter
-                    if (sourceTier && sourceTier !== 'all' && article.source_tier !== parseInt(sourceTier)) {
-                        return false;
-                    }
-                    
-                    // Minimum score filter
-                    const score = this.getPersonaScore(article);
-                    if (score < minScore) {
-                        return false;
-                    }
-                    
-                    // Difficulty filter
-                    if (difficultyLevel && difficultyLevel !== 'all' && article.difficulty_level !== difficultyLevel) {
-                        return false;
-                    }
-                    
-                    return true;
-                });
-                
-                this.renderArticles();
-                this.updateSummaryStats();
-            }
-            
-            searchArticles(query) {
-                if (!query.trim()) {
-                    this.applyFilters();
-                    return;
-                }
-                
-                const lowQuery = query.toLowerCase();
-                this.filteredArticles = this.filteredArticles.filter(article => {
-                    return article.title.toLowerCase().includes(lowQuery) ||
-                           article.content.toLowerCase().includes(lowQuery) ||
-                           article.source.toLowerCase().includes(lowQuery) ||
-                           (article.tags && article.tags.some(tag => tag.toLowerCase().includes(lowQuery)));
-                });
-                
-                this.renderArticles();
-                this.updateSummaryStats();
-            }
-            
-            getPersonaScore(article) {
-                if (!article.evaluation) return 0;
-                const evaluation = article.evaluation[this.currentPersona];
-                return evaluation ? evaluation.total_score : 0;
-            }
-            
-            renderArticles() {
-                const container = document.querySelector('.articles-grid');
-                if (!container) return;
-                
-                container.innerHTML = '';
-                
-                this.filteredArticles
-                    .sort((a, b) => this.getPersonaScore(b) - this.getPersonaScore(a))
-                    .forEach(article => {
-                        container.appendChild(this.createArticleCard(article));
-                    });
-            }
-            
-            createArticleCard(article) {
-                const card = document.createElement('div');
-                card.className = 'article-card';
-                
-                const score = this.getPersonaScore(article);
-                const scorePercentage = Math.round(score * 100);
-                
-                card.innerHTML = `
-                    <div class="source-tier tier-${article.source_tier}">
-                        Tier ${article.source_tier}
-                    </div>
-                    <h3>
-                        <a href="${article.url}" target="_blank" rel="noopener noreferrer">
-                            ${article.title}
-                        </a>
-                    </h3>
-                    <div class="article-meta">
-                        <span>${article.source}</span>
-                        <span>•</span>
-                        <span>${this.formatDate(article.published_date)}</span>
-                    </div>
-                    <div class="article-content">
-                        ${this.truncateText(article.content, 200)}
-                    </div>
-                    <div class="evaluation-scores">
-                        <div class="score-item ${this.currentPersona}">
-                            <span>${this.currentPersona === 'engineer' ? 'Tech' : 'Business'}</span>
-                            <div class="score-bar">
-                                <div class="score-fill" style="width: ${scorePercentage}%"></div>
-                            </div>
-                            <span>${scorePercentage}%</span>
-                        </div>
-                    </div>
-                    ${article.tags ? `
-                        <div class="tags">
-                            ${article.tags.slice(0, 5).map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
-                    ` : ''}
-                `;
-                
-                return card;
-            }
-            
-            formatDate(dateString) {
-                if (!dateString) return 'Recent';
-                const date = new Date(dateString);
-                return date.toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric',
-                    year: date.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined
-                });
-            }
-            
-            truncateText(text, maxLength) {
-                if (!text || text.length <= maxLength) return text || '';
-                return text.substring(0, maxLength).trim() + '...';
-            }
-            
-            updateSummaryStats() {
-                const totalElement = document.querySelector('#stat-total');
-                const avgScoreElement = document.querySelector('#stat-avg-score');
-                const tier1Element = document.querySelector('#stat-tier1');
-                
-                if (totalElement) {
-                    totalElement.textContent = this.filteredArticles.length;
-                }
-                
-                if (avgScoreElement) {
-                    const avgScore = this.filteredArticles.reduce((sum, article) => {
-                        return sum + this.getPersonaScore(article);
-                    }, 0) / this.filteredArticles.length;
-                    avgScoreElement.textContent = Math.round((avgScore || 0) * 100) + '%';
-                }
-                
-                if (tier1Element) {
-                    const tier1Count = this.filteredArticles.filter(a => a.source_tier === 1).length;
-                    tier1Element.textContent = tier1Count;
-                }
-            }
-        }
-        
-        // Initialize dashboard when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            new DashboardController();
-        });
-        
-        // Theme switching functionality
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        }
-        
-        // Load saved theme
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        });
-        
+  let currentPersona = 'engineer';
+  let filteredArticles = [];
+
+  function getPersonaScore(article) {
+    const evalData = article.evaluation && article.evaluation[currentPersona];
+    return evalData ? evalData.total_score : 0;
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text ?? '';
+    return div.innerHTML;
+  }
+
+  function getRecommendationText(rec) {
+    const texts = { must_read: '必読', recommended: '注目', consider: '参考', skip: '見送り' };
+    return texts[rec] || rec;
+  }
+  function getRecommendationDesc(rec) {
+    const desc = {
+      must_read: '重要で読むべき記事',
+      recommended: '有益でおすすめ・注目記事',
+      consider: '時間があれば参考にする記事',
+      skip: '今回は優先度が低い記事'
+    };
+    return desc[rec] || '';
+  }
+  function getRecommendationHeading(rec) {
+    return `<span>${getRecommendationText(rec)}</span><span class="rec-subtext">${getRecommendationDesc(rec)}</span>`;
+  }
+
+  function createArticleCard(article) {
+    const card = document.createElement('div');
+    card.className = 'article-card';
+    const personaEval = (article.evaluation && article.evaluation[currentPersona]) || {};
+    const breakdown = personaEval.breakdown || {};
+    const totalPercentage = Math.round((personaEval.total_score || 0) * 100);
+    const order = breakdownOrder[currentPersona] || ['quality','relevance','temporal','trust','actionability'];
+    let breakdownHtml = '';
+    order.forEach((key, idx) => {
+      const val = Math.round(((breakdown[key] || 0) * 100));
+      const label = (metricLabels[currentPersona] && metricLabels[currentPersona][idx]) || key;
+      breakdownHtml += `<div class="score-item"><div class="score-value">${val}</div><div class="score-label">${label}</div></div>`;
+    });
+    const rec = personaEval.recommendation || 'consider';
+    const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
+    card.innerHTML = `
+      <span class="source-tier tier-${article.source_tier}">${tierTexts[article.source_tier] || ''}</span>
+      <h3 class="article-title">
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
+      </h3>
+      <div class="article-meta">
+        <span>${escapeHtml(article.source)}</span> • <span>${article.published_date}</span>
+      </div>
+      <div class="article-content">${escapeHtml(article.content)}</div>
+      <div class="evaluation-panel">
+        <div class="score-display">
+          <div class="total-score">${totalPercentage}</div>
+          <div class="score-label-text">総合評価</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width: ${totalPercentage}%"></div></div>
+        </div>
+        <div class="score-breakdown">${breakdownHtml}</div>
+        <div class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getRecommendationText(rec)}</div>
+      </div>
+      ${Array.isArray(article.tags) && article.tags.length ? `
+      <div class="tags">
+        ${article.tags.slice(0, 6).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+      </div>
+      ` : ''}
+    `;
+    return card;
+  }
+
+  function renderArticles() {
+    const container = document.getElementById('articles-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const groups = { must_read: [], recommended: [], consider: [], skip: [] };
+    filteredArticles.forEach(article => {
+      const rec = (article.evaluation && article.evaluation[currentPersona] && article.evaluation[currentPersona].recommendation) || 'consider';
+      (groups[rec] || groups.consider).push(article);
+    });
+
+    const order = ['must_read','recommended','consider','skip'];
+    order.forEach(rec => {
+      const items = groups[rec];
+      if (!items || items.length === 0) return;
+
+      const section = document.createElement('section');
+      section.className = `rec-section rec-${rec}` + (rec === 'consider' || rec === 'skip' ? ' collapsed' : '');
+      section.dataset.rec = rec;
+
+      const heading = document.createElement('h2');
+      heading.className = `rec-heading rec-${rec}`;
+      heading.setAttribute('role','button');
+      heading.setAttribute('tabindex','0');
+      heading.dataset.rec = rec;
+      heading.innerHTML = `${getRecommendationHeading(rec)}<span class="meta"><span class="count">${items.length}件</span><span class="caret">▾</span></span>`;
+      section.appendChild(heading);
+
+      const content = document.createElement('div');
+      content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
+
+      if (rec === 'must_read' || rec === 'recommended') {
+        items
+          .sort((a,b) => getPersonaScore(b) - getPersonaScore(a))
+          .forEach(article => content.appendChild(createArticleCard(article)));
+      } else {
+        const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+        const limit = 5;
+        sorted.forEach((article, idx) => content.appendChild(createCompactItem(article, idx >= limit)));
+      }
+
+      section.appendChild(content);
+      if ((rec === 'consider' || rec === 'skip') && items.length > 5) {
+        const btn = document.createElement('button');
+        btn.className = 'show-more';
+        btn.type = 'button';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = 'もっと見る';
+        section.appendChild(btn);
+      }
+      container.appendChild(section);
+    });
+
+    if (!container.children.length) {
+      const empty = document.createElement('div');
+      empty.className = 'empty-state';
+      empty.textContent = '検索条件に一致する記事がありません';
+      container.appendChild(empty);
+    }
+  }
+
+  function createCompactItem(article, isExtra = false) {
+    const row = document.createElement('div');
+    row.className = 'compact-item';
+    if (isExtra) row.classList.add('extra');
+    const personaEval = (article.evaluation && article.evaluation[currentPersona]) || {};
+    const scorePct = Math.round((personaEval.total_score || 0) * 100);
+    const rec = personaEval.recommendation || 'consider';
+    const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
+    row.innerHTML = `
+      <div class="left">
+        <div class="title"><a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></div>
+        <div class="source">${escapeHtml(article.source)} • ${article.published_date || ''}</div>
+      </div>
+      <div class="right">
+        <div class="mini-bar"><span style="width:${scorePct}%"></span></div>
+        <span class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getRecommendationText(rec)}</span>
+      </div>
+    `;
+    return row;
+  }
+
+  function updateSummaryStats() {
+    const totalEl = document.getElementById('stat-total');
+    const avgEl = document.getElementById('stat-avg-score');
+    const tier1El = document.getElementById('stat-tier1');
+    totalEl && (totalEl.textContent = filteredArticles.length);
+    const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
+    avgEl && (avgEl.textContent = Math.round(avgScore * 100) + '%');
+    const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
+    tier1El && (tier1El.textContent = tier1Count);
+  }
+
+  function applyFilters() {
+    const tierFilter = document.getElementById('source-tier-filter').value;
+    const minScore = parseFloat(document.getElementById('min-score-filter').value || 0);
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+    filteredArticles = (window.articles || []).filter(article => {
+      if (tierFilter !== 'all' && article.source_tier !== parseInt(tierFilter)) return false;
+      if (getPersonaScore(article) < minScore) return false;
+      if (searchQuery) {
+        const haystack = (article.title + article.content + article.source).toLowerCase();
+        if (!haystack.includes(searchQuery)) return false;
+      }
+      return true;
+    });
+    renderArticles();
+    updateSummaryStats();
+  }
+
+  function initUI() {
+    // Persona toggle
+    document.querySelectorAll('.header .persona-toggle button[data-persona]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.header .persona-toggle button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPersona = btn.dataset.persona;
+        applyFilters();
+      });
+    });
+    // Filters
+    document.getElementById('source-tier-filter')?.addEventListener('change', applyFilters);
+    document.getElementById('min-score-filter')?.addEventListener('input', applyFilters);
+    document.getElementById('search-input')?.addEventListener('input', applyFilters);
+
+    // Theme
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      themeBtn.textContent = savedTheme === 'dark' ? '🌞' : '🌙';
+      themeBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeBtn.textContent = next === 'dark' ? '🌞' : '🌙';
+      });
+    }
+
+    // Slider bubble
+    const rangeEl = document.getElementById('min-score-filter');
+    const outEl = document.getElementById('min-score-value');
+    const setRangeText = () => { if (outEl && rangeEl) outEl.textContent = Math.round(parseFloat(rangeEl.value || '0') * 100) + '%'; };
+    if (rangeEl) { setRangeText(); rangeEl.addEventListener('input', setRangeText); }
+
+    // Filters accordion on mobile
+    const filters = document.querySelector('.filters');
+    const toggleBtn = document.querySelector('.filters-toggle');
+    const applyInitialCollapsed = () => {
+      if (!filters || !toggleBtn) return;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (isMobile) {
+        filters.classList.add('collapsed');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        filters.classList.remove('collapsed');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+    };
+    applyInitialCollapsed();
+    window.addEventListener('resize', applyInitialCollapsed);
+    toggleBtn?.addEventListener('click', () => {
+      const isCollapsed = filters.classList.toggle('collapsed');
+      toggleBtn.setAttribute('aria-expanded', String(!isCollapsed));
+    });
+
+    // Collapsible recommendation sections (delegate)
+    const articlesContainer = document.getElementById('articles-container');
+    articlesContainer?.addEventListener('click', (e) => {
+      const showMoreBtn = e.target.closest('.show-more');
+      if (showMoreBtn) {
+        e.stopPropagation();
+        const section = showMoreBtn.closest('.rec-section');
+        const expanded = section.classList.toggle('expanded');
+        showMoreBtn.setAttribute('aria-expanded', String(expanded));
+        showMoreBtn.textContent = expanded ? '少なく表示' : 'もっと見る';
+        return;
+      }
+      const heading = e.target.closest('.rec-heading');
+      if (!heading) return;
+      const section = heading.closest('.rec-section');
+      section?.classList.toggle('collapsed');
+    });
+    articlesContainer?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList?.contains('rec-heading')) {
+        e.preventDefault();
+        e.target.closest('.rec-section')?.classList.toggle('collapsed');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    filteredArticles = [...(window.articles || [])];
+    initUI();
+    renderArticles();
+    updateSummaryStats();
+  });
+})();

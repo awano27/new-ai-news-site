@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily AI News – 改良版</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- Header with title and persona toggle -->
@@ -16,6 +17,7 @@
             <div class="persona-toggle">
                 <button class="active" data-persona="engineer">技術者向け</button>
                 <button data-persona="business">ビジネス向け</button>
+                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替" title="テーマ切替">🌙</button>
             </div>
         </div>
     </header>
@@ -43,21 +45,35 @@
     <!-- Filter panel -->
     <section class="filters">
         <div class="container">
-            <div class="filter-row">
-                <div class="filter-group">
-                    <label for="source-tier-filter">ソース種別</label>
-                    <select id="source-tier-filter">
-                        <option value="all">すべて</option>
-                        <option value="1">高信頼ソース</option>
-                        <option value="2">一般ソース</option>
-                    </select>
+            <button class="filters-toggle" type="button" aria-expanded="true" aria-controls="filters-content">フィルタを表示/非表示</button>
+            <div id="filters-content" class="filters-content">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="source-tier-filter">ソース種別</label>
+                        <select id="source-tier-filter">
+                            <option value="all">すべて</option>
+                            <option value="1">高信頼ソース</option>
+                            <option value="2">一般ソース</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="min-score-filter">最低スコア</label>
+                        <div class="range-wrap">
+                            <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
+                            <output id="min-score-value">0%</output>
+                        </div>
+                    </div>
+                    <div class="search-box">
+                        <input id="search-input" type="text" placeholder="キーワードで検索…" />
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="min-score-filter">最低スコア</label>
-                    <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
-                </div>
-                <div class="search-box">
-                    <input id="search-input" type="text" placeholder="キーワードで検索…" />
+                <div class="legend" aria-label="推奨度の説明">
+                    <div class="legend-row">
+                        <div class="legend-item"><span class="legend-chip must_read"></span><span class="legend-text"><strong>必読</strong> 重要で読むべき</span></div>
+                        <div class="legend-item"><span class="legend-chip recommended"></span><span class="legend-text"><strong>注目</strong> 有益でおすすめ</span></div>
+                        <div class="legend-item"><span class="legend-chip consider"></span><span class="legend-text"><strong>参考</strong> 興味があれば</span></div>
+                        <div class="legend-item"><span class="legend-chip skip"></span><span class="legend-text"><strong>見送り</strong> 今回は優先度低</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,16 +92,7 @@
     </footer>
 
     <script>
-        // Persona-specific metric labels
-        const metricLabels = {
-            engineer: ['技術的新規性', '実装可能性', '再現性', '実務寄与', '学習価値'],
-            business: ['事業影響度', '投資判断材料', '戦略的価値', '実現可能性', 'リスク評価']
-        };
-
-        const breakdownOrder = {
-            engineer: ['temporal', 'relevance', 'trust', 'quality', 'actionability'],
-            business: ['quality', 'relevance', 'trust', 'temporal', 'actionability']
-        };
+        // Data only (logic moved to script.js)
 
         // Current real-time articles data (placeholder - will be replaced with actual data)
         const articles = [
@@ -4610,15 +4617,9 @@
     "total_score": 0.2076816523712724
   }
 ];
+        window.articles = articles;
 
-        let filteredArticles = [...articles];
-        let currentPersona = 'engineer';
-
-        // Human-readable names for source tiers
-        const tierTexts = {
-            1: '高信頼ソース',
-            2: '一般ソース'
-        };
+        // State and labels are defined in script.js
 
         function renderArticles() {
             const container = document.getElementById('articles-container');
@@ -4643,12 +4644,19 @@
                 if (rec !== lastRec) {
                     const heading = document.createElement('h2');
                     heading.className = `rec-heading rec-${rec}`;
-                    heading.textContent = getRecommendationText(rec);
+                    heading.innerHTML = getRecommendationHeading(rec);
                     container.appendChild(heading);
                     lastRec = rec;
                 }
                 container.appendChild(createArticleCard(article));
             });
+            // Empty state
+            if (container.children.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'empty-state';
+                empty.textContent = '検索条件に一致する記事がありません';
+                container.appendChild(empty);
+            }
         }
 
         function createArticleCard(article) {
@@ -4688,10 +4696,15 @@
                     <div class="score-breakdown">
                         ${breakdownHtml}
                     </div>
-                    <div class="recommendation rec-${personaEval.recommendation || 'consider'}">
+                    <div class="recommendation rec-${personaEval.recommendation || 'consider'}" title="${getRecommendationDesc(personaEval.recommendation || 'consider')}" aria-label="${getRecommendationDesc(personaEval.recommendation || 'consider')}">
                         ${getRecommendationText(personaEval.recommendation || 'consider')}
                     </div>
                 </div>
+                ${Array.isArray(article.tags) && article.tags.length ? `
+                <div class="tags">
+                    ${article.tags.slice(0, 6).map(t => `<span class=\"tag\">${escapeHtml(t)}</span>`).join('')}
+                </div>
+                ` : ''}
             `;
             return card;
         }
@@ -4703,8 +4716,24 @@
         }
 
         function getRecommendationText(rec) {
-            const texts = { must_read: '必読', recommended: '推奨', consider: '検討', skip: 'スキップ' };
+            const texts = { must_read: '必読', recommended: '注目', consider: '参考', skip: '見送り' };
             return texts[rec] || rec;
+        }
+
+        function getRecommendationDesc(rec) {
+            const desc = {
+                must_read: '重要で読むべき記事',
+                recommended: '有益でおすすめ・注目記事',
+                consider: '時間があれば参考にする記事',
+                skip: '今回は優先度が低い記事'
+            };
+            return desc[rec] || '';
+        }
+
+        function getRecommendationHeading(rec) {
+            const label = getRecommendationText(rec);
+            const sub = getRecommendationDesc(rec);
+            return `<span>${label}</span><span class="rec-subtext">${sub}</span>`;
         }
 
         function getPersonaScore(article) {
@@ -4743,29 +4772,7 @@
             tier1El.textContent = tier1Count;
         }
 
-        // Event listeners
-        document.getElementById('source-tier-filter').addEventListener('change', applyFilters);
-        document.getElementById('min-score-filter').addEventListener('input', applyFilters);
-        document.getElementById('search-input').addEventListener('input', applyFilters);
-
-        // Attach persona toggle events on header
-        document.querySelectorAll('.header .persona-toggle button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // update active class
-                document.querySelectorAll('.header .persona-toggle button').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                // update global persona
-                currentPersona = btn.dataset.persona;
-                // re-apply filters and re-render
-                applyFilters();
-            });
-        });
-
-        // Initial render
-        document.addEventListener('DOMContentLoaded', () => {
-            renderArticles();
-            updateSummaryStats();
-        });
+        // Initialization moved to script.js
     </script>
 </body>
 </html>
