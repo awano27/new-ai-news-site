@@ -399,6 +399,8 @@ h1, h2, h3 {
 .key-points { margin: 0.25rem 1.5rem 0.75rem; padding-left: 1.1rem; color: var(--text-color); }
 .key-points li { margin: 0.15rem 0; line-height: 1.6; }
 .key-points li::marker { color: var(--primary-color); }
+.kp-label { display: inline-block; margin-right: 0.4rem; padding: 0.05rem 0.4rem; border-radius: 0.5rem; font-size: 0.72rem; font-weight: 700; color: var(--primary-color); background: rgba(79,70,229,0.12); }
+[data-theme="dark"] .kp-label { color: #c7d2fe; background: #1f2937; }
 .original-toggle { margin: 0 0 0 1.5rem; background: none; border: none; color: var(--primary-color); cursor: pointer; font-size: 0.85rem; padding: 0; }
 .original-toggle:hover { text-decoration: underline; }
 .original-excerpt { padding: 0.5rem 1.5rem 0.75rem; color: var(--text-light); font-size: 0.85rem; display: none; white-space: pre-wrap; }

@@ -129,7 +129,8 @@
           const baseText = article.content || '';
           const origText = article.original_content || '';
           const summaryLead = highlightKeywords(extractLead(baseText || origText));
-          const bullets = extractKeyPoints(baseText || origText, 3).map(highlightKeywords);
+          const labeled = deriveLabeledKeyPoints(baseText || origText, 3);
+          const bullets = labeled.map(({label,text}) => `${label?`<span class=\\\"kp-label\\\">${label}</span> `:''}${highlightKeywords(text)}`);
           const showOriginalToggle = !!origText && isJapanese(baseText);
           const headerAfter = el.querySelector('.article-meta');
           if (headerAfter) {
@@ -137,6 +138,8 @@
             sum.className = 'summary';
             sum.innerHTML = `${summaryLead ? `<p class=\"summary-lead\">${summaryLead}</p>` : ''}${bullets.length ? `<ul class=\"key-points\">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}${showOriginalToggle ? `<button class=\"original-toggle\" type=\"button\">英語原文を表示</button><div class=\"original-excerpt\">${escapeHtml((origText||'').slice(0,500))}${(origText||'').length>500?'…':''}</div>` : ''}`;
             headerAfter.insertAdjacentElement('afterend', sum);
+            const ac = el.querySelector('.article-content');
+            if (ac) ac.style.display = 'none';
           }
           if (idx >= limitTop) el.classList.add('extra');
           content.appendChild(el);
