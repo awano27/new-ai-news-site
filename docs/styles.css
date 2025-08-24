@@ -393,6 +393,19 @@ h1, h2, h3 {
     overflow: hidden;
 }
 
+/* Readable summary block */
+.summary { padding: 0 1.5rem 0.75rem; }
+.summary-lead { color: var(--text-color); line-height: 1.7; margin: 0 0 0.5rem; font-size: 0.95rem; }
+.key-points { margin: 0.25rem 1.5rem 0.75rem; padding-left: 1.1rem; color: var(--text-color); }
+.key-points li { margin: 0.15rem 0; line-height: 1.6; }
+.key-points li::marker { color: var(--primary-color); }
+.original-toggle { margin: 0 0 0 1.5rem; background: none; border: none; color: var(--primary-color); cursor: pointer; font-size: 0.85rem; padding: 0; }
+.original-toggle:hover { text-decoration: underline; }
+.original-excerpt { padding: 0.5rem 1.5rem 0.75rem; color: var(--text-light); font-size: 0.85rem; display: none; white-space: pre-wrap; }
+.original-excerpt.show { display: block; }
+.kw { background: #fef3c7; color: #92400e; padding: 0 2px; border-radius: 2px; }
+[data-theme="dark"] .kw { background: #374151; color: #f59e0b; }
+
 .summary-note {
     padding: 0 1.5rem 1rem;
     font-size: 0.875rem;

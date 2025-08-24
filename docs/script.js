@@ -125,6 +125,19 @@
         const limitTop = 8;
         sorted.forEach((article, idx) => {
           const el = createArticleCard(article);
+          // inject readable summary into cards
+          const baseText = article.content || '';
+          const origText = article.original_content || '';
+          const summaryLead = highlightKeywords(extractLead(baseText || origText));
+          const bullets = extractKeyPoints(baseText || origText, 3).map(highlightKeywords);
+          const showOriginalToggle = !!origText && isJapanese(baseText);
+          const headerAfter = el.querySelector('.article-meta');
+          if (headerAfter) {
+            const sum = document.createElement('div');
+            sum.className = 'summary';
+            sum.innerHTML = `${summaryLead ? `<p class=\"summary-lead\">${summaryLead}</p>` : ''}${bullets.length ? `<ul class=\"key-points\">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}${showOriginalToggle ? `<button class=\"original-toggle\" type=\"button\">英語原文を表示</button><div class=\"original-excerpt\">${escapeHtml((origText||'').slice(0,500))}${(origText||'').length>500?'…':''}</div>` : ''}`;
+            headerAfter.insertAdjacentElement('afterend', sum);
+          }
           if (idx >= limitTop) el.classList.add('extra');
           content.appendChild(el);
         });
@@ -203,6 +216,55 @@
     avgEl && (avgEl.textContent = Math.round(avgScore * 100) + '%');
     const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
     tier1El && (tier1El.textContent = tier1Count);
+  }
+
+  // Readability helpers
+  function isJapanese(text) {
+    if (!text) return false;
+    const jp = /[\u3040-\u30FF\u4E00-\u9FAF]/;
+    return jp.test(text);
+  }
+  function splitSentences(text) {
+    return (text || '')
+      .replace(/\s+/g,' ')
+      .split(/(?<=[。．.!?！？])\s+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+  function extractLead(text) {
+    if (!text) return '';
+    const sents = splitSentences(text);
+    if (!sents.length) return text.slice(0, 120);
+    let lead = sents[0];
+    if (lead.length < 40 && sents[1]) lead += ' ' + sents[1];
+    return lead.trim();
+  }
+  function extractKeyPoints(text, count = 3) {
+    if (!text) return [];
+    const sents = splitSentences(text).filter(s => s.length > 25);
+    if (!sents.length) return [];
+    const keywords = ['AI','生成','モデル','LLM','RAG','エージェント','改善','発表','研究','性能','コスト','導入','事例','OpenAI','Google','Meta','Microsoft','Anthropic','Gemini','Claude','GPT','Llama'];
+    const scored = sents.map(s => ({ s, score: keywords.reduce((acc,k)=>acc + (s.includes(k)?1:0), 0) + s.length/200 }));
+    scored.sort((a,b) => b.score - a.score);
+    const picks = scored.slice(0, count).map(x => x.s.trim());
+    const uniq = [];
+    picks.forEach(p => { if (!uniq.some(u => u.slice(0,12) === p.slice(0,12))) uniq.push(p); });
+    return uniq;
+  }
+  function highlightKeywords(text) {
+    if (!text) return '';
+    const pairs = [
+      ['RAG','RAG'], ['LLM','LLM'], ['GPT-4','GPT-4'], ['GPT-5','GPT-5'],
+      ['Claude','Claude'], ['Gemini','Gemini'], ['Llama','Llama'],
+      ['エージェント','エージェント'], ['生成AI','生成AI'], ['ベンチマーク','ベンチマーク'],
+      ['性能','性能'], ['コスト','コスト'], ['導入','導入'], ['研究','研究'], ['発表','発表']
+    ];
+    let out = escapeHtml(text);
+    pairs.forEach(([k,label]) => {
+      const re = new RegExp(k.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'),'g');
+      out = out.replace(re, `<span class=\"kw\">${label}</span>`);
+    });
+    return out;
   }
 
   function applyFilters() {
@@ -295,6 +357,16 @@
       if (!heading) return;
       const section = heading.closest('.rec-section');
       section?.classList.toggle('collapsed');
+    });
+    // Original excerpt toggle
+    articlesContainer?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.original-toggle');
+      if (!btn) return;
+      const excerpt = btn.nextElementSibling;
+      if (excerpt && excerpt.classList.contains('original-excerpt')) {
+        const on = excerpt.classList.toggle('show');
+        btn.textContent = on ? '英語原文を隠す' : '英語原文を表示';
+      }
     });
     articlesContainer?.addEventListener('keydown', (e) => {
       if ((e.key === 'Enter' || e.key === ' ') && e.target.classList?.contains('rec-heading')) {
