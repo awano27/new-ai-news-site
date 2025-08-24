@@ -543,6 +543,7 @@ h1, h2, h3 {
 .rec-heading.rec-recommended { color: var(--primary-color); }
 .rec-heading.rec-consider { color: var(--warning-color); }
 .rec-heading.rec-skip { color: var(--error-color); }
+.rec-heading.rec-x { color: var(--primary-color); }
 
 /* Tags */
 .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 1.5rem 1.25rem; }

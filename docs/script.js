@@ -25,11 +25,12 @@
   }
 
   function getRecommendationText(rec) {
-    const texts = { must_read: '必読', recommended: '注目', consider: '参考', skip: '見送り' };
+    const texts = { x: 'X最新', must_read: '必読', recommended: '注目', consider: '参考', skip: '見送り' };
     return texts[rec] || rec;
   }
   function getRecommendationDesc(rec) {
     const desc = {
+      x: 'Xの注目ポスト',
       must_read: '重要で読むべき記事',
       recommended: '有益でおすすめ・注目記事',
       consider: '時間があれば参考にする記事',
@@ -88,13 +89,17 @@
     if (!container) return;
     container.innerHTML = '';
 
-    const groups = { must_read: [], recommended: [], consider: [], skip: [] };
-    filteredArticles.forEach(article => {
+    const isX = (a) => (typeof a.source === 'string' && a.source.startsWith('X(@')) || (Array.isArray(a.tags) && a.tags.includes('x_post'));
+    const xItems = filteredArticles.filter(isX);
+    const rest = filteredArticles.filter(a => !isX(a));
+
+    const groups = { x: xItems, must_read: [], recommended: [], consider: [], skip: [] };
+    rest.forEach(article => {
       const rec = (article.evaluation && article.evaluation[currentPersona] && article.evaluation[currentPersona].recommendation) || 'consider';
       (groups[rec] || groups.consider).push(article);
     });
 
-    const order = ['must_read','recommended','consider','skip'];
+    const order = ['x','must_read','recommended','consider','skip'];
     order.forEach(rec => {
       const items = groups[rec];
       if (!items || items.length === 0) return;
@@ -125,11 +130,19 @@
         });
       } else {
         const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
-        const limit = 5;
+        const limit = rec === 'x' ? 10 : 5;
         sorted.forEach((article, idx) => content.appendChild(createCompactItem(article, idx >= limit)));
       }
 
       section.appendChild(content);
+      if (rec === 'x' && items.length > 10) {
+        const btn = document.createElement('button');
+        btn.className = 'show-more';
+        btn.type = 'button';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = 'もっと見る';
+        section.appendChild(btn);
+      }
       if ((rec === 'consider' || rec === 'skip') && items.length > 5) {
         const btn = document.createElement('button');
         btn.className = 'show-more';

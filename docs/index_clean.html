@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily AI News – 改良版</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Daily AI News</h1>
+      <p>X記事とRSS記事をまとめた最新AIニュース</p>
+      <div class="persona-toggle">
+        <button class="active" data-persona="engineer">技術者向け</button>
+        <button data-persona="business">ビジネス向け</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替" title="テーマ切替">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><div class="value" id="stat-total">0</div><div class="label">記事数</div></div>
+        <div class="stat-item"><div class="value" id="stat-avg-score">0%</div><div class="label">平均スコア</div></div>
+        <div class="stat-item"><div class="value" id="stat-tier1">0</div><div class="label">高信頼ソース</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="filters">
+    <div class="container">
+      <button class="filters-toggle" type="button" aria-expanded="true" aria-controls="filters-content">フィルタを表示/非表示</button>
+      <div id="filters-content" class="filters-content">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="source-tier-filter">ソース種別</label>
+            <select id="source-tier-filter">
+              <option value="all">すべて</option>
+              <option value="1">高信頼ソース</option>
+              <option value="2">一般ソース</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="min-score-filter">最低スコア</label>
+            <div class="range-wrap">
+              <input type="range" id="min-score-filter" min="0" max="1" step="0.1" value="0" />
+              <output id="min-score-value">0%</output>
+            </div>
+          </div>
+          <div class="search-box">
+            <input id="search-input" type="text" placeholder="キーワードで検索…" />
+          </div>
+        </div>
+        <div class="legend" aria-label="推奨度の説明">
+          <div class="legend-row">
+            <div class="legend-item"><span class="legend-chip must_read"></span><span class="legend-text"><strong>必読</strong> 重要で読むべき</span></div>
+            <div class="legend-item"><span class="legend-chip recommended"></span><span class="legend-text"><strong>注目</strong> 有益でおすすめ</span></div>
+            <div class="legend-item"><span class="legend-chip consider"></span><span class="legend-text"><strong>参考</strong> 興味があれば</span></div>
+            <div class="legend-item"><span class="legend-chip skip"></span><span class="legend-text"><strong>見送り</strong> 今回は優先度低</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="rec-nav" aria-label="推奨度ナビ">
+    <div class="container">
+      <div class="nav-row">
+        <button class="nav-item" data-target="x">X最新 <span class="count" id="nav-count-x">0</span></button>
+        <button class="nav-item" data-target="must_read">必読 <span class="count" id="nav-count-must_read">0</span></button>
+        <button class="nav-item" data-target="recommended">注目 <span class="count" id="nav-count-recommended">0</span></button>
+        <button class="nav-item" data-target="consider">参考 <span class="count" id="nav-count-consider">0</span></button>
+        <button class="nav-item" data-target="skip">見送り <span class="count" id="nav-count-skip">0</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <div class="articles-grid" id="articles-container"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 Daily AI News – 改良版</div>
+  </footer>
+
+  <script>
+    // Placeholder: replaced by collect_integrated.py
+    const articles = [];
+    window.articles = articles;
+  </script>
+</body>
+</html>
+
