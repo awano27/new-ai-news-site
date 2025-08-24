@@ -1,16 +1,23 @@
-[tool.poetry]
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
 name = "daily-ai-news"
 version = "2.0.0"
 description = "AI News Aggregation and Evaluation Platform"
-authors = ["Your Name <you@example.com>"]
+authors = [{"name" = "Daily AI News", "email" = "admin@example.com"}]
 readme = "docs/README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project.urls]
+"Homepage" = "https://awano27.github.io/new-ai-news-site/"
+"Bug Tracker" = "https://github.com/awano27/new-ai-news-site/issues"
 
 [tool.black]
 line-length = 100
