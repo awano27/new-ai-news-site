@@ -15,6 +15,9 @@ on:
     # Run daily at 6 AM UTC
     - cron: '0 6 * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows: ["News Pipeline"]
+    types: [completed]
 
 jobs:
   test:
@@ -40,7 +43,10 @@ jobs:
   generate-and-deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # Run on pushes to main, or when News Pipeline completed successfully on main
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     
     permissions:
       contents: read
@@ -53,6 +59,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        # For workflow_run, check out the exact commit that completed in News Pipeline
+        ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || '' }}
     
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
