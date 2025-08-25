@@ -179,7 +179,13 @@
       } else {
         const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
         const limit = rec === 'x' ? 10 : 5;
-        sorted.forEach((article, idx) => content.appendChild(createCompactItem(article, idx >= limit)));
+        sorted.forEach((article, idx) => {
+          if (rec === 'consider' || rec === 'skip') {
+            content.appendChild(createCompactListItem(article));
+          } else {
+            content.appendChild(createCompactItem(article, idx >= limit));
+          }
+        });
       }
 
       section.appendChild(content);
@@ -246,6 +252,24 @@
       </div>
     `;
     return row;
+  }
+
+  // コンパクト・カード（参考/見送り用）
+  function createCompactListItem(article) {
+    const li = document.createElement('div');
+    li.className = 'compact-item';
+    const rec = getLabelFor(article);
+    li.innerHTML = `
+      <div class="compact-card ${rec}">
+        <span class="label-pill rec-${rec}">${getLabelText(rec)}</span>
+        <a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer" class="compact-title">${escapeHtml(article.title)}</a>
+        <div class="compact-meta">
+          <span class="compact-source">出典: ${escapeHtml(article.sourceDomain || extractDomain(article.url || '') || article.source || '')}</span>
+          <span class="compact-date">・${formatRelativeDate(article.publishedAt || article.published_date)}</span>
+        </div>
+      </div>
+    `;
+    return li;
   }
 
   function updateSummaryStats() {
