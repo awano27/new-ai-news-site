@@ -82,9 +82,11 @@
     const rec = getLabelFor(article);
     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
     const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
+    const tier = article.source_tier;
+    const tierHtml = tier ? `<span class="source-tier tier-${tier}">${tierTexts[tier] || ''}</span>` : '';
     card.innerHTML = `
       <div class="card-header"><span class="label-pill rec-${rec}" title="${getRecommendationDesc(rec)}">${getLabelText(rec)}</span></div>
-      <span class="source-tier tier-${article.source_tier}">${tierTexts[article.source_tier] || ''}</span>
+      ${tierHtml}
       <h3 class="article-title">
         <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
       </h3>
@@ -153,21 +155,23 @@
         const limitTop = 8;
         sorted.forEach((article, idx) => {
           const el = createArticleCard(article);
-          // inject readable summary into cards
-          const baseText = article.summary || article.content || '';
-          const origText = article.original_content || '';
-          const summaryLead = highlightKeywords(extractLead(baseText || origText));
-          const labeled = deriveLabeledKeyPoints(baseText || origText, 3);
-          const bullets = labeled.map(({label,text}) => `${label?`<span class=\\\"kp-label\\\">${label}</span> `:''}${highlightKeywords(text)}`);
-          const showOriginalToggle = !!origText && isJapanese(baseText);
-          const headerAfter = el.querySelector('.article-meta');
-          if (headerAfter) {
-            const sum = document.createElement('div');
-            sum.className = 'summary';
-            sum.innerHTML = `${summaryLead ? `<p class=\"summary-lead\">${summaryLead}</p>` : ''}${bullets.length ? `<ul class=\"key-points\">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}${showOriginalToggle ? `<button class=\"original-toggle\" type=\"button\">英語原文を表示</button><div class=\"original-excerpt\">${escapeHtml((origText||'').slice(0,500))}${(origText||'').length>500?'…':''}</div>` : ''}`;
-            headerAfter.insertAdjacentElement('afterend', sum);
-            const ac = el.querySelector('.article-content');
-            if (ac) ac.style.display = 'none';
+          // 既にsummaryがある場合はUI注入を省略（生成データのレイアウト崩れ防止）
+          if (!article.summary) {
+            const baseText = article.summary || article.content || '';
+            const origText = article.original_content || '';
+            const summaryLead = highlightKeywords(extractLead(baseText || origText));
+            const labeled = deriveLabeledKeyPoints(baseText || origText, 3);
+            const bullets = labeled.map(({label,text}) => `${label?`<span class=\\\"kp-label\\\">${label}</span> `:''}${highlightKeywords(text)}`);
+            const showOriginalToggle = !!origText && isJapanese(baseText);
+            const headerAfter = el.querySelector('.article-meta');
+            if (headerAfter) {
+              const sum = document.createElement('div');
+              sum.className = 'summary';
+              sum.innerHTML = `${summaryLead ? `<p class=\"summary-lead\">${summaryLead}</p>` : ''}${bullets.length ? `<ul class=\"key-points\">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}${showOriginalToggle ? `<button class=\"original-toggle\" type=\"button\">英語原文を表示</button><div class=\"original-excerpt\">${escapeHtml((origText||'').slice(0,500))}${(origText||'').length>500?'…':''}</div>` : ''}`;
+              headerAfter.insertAdjacentElement('afterend', sum);
+              const ac = el.querySelector('.article-content');
+              if (ac) ac.style.display = 'none';
+            }
           }
           if (idx >= limitTop) el.classList.add('extra');
           content.appendChild(el);
@@ -238,7 +242,7 @@
       </div>
       <div class="right">
         <div class="mini-bar"><span style="width:${scorePct}%"></span></div>
-        <span class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getRecommendationText(rec)}</span>
+        <span class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getLabelText(rec)}</span>
       </div>
     `;
     return row;

@@ -1,0 +1,80 @@
+Codexへの指示内容
+
+ファイル構成の確認
+リポジトリの docs/ にある styles.css と index.html を開いてください。styles.css には全体のスタイル、index.html にはレイアウトのマークアップとスクリプトが含まれています。
+
+グローバルフォントの統一
+styles.css の body セレクターに指定されているフォントスタックを、読みやすい日本語・英語混合のフォントに統一します。例えば以下に変更してください：
+
+body {
+    font-family: "BIZ UDPGothic", "Noto Sans JP", "Inter", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    /* 既存のプロパティはそのまま保持 */
+}
+
+
+カテゴリーナビ（.rec-nav）のデザイン改善
+styles.css 内で .rec-nav .nav-item を検索し、以下のように上書きします。丸いボタンを、淡いトーンのグラデーション背景とアイコン付きのチップ状に変更します。
+
+.rec-nav .nav-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.rec-nav .nav-item.must_read   { background: rgba(22,163,74,0.15); color: var(--success-color); }
+.rec-nav .nav-item.recommended { background: rgba(79,70,229,0.15); color: var(--primary-color); }
+.rec-nav .nav-item.consider    { background: linear-gradient(90deg,#fef3c7,#fde68a); color: #d97706; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+.rec-nav .nav-item.skip        { background: linear-gradient(90deg,#fee2e2,#fecaca); color: #b91c1c; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+.nav-item .icon {
+    width: 0.9rem;
+    height: 0.9rem;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.nav-item.must_read   .icon { background-image: url('icons/check.svg'); }
+.nav-item.recommended .icon { background-image: url('icons/star.svg'); }
+.nav-item.consider    .icon { background-image: url('icons/info.svg'); }
+.nav-item.skip        .icon { background-image: url('icons/close.svg'); }
+
+
+docs/icons/ に check.svg、star.svg、info.svg、close.svg を追加し、必要であれば新規作成してください。
+
+セクション見出しの背景追加
+styles.css で .rec-heading のスタイルを検索し、以下を追加します。各セクション見出しに淡い背景色を付けて区別しやすくします。
+
+.rec-heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.rec-heading.rec-must_read   { background: rgba(22,163,74,0.08); color: var(--success-color); }
+.rec-heading.rec-recommended { background: rgba(79,70,229,0.08); color: var(--primary-color); }
+.rec-heading.rec-consider    { background: linear-gradient(90deg,#fef6db,#fcefc6); color: #d97706; }
+.rec-heading.rec-skip        { background: linear-gradient(90deg,#fde8e8,#fbd5d5); color: #b91c1c; }
+
+
+記事カードのラベルピルを洗練
+styles.css の .label-pill セレクターを見つけて、グラデーション背景と読みやすいフォント設定に変更します。
+
+.label-pill {
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+.label-pill.rec-consider { background: linear-gradient(90deg,#fff7d6,#fde68a); color: #b45309; }
+.label-pill.rec-skip     { background: linear-gradient(90deg,#fee2e2,#fecaca); color: #b91c1c; }
+
+
+その他の微調整
+必要に応じてマージンやパディングを整理し、暗色テーマ ([data-theme="dark"]) でも見やすい色を設定します。変更箇所の後はビルド不要で GitHub Pages に反映されますので、そのままコミットしてください。
