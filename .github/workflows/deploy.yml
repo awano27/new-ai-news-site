@@ -77,6 +77,20 @@ jobs:
       run: |
         echo "Site already exists in docs folder - skipping generation"
         ls -la docs/
+
+    - name: Bust cache for CSS/JS (version query)
+      shell: bash
+      run: |
+        set -euo pipefail
+        VERSION="${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
+        echo "Using version: $VERSION"
+        for f in docs/index.html docs/index_clean.html; do
+          if [ -f "$f" ]; then
+            sed -i -E "s|(styles\\.css)(\\?v=[^\"']*)?\"|\\1?v=${VERSION}\"|g" "$f"
+            sed -i -E "s|(script\\.js)(\\?v=[^\"']*)?\"|\\1?v=${VERSION}\"|g" "$f"
+          fi
+        done
+        echo "After replace:"; (sed -n '1,120p' docs/index.html || true)
     
     - name: Setup Pages
       uses: actions/configure-pages@v4
