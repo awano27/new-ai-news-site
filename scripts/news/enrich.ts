@@ -52,19 +52,21 @@ async function tryFetchOG(url: string): Promise<{title?: string, description?: s
 }
 
 function makeJapaneseSummary(title: string, desc: string, url: string): string {
-  const baseTitle = title || '';
-  const baseDesc = desc || '';
-  const domain = extractDomain(url);
+  const baseTitle = (title || '').trim();
+  const baseDesc = (desc || '').trim();
   let s = '';
-  if (isJapanese(baseTitle) || isJapanese(baseDesc)) {
-    s = `${baseDesc || baseTitle}`;
+  // 日本語優先（OGP descriptionが日本語ならそれを使う）
+  if (isJapanese(baseDesc)) {
+    s = baseDesc;
+  } else if (isJapanese(baseTitle)) {
+    s = baseTitle;
   } else {
-    // 簡易和文サマリ（ヒューリスティック）
-    s = `${baseTitle || baseDesc} に関する記事。${domain ? `（出典: ${domain}）` : ''}`;
+    // 無理な機械和文化を避け、英語のまま短くまとめる
+    s = baseDesc || baseTitle;
   }
-  s = s.replace(/\s+/g, ' ').trim();
-  if (s.length < 220) s = s.padEnd(220, '。');
-  if (s.length > 450) s = s.slice(0, 450) + '…';
+  s = (s || '').replace(/\s+/g, ' ').trim();
+  // 長すぎる場合だけ安全に丸める
+  if (s.length > 300) s = s.slice(0, 297) + '…';
   return s;
 }
 

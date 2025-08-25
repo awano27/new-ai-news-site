@@ -1,49 +1,72 @@
-ファイルを開く
-リポジトリ awano27/new-ai-news-site の docs/styles.css と docs/script.js を開きます。
+主要な不具合の要点（原因と根拠）
 
-ナビゲーションチップの実装
-styles.css の .rec-nav .nav-item や .rec-nav .nav-row に関するスタイルを以下のように上書きし、ドット表示ではなくチップ表示にしてください。また、各チップにはカテゴリを示すアイコンを含めます。
+記事グリッドが1カラム化している
+styles.css の .articles-grid が display: block になっており、カードのグリッドが崩れます（本来は grid で自動段組にする） 
+GitHub
 
-/* rec-nav 全体の外観は現状維持 */
-.rec-nav .nav-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
+参考/見送りの表示が「横長リスト＋点線」風に見え、統一感がない
+CSSには compact-list 用のカードスタイル（.compact-card, .compact-title, .compact-meta）が既に定義されているのに、JS側のテンプレートが適用されず不統一が生じています（compact-card.consider/skip のグラデーション指定も用意済み） 
+GitHub
+
+カテゴリーナビ（必読/注目/参考/見送り）の“チップ化”はCSSにあるが、JSでの生成/クリック挙動が足りない
+.rec-nav .nav-item のスタイルと各カテゴリ別の色分け・アイコン指定はCSSにあるが、要素の生成・#sec-<rec> へのスムーズスクロールなどのJS処理が未連動のため、UIが“飾り”になりがちです。 
+GitHub
+
+セクション開閉（collapsed/expanded）のCSSはあるが、JSの紐付けが薄い
+.rec-section.collapsed .rec-content { display: none; } などの状態クラスが定義されていますが、見出しクリックで確実に collapsed をトグルする処理が不足しています。 
+GitHub
+
+ラベル（必読/注目/参考/見送り）の見た目がセクションやカードで一致しない
+カード上部の「ラベルピル」用スタイル（.label-pill.rec-*）と、推奨度チップ（.rec-*）の両方がCSSに存在しており、JSの出力クラス付与が一致していない可能性があります。 
+GitHub
+
+Codex への具体的な修正指示（コピペ可）
+
+対象: docs/styles.css と docs/script.js
+目的: グリッド復元、参考/見送りを“コンパクトカード”に統一、カテゴリーナビの“チップ化”をJSで機能させる、見出しの開閉を確実に。
+
+1) グリッドを復元（docs/styles.css）
+
+/* Article grid - Improved spacing */ の定義を修正。.articles-grid を grid に戻す。
+
+/* 置換前（問題）: .articles-grid { display: block; ... } */
+/* 置換後（正） */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 3rem;
 }
-.rec-nav .nav-item.must_read   { background: rgba(22,163,74,0.15); color: var(--success-color); }
-.rec-nav .nav-item.recommended { background: rgba(79,70,229,0.15); color: var(--primary-color); }
-.rec-nav .nav-item.consider    { background: linear-gradient(90deg,#fef3c7,#fde68a); color: #d97706; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.rec-nav .nav-item.skip        { background: linear-gradient(90deg,#fee2e2,#fecaca); color: #b91c1c; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.nav-item .icon {
-  width: 0.9rem;
-  height: 0.9rem;
-  display: inline-block;
-  background-size: contain;
-  background-repeat: no-repeat;
+@media (max-width: 768px) {
+  .articles-grid { grid-template-columns: 1fr; }
 }
 
 
-docs/icons/ に check.svg（必読）、star.svg（注目）、info.svg（参考）、close.svg（見送り）を追加し、それぞれ .must_read .icon などで background-image を指定します。
+根拠: 現状 display: block になっているため崩れる。CSSの他部分はカード前提で設計されている。 
+GitHub
 
-「参考」「見送り」のリストレイアウトを修正
-script.js では、createArticleCard でカード型のHTMLを組み立てていますが、rec-content が compact-list の場合は別のテンプレートが使用されているため、点線付きの横長リストになっています。compact-list 用のHTMLを次のように変更してください。
+2) 参考/見送りを“コンパクトカード”に統一（docs/script.js）
 
-// rec-contentがcompact-listの場合の各記事テンプレート
+renderArticles() 内で groups.consider と groups.skip を出力する際、compact-list + compact-card のテンプレートを用いる。
+
+専用のミニテンプレート createCompactListItem(article) を追加し、左上にラベルピル、中央にタイトル、下段に出典＋日付を配置。
+
+既定CSSに合わせてクラスを付与（.compact-card ${rec} / .label-pill rec-${rec} / .compact-title / .compact-meta）。
+
+// 追加：compact-list用のテンプレート
 function createCompactListItem(article) {
+  const rec = getLabelFor(article); // 'consider' or 'skip'
+  const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
   const li = document.createElement('div');
   li.className = 'compact-item';
-  const rec = getLabelFor(article);
   li.innerHTML = `
     <div class="compact-card ${rec}">
       <span class="label-pill rec-${rec}">${getLabelText(rec)}</span>
-      <a href="${escapeHtml(article.url)}" class="compact-title">${escapeHtml(article.title)}</a>
+      <a href="${escapeHtml(article.url)}" class="compact-title" target="_blank" rel="noopener">
+        ${escapeHtml(article.title)}
+      </a>
       <div class="compact-meta">
-        <span class="compact-source">出典: ${escapeHtml(article.sourceDomain || extractDomain(article.url) || article.source)}</span>
+        <span class="compact-source">出典: ${escapeHtml(sourceText)}</span>
         <span class="compact-date">・${formatRelativeDate(article.publishedAt || article.published_date)}</span>
       </div>
     </div>
@@ -51,35 +74,177 @@ function createCompactListItem(article) {
   return li;
 }
 
+// 修正：renderArticles() の該当箇所
+// （must_read/recommended は既存のカード、consider/skip は compact-list を使う）
+const order = ['x','must_read','recommended','consider','skip'];
+order.forEach(rec => {
+  const items = groups[rec];
+  if (!items || items.length === 0) return;
 
-これに対応するCSSを styles.css に追加し、点線や縦書きラベルを完全に削除し、背景色やボーダーを整えたリストカードとして表示します。
+  const section = document.createElement('section');
+  section.className = `rec-section rec-${rec}` + (rec === 'skip' ? ' collapsed' : '');
+  section.dataset.rec = rec;
+  section.id = `sec-${rec}`;
 
-.compact-item { margin-bottom: 0.75rem; }
-.compact-card {
-  background: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  const heading = document.createElement('h2');
+  heading.className = `rec-heading rec-${rec}`;
+  heading.setAttribute('role', 'button');
+  heading.setAttribute('tabindex', '0');
+  heading.dataset.rec = rec;
+  heading.innerHTML = `${getRecommendationHeading(rec)} <span class="meta"><span class="count">${items.length}件</span> <span class="caret">▾</span></span>`;
+  section.appendChild(heading);
+
+  const content = document.createElement('div');
+  content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
+
+  if (rec === 'must_read' || rec === 'recommended') {
+    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+    sorted.forEach(article => content.appendChild(createArticleCard(article)));
+  } else {
+    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+    // 先頭N件のみ表示、残りは .extra に包んで折り畳み
+    const N = 6;
+    sorted.slice(0, N).forEach(a => content.appendChild(createCompactListItem(a)));
+    const extraWrap = document.createElement('div');
+    extraWrap.className = 'extra';
+    sorted.slice(N).forEach(a => extraWrap.appendChild(createCompactListItem(a)));
+    if (sorted.length > N) {
+      content.appendChild(extraWrap);
+      const btn = document.createElement('button');
+      btn.className = 'show-more';
+      btn.textContent = 'もっと見る';
+      btn.addEventListener('click', () => {
+        section.classList.toggle('expanded');
+        btn.textContent = section.classList.contains('expanded') ? '閉じる' : 'もっと見る';
+      });
+      content.appendChild(btn);
+    }
+  }
+
+  section.appendChild(content);
+  container.appendChild(section);
+});
+
+
+根拠: CSSには compact-list/compact-card が用意され、consider/skip 用の色や影も定義済み。JSが合わせて出せば整う。 
+GitHub
+
+3) カテゴリーナビ（チップ）の生成とスクロール連動（docs/script.js）
+
+ページ上部の .rec-nav に、data-rec を持つ .nav-item（必読/注目/参考/見送り）をJSで生成。カウントも表示。
+
+クリックで該当セクション #sec-<rec> へスムーズスクロール。
+
+現在のセクションを観測して .active を付け替え（IntersectionObserver）。
+
+function buildRecNav(groups) {
+  const nav = document.querySelector('.rec-nav .nav-row');
+  if (!nav) return;
+  nav.innerHTML = '';
+  const items = [
+    {rec:'must_read', label:'必読'},
+    {rec:'recommended', label:'注目'},
+    {rec:'consider', label:'参考'},
+    {rec:'skip', label:'見送り'}
+  ];
+  items.forEach(({rec,label}) => {
+    const el = document.createElement('button');
+    el.className = `nav-item ${rec}`;
+    el.dataset.rec = rec;
+    const count = (groups[rec] || []).length;
+    el.innerHTML = `<span class="icon"></span><span class="label">${label}</span><span class="count">${count}</span>`;
+    el.addEventListener('click', () => {
+      const sec = document.getElementById(`sec-${rec}`);
+      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    nav.appendChild(el);
+  });
+
+  // Active表示（現在位置に応じて）
+  const io = new IntersectionObserver((ents) => {
+    const visible = ents.filter(e => e.isIntersecting)
+                        .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    document.querySelectorAll('.rec-nav .nav-item').forEach(n => n.classList.remove('active'));
+    const btn = document.querySelector(`.rec-nav .nav-item.${visible.target.dataset.rec}`);
+    if (btn) btn.classList.add('active');
+  }, {rootMargin:'-30% 0px -60% 0px', threshold:[0, 0.25, 0.5, 0.75, 1]});
+
+  ['must_read','recommended','consider','skip'].forEach(rec => {
+    const sec = document.getElementById(`sec-${rec}`);
+    if (sec) io.observe(sec);
+  });
 }
-.compact-card.consider { background: linear-gradient(90deg,#fef3c7,#fde68a,20%); }
-.compact-card.skip    { background: linear-gradient(90deg,#fee2e2,#fecaca,20%); }
-.compact-title { font-weight: 600; color: var(--text-color); text-decoration: none; }
-.compact-title:hover { color: var(--primary-color); }
-.compact-meta { font-size: 0.8rem; color: var(--text-light); }
 
 
-これにより、「参考」「見送り」のリストはカード型の要素として表示され、ラベルは左上に配置されます。
+根拠: .rec-nav .nav-item の見た目・色分け・アイコンはCSSで定義済みなので、JSで生成と動作だけ付ける。 
+GitHub
 
-既存の点線と縦書きラベルを削除
-現在の点線スタイルや縦書きラベルを設定しているCSS（おそらく .compact-list li など）は不要になるため削除するか無効化します。
+4) 見出しクリックで開閉を確実に（docs/script.js）
+function wireSectionToggles() {
+  document.querySelectorAll('.rec-heading').forEach(h => {
+    const sec = h.closest('.rec-section');
+    const toggle = () => {
+      sec.classList.toggle('collapsed');
+    };
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+}
 
-ラベルピルのスタイル調整
-.label-pill.rec-consider と .label-pill.rec-skip のスタイルが適用されていない場合は、styles.css 内で定義しているグラデーション背景と文字色がちゃんと当たるようクラス名の付与を確認してください
-raw.githubusercontent.com
-。
 
-このような修正を styles.css と script.js に適用するよう Codex に指示すると、現在崩れている「参考」「見送り」の表示とカテゴリーナビが整い、全体のデザインが改善されます。
+根拠: .rec-section.collapsed .rec-content { display:none } などCSSは実装済み。JSでトグルすれば期待通り動く。 
+GitHub
+
+5) カードタイトルの2行クランプ維持とアクセシビリティ
+
+CSSの 2行クランプ は定義済み（.article-title a { -webkit-line-clamp: 2; ... }）。JS側のテンプレートで article-title クラスを外さないよう統一。 
+GitHub
+
+外部リンクは target="_blank" rel="noopener" を徹底。
+
+キーボード操作のため、見出しに role="button" と tabindex="0" を付与済みのまま維持。
+
+6) アイコンの配置ミスを防ぐ
+
+docs/icons/ に check.svg, star.svg, info.svg, close.svg を必ず追加。CSSは url('icons/...') を参照しているため、パス相違で404になるとチップの視認性が落ちる。 
+GitHub
+
+実装フロー（Codexに併記する指示）
+
+docs/styles.css を編集：.articles-grid の修正（上記CSS差し替え）。
+
+docs/script.js を編集：
+
+createCompactListItem() を追加。
+
+renderArticles() 内の consider/skip 出力ロジックを compact-list で置き換え、「もっと見る」 を実装。
+
+buildRecNav(groups) を追加し、renderArticles() の最後で呼び出し。
+
+wireSectionToggles() を renderArticles() の最後で呼び出し。
+
+docs/icons/ に4つのSVGを配置（なければ作成）。
+
+変更をコミットし、GitHub Pagesで反映を確認。
+
+確認チェックリスト
+
+PC幅でカードが2〜3列以上に並ぶ（.articles-grid が効いている）。 
+GitHub
+
+参考/見送りがコンパクトカードに統一され、右端の縦ラベルや長い点線が消える（compact-card が反映）。 
+GitHub
+
+上部のカテゴリーチップがカウント付きで表示され、クリックで各セクションへスムーズスクロール。 
+GitHub
+
+各セクション見出しをクリック/Enter/Spaceで開閉できる（collapsed が切り替わる）。 
+GitHub
+
+すべての外部リンクが target="_blank" rel="noopener"。
+
+ダークテーマでも文字コントラストが確保される（既存の [data-theme="dark"] 変数が効いていること） 
+GitHub

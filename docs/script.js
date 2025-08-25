@@ -558,10 +558,25 @@
     const tryFetch = async (p) => {
       try { const r = await fetch(p, { cache: 'no-store' }); if (!r.ok) return null; const j = await r.json(); return Array.isArray(j) ? j : null; } catch { return null; }
     };
+    const isValid = (arr) => {
+      if (!Array.isArray(arr) || arr.length === 0) return false;
+      let ok = 0;
+      for (const it of arr) {
+        if (it && it.title && it.url) ok++;
+      }
+      if (ok < Math.min(arr.length, 3)) return false;
+      // 少なくとも必読/注目が1つはある（フォールバックの目安）
+      const hasTop = arr.some(it => it.label === 'must_read' || it.label === 'recommended');
+      return hasTop;
+    };
     (async () => {
       let data = await tryFetch('./data/news.generated.json');
-      if (!data || data.length === 0) data = await tryFetch('./data/news.json');
-      if (Array.isArray(data) && data.length) window.articles = data;
+      if (!isValid(data)) {
+        data = await tryFetch('./data/news.json');
+      }
+      if (isValid(data)) {
+        window.articles = data;
+      }
       filteredArticles = [...(window.articles || [])];
       initUI();
       renderArticles();
