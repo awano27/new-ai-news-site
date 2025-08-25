@@ -42,14 +42,14 @@
 }
 
 body {
-    font-family: "Noto Sans JP", "Meiryo", "Yu Gothic UI", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7;
+    font-family: "BIZ UDPGothic", "Meiryo", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
 }
 
 h1, h2, h3 {
@@ -295,7 +295,7 @@ h1, h2, h3 {
 }
 .show-more:hover { border-color: var(--primary-color); }
 
-.rec-content.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1rem; }
+.rec-content.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
 .rec-content.compact-list { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.5rem 0 1rem; }
 
 .compact-item { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: var(--surface-color); transition: border-color 0.2s, box-shadow 0.2s; }
@@ -329,6 +329,8 @@ h1, h2, h3 {
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .article-card:hover {
@@ -357,6 +359,9 @@ h1, h2, h3 {
 .article-title a:hover {
     color: var(--primary-color);
 }
+
+/* タイトル2行クランプ */
+.article-title a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 .article-meta {
     display: flex;
@@ -446,9 +451,24 @@ h1, h2, h3 {
     padding: 1.5rem;
     background: #f8fafc;
     border-top: 1px solid var(--border-color);
+    margin-top: auto; /* カード下部へ固定 */
 }
 
 [data-theme="dark"] .evaluation-panel { background: #0b1221; }
+
+/* ラベルピル（カード上部） */
+.card-header { padding: 0.75rem var(--card-x) 0; display: flex; }
+.label-pill { display: inline-flex; align-items: center; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.03em; padding: 0.2rem 0.6rem; border-radius: 9999px; }
+.label-pill.rec-must_read { background: rgba(22,163,74,0.15); color: var(--success-color); }
+.label-pill.rec-recommended { background: rgba(79,70,229,0.15); color: var(--primary-color); }
+.label-pill.rec-consider { background: rgba(245,158,11,0.15); color: var(--warning-color); }
+.label-pill.rec-skip { background: rgba(220,38,38,0.12); color: var(--error-color); }
+
+/* カードフッター（出典・日付） */
+.card-footer, .article-meta { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem var(--card-x) 0.5rem; color: var(--text-light); font-size: 0.875rem; }
+.card-footer .footer-source, .article-meta .meta-source { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
+.card-footer .footer-date, .article-meta time, .article-meta .meta-date { font-variant-numeric: tabular-nums; }
+.label-pill + .article-title { margin-top: 0.25rem; }
 
 .score-display {
     display: flex;
@@ -618,6 +638,10 @@ h1, h2, h3 {
     .score-breakdown {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+@media (min-width: 769px) {
+    .article-card { min-height: 420px; }
 }
 
 @media (max-width: 480px) {

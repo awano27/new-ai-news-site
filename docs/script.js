@@ -42,6 +42,30 @@
     return `<span>${getRecommendationText(rec)}</span><span class="rec-subtext">${getRecommendationDesc(rec)}</span>`;
   }
 
+  function getLabelFor(article) {
+    if (article.label) return article.label;
+    const ev = article.evaluation && article.evaluation[currentPersona];
+    return (ev && ev.recommendation) || 'consider';
+  }
+
+  function getLabelText(label) {
+    const map = { x: 'X最新', must_read: '必読', recommended: '注目', consider: '参考', skip: '見送り' };
+    return map[label] || label;
+  }
+
+  function extractDomain(u) {
+    try {
+      const host = new URL(u).hostname.toLowerCase();
+      const multi = ['co.jp','ne.jp','or.jp','ac.jp','go.jp','co.uk','org.uk','gov.uk'];
+      if (multi.some(s => host.endsWith(s))) {
+        const ps = host.split('.');
+        return ps.slice(-3).join('.');
+      }
+      const ps = host.split('.');
+      return ps.slice(-2).join('.');
+    } catch(e) { return ''; }
+  }
+
   function createArticleCard(article) {
     const card = document.createElement('div');
     card.className = 'article-card';
@@ -55,19 +79,21 @@
       const label = (metricLabels[currentPersona] && metricLabels[currentPersona][idx]) || key;
       breakdownHtml += `<div class="score-item"><div class="score-value">${val}</div><div class="score-label">${label}</div></div>`;
     });
-    const rec = personaEval.recommendation || 'consider';
+    const rec = getLabelFor(article);
     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
+    const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
     card.innerHTML = `
+      <div class="card-header"><span class="label-pill rec-${rec}" title="${getRecommendationDesc(rec)}">${getLabelText(rec)}</span></div>
       <span class="source-tier tier-${article.source_tier}">${tierTexts[article.source_tier] || ''}</span>
       <h3 class="article-title">
         <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
       </h3>
       <div class="article-meta">
-        <span class="meta-source">${escapeHtml(article.source)}</span>
+        <span class="meta-source">${escapeHtml(sourceText)}</span>
         <span class="meta-sep">•</span>
-        <span class="meta-date">${formatRelativeDate(article.published_date)}</span>
+        <span class="meta-date">${formatRelativeDate(article.publishedAt || article.published_date)}</span>
       </div>
-      <div class="article-content">${escapeHtml(article.content)}</div>
+      <div class="article-content">${escapeHtml(article.summary || article.content || '')}</div>
       <div class="evaluation-panel">
         <div class="score-display">
           <div class="total-score">${totalPercentage}</div>
@@ -75,7 +101,7 @@
           <div class="score-bar"><div class="score-bar-fill" style="width: ${totalPercentage}%"></div></div>
         </div>
         <div class="score-breakdown">${breakdownHtml}</div>
-        <div class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getRecommendationText(rec)}</div>
+        <div class="recommendation rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${recIcon}${getLabelText(rec)}</div>
       </div>
       ${Array.isArray(article.tags) && article.tags.length ? `
       <div class="tags">
@@ -128,7 +154,7 @@
         sorted.forEach((article, idx) => {
           const el = createArticleCard(article);
           // inject readable summary into cards
-          const baseText = article.content || '';
+          const baseText = article.summary || article.content || '';
           const origText = article.original_content || '';
           const summaryLead = highlightKeywords(extractLead(baseText || origText));
           const labeled = deriveLabeledKeyPoints(baseText || origText, 3);
@@ -198,9 +224,9 @@
     if (isExtra) row.classList.add('extra');
     const personaEval = (article.evaluation && article.evaluation[currentPersona]) || {};
     const scorePct = Math.round((personaEval.total_score || 0) * 100);
-    const rec = personaEval.recommendation || 'consider';
+    const rec = getLabelFor(article);
     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
-    const baseText = article.content || '';
+    const baseText = article.summary || article.content || '';
     const origText = article.original_content || '';
     const labeled = deriveLabeledKeyPoints(baseText || origText, 1);
     const mini = labeled.length ? `${labeled[0].label?`<span class=\\\"kp-label\\\">${labeled[0].label}</span> `:''}${highlightKeywords(labeled[0].text)}` : '';
@@ -208,7 +234,7 @@
       <div class="left">
         <div class="title"><a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></div>
         ${mini ? `<div class=\"mini-highlight\">${mini}</div>` : ''}
-        <div class="source"><span class="meta-source">${escapeHtml(article.source)}</span> <span class="meta-sep">•</span> <span class="meta-date">${formatRelativeDate(article.published_date) || ''}</span></div>
+        <div class="source"><span class="meta-source">${escapeHtml(extractDomain(article.url || '') || article.source || '')}</span> <span class="meta-sep">•</span> <span class="meta-date">${formatRelativeDate(article.publishedAt || article.published_date) || ''}</span></div>
       </div>
       <div class="right">
         <div class="mini-bar"><span style="width:${scorePct}%"></span></div>
@@ -501,9 +527,17 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    filteredArticles = [...(window.articles || [])];
-    initUI();
-    renderArticles();
-    updateSummaryStats();
+    const tryFetch = async (p) => {
+      try { const r = await fetch(p, { cache: 'no-store' }); if (!r.ok) return null; const j = await r.json(); return Array.isArray(j) ? j : null; } catch { return null; }
+    };
+    (async () => {
+      let data = await tryFetch('./data/news.generated.json');
+      if (!data || data.length === 0) data = await tryFetch('./data/news.json');
+      if (Array.isArray(data) && data.length) window.articles = data;
+      filteredArticles = [...(window.articles || [])];
+      initUI();
+      renderArticles();
+      updateSummaryStats();
+    })();
   });
 })();

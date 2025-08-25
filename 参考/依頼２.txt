@@ -1,0 +1,92 @@
+# Role
+あなたは熟練のフロントエンド／情報設計エンジニア兼UXデザイナーです。和文タイポグラフィ、ニュースカード設計、静的サイトの収集パイプライン構築が得意です。
+
+# Project
+ローカルのプロジェクト: C:\Users\yoshitaka\new-ai-news-site
+出力は GitHub Pages 用の静的サイト。ビルド時にデータを整形してください。
+
+# Goals
+(1) 投稿カードUIの可読性改善：タイトル・要約・出典の長さがバラバラでも読みやすく、カード高さが揃い、視線誘導が明快なデザインにする。
+(2) ラベル自動付与と情報収集：RSS等から記事を収集し、スコアリングで「必読／注目／参考／見送り」を自動で付与。必ず「必読」と「注目」を1件以上表示できるようにする（フォールバック含む）。
+
+# Non-Functional Constraints
+- 外部フォント禁止。日本語向けシステムフォントスタックを使用（例:
+  "BIZ UDPGothic","Meiryo","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP",
+  -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif）。
+- クライアントJSでの越権CORS収集はしない。収集はビルド時（Nodeスクリプト）かGitHub Actions。
+- 既存構成を尊重しつつ小さく実装。設定は `config/` に、収集は `scripts/` に、データは `data/` に置く。
+
+# Deliverables
+- UI実装:
+  - カードの等高化（CSS Grid + 自動行高、フッター固定）
+  - タイトル/要約の行数クランプ（タイトル2行、要約3行を基本。CSS line-clamp）
+  - 出典表示を短文化（ドメイン抽出 + アイコン/ファビコンの枠を確保、無ければテキスト）
+  - ラベルバッジ（必読=強、注目=中、参考=弱、見送り=淡）＋ツールチップ説明
+  - 余白・行間・字間の和文最適化（読み速度優先）
+- データ層:
+  - `data/news.schema.json` を定義（id, title, summary, url, source, publishedAt, tags[], score, label）
+  - 既存データを `data/news.json` に正規化（無ければ空配列で作成）
+- 収集・整形:
+  - `config/sources.json`（RSS/JSONリスト）を新設。例:
+    [
+      {"type":"rss","name":"OpenAI Blog","url":"https://openai.com/blog/rss.xml"},
+      {"type":"rss","name":"Google AI Blog","url":"https://ai.googleblog.com/atom.xml"},
+      {"type":"rss","name":"Anthropic","url":"https://www.anthropic.com/news.xml"},
+      {"type":"rss","name":"Product Hunt AI","url":"https://www.producthunt.com/topics/artificial-intelligence.rss"}
+    ]
+  - `scripts/collect.ts` を作成。RSS/JSONから最新N件（例: 50）を収集し `data/news.raw.json` として保存。
+  - `scripts/enrich.ts` を作成。OGPメタ（title/description）補強、summary生成（300〜450字程度の和文）、sourceドメイン抽出、発行日正規化。
+  - `scripts/score.ts` を作成。以下の重みで0〜100点を計算し、labelを割当:
+    * Recency: (0–40) … 0日=40点、30日=0点で線形減衰
+    * Source credibility: (0–25) … 公式研究/企業ブログ=高、個人/不明=低（`config/source_scores.json` で調整可）
+    * Relevance to AI実務/エージェント/インフラ: (0–20) … タイトル/要約のキーワードでブースト（例: "agents","tooling","RAG","evaluation","latency","cost","security"）
+    * Impact (inferred): (0–15) … 「製品リリース」「大規模モデル」「重要ベンチマーク更新」などのルールベース
+  - Label thresholds:
+    * score >= 80 → 必読
+    * 60–79 → 注目
+    * 40–59 → 参考
+    * <40 → 見送り
+  - フォールバック: 必読/注目が0件なら、score上位から強制的に1件ずつ昇格（理由を `labelReason` に残す）。
+  - 最終出力を `data/news.generated.json` に保存。
+- ビルド統合:
+  - `npm run collect` → `scripts/collect.ts`
+  - `npm run enrich` → `scripts/enrich.ts`
+  - `npm run score` → `scripts/score.ts`
+  - `npm run news` → 上記一括実行して `data/news.generated.json` を更新
+- UI接続:
+  - 画面は `data/news.generated.json` があればそれを優先、無ければ `data/news.json` を表示。
+  - カード上部にラベルピルを表示。ツールチップ文言（hover/タップ長押し）:
+    * 必読: 「重要で読むべき」
+    * 注目: 「有益でおすすめ」
+    * 参考: 「興味があれば」
+    * 見送り: 「今回は優先度低」
+- スタイル詳細（参考実装の期待値）:
+  - ルート: 字間 `letter-spacing: 0.02em` 前後、`line-height: 1.6`。和文フォントスタック適用。
+  - グリッド: `grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;`
+  - タイトル: `font-weight: 700; line-clamp: 2;`
+  - 要約: `line-clamp: 3; opacity: 0.9;`
+  - 出典: ドメインのみ（例: ai.googleblog.com → googleblog.com）。長い場合は中点で省略。
+  - カード: ヘッダー（ラベル）／本文（タイトル→要約）／フッター（出典・日付・リンク）の3領域で等高。ホバーで軽い浮き上がり。
+- テスト/検証:
+  - ダミー含む合計 >=20件でスコアリングを実行し、必読>=1、注目>=1が保証されること。
+  - ライトハウスでAccessibility/Best Practices/SEOスコアの維持or改善。
+  - `npm run news` がCI（GitHub Actions）でも動作。失敗時はサイトは前回データで安全に継続。
+
+# Nice to have
+- ラベル毎のセクション切替（All/必読/注目/参考/見送り）タブ。
+- 検索（タイトル・出典・タグ）とソート（新着/スコア高/出典）。
+- `config/weights.json` を用意し、重みと閾値を簡単にチューニング可能に。
+
+# CI (optional)
+`.github/workflows/news.yml` を追加:
+- 毎日 07:00 JST に `npm run news` を実行
+- `data/news.generated.json` をコミット or Pages 用ブランチにアーティファクトとして配置
+
+# Safety
+大規模破壊は避ける。既存ファイルは git で差分PRを作成し、PRにスクリーンショット（Before/After）を添付。
+
+# Doneの定義 (Acceptance Criteria)
+- UI: タイトル/要約/出典の長短に関わらずカード崩れが無く、3行クランプで均質。フォントは和文システムフォントのみ。
+- データ: `data/news.generated.json` に score・label が付与され、必読/注目が最低1件ずつ存在。
+- 操作: 画面上でラベルピルとツールチップが機能。
+- CI: 手元/CIの両方で `npm run news` が成功。
