@@ -43,6 +43,16 @@ outputs/
 *.csv
 *.json
 
+# Allow project config and pipeline JSON/TS at repo root
+!package.json
+!tsconfig.json
+
+# Allow JSON under config and selected data outputs
+!config/*.json
+!data/news.json
+!data/news.schema.json
+!docs/data/*.json
+
 # Credentials
 *.pem
 *.key
