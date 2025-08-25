@@ -1,0 +1,21 @@
+{
+  "name": "new-ai-news-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "collect": "ts-node --transpile-only scripts/news/collect.ts",
+    "enrich": "ts-node --transpile-only scripts/news/enrich.ts",
+    "score": "ts-node --transpile-only scripts/news/score.ts",
+    "news": "npm run collect && npm run enrich && npm run score"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "dayjs": "^1.11.11",
+    "rss-parser": "^3.12.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}

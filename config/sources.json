@@ -1,0 +1,7 @@
+[
+  {"type": "rss", "name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml"},
+  {"type": "rss", "name": "Google AI Blog", "url": "https://ai.googleblog.com/atom.xml"},
+  {"type": "rss", "name": "Anthropic", "url": "https://www.anthropic.com/news.xml"},
+  {"type": "rss", "name": "Product Hunt AI", "url": "https://www.producthunt.com/topics/artificial-intelligence.rss"}
+]
+

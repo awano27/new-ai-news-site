@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/news.schema.json",
+  "title": "NewsItem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id", "title", "summary", "url", "source", "publishedAt", "tags", "score", "label"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
+    "source": { "type": "string", "minLength": 1 },
+    "publishedAt": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "label": { "type": "string", "enum": ["must_read", "recommended", "consider", "skip"] },
+    "labelReason": { "type": "string" }
+  }
+}
+

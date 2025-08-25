@@ -1,0 +1,16 @@
+{
+  "openai.com": 1.0,
+  "ai.googleblog.com": 0.9,
+  "googleblog.com": 0.9,
+  "anthropic.com": 0.9,
+  "producthunt.com": 0.6,
+  "techcrunch.com": 0.7,
+  "venturebeat.com": 0.7,
+  "reddit.com": 0.4,
+  "medium.com": 0.5,
+  "note.com": 0.5,
+  "x.com": 0.4,
+  "twitter.com": 0.4,
+  "default": 0.5
+}
+
