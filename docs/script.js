@@ -63,7 +63,9 @@
         <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
       </h3>
       <div class="article-meta">
-        <span>${escapeHtml(article.source)}</span> • <span>${article.published_date}</span>
+        <span class="meta-source">${escapeHtml(article.source)}</span>
+        <span class="meta-sep">•</span>
+        <span class="meta-date">${formatRelativeDate(article.published_date)}</span>
       </div>
       <div class="article-content">${escapeHtml(article.content)}</div>
       <div class="evaluation-panel">
@@ -178,7 +180,8 @@
       container.appendChild(section);
     });
 
-    // Update nav counts
+    // Update observers and nav counts
+    setupRecSectionObserver();
     updateRecNavCounts(groups);
 
     if (!container.children.length) {
@@ -205,7 +208,7 @@
       <div class="left">
         <div class="title"><a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></div>
         ${mini ? `<div class=\"mini-highlight\">${mini}</div>` : ''}
-        <div class="source">${escapeHtml(article.source)} • ${article.published_date || ''}</div>
+        <div class="source"><span class="meta-source">${escapeHtml(article.source)}</span> <span class="meta-sep">•</span> <span class="meta-date">${formatRelativeDate(article.published_date) || ''}</span></div>
       </div>
       <div class="right">
         <div class="mini-bar"><span style="width:${scorePct}%"></span></div>
@@ -259,29 +262,78 @@
     picks.forEach(p => { if (!uniq.some(u => u.slice(0,12) === p.slice(0,12))) uniq.push(p); });
     return uniq;
   }
+
+  // Date helpers: return a semantic <time> element with relative text
+  function formatRelativeDate(dateStr) {
+    if (!dateStr) return '';
+    const raw = String(dateStr).trim();
+    let d = new Date(raw);
+    if (Number.isNaN(d.getTime())) {
+      const iso = /\d{4}-\d{2}-\d{2}$/.test(raw) ? `${raw}T00:00:00Z` : raw;
+      d = new Date(iso);
+    }
+    if (Number.isNaN(d.getTime())) return escapeHtml(raw);
+    const now = new Date();
+    const diffMs = now.getTime() - d.getTime();
+    const sec = Math.max(1, Math.floor(diffMs / 1000));
+    const min = Math.floor(sec / 60);
+    const hr = Math.floor(min / 60);
+    const day = Math.floor(hr / 24);
+    let rel = '';
+    if (day >= 30) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      rel = `${y}-${m}-${dd}`;
+    } else if (day >= 1) {
+      rel = `${day}日前`;
+    } else if (hr >= 1) {
+      rel = `${hr}時間前`;
+    } else if (min >= 1) {
+      rel = `${min}分前`;
+    } else {
+      rel = `たった今`;
+    }
+    const abs = d.toISOString();
+    return `<time datetime="${abs}" title="${escapeHtml(raw)}">${rel}</time>`;
+  }
   function deriveLabeledKeyPoints(text, count = 3) {
-    const categories = [
-      { key: '発表', patterns: [/発表|公開|ローンチ|リリース/] },
-      { key: '性能', patterns: [/性能|精度|スコア|ベンチマーク|速度|高速|低遅延|throughput|latency/i] },
-      { key: '導入', patterns: [/導入|使い方|セットアップ|手順|サンプル|コード|チュートリアル/] },
-      { key: '影響', patterns: [/影響|価値|ROI|コスト|効率|生産性|採用|事業|ビジネス/] },
-      { key: '研究', patterns: [/研究|論文|arXiv|paper/i] },
-      { key: '注意', patterns: [/リスク|注意|制限|制約|課題|バグ|脆弱性/] }
-    ];
+    const allCats = {
+      発表: [/発表|公開|ローンチ|リリース|提供開始|アップデート/],
+      導入: [/導入|使い方|セットアップ|手順|サンプル|コード|チュートリアル|GitHub|インストール/],
+      性能: [/性能|精度|スコア|ベンチマーク|SOTA|速度|高速|低遅延|throughput|latency/i],
+      影響: [/影響|価値|ROI|コスト|効率|生産性|採用|事業|ビジネス|売上|収益/],
+      研究: [/研究|論文|arXiv|paper|実験結果|比較実験/i],
+      注意: [/リスク|注意|制限|制約|課題|バグ|脆弱性|既知の問題/]
+    };
+    const personaOrder = currentPersona === 'business'
+      ? ['発表','影響','導入','性能','研究','注意']
+      : ['発表','導入','性能','研究','影響','注意'];
     const sents = splitSentences(text || '').filter(s => s.length > 20);
     const results = [];
     const used = new Set();
-    for (const cat of categories) {
+    const extraScore = (s) => {
+      let sc = 0;
+      if (/[0-9]+(\.[0-9]+)?\s*%/.test(s)) sc += 80;
+      if (/[0-9]+\s*(ms|秒|倍|万|億|x)/i.test(s)) sc += 50;
+      if (/http(s)?:\/\//.test(s)) sc += 30;
+      if (/GitHub|コード|サンプル|手順|チュートリアル/.test(s)) sc += 60;
+      if (/ROI|コスト|採用|収益|売上/.test(s)) sc += 60;
+      return sc + s.length/200;
+    };
+    for (const key of personaOrder) {
+      const patterns = allCats[key];
       let bestIdx = -1, bestScore = -1;
       for (let i=0;i<sents.length;i++) {
         if (used.has(i)) continue;
         const s = sents[i];
-        if (cat.patterns.some(re => re.test(s))) {
-          const score = s.length + cat.patterns.reduce((acc,re)=>acc+(re.test(s)?50:0),0);
+        if (patterns.some(re => re.test(s))) {
+          const base = patterns.reduce((acc,re)=>acc+(re.test(s)?70:0),0);
+          const score = base + extraScore(s);
           if (score > bestScore) { bestScore = score; bestIdx = i; }
         }
       }
-      if (bestIdx >= 0) { used.add(bestIdx); results.push({ label: cat.key, text: sents[bestIdx] }); }
+      if (bestIdx >= 0) { used.add(bestIdx); results.push({ label: key, text: sents[bestIdx] }); }
       if (results.length >= count) break;
     }
     if (results.length < count) {
@@ -320,6 +372,21 @@
     });
     renderArticles();
     updateSummaryStats();
+  }
+
+  // Observe sections to update nav active state (reinitialized after each render)
+  let sectionObserver;
+  function setupRecSectionObserver() {
+    try { sectionObserver?.disconnect(); } catch (e) {}
+    sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const rec = entry.target.dataset.rec;
+          document.querySelectorAll('.rec-nav .nav-item').forEach(i => i.classList.toggle('active', i.getAttribute('data-target') === rec));
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    document.querySelectorAll('.rec-section').forEach(sec => sectionObserver.observe(sec));
   }
 
   function initUI() {
@@ -422,20 +489,11 @@
       });
     });
 
-    // Observe sections to update nav active state
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const rec = entry.target.dataset.rec;
-          document.querySelectorAll('.rec-nav .nav-item').forEach(i => i.classList.toggle('active', i.getAttribute('data-target') === rec));
-        }
-      });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-    document.querySelectorAll('.rec-section').forEach(sec => obs.observe(sec));
+    // Initial observer setup will be called after first render
   }
 
   function updateRecNavCounts(groups) {
-    const ids = ['must_read','recommended','consider','skip'];
+    const ids = ['x','must_read','recommended','consider','skip'];
     ids.forEach(id => {
       const el = document.getElementById(`nav-count-${id}`);
       if (el) el.textContent = (groups[id] || []).length;
