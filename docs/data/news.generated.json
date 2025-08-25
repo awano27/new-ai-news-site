@@ -92,10 +92,23 @@
     "label": "consider"
   },
   {
-    "id": "rss_f31ed21a",
-    "title": "From hard refusals to safe-completions: toward output-centric safety training",
-    "summary": "From hard refusals to safe-completions: toward output-centric safety training",
-    "url": "https://openai.com/index/gpt-5-safe-completions",
+    "id": "rss_d7abc61f",
+    "title": "First look at GPT-5",
+    "summary": "First look at GPT-5",
+    "url": "https://openai.com/index/gpt-5-first-look",
+    "source": "openai.com",
+    "publishedAt": "2025-08-07",
+    "tags": [
+      "rss_feed"
+    ],
+    "score": 41,
+    "label": "consider"
+  },
+  {
+    "id": "rss_3e61fdcb",
+    "title": "GPT-5 System Card",
+    "summary": "GPT-5 System Card",
+    "url": "https://openai.com/index/gpt-5-system-card",
     "source": "openai.com",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -118,32 +131,6 @@
     "label": "consider"
   },
   {
-    "id": "rss_9f8769b9",
-    "title": "Introducing GPT-5",
-    "summary": "Introducing GPT-5",
-    "url": "https://openai.com/index/introducing-gpt-5",
-    "source": "openai.com",
-    "publishedAt": "2025-08-07",
-    "tags": [
-      "rss_feed"
-    ],
-    "score": 41,
-    "label": "consider"
-  },
-  {
-    "id": "rss_d7abc61f",
-    "title": "First look at GPT-5",
-    "summary": "First look at GPT-5",
-    "url": "https://openai.com/index/gpt-5-first-look",
-    "source": "openai.com",
-    "publishedAt": "2025-08-07",
-    "tags": [
-      "rss_feed"
-    ],
-    "score": 41,
-    "label": "consider"
-  },
-  {
     "id": "rss_5a6f4f59",
     "title": "How Cursor uses GPT-5",
     "summary": "How Cursor uses GPT-5",
@@ -157,10 +144,23 @@
     "label": "consider"
   },
   {
-    "id": "rss_3e61fdcb",
-    "title": "GPT-5 System Card",
-    "summary": "GPT-5 System Card",
-    "url": "https://openai.com/index/gpt-5-system-card",
+    "id": "rss_f31ed21a",
+    "title": "From hard refusals to safe-completions: toward output-centric safety training",
+    "summary": "From hard refusals to safe-completions: toward output-centric safety training",
+    "url": "https://openai.com/index/gpt-5-safe-completions",
+    "source": "openai.com",
+    "publishedAt": "2025-08-07",
+    "tags": [
+      "rss_feed"
+    ],
+    "score": 41,
+    "label": "consider"
+  },
+  {
+    "id": "rss_9f8769b9",
+    "title": "Introducing GPT-5",
+    "summary": "Introducing GPT-5",
+    "url": "https://openai.com/index/introducing-gpt-5",
     "source": "openai.com",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -209,10 +209,10 @@
     "label": "consider"
   },
   {
-    "id": "rss_90fdc401",
-    "title": "Introducing GPT-5 for developers",
-    "summary": "Introducing GPT-5 for developers",
-    "url": "https://openai.com/index/introducing-gpt-5-for-developers",
+    "id": "rss_1696a47e",
+    "title": "GPT-5 and the new era of work",
+    "summary": "GPT-5 and the new era of work",
+    "url": "https://openai.com/index/gpt-5-new-era-of-work",
     "source": "openai.com",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -222,10 +222,10 @@
     "label": "consider"
   },
   {
-    "id": "rss_1696a47e",
-    "title": "GPT-5 and the new era of work",
-    "summary": "GPT-5 and the new era of work",
-    "url": "https://openai.com/index/gpt-5-new-era-of-work",
+    "id": "rss_90fdc401",
+    "title": "Introducing GPT-5 for developers",
+    "summary": "Introducing GPT-5 for developers",
+    "url": "https://openai.com/index/introducing-gpt-5-for-developers",
     "source": "openai.com",
     "publishedAt": "2025-08-07",
     "tags": [

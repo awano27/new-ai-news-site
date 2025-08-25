@@ -70,9 +70,19 @@
     ]
   },
   {
-    "id": "rss_f31ed21a",
-    "title": "From hard refusals to safe-completions: toward output-centric safety training",
-    "url": "https://openai.com/index/gpt-5-safe-completions",
+    "id": "rss_d7abc61f",
+    "title": "First look at GPT-5",
+    "url": "https://openai.com/index/gpt-5-first-look",
+    "source": "OpenAI Blog",
+    "publishedAt": "2025-08-07",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_3e61fdcb",
+    "title": "GPT-5 System Card",
+    "url": "https://openai.com/index/gpt-5-system-card",
     "source": "OpenAI Blog",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -90,26 +100,6 @@
     ]
   },
   {
-    "id": "rss_9f8769b9",
-    "title": "Introducing GPT-5",
-    "url": "https://openai.com/index/introducing-gpt-5",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_d7abc61f",
-    "title": "First look at GPT-5",
-    "url": "https://openai.com/index/gpt-5-first-look",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
     "id": "rss_5a6f4f59",
     "title": "How Cursor uses GPT-5",
     "url": "https://openai.com/index/gpt-5-cursor",
@@ -120,9 +110,19 @@
     ]
   },
   {
-    "id": "rss_3e61fdcb",
-    "title": "GPT-5 System Card",
-    "url": "https://openai.com/index/gpt-5-system-card",
+    "id": "rss_f31ed21a",
+    "title": "From hard refusals to safe-completions: toward output-centric safety training",
+    "url": "https://openai.com/index/gpt-5-safe-completions",
+    "source": "OpenAI Blog",
+    "publishedAt": "2025-08-07",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_9f8769b9",
+    "title": "Introducing GPT-5",
+    "url": "https://openai.com/index/introducing-gpt-5",
     "source": "OpenAI Blog",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -160,9 +160,9 @@
     ]
   },
   {
-    "id": "rss_90fdc401",
-    "title": "Introducing GPT-5 for developers",
-    "url": "https://openai.com/index/introducing-gpt-5-for-developers",
+    "id": "rss_1696a47e",
+    "title": "GPT-5 and the new era of work",
+    "url": "https://openai.com/index/gpt-5-new-era-of-work",
     "source": "OpenAI Blog",
     "publishedAt": "2025-08-07",
     "tags": [
@@ -170,9 +170,9 @@
     ]
   },
   {
-    "id": "rss_1696a47e",
-    "title": "GPT-5 and the new era of work",
-    "url": "https://openai.com/index/gpt-5-new-era-of-work",
+    "id": "rss_90fdc401",
+    "title": "Introducing GPT-5 for developers",
+    "url": "https://openai.com/index/introducing-gpt-5-for-developers",
     "source": "OpenAI Blog",
     "publishedAt": "2025-08-07",
     "tags": [
