@@ -1,0 +1,594 @@
+diff --git a/.github/workflows/news.yml b/.github/workflows/news.yml
+index d654c26..879aa99 100644
+--- a/.github/workflows/news.yml
++++ b/.github/workflows/news.yml
+@@ -36,6 +36,12 @@ jobs:
+           npm run news
+         working-directory: ${{ github.workspace }}
+ 
++      - name: Run lightweight audits
++        run: |
++          npm run audit:links
++          npm run audit:html
++        working-directory: ${{ github.workspace }}
++
+       - name: Commit updated data
+         run: |
+           git config user.name "github-actions[bot]"
+diff --git a/docs/index.html b/docs/index.html
+index ba841d7..5cb9a27 100644
+--- a/docs/index.html
++++ b/docs/index.html
+@@ -3,6 +3,15 @@
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <meta name="description" content="Daily AI News: 最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
++  <meta property="og:title" content="Daily AI News – 改良版" />
++  <meta property="og:description" content="最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
++  <meta property="og:type" content="website" />
++  <meta property="og:url" content="https://awano27.github.io/new-ai-news-site/" />
++  <meta property="og:site_name" content="Daily AI News" />
++  <meta name="twitter:card" content="summary_large_image" />
++  <meta name="twitter:title" content="Daily AI News – 改良版" />
++  <meta name="twitter:description" content="最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
+   <title>Daily AI News – 改良版</title>
+   <link rel="stylesheet" href="styles.css" />
+   <script src="script.js" defer></script>
+diff --git a/docs/index_clean.html b/docs/index_clean.html
+index 13bcad5..c931a1d 100644
+--- a/docs/index_clean.html
++++ b/docs/index_clean.html
+@@ -3,6 +3,15 @@
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <meta name="description" content="Daily AI News: 最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
++  <meta property="og:title" content="Daily AI News – 改良版" />
++  <meta property="og:description" content="最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
++  <meta property="og:type" content="website" />
++  <meta property="og:url" content="https://awano27.github.io/new-ai-news-site/" />
++  <meta property="og:site_name" content="Daily AI News" />
++  <meta name="twitter:card" content="summary_large_image" />
++  <meta name="twitter:title" content="Daily AI News – 改良版" />
++  <meta name="twitter:description" content="最新のAIニュースを技術者/ビジネス向けに評価・整理して配信。必読・注目・参考のラベルで素早く把握できます。" />
+   <title>Daily AI News – 改良版</title>
+   <link rel="stylesheet" href="styles.css" />
+   <script src="script.js" defer></script>
+diff --git a/docs/script.js b/docs/script.js
+index 9e745c2..a7f30a7 100644
+--- a/docs/script.js
++++ b/docs/script.js
+@@ -66,6 +66,11 @@
+     } catch(e) { return ''; }
+   }
+ 
++  function faviconUrl(domain) {
++    if (!domain) return '';
++    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=32`;
++  }
++
+   function createArticleCard(article) {
+     const card = document.createElement('div');
+     card.className = 'article-card';
+@@ -81,7 +86,8 @@
+     });
+     const rec = getLabelFor(article);
+     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
+-    const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
++    const domain = extractDomain(article.url || '') || article.sourceDomain || '';
++    const sourceText = domain || article.source || '';
+     const tier = article.source_tier;
+     const tierHtml = tier ? `<span class="source-tier tier-${tier}">${tierTexts[tier] || ''}</span>` : '';
+     card.innerHTML = `
+@@ -91,6 +97,7 @@
+         <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
+       </h3>
+       <div class="article-meta">
++        ${domain ? `<img class=\"favicon\" src=\"${faviconUrl(domain)}\" alt=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.style.display='none'\">` : ''}
+         <span class="meta-source">${escapeHtml(sourceText)}</span>
+         <span class="meta-sep">•</span>
+         <span class="meta-date">${formatRelativeDate(article.publishedAt || article.published_date)}</span>
+diff --git a/docs/styles.css b/docs/styles.css
+index 81a75b0..a690281 100644
+--- a/docs/styles.css
++++ b/docs/styles.css
+@@ -390,6 +390,7 @@ h1, h2, h3 {
+     border-top: 1px solid var(--border-color); /* タイトルとの区切り */
+     background: rgba(0,0,0,0.02);
+ }
++.article-meta .favicon { width: 16px; height: 16px; border-radius: 4px; flex: 0 0 auto; opacity: 0.9; }
+ .article-meta .meta-sep { opacity: 0.5; }
+ .article-meta time { color: var(--text-light); font-variant-numeric: tabular-nums; }
+ .article-meta .meta-source::before { content: '出典: '; color: var(--text-light); }
+diff --git a/package.json b/package.json
+index 51cca7e..e3af2e8 100644
+--- a/package.json
++++ b/package.json
+@@ -7,7 +7,12 @@
+     "collect": "ts-node --transpile-only scripts/news/collect.ts",
+     "enrich": "ts-node --transpile-only scripts/news/enrich.ts",
+     "score": "ts-node --transpile-only scripts/news/score.ts",
+-    "news": "npm run collect && npm run enrich && npm run score"
++    "news": "npm run collect && npm run enrich && npm run score",
++    "audit:links": "node scripts/audit/links.js",
++    "audit:html": "node scripts/audit/html.js",
++    "audit:axe": "node -e \"console.log('axe audit placeholder: run with browser extension or CI')\"",
++    "lh:mobile": "node -e \"console.log('lighthouse mobile placeholder: run in CI with lighthouse-cli')\"",
++    "lh:desktop": "node -e \"console.log('lighthouse desktop placeholder: run in CI with lighthouse-cli')\""
+   },
+   "dependencies": {
+     "cheerio": "^1.0.0-rc.12",
+diff --git a/scripts/news/score.ts b/scripts/news/score.ts
+index 3a8b01d..4f7b62e 100644
+--- a/scripts/news/score.ts
++++ b/scripts/news/score.ts
+@@ -7,7 +7,27 @@ type EnrichedItem = {
+   summary: string; sourceDomain: string;
+ };
+ 
+-type ScoredItem = EnrichedItem & { score: number; label: 'must_read'|'recommended'|'consider'|'skip'; labelReason?: string };
++type PersonaBreakdown = {
++  quality: number;
++  relevance: number;
++  temporal: number;
++  trust: number;
++  actionability: number;
++};
++
++type PersonaEval = {
++  total_score: number; // 0..1
++  breakdown: PersonaBreakdown;
++  recommendation?: 'must_read'|'recommended'|'consider'|'skip';
++};
++
++type ScoredItem = EnrichedItem & {
++  score: number;
++  label: 'must_read'|'recommended'|'consider'|'skip';
++  labelReason?: string;
++  source_tier?: 1 | 2;
++  evaluation?: { engineer: PersonaEval; business: PersonaEval };
++};
+ 
+ const ROOT = process.cwd();
+ const DATA_DIR = path.join(ROOT, 'data');
+@@ -90,6 +110,50 @@ function ensureAtLeast(items: ScoredItem[]) {
+   }
+ }
+ 
++function determineTier(domain: string, sourceScores: Record<string, number>): 1 | 2 {
++  const s = sourceScores[domain] ?? sourceScores['default'] ?? 0.5;
++  return s >= 0.8 ? 1 : 2;
++}
++
++function clamp01(n: number): number { return Math.max(0, Math.min(1, n)); }
++
++function computeEngineerBreakdown(it: EnrichedItem, sourceScores: Record<string, number>): PersonaBreakdown {
++  // Mirror components used in scoreItem
++  const domain = it.sourceDomain || '';
++  const credBase = sourceScores[domain] ?? sourceScores['default'] ?? 0.5; // 0..1
++  const days = daysFromNow(it.publishedAt); // 0 is fresh
++  const temporal = clamp01((30 - Math.min(30, Math.max(0, days))) / 30); // 0..1
++  const text = `${it.title} ${it.summary}`.toLowerCase();
++  const techKw = ['agent','agents','rag','latency','benchmark','release','model','inference','github','code','sample','tutorial','手順','導入','実装','エンジニア','開発'];
++  let rel = 0; techKw.forEach(k => { if (text.includes(k)) rel += 0.08; });
++  rel = Math.min(1, rel);
++  const actionabilityBoost = /(github|コード|サンプル|手順|チュートリアル|how to|guide|実装|導入)/i.test(text) ? 0.9 : 0.45 * rel;
++  const quality = clamp01(0.6 * credBase + 0.4 * rel);
++  const trust = clamp01(credBase);
++  const relevance = clamp01(rel);
++  const actionability = clamp01(actionabilityBoost);
++  return { quality, relevance, temporal, trust, actionability };
++}
++
++function computeBusinessBreakdown(it: EnrichedItem, sourceScores: Record<string, number>): PersonaBreakdown {
++  const domain = it.sourceDomain || '';
++  const credBase = sourceScores[domain] ?? sourceScores['default'] ?? 0.5; // 0..1
++  const days = daysFromNow(it.publishedAt);
++  const temporal = clamp01((30 - Math.min(30, Math.max(0, days))) / 30);
++  const text = `${it.title} ${it.summary}`.toLowerCase();
++  const bizSignal = /(roi|cost|コスト|売上|収益|採用|事業|市場|投資|影響|効率|生産性|導入|成功|ケーススタディ)/i.test(text) ? 0.9 : 0.4;
++  const relevance = clamp01(bizSignal);
++  const quality = clamp01(0.5 * credBase + 0.5 * relevance);
++  const trust = clamp01(credBase);
++  const actionability = clamp01(/(導入|ロードマップ|戦略|ケーススタディ|事例|フレームワーク|テンプレート)/.test(text) ? 0.85 : 0.4);
++  return { quality, relevance, temporal, trust, actionability };
++}
++
++function breakdownAvg(b: PersonaBreakdown): number {
++  // Simple mean of five dimensions
++  return (b.quality + b.relevance + b.temporal + b.trust + b.actionability) / 5;
++}
++
+ function mapToOutput(items: ScoredItem[]) {
+   return items.map(i => ({
+     id: i.id,
+@@ -97,11 +161,13 @@ function mapToOutput(items: ScoredItem[]) {
+     summary: i.summary,
+     url: i.url,
+     source: i.sourceDomain || i.source,
++    source_tier: i.source_tier ?? 2,
+     publishedAt: i.publishedAt,
+     tags: i.tags || [],
+     score: i.score,
+     label: i.label,
+-    labelReason: i.labelReason
++    labelReason: i.labelReason,
++    evaluation: i.evaluation
+   }));
+ }
+ 
+@@ -117,11 +183,52 @@ function main() {
+   ensureDirs();
+   const enriched = readEnriched();
+   const sourceScores = readSourceScores();
+-  const scored: ScoredItem[] = enriched.map(it => {
++  let scored: ScoredItem[] = enriched.map(it => {
+     const sc = scoreItem(it, sourceScores);
+-    return { ...it, score: sc, label: labelFromScore(sc) };
++    const engineer = computeEngineerBreakdown(it, sourceScores);
++    const business = computeBusinessBreakdown(it, sourceScores);
++    const engineerTotal = breakdownAvg(engineer);
++    const businessTotal = breakdownAvg(business);
++    const out: ScoredItem = {
++      ...it,
++      score: sc,
++      label: labelFromScore(sc),
++      source_tier: determineTier(it.sourceDomain || '', sourceScores),
++      evaluation: {
++        engineer: { total_score: engineerTotal, breakdown: engineer },
++        business: { total_score: businessTotal, breakdown: business }
++      }
++    };
++    return out;
+   });
+   ensureAtLeast(scored);
++  // Ensure at least 20 items always by adding safe dummies
++  if (scored.length < 20) {
++    const need = 20 - scored.length;
++    for (let i = 0; i < need; i++) {
++      const id = `dummy_${Date.now().toString(36)}_${i}`;
++      const publishedAt = new Date().toISOString().slice(0,10);
++      const domain = 'example.com';
++      const base: ScoredItem = {
++        id,
++        title: `ダミー記事 ${i+1}（プレースホルダー）`,
++        summary: 'データ不足時のプレースホルダー。最低表示件数を満たすために自動生成されました。',
++        url: 'https://example.com/',
++        source: 'placeholder',
++        sourceDomain: domain,
++        publishedAt,
++        tags: ['placeholder'],
++        score: 45,
++        label: 'consider',
++        source_tier: determineTier(domain, sourceScores),
++        evaluation: {
++          engineer: { total_score: 0.45, breakdown: { quality: 0.5, relevance: 0.4, temporal: 0.5, trust: 0.5, actionability: 0.3 } },
++          business: { total_score: 0.45, breakdown: { quality: 0.5, relevance: 0.4, temporal: 0.5, trust: 0.5, actionability: 0.3 } }
++        }
++      };
++      scored.push(base);
++    }
++  }
+   // Sort by score desc for output convenience
+   scored.sort((a,b) => b.score - a.score);
+   writeOutputs(mapToOutput(scored));
+@@ -129,4 +236,3 @@ function main() {
+ }
+ 
+ main();
+-
+diff --git "a/\345\217\202\350\200\203/\351\200\243\346\220\272\345\206\205\345\256\271.txt" "b/\345\217\202\350\200\203/\351\200\243\346\220\272\345\206\205\345\256\271.txt"
+index 6fd10cb..8fa5282 100644
+--- "a/\345\217\202\350\200\203/\351\200\243\346\220\272\345\206\205\345\256\271.txt"
++++ "b/\345\217\202\350\200\203/\351\200\243\346\220\272\345\206\205\345\256\271.txt"
+@@ -1,250 +1,58 @@
+-主要な不具合の要点（原因と根拠）
+-
+-記事グリッドが1カラム化している
+-styles.css の .articles-grid が display: block になっており、カードのグリッドが崩れます（本来は grid で自動段組にする） 
+-GitHub
+-
+-参考/見送りの表示が「横長リスト＋点線」風に見え、統一感がない
+-CSSには compact-list 用のカードスタイル（.compact-card, .compact-title, .compact-meta）が既に定義されているのに、JS側のテンプレートが適用されず不統一が生じています（compact-card.consider/skip のグラデーション指定も用意済み） 
+-GitHub
+-
+-カテゴリーナビ（必読/注目/参考/見送り）の“チップ化”はCSSにあるが、JSでの生成/クリック挙動が足りない
+-.rec-nav .nav-item のスタイルと各カテゴリ別の色分け・アイコン指定はCSSにあるが、要素の生成・#sec-<rec> へのスムーズスクロールなどのJS処理が未連動のため、UIが“飾り”になりがちです。 
+-GitHub
+-
+-セクション開閉（collapsed/expanded）のCSSはあるが、JSの紐付けが薄い
+-.rec-section.collapsed .rec-content { display: none; } などの状態クラスが定義されていますが、見出しクリックで確実に collapsed をトグルする処理が不足しています。 
+-GitHub
+-
+-ラベル（必読/注目/参考/見送り）の見た目がセクションやカードで一致しない
+-カード上部の「ラベルピル」用スタイル（.label-pill.rec-*）と、推奨度チップ（.rec-*）の両方がCSSに存在しており、JSの出力クラス付与が一致していない可能性があります。 
+-GitHub
+-
+-Codex への具体的な修正指示（コピペ可）
+-
+-対象: docs/styles.css と docs/script.js
+-目的: グリッド復元、参考/見送りを“コンパクトカード”に統一、カテゴリーナビの“チップ化”をJSで機能させる、見出しの開閉を確実に。
+-
+-1) グリッドを復元（docs/styles.css）
+-
+-/* Article grid - Improved spacing */ の定義を修正。.articles-grid を grid に戻す。
+-
+-/* 置換前（問題）: .articles-grid { display: block; ... } */
+-/* 置換後（正） */
+-.articles-grid {
+-  display: grid;
+-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+-  gap: 1rem;
+-  margin: 2rem 0 3rem;
+-}
+-@media (max-width: 768px) {
+-  .articles-grid { grid-template-columns: 1fr; }
+-}
+-
+-
+-根拠: 現状 display: block になっているため崩れる。CSSの他部分はカード前提で設計されている。 
+-GitHub
+-
+-2) 参考/見送りを“コンパクトカード”に統一（docs/script.js）
+-
+-renderArticles() 内で groups.consider と groups.skip を出力する際、compact-list + compact-card のテンプレートを用いる。
+-
+-専用のミニテンプレート createCompactListItem(article) を追加し、左上にラベルピル、中央にタイトル、下段に出典＋日付を配置。
+-
+-既定CSSに合わせてクラスを付与（.compact-card ${rec} / .label-pill rec-${rec} / .compact-title / .compact-meta）。
+-
+-// 追加：compact-list用のテンプレート
+-function createCompactListItem(article) {
+-  const rec = getLabelFor(article); // 'consider' or 'skip'
+-  const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
+-  const li = document.createElement('div');
+-  li.className = 'compact-item';
+-  li.innerHTML = `
+-    <div class="compact-card ${rec}">
+-      <span class="label-pill rec-${rec}">${getLabelText(rec)}</span>
+-      <a href="${escapeHtml(article.url)}" class="compact-title" target="_blank" rel="noopener">
+-        ${escapeHtml(article.title)}
+-      </a>
+-      <div class="compact-meta">
+-        <span class="compact-source">出典: ${escapeHtml(sourceText)}</span>
+-        <span class="compact-date">・${formatRelativeDate(article.publishedAt || article.published_date)}</span>
+-      </div>
+-    </div>
+-  `;
+-  return li;
+-}
+-
+-// 修正：renderArticles() の該当箇所
+-// （must_read/recommended は既存のカード、consider/skip は compact-list を使う）
+-const order = ['x','must_read','recommended','consider','skip'];
+-order.forEach(rec => {
+-  const items = groups[rec];
+-  if (!items || items.length === 0) return;
+-
+-  const section = document.createElement('section');
+-  section.className = `rec-section rec-${rec}` + (rec === 'skip' ? ' collapsed' : '');
+-  section.dataset.rec = rec;
+-  section.id = `sec-${rec}`;
+-
+-  const heading = document.createElement('h2');
+-  heading.className = `rec-heading rec-${rec}`;
+-  heading.setAttribute('role', 'button');
+-  heading.setAttribute('tabindex', '0');
+-  heading.dataset.rec = rec;
+-  heading.innerHTML = `${getRecommendationHeading(rec)} <span class="meta"><span class="count">${items.length}件</span> <span class="caret">▾</span></span>`;
+-  section.appendChild(heading);
+-
+-  const content = document.createElement('div');
+-  content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
+-
+-  if (rec === 'must_read' || rec === 'recommended') {
+-    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+-    sorted.forEach(article => content.appendChild(createArticleCard(article)));
+-  } else {
+-    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+-    // 先頭N件のみ表示、残りは .extra に包んで折り畳み
+-    const N = 6;
+-    sorted.slice(0, N).forEach(a => content.appendChild(createCompactListItem(a)));
+-    const extraWrap = document.createElement('div');
+-    extraWrap.className = 'extra';
+-    sorted.slice(N).forEach(a => extraWrap.appendChild(createCompactListItem(a)));
+-    if (sorted.length > N) {
+-      content.appendChild(extraWrap);
+-      const btn = document.createElement('button');
+-      btn.className = 'show-more';
+-      btn.textContent = 'もっと見る';
+-      btn.addEventListener('click', () => {
+-        section.classList.toggle('expanded');
+-        btn.textContent = section.classList.contains('expanded') ? '閉じる' : 'もっと見る';
+-      });
+-      content.appendChild(btn);
+-    }
+-  }
+-
+-  section.appendChild(content);
+-  container.appendChild(section);
+-});
+-
+-
+-根拠: CSSには compact-list/compact-card が用意され、consider/skip 用の色や影も定義済み。JSが合わせて出せば整う。 
+-GitHub
+-
+-3) カテゴリーナビ（チップ）の生成とスクロール連動（docs/script.js）
+-
+-ページ上部の .rec-nav に、data-rec を持つ .nav-item（必読/注目/参考/見送り）をJSで生成。カウントも表示。
+-
+-クリックで該当セクション #sec-<rec> へスムーズスクロール。
+-
+-現在のセクションを観測して .active を付け替え（IntersectionObserver）。
+-
+-function buildRecNav(groups) {
+-  const nav = document.querySelector('.rec-nav .nav-row');
+-  if (!nav) return;
+-  nav.innerHTML = '';
+-  const items = [
+-    {rec:'must_read', label:'必読'},
+-    {rec:'recommended', label:'注目'},
+-    {rec:'consider', label:'参考'},
+-    {rec:'skip', label:'見送り'}
+-  ];
+-  items.forEach(({rec,label}) => {
+-    const el = document.createElement('button');
+-    el.className = `nav-item ${rec}`;
+-    el.dataset.rec = rec;
+-    const count = (groups[rec] || []).length;
+-    el.innerHTML = `<span class="icon"></span><span class="label">${label}</span><span class="count">${count}</span>`;
+-    el.addEventListener('click', () => {
+-      const sec = document.getElementById(`sec-${rec}`);
+-      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+-    });
+-    nav.appendChild(el);
+-  });
+-
+-  // Active表示（現在位置に応じて）
+-  const io = new IntersectionObserver((ents) => {
+-    const visible = ents.filter(e => e.isIntersecting)
+-                        .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+-    if (!visible) return;
+-    document.querySelectorAll('.rec-nav .nav-item').forEach(n => n.classList.remove('active'));
+-    const btn = document.querySelector(`.rec-nav .nav-item.${visible.target.dataset.rec}`);
+-    if (btn) btn.classList.add('active');
+-  }, {rootMargin:'-30% 0px -60% 0px', threshold:[0, 0.25, 0.5, 0.75, 1]});
+-
+-  ['must_read','recommended','consider','skip'].forEach(rec => {
+-    const sec = document.getElementById(`sec-${rec}`);
+-    if (sec) io.observe(sec);
+-  });
+-}
+-
+-
+-根拠: .rec-nav .nav-item の見た目・色分け・アイコンはCSSで定義済みなので、JSで生成と動作だけ付ける。 
+-GitHub
+-
+-4) 見出しクリックで開閉を確実に（docs/script.js）
+-function wireSectionToggles() {
+-  document.querySelectorAll('.rec-heading').forEach(h => {
+-    const sec = h.closest('.rec-section');
+-    const toggle = () => {
+-      sec.classList.toggle('collapsed');
+-    };
+-    h.addEventListener('click', toggle);
+-    h.addEventListener('keydown', e => {
+-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+-    });
+-  });
+-}
+-
+-
+-根拠: .rec-section.collapsed .rec-content { display:none } などCSSは実装済み。JSでトグルすれば期待通り動く。 
+-GitHub
+-
+-5) カードタイトルの2行クランプ維持とアクセシビリティ
+-
+-CSSの 2行クランプ は定義済み（.article-title a { -webkit-line-clamp: 2; ... }）。JS側のテンプレートで article-title クラスを外さないよう統一。 
+-GitHub
+-
+-外部リンクは target="_blank" rel="noopener" を徹底。
+-
+-キーボード操作のため、見出しに role="button" と tabindex="0" を付与済みのまま維持。
+-
+-6) アイコンの配置ミスを防ぐ
+-
+-docs/icons/ に check.svg, star.svg, info.svg, close.svg を必ず追加。CSSは url('icons/...') を参照しているため、パス相違で404になるとチップの視認性が落ちる。 
+-GitHub
+-
+-実装フロー（Codexに併記する指示）
+-
+-docs/styles.css を編集：.articles-grid の修正（上記CSS差し替え）。
+-
+-docs/script.js を編集：
+-
+-createCompactListItem() を追加。
+-
+-renderArticles() 内の consider/skip 出力ロジックを compact-list で置き換え、「もっと見る」 を実装。
+-
+-buildRecNav(groups) を追加し、renderArticles() の最後で呼び出し。
+-
+-wireSectionToggles() を renderArticles() の最後で呼び出し。
+-
+-docs/icons/ に4つのSVGを配置（なければ作成）。
+-
+-変更をコミットし、GitHub Pagesで反映を確認。
+-
+-確認チェックリスト
+-
+-PC幅でカードが2〜3列以上に並ぶ（.articles-grid が効いている）。 
+-GitHub
+-
+-参考/見送りがコンパクトカードに統一され、右端の縦ラベルや長い点線が消える（compact-card が反映）。 
+-GitHub
+-
+-上部のカテゴリーチップがカウント付きで表示され、クリックで各セクションへスムーズスクロール。 
+-GitHub
+-
+-各セクション見出しをクリック/Enter/Spaceで開閉できる（collapsed が切り替わる）。 
+-GitHub
+-
+-すべての外部リンクが target="_blank" rel="noopener"。
+-
+-ダークテーマでも文字コントラストが確保される（既存の [data-theme="dark"] 変数が効いていること） 
+-GitHub
+\ No newline at end of file
++# Role
++あなたは要件適合レビュアー兼フロントエンドQAリードです。確認待ちはせず、合意済み要件に合わせて即時改修を進めます。
++
++# Context
++- 対象サイト: https://awano27.github.io/new-ai-news-site/
++- ローカル: C:\Users\yoshitaka\new-ai-news-site
++- 参照要件: 「Daily AI News システム要件定義書（改善版）」に従う（収集→評価→ランキング→配信、Tier1/2、ペルソナ最適化、UI/ラベル、a11y/SEO、メタ/KPI 等）。
++
++# Bugs to add (Requirements Mismatch)
++P0:
++- 収集/評価パイプライン未動作で記事0件。画面の全カウンタ0。基幹フロー不接続。
++- ラベル付与・表示欠落（必読/注目が出ない）。フォールバック未実装。
++
++P1:
++- ソースのティア分類が機能せず「高信頼ソース=0」。
++- ペルソナ最適化（技術者/ビジネス）未反映。並び替えが不変。
++- 平均スコア計算・表示0%固定。統計カード不整合。
++- カード等高化／line-clamp未適用。ラベルピル＆ツールチップ未実装。
++- 外部リンクの rel="noopener" 未保証。
++
++P2:
++- 日本語フォントスタック最適化不足（和文向けスタック未適用）。
++- 出典の短文化（ドメイン抽出）未対応。
++- lang/OG/Twitter/meta description の網羅不足。
++
++# Tasks (do not ask for confirmation)
++1) data/ 配下
++   - `config/sources.json`（Tier1/2）を新設、`scripts/collect/enrich/score` を実装。
++   - `data/news.generated.json` を生成。ダミーを含め常時>=20件確保。必読/注目の強制昇格ロジックを実装（理由は labelReason に格納）。
++
++2) UI
++   - カード等高化と line-clamp（タイトル2行・要約3行）。ラベルピルとa11yツールチップ。
++   - 出典：ドメイン短文化。ファビコン枠（なければテキスト）。
++   - フォントスタック：BIZ UDPGothic/Meiryo/Yu Gothic UI → システムフォント連結。字間/行間を要件値に。
++
++3) ペルソナ・スコア
++   - エンジニア/ビジネス別スコアを計算・保持。UI切替でソートを切替。
++   - 統計カード（記事数/平均スコア/高信頼ソース）を `news.generated.json` から再計算。
++
++4) a11y/SEO
++   - すべての外部リンクへ `rel="noopener"`.
++   - `lang="ja"`, `meta description`, `og:*`, `twitter:*` を `index.html` に追加。
++
++5) CI
++   - `npm run news` で ①collect→②enrich→③score を実行し、Pagesへ反映。
++   - 監査コマンドを追加：`audit:links/axe/lh:mobile/lh:desktop/html`。
++
++# Acceptance Criteria
++- 画面に >=20件表示。必読>=1、注目>=1 が常に存在（枯渇時はフォールバック）。
++- 統計カードが実データと一致（記事数/平均スコア/高信頼ソース）。
++- カード崩れ無し、title 2行・summary 3行のクランプ。ラベルピル＆ツールチップ動作。
++- ペルソナ切替で順位が変化。
++- Lighthouse（モバイル）LCP≤2.5s / CLS≤0.1、axe違反0。
++- すべての外部リンクに rel="noopener"。lang/OG/metaが反映。
++
++# Output
++- 変更差分（git diff）を `patches/*.diff` で出力し、`BUGREPORT.md` に追記。
++- `VERIFY.md` に再現手順と監査コマンド、期待値を記載。

@@ -3,6 +3,11 @@
   "ai.googleblog.com": 0.9,
   "googleblog.com": 0.9,
   "anthropic.com": 0.9,
+  "ai.facebook.com": 0.9,
+  "cbinsights.com": 0.8,
+  "blogs.gartner.com": 0.8,
+  "xtech.nikkei.com": 0.8,
+  "theinformation.com": 0.7,
   "producthunt.com": 0.6,
   "techcrunch.com": 0.7,
   "venturebeat.com": 0.7,
@@ -13,4 +18,3 @@
   "twitter.com": 0.4,
   "default": 0.5
 }
-

@@ -416,7 +416,7 @@ class IntegratedCollector:
             return []
         
         rss_articles = []
-        cutoff_date = datetime.now() - timedelta(days=7)  # 7日以内の記事のみ
+        cutoff_date = datetime.utcnow() - timedelta(hours=48)  # 48時間以内のみ（naive UTC基準）
         
         for source_name, feed_config in self.rss_feeds.items():
             try:

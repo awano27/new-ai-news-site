@@ -46,6 +46,7 @@ async function collect(): Promise<RawItem[]> {
   const parser = new Parser({ timeout: 10000 });
   const items: RawItem[] = [];
   const MAX_PER_SOURCE = 20;
+  const MAX_AGE_HOURS = 48;
 
   for (const s of sources) {
     try {
@@ -58,6 +59,9 @@ async function collect(): Promise<RawItem[]> {
           const pub = e.isoDate || e.pubDate || '';
           const pubDate = pub ? new Date(pub) : new Date();
           const publishedAt = toISODate(pubDate);
+          // 48時間以上前のものは除外
+          const ageHours = Math.floor((Date.now() - pubDate.getTime()) / (1000*60*60));
+          if (ageHours > MAX_AGE_HOURS) continue;
           items.push({
             id: `rss_${shortId(s.name + '_' + url)}`,
             title,
@@ -97,4 +101,3 @@ main().catch(err => {
   console.error(err);
   process.exit(1);
 });
-

@@ -7,7 +7,13 @@
     "collect": "ts-node --transpile-only scripts/news/collect.ts",
     "enrich": "ts-node --transpile-only scripts/news/enrich.ts",
     "score": "ts-node --transpile-only scripts/news/score.ts",
-    "news": "npm run collect && npm run enrich && npm run score"
+    "news": "npm run collect && npm run enrich && npm run score",
+    "audit:links": "node scripts/audit/links.js",
+    "audit:html": "node scripts/audit/html.js",
+    "audit:axe": "AUDIT_URL=http://127.0.0.1:8080/ node scripts/audit/axe.js",
+    "lh:mobile": "lighthouse http://127.0.0.1:8080 --only-categories=performance,accessibility,seo,best-practices --preset=mobile --quiet --chrome-flags='--headless --no-sandbox'",
+    "lh:desktop": "lighthouse http://127.0.0.1:8080 --only-categories=performance,accessibility,seo,best-practices --preset=desktop --quiet --chrome-flags='--headless --no-sandbox'",
+    "serve:docs": "http-server docs -p 8080 -s"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -16,6 +22,10 @@
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "axe-core": "^4.9.1",
+    "http-server": "^14.1.1",
+    "lighthouse": "^12.0.0",
+    "puppeteer": "^22.10.0"
   }
 }

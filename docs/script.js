@@ -12,10 +12,16 @@
 
   let currentPersona = 'engineer';
   let filteredArticles = [];
+  const TIER1_DOMAINS = new Set(['openai.com','ai.googleblog.com','googleblog.com','anthropic.com','techcrunch.com','venturebeat.com']);
 
   function getPersonaScore(article) {
     const evalData = article.evaluation && article.evaluation[currentPersona];
-    return evalData ? evalData.total_score : 0;
+    if (evalData && typeof evalData.total_score === 'number') return evalData.total_score;
+    if (typeof article.score === 'number') {
+      const s = Math.max(0, Math.min(100, article.score));
+      return s / 100;
+    }
+    return 0;
   }
 
   function escapeHtml(text) {
@@ -66,6 +72,11 @@
     } catch(e) { return ''; }
   }
 
+  function faviconUrl(domain) {
+    if (!domain) return '';
+    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=32`;
+  }
+
   function createArticleCard(article) {
     const card = document.createElement('div');
     card.className = 'article-card';
@@ -81,16 +92,18 @@
     });
     const rec = getLabelFor(article);
     const recIcon = rec === 'consider' ? '<span class="icon info-icon"></span>' : (rec === 'skip' ? '<span class="icon skip-icon"></span>' : '');
-    const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
+    const domain = extractDomain(article.url || '') || article.sourceDomain || '';
+    const sourceText = domain || article.source || '';
     const tier = article.source_tier;
     const tierHtml = tier ? `<span class="source-tier tier-${tier}">${tierTexts[tier] || ''}</span>` : '';
     card.innerHTML = `
-      <div class="card-header"><span class="label-pill rec-${rec}" title="${getRecommendationDesc(rec)}">${getLabelText(rec)}</span></div>
+      <div class="card-header"><span class="label-pill rec-${rec}" title="${getRecommendationDesc(rec)}" aria-label="${getRecommendationDesc(rec)}">${getLabelText(rec)}</span></div>
       ${tierHtml}
       <h3 class="article-title">
         <a href="${article.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a>
       </h3>
       <div class="article-meta">
+        ${domain ? `<img class=\"favicon\" src=\"${faviconUrl(domain)}\" alt=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.style.display='none'\">` : ''}
         <span class="meta-source">${escapeHtml(sourceText)}</span>
         <span class="meta-sep">•</span>
         <span class="meta-date">${formatRelativeDate(article.publishedAt || article.published_date)}</span>
@@ -279,8 +292,59 @@
     totalEl && (totalEl.textContent = filteredArticles.length);
     const avgScore = filteredArticles.reduce((sum, art) => sum + getPersonaScore(art), 0) / (filteredArticles.length || 1);
     avgEl && (avgEl.textContent = Math.round(avgScore * 100) + '%');
-    const tier1Count = filteredArticles.filter(a => a.source_tier === 1).length;
+    const tier1Count = filteredArticles.filter(a => {
+      if (a.source_tier === 1) return true;
+      const dom = (a.sourceDomain || extractDomain(a.url || '') || a.source || '').toLowerCase();
+      return TIER1_DOMAINS.has(dom);
+    }).length;
     tier1El && (tier1El.textContent = tier1Count);
+  }
+
+  // Synthetic persona evaluations when missing (ensures persona toggle affects ranking)
+  function clamp01(n){ return Math.max(0, Math.min(1, n)); }
+  function daysFromNow(dateStr){
+    if (!dateStr) return 999;
+    const raw = String(dateStr).trim();
+    let d = new Date(raw);
+    if (isNaN(d.getTime())) {
+      d = /\d{4}-\d{2}-\d{2}$/.test(raw) ? new Date(`${raw}T00:00:00Z`) : new Date();
+    }
+    const now = new Date();
+    const diff = Math.floor((now - d) / (1000*60*60*24));
+    return diff < 0 ? 0 : diff;
+  }
+  function computeEngineerBreakdownClient(a){
+    const domain = (a.sourceDomain || extractDomain(a.url || '') || a.source || '').toLowerCase();
+    const trust = TIER1_DOMAINS.has(domain) ? 0.9 : 0.5;
+    const temporal = clamp01((30 - Math.min(30, daysFromNow(a.publishedAt || a.published_date))) / 30);
+    const text = (`${a.title} ${a.summary||a.content||''}`).toLowerCase();
+    let rel = 0; ['agent','agents','rag','latency','benchmark','release','model','inference','github','code','sample','tutorial','手順','導入','実装','開発'].forEach(k=>{ if(text.includes(k)) rel+=0.08; });
+    rel = Math.min(1, rel);
+    const quality = clamp01(0.6*trust + 0.4*rel);
+    const actionability = /(github|コード|サンプル|手順|チュートリアル|how to|guide|実装|導入)/i.test(text) ? 0.9 : 0.45*rel;
+    return { quality, relevance: rel, temporal, trust, actionability };
+  }
+  function computeBusinessBreakdownClient(a){
+    const domain = (a.sourceDomain || extractDomain(a.url || '') || a.source || '').toLowerCase();
+    const trust = TIER1_DOMAINS.has(domain) ? 0.9 : 0.5;
+    const temporal = clamp01((30 - Math.min(30, daysFromNow(a.publishedAt || a.published_date))) / 30);
+    const text = (`${a.title} ${a.summary||a.content||''}`).toLowerCase();
+    const relevance = /(roi|cost|コスト|売上|収益|採用|事業|市場|投資|影響|効率|生産性|導入|成功|ケーススタディ)/i.test(text) ? 0.9 : 0.4;
+    const quality = clamp01(0.5*trust + 0.5*relevance);
+    const actionability = /(導入|ロードマップ|戦略|ケーススタディ|事例|フレームワーク|テンプレート)/.test(text) ? 0.85 : 0.4;
+    return { quality, relevance, temporal, trust, actionability };
+  }
+  function breakdownAvg(b){ return (b.quality + b.relevance + b.temporal + b.trust + b.actionability) / 5; }
+  function ensureEvaluations(arr){
+    (arr||[]).forEach(a => {
+      a.evaluation = a.evaluation || {};
+      if (!a.evaluation.engineer) {
+        const eb = computeEngineerBreakdownClient(a); a.evaluation.engineer = { total_score: breakdownAvg(eb), breakdown: eb };
+      }
+      if (!a.evaluation.business) {
+        const bb = computeBusinessBreakdownClient(a); a.evaluation.business = { total_score: breakdownAvg(bb), breakdown: bb };
+      }
+    });
   }
 
   // Readability helpers
@@ -558,6 +622,11 @@
     const tryFetch = async (p) => {
       try { const r = await fetch(p, { cache: 'no-store' }); if (!r.ok) return null; const j = await r.json(); return Array.isArray(j) ? j : null; } catch { return null; }
     };
+    const isFresh = (it) => {
+      const raw = it?.publishedAt || it?.published_date; if (!raw) return false;
+      let d = new Date(raw); if (isNaN(d)) { d = /\d{4}-\d{2}-\d{2}$/.test(String(raw)) ? new Date(String(raw)+'T00:00:00Z') : new Date(0); }
+      const ageH = (Date.now() - d.getTime()) / 36e5; return ageH <= 48;
+    };
     const isValid = (arr) => {
       if (!Array.isArray(arr) || arr.length === 0) return false;
       let ok = 0;
@@ -575,8 +644,9 @@
         data = await tryFetch('./data/news.json');
       }
       if (isValid(data)) {
-        window.articles = data;
+        window.articles = data.filter(isFresh);
       }
+      ensureEvaluations(window.articles);
       filteredArticles = [...(window.articles || [])];
       initUI();
       renderArticles();

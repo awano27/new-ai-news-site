@@ -1,250 +1,39 @@
-主要な不具合の要点（原因と根拠）
-
-記事グリッドが1カラム化している
-styles.css の .articles-grid が display: block になっており、カードのグリッドが崩れます（本来は grid で自動段組にする） 
-GitHub
-
-参考/見送りの表示が「横長リスト＋点線」風に見え、統一感がない
-CSSには compact-list 用のカードスタイル（.compact-card, .compact-title, .compact-meta）が既に定義されているのに、JS側のテンプレートが適用されず不統一が生じています（compact-card.consider/skip のグラデーション指定も用意済み） 
-GitHub
-
-カテゴリーナビ（必読/注目/参考/見送り）の“チップ化”はCSSにあるが、JSでの生成/クリック挙動が足りない
-.rec-nav .nav-item のスタイルと各カテゴリ別の色分け・アイコン指定はCSSにあるが、要素の生成・#sec-<rec> へのスムーズスクロールなどのJS処理が未連動のため、UIが“飾り”になりがちです。 
-GitHub
-
-セクション開閉（collapsed/expanded）のCSSはあるが、JSの紐付けが薄い
-.rec-section.collapsed .rec-content { display: none; } などの状態クラスが定義されていますが、見出しクリックで確実に collapsed をトグルする処理が不足しています。 
-GitHub
-
-ラベル（必読/注目/参考/見送り）の見た目がセクションやカードで一致しない
-カード上部の「ラベルピル」用スタイル（.label-pill.rec-*）と、推奨度チップ（.rec-*）の両方がCSSに存在しており、JSの出力クラス付与が一致していない可能性があります。 
-GitHub
-
-Codex への具体的な修正指示（コピペ可）
-
-対象: docs/styles.css と docs/script.js
-目的: グリッド復元、参考/見送りを“コンパクトカード”に統一、カテゴリーナビの“チップ化”をJSで機能させる、見出しの開閉を確実に。
-
-1) グリッドを復元（docs/styles.css）
-
-/* Article grid - Improved spacing */ の定義を修正。.articles-grid を grid に戻す。
-
-/* 置換前（問題）: .articles-grid { display: block; ... } */
-/* 置換後（正） */
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0 3rem;
-}
-@media (max-width: 768px) {
-  .articles-grid { grid-template-columns: 1fr; }
-}
-
-
-根拠: 現状 display: block になっているため崩れる。CSSの他部分はカード前提で設計されている。 
-GitHub
-
-2) 参考/見送りを“コンパクトカード”に統一（docs/script.js）
-
-renderArticles() 内で groups.consider と groups.skip を出力する際、compact-list + compact-card のテンプレートを用いる。
-
-専用のミニテンプレート createCompactListItem(article) を追加し、左上にラベルピル、中央にタイトル、下段に出典＋日付を配置。
-
-既定CSSに合わせてクラスを付与（.compact-card ${rec} / .label-pill rec-${rec} / .compact-title / .compact-meta）。
-
-// 追加：compact-list用のテンプレート
-function createCompactListItem(article) {
-  const rec = getLabelFor(article); // 'consider' or 'skip'
-  const sourceText = article.sourceDomain || extractDomain(article.url || '') || article.source || '';
-  const li = document.createElement('div');
-  li.className = 'compact-item';
-  li.innerHTML = `
-    <div class="compact-card ${rec}">
-      <span class="label-pill rec-${rec}">${getLabelText(rec)}</span>
-      <a href="${escapeHtml(article.url)}" class="compact-title" target="_blank" rel="noopener">
-        ${escapeHtml(article.title)}
-      </a>
-      <div class="compact-meta">
-        <span class="compact-source">出典: ${escapeHtml(sourceText)}</span>
-        <span class="compact-date">・${formatRelativeDate(article.publishedAt || article.published_date)}</span>
-      </div>
-    </div>
-  `;
-  return li;
-}
-
-// 修正：renderArticles() の該当箇所
-// （must_read/recommended は既存のカード、consider/skip は compact-list を使う）
-const order = ['x','must_read','recommended','consider','skip'];
-order.forEach(rec => {
-  const items = groups[rec];
-  if (!items || items.length === 0) return;
-
-  const section = document.createElement('section');
-  section.className = `rec-section rec-${rec}` + (rec === 'skip' ? ' collapsed' : '');
-  section.dataset.rec = rec;
-  section.id = `sec-${rec}`;
-
-  const heading = document.createElement('h2');
-  heading.className = `rec-heading rec-${rec}`;
-  heading.setAttribute('role', 'button');
-  heading.setAttribute('tabindex', '0');
-  heading.dataset.rec = rec;
-  heading.innerHTML = `${getRecommendationHeading(rec)} <span class="meta"><span class="count">${items.length}件</span> <span class="caret">▾</span></span>`;
-  section.appendChild(heading);
-
-  const content = document.createElement('div');
-  content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
-
-  if (rec === 'must_read' || rec === 'recommended') {
-    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
-    sorted.forEach(article => content.appendChild(createArticleCard(article)));
-  } else {
-    const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
-    // 先頭N件のみ表示、残りは .extra に包んで折り畳み
-    const N = 6;
-    sorted.slice(0, N).forEach(a => content.appendChild(createCompactListItem(a)));
-    const extraWrap = document.createElement('div');
-    extraWrap.className = 'extra';
-    sorted.slice(N).forEach(a => extraWrap.appendChild(createCompactListItem(a)));
-    if (sorted.length > N) {
-      content.appendChild(extraWrap);
-      const btn = document.createElement('button');
-      btn.className = 'show-more';
-      btn.textContent = 'もっと見る';
-      btn.addEventListener('click', () => {
-        section.classList.toggle('expanded');
-        btn.textContent = section.classList.contains('expanded') ? '閉じる' : 'もっと見る';
-      });
-      content.appendChild(btn);
-    }
-  }
-
-  section.appendChild(content);
-  container.appendChild(section);
-});
-
-
-根拠: CSSには compact-list/compact-card が用意され、consider/skip 用の色や影も定義済み。JSが合わせて出せば整う。 
-GitHub
-
-3) カテゴリーナビ（チップ）の生成とスクロール連動（docs/script.js）
-
-ページ上部の .rec-nav に、data-rec を持つ .nav-item（必読/注目/参考/見送り）をJSで生成。カウントも表示。
-
-クリックで該当セクション #sec-<rec> へスムーズスクロール。
-
-現在のセクションを観測して .active を付け替え（IntersectionObserver）。
-
-function buildRecNav(groups) {
-  const nav = document.querySelector('.rec-nav .nav-row');
-  if (!nav) return;
-  nav.innerHTML = '';
-  const items = [
-    {rec:'must_read', label:'必読'},
-    {rec:'recommended', label:'注目'},
-    {rec:'consider', label:'参考'},
-    {rec:'skip', label:'見送り'}
-  ];
-  items.forEach(({rec,label}) => {
-    const el = document.createElement('button');
-    el.className = `nav-item ${rec}`;
-    el.dataset.rec = rec;
-    const count = (groups[rec] || []).length;
-    el.innerHTML = `<span class="icon"></span><span class="label">${label}</span><span class="count">${count}</span>`;
-    el.addEventListener('click', () => {
-      const sec = document.getElementById(`sec-${rec}`);
-      if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-    nav.appendChild(el);
-  });
-
-  // Active表示（現在位置に応じて）
-  const io = new IntersectionObserver((ents) => {
-    const visible = ents.filter(e => e.isIntersecting)
-                        .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    document.querySelectorAll('.rec-nav .nav-item').forEach(n => n.classList.remove('active'));
-    const btn = document.querySelector(`.rec-nav .nav-item.${visible.target.dataset.rec}`);
-    if (btn) btn.classList.add('active');
-  }, {rootMargin:'-30% 0px -60% 0px', threshold:[0, 0.25, 0.5, 0.75, 1]});
-
-  ['must_read','recommended','consider','skip'].forEach(rec => {
-    const sec = document.getElementById(`sec-${rec}`);
-    if (sec) io.observe(sec);
-  });
-}
-
-
-根拠: .rec-nav .nav-item の見た目・色分け・アイコンはCSSで定義済みなので、JSで生成と動作だけ付ける。 
-GitHub
-
-4) 見出しクリックで開閉を確実に（docs/script.js）
-function wireSectionToggles() {
-  document.querySelectorAll('.rec-heading').forEach(h => {
-    const sec = h.closest('.rec-section');
-    const toggle = () => {
-      sec.classList.toggle('collapsed');
-    };
-    h.addEventListener('click', toggle);
-    h.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-    });
-  });
-}
-
-
-根拠: .rec-section.collapsed .rec-content { display:none } などCSSは実装済み。JSでトグルすれば期待通り動く。 
-GitHub
-
-5) カードタイトルの2行クランプ維持とアクセシビリティ
-
-CSSの 2行クランプ は定義済み（.article-title a { -webkit-line-clamp: 2; ... }）。JS側のテンプレートで article-title クラスを外さないよう統一。 
-GitHub
-
-外部リンクは target="_blank" rel="noopener" を徹底。
-
-キーボード操作のため、見出しに role="button" と tabindex="0" を付与済みのまま維持。
-
-6) アイコンの配置ミスを防ぐ
-
-docs/icons/ に check.svg, star.svg, info.svg, close.svg を必ず追加。CSSは url('icons/...') を参照しているため、パス相違で404になるとチップの視認性が落ちる。 
-GitHub
-
-実装フロー（Codexに併記する指示）
-
-docs/styles.css を編集：.articles-grid の修正（上記CSS差し替え）。
-
-docs/script.js を編集：
-
-createCompactListItem() を追加。
-
-renderArticles() 内の consider/skip 出力ロジックを compact-list で置き換え、「もっと見る」 を実装。
-
-buildRecNav(groups) を追加し、renderArticles() の最後で呼び出し。
-
-wireSectionToggles() を renderArticles() の最後で呼び出し。
-
-docs/icons/ に4つのSVGを配置（なければ作成）。
-
-変更をコミットし、GitHub Pagesで反映を確認。
-
-確認チェックリスト
-
-PC幅でカードが2〜3列以上に並ぶ（.articles-grid が効いている）。 
-GitHub
-
-参考/見送りがコンパクトカードに統一され、右端の縦ラベルや長い点線が消える（compact-card が反映）。 
-GitHub
-
-上部のカテゴリーチップがカウント付きで表示され、クリックで各セクションへスムーズスクロール。 
-GitHub
-
-各セクション見出しをクリック/Enter/Spaceで開閉できる（collapsed が切り替わる）。 
-GitHub
-
-すべての外部リンクが target="_blank" rel="noopener"。
-
-ダークテーマでも文字コントラストが確保される（既存の [data-theme="dark"] 変数が効いていること） 
-GitHub
+scripts\run_integrated.ps1
+=== Daily AI News - Integrated Collect (X+RSS) ===
+Only last 48h / Ensure >=20 items
+STEP 1) Install Python deps (feedparser, requests)
+Requirement already satisfied: pip in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (25.2)
+Requirement already satisfied: feedparser in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (6.0.11)
+Requirement already satisfied: requests in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (2.32.5)
+Requirement already satisfied: sgmllib3k in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from feedparser) (1.0.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (3.4.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (2025.8.3)
+STEP 2) Run integrated build (scripts/integrated_build.py)
+Collecting X articles...
+X articles collected: 30
+Collecting RSS articles...
+Fetching from MIT Technology Review AI...
+Fetching from Reddit MachineLearning...
+Fetching from Reddit LocalLLaMA...
+Fetching from VentureBeat AI...
+No entries found for VentureBeat AI
+Fetching from TechCrunch AI...
+Fetching from Hacker News AI...
+RSS articles collected: 21
+Wrote 180 items to docs/data/news.generated.json and data/news.generated.json
+STEP 3) Run acceptance tests (incl. freshness)
+✅ count>=20 => count=180
+✅ has must_read
+✅ has recommended
+✅ avg engineer > 0 => 0.393
+✅ avg business > 0 => 0.563
+✅ tier1>0 => tier1=74
+✅ persona order differs
+✅ title 2-line clamp
+✅ summary 3-line clamp
+✅ meta/og/twitter
+All acceptance checks passed (static verification).
+✅ freshness: all items are within 48h
+DONE. Use serve_docs.bat to preview locally.

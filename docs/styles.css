@@ -310,6 +310,11 @@ h1, h2, h3 {
   gap: 0.4rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+.compact-card .compact-title { line-height: 1.5; }
+.compact-card .compact-meta { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.mini-highlight { color: var(--text-color); font-size: 0.85rem; opacity: 0.9; }
+.mini-bar { width: 66px; height: 6px; background: var(--border-color); border-radius: 9999px; display: inline-block; overflow: hidden; }
+.mini-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--success-color), var(--primary-color)); }
 .compact-card.consider { background: linear-gradient(90deg, #fef3c7, #fde68a 20%); }
 .compact-card.skip    { background: linear-gradient(90deg, #fee2e2, #fecaca 20%); }
 .compact-title { font-weight: 600; color: var(--text-color); text-decoration: none; }
@@ -390,6 +395,7 @@ h1, h2, h3 {
     border-top: 1px solid var(--border-color); /* タイトルとの区切り */
     background: rgba(0,0,0,0.02);
 }
+.article-meta .favicon { width: 16px; height: 16px; border-radius: 4px; flex: 0 0 auto; opacity: 0.9; }
 .article-meta .meta-sep { opacity: 0.5; }
 .article-meta time { color: var(--text-light); font-variant-numeric: tabular-nums; }
 .article-meta .meta-source::before { content: '出典: '; color: var(--text-light); }

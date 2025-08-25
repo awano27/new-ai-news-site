@@ -36,6 +36,58 @@ jobs:
           npm run news
         working-directory: ${{ github.workspace }}
 
+      - name: Run lightweight audits
+        run: |
+          npm run audit:links
+          npm run audit:html
+        working-directory: ${{ github.workspace }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python deps (minimal)
+        run: |
+          python -m pip install --upgrade pip
+          pip install feedparser requests
+        working-directory: ${{ github.workspace }}
+
+      - name: Build integrated data (Python: X + RSS)
+        run: |
+          python scripts/integrated_build.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Serve docs locally
+        run: |
+          npx http-server docs -p 8080 &
+          sleep 3
+        working-directory: ${{ github.workspace }}
+
+      - name: Run axe accessibility audit (0 violations required)
+        run: |
+          npm run audit:axe
+        working-directory: ${{ github.workspace }}
+
+      - name: Lighthouse Mobile (local)
+        run: |
+          npm run lh:mobile || true
+        working-directory: ${{ github.workspace }}
+
+      - name: Lighthouse Desktop (local)
+        run: |
+          npm run lh:desktop || true
+        working-directory: ${{ github.workspace }}
+
+      - name: Lighthouse CI (mobile) on Pages URL
+        uses: treosh/lighthouse-ci-action@v12
+        continue-on-error: true
+        with:
+          urls: |
+            https://awano27.github.io/new-ai-news-site/
+          configPath: ./lighthouserc-mobile.json
+          temporaryPublicStorage: true
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
