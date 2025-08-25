@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 type RawItem = {
   id: string; title: string; url: string; source: string; publishedAt: string; tags: string[];
@@ -96,4 +96,3 @@ async function main() {
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
-

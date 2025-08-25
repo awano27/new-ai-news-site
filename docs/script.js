@@ -123,7 +123,7 @@
 
     const groups = { x: xItems, must_read: [], recommended: [], consider: [], skip: [] };
     rest.forEach(article => {
-      const rec = (article.evaluation && article.evaluation[currentPersona] && article.evaluation[currentPersona].recommendation) || 'consider';
+      const rec = getLabelFor(article);
       (groups[rec] || groups.consider).push(article);
     });
 
