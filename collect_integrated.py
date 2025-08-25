@@ -7,7 +7,10 @@ X記事 + RSS記事の両方を統合表示
 import requests
 import json
 import csv
-import feedparser
+try:
+    import feedparser  # optional; skip RSS if unavailable
+except Exception:
+    feedparser = None
 from io import StringIO
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -408,6 +411,9 @@ class IntegratedCollector:
     def collect_rss_articles(self):
         """RSS記事を収集"""
         print("Collecting RSS articles...")
+        if feedparser is None:
+            print("feedparser が利用できないため、RSS収集をスキップします")
+            return []
         
         rss_articles = []
         cutoff_date = datetime.now() - timedelta(days=7)  # 7日以内の記事のみ
