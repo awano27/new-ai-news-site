@@ -6,7 +6,7 @@
 
 import re
 import hashlib
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 import math
 
@@ -205,15 +205,24 @@ class MultiLayerEvaluator:
     def calculate_temporal_value(self, article: Dict[str, Any]) -> float:
         """時間的価値評価（鮮度と持続的価値のバランス）"""
         
-        # 記事の日付を取得
-        pub_date_str = article.get('published_date', '')
+        # 記事の日付を取得（ISO8601 Z対応 + 日付のみの両対応）
+        pub_date_str = article.get('published_date', '') or article.get('publishedAt', '')
         if not pub_date_str:
             return 0.5  # デフォルト値
         
         try:
-            pub_date = datetime.strptime(pub_date_str, '%Y-%m-%d')
-            hours_since_publish = (datetime.now() - pub_date).total_seconds() / 3600
-        except:
+            raw = str(pub_date_str).strip()
+            if 'T' in raw:
+                if raw.endswith('Z'):
+                    raw = raw[:-1] + '+00:00'
+                pub_date = datetime.fromisoformat(raw)
+            else:
+                pub_date = datetime.fromisoformat(raw + 'T00:00:00+00:00')
+            if pub_date.tzinfo is None:
+                pub_date = pub_date.replace(tzinfo=timezone.utc)
+            now = datetime.now(timezone.utc)
+            hours_since_publish = (now - pub_date.astimezone(timezone.utc)).total_seconds() / 3600
+        except Exception:
             return 0.5
         
         # 1. 鮮度スコア（指数減衰）
