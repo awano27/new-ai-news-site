@@ -5,3 +5,4 @@ manual run after permissions: 2025-08-26T11:00:12Z
 manual run after disabling lighthouse: 2025-08-26T11:07:11Z
 manual run after allow-all: 2025-08-26T11:16:51Z
 manual run after allow-all: 2025-08-26T11:17:06Z
+manual pages-switch trigger: 2025-08-26T12:05:05Z
