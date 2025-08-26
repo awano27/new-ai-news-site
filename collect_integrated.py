@@ -376,19 +376,27 @@ class IntegratedCollector:
 
                 if not content or not username:
                     continue
+                if not created_at:
+                    # 日付が不明なものは鮮度判定ができないためスキップ
+                    continue
 
                 # AI-related filter
                 if not self.is_ai_related(content):
                     continue
 
                 article_url = first_link or tweet_link or (f"https://twitter.com/{username}")
+                parsed_date = self.parse_date(created_at)
+                if not parsed_date:
+                    # 解析不能な日時はスキップ（旧記事が残存しないように）
+                    continue
+
                 article = {
                     'id': f"x_{hashlib.md5(f'{username}_{content}'.encode()).hexdigest()[:8]}",
                     'title': self.extract_title(content),
                     'url': article_url,
                     'source': f'X(@{username})',
                     'source_tier': 2,
-                    'published_date': self.parse_date(created_at) if created_at else datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
+                    'published_date': parsed_date,
                     'content': content[:200] + "..." if len(content) > 200 else content,
                     'tags': ['x_post', 'ai_2025', 'community']
                 }
@@ -537,23 +545,40 @@ class IntegratedCollector:
         return content[:50] + "..." if len(content) > 50 else content
     
     def parse_date(self, date_string):
-        """日付文字列を解析し、ISO8601(Z, UTC)で返す。"""
+        """日付文字列を解析し、ISO8601(Z, UTC)で返す。失敗時は空文字を返す（鮮度フィルタで除外）。"""
         try:
             raw = str(date_string).strip()
+            # ISO8601 (Z/offset) や 'YYYY-MM-DDTHH:MM:SS' 系
             if 'T' in raw:
                 if raw.endswith('Z'):
                     raw = raw[:-1] + '+00:00'
                 dt = datetime.fromisoformat(raw)
                 if dt.tzinfo is None:
                     dt = dt.replace(tzinfo=timezone.utc)
-            else:
-                # 日付だけの場合はUTCの深夜0時とする
-                dt = datetime.fromisoformat(raw + 'T00:00:00+00:00')
-            # UTCに正規化
-            return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+                return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+            # 'YYYY/MM/DD HH:MM[:SS]' or 'YYYY-MM-DD HH:MM[:SS]' をJSTとして扱う
+            for fmt in ('%Y/%m/%d %H:%M:%S', '%Y/%m/%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M'):
+                try:
+                    dt = datetime.strptime(raw, fmt)
+                    # JST(+09:00) と仮定
+                    jst = timezone(timedelta(hours=9))
+                    dt = dt.replace(tzinfo=jst)
+                    return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+                except Exception:
+                    pass
+            # 'YYYY/MM/DD' or 'YYYY-MM-DD'（JST 00:00として扱う）
+            for fmt in ('%Y/%m/%d', '%Y-%m-%d'):
+                try:
+                    dt = datetime.strptime(raw, fmt)
+                    jst = timezone(timedelta(hours=9))
+                    dt = dt.replace(tzinfo=jst)
+                    return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+                except Exception:
+                    pass
+            return ''
         except Exception:
-            # 失敗時は現在時刻（UTC）のISO8601
-            return datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
+            # 失敗時は空文字（除外対象）
+            return ''
     
     def generate_html(self, all_articles):
         """統合記事データからHTMLを生成（改善版テンプレート使用）"""
