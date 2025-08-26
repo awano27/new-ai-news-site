@@ -37,6 +37,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          if ! command -v node >/dev/null 2>&1; then
+            echo "Node not found. Installing via apt..."
+            sudo apt-get update
+            sudo apt-get install -y nodejs npm
+          fi
           node -v || true
           npm -v || true
           npm ci || npm i
