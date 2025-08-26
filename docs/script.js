@@ -14,6 +14,19 @@
   let filteredArticles = [];
   const TIER1_DOMAINS = new Set(['openai.com','ai.googleblog.com','googleblog.com','anthropic.com','techcrunch.com','venturebeat.com']);
 
+  function trustRank(article) {
+    if (article && article.source_tier === 1) return 2;
+    try {
+      const dom = (article.sourceDomain || extractDomain(article.url || '') || (article.source || '')).toLowerCase();
+      return TIER1_DOMAINS.has(dom) ? 2 : 1;
+    } catch (e) { return 1; }
+  }
+  function sortByTrustThenScore(a, b) {
+    const t = trustRank(b) - trustRank(a);
+    if (t) return t;
+    return getPersonaScore(b) - getPersonaScore(a);
+  }
+
   function getPersonaScore(article) {
     const evalData = article.evaluation && article.evaluation[currentPersona];
     if (evalData && typeof evalData.total_score === 'number') return evalData.total_score;
@@ -136,7 +149,7 @@
     const xItems = filteredArticles.filter(isX);
     const rest = filteredArticles.filter(a => !isX(a));
 
-    const groups = { x: xItems, must_read: [], recommended: [], consider: [], skip: [] };
+    const groups = { x: xItems.sort(sortByTrustThenScore), must_read: [], recommended: [], consider: [], skip: [] };
     rest.forEach(article => {
       const rec = getLabelFor(article);
       (groups[rec] || groups.consider).push(article);
@@ -164,7 +177,7 @@
       content.className = 'rec-content ' + ((rec === 'must_read' || rec === 'recommended') ? 'cards-grid' : 'compact-list');
 
       if (rec === 'must_read' || rec === 'recommended') {
-        const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+        const sorted = items.sort(sortByTrustThenScore);
         const limitTop = 8;
         sorted.forEach((article, idx) => {
           const el = createArticleCard(article);
@@ -190,7 +203,7 @@
           content.appendChild(el);
         });
       } else {
-        const sorted = items.sort((a,b) => getPersonaScore(b) - getPersonaScore(a));
+        const sorted = items.sort(sortByTrustThenScore);
         const limit = rec === 'x' ? 10 : 5;
         sorted.forEach((article, idx) => {
           if (rec === 'consider' || rec === 'skip') {
@@ -647,6 +660,26 @@
         window.articles = data.filter(isFresh);
       }
       ensureEvaluations(window.articles);
+      // Fallback: ensure at least one must_read and one recommended exist
+      (function ensureLabelsClient(arr){
+        if (!Array.isArray(arr) || !arr.length) return;
+        const hasMust = arr.some(a => getLabelFor(a) === 'must_read');
+        const hasReco = arr.some(a => getLabelFor(a) === 'recommended');
+        if (hasMust && hasReco) return;
+        const isX = (a) => (typeof a.source === 'string' && a.source.startsWith('X(@')) || (Array.isArray(a.tags) && a.tags.includes('x_post'));
+        const rest = arr.filter(a => !isX(a)).sort(sortByTrustThenScore);
+        if (!hasMust && rest.length) {
+          rest[0].label = 'must_read';
+          rest[0].labelReason = 'client_fallback_promoted_top_to_must_read';
+        }
+        if (!hasReco) {
+          const cand = rest.find(it => getLabelFor(it) !== 'must_read') || rest[1];
+          if (cand) {
+            cand.label = 'recommended';
+            cand.labelReason = 'client_fallback_promoted_second_to_recommended';
+          }
+        }
+      })(window.articles);
       filteredArticles = [...(window.articles || [])];
       initUI();
       renderArticles();
