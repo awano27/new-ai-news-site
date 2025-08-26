@@ -545,9 +545,24 @@ class IntegratedCollector:
         return content[:50] + "..." if len(content) > 50 else content
     
     def parse_date(self, date_string):
-        """日付文字列を解析し、ISO8601(Z, UTC)で返す。失敗時は空文字を返す（鮮度フィルタで除外）。"""
+        """日付文字列を解析し、ISO8601(Z, UTC)で返す。失敗時は空文字を返す（鮮度フィルタで除外）。
+        対応例: 
+        - 2025-08-16T13:00:00Z / +09:00
+        - 2025-08-16 13:00:00 (JST想定 / JST / 日本時間)
+        - 2025/08/16 13:00 / 2025-08-16
+        """
         try:
             raw = str(date_string).strip()
+            # 全角スペースを半角へ
+            raw = raw.replace('\u3000', ' ')
+            # JST/日本語注釈を検出
+            jst_hint = False
+            lowered = raw.lower()
+            if 'jst' in lowered or '日本時間' in raw or 'jst想定' in lowered:
+                jst_hint = True
+                # 末尾の注釈を除去（JST/JST想定/日本時間など）
+                raw = __import__('re').sub(r'\s*(jst想定|jst|日本時間).*$', '', raw, flags=__import__('re').IGNORECASE).strip()
+
             # ISO8601 (Z/offset) や 'YYYY-MM-DDTHH:MM:SS' 系
             if 'T' in raw:
                 if raw.endswith('Z'):
@@ -556,22 +571,23 @@ class IntegratedCollector:
                 if dt.tzinfo is None:
                     dt = dt.replace(tzinfo=timezone.utc)
                 return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
-            # 'YYYY/MM/DD HH:MM[:SS]' or 'YYYY-MM-DD HH:MM[:SS]' をJSTとして扱う
+
+            # 'YYYY/MM/DD HH:MM[:SS]' or 'YYYY-MM-DD HH:MM[:SS]'
             for fmt in ('%Y/%m/%d %H:%M:%S', '%Y/%m/%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M'):
                 try:
                     dt = datetime.strptime(raw, fmt)
-                    # JST(+09:00) と仮定
-                    jst = timezone(timedelta(hours=9))
-                    dt = dt.replace(tzinfo=jst)
+                    tz = timezone(timedelta(hours=9)) if jst_hint else timezone.utc
+                    dt = dt.replace(tzinfo=tz)
                     return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
                 except Exception:
                     pass
-            # 'YYYY/MM/DD' or 'YYYY-MM-DD'（JST 00:00として扱う）
+
+            # 'YYYY/MM/DD' or 'YYYY-MM-DD'
             for fmt in ('%Y/%m/%d', '%Y-%m-%d'):
                 try:
                     dt = datetime.strptime(raw, fmt)
-                    jst = timezone(timedelta(hours=9))
-                    dt = dt.replace(tzinfo=jst)
+                    tz = timezone(timedelta(hours=9)) if jst_hint else timezone.utc
+                    dt = dt.replace(tzinfo=tz)
                     return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
                 except Exception:
                     pass
