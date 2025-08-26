@@ -1,200 +1,500 @@
 [
   {
-    "id": "rss_931e0b5f",
-    "title": "Announcing the OpenAI Learning Accelerator",
-    "url": "https://openai.com/global-affairs/learning-accelerator",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-25",
+    "id": "rss_dae5c3c6",
+    "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
+    "url": "https://arxiv.org/abs/2508.16889",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_2d227f1c",
-    "title": "Accelerating life sciences research",
-    "url": "https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-22",
+    "id": "rss_dae5c3a4",
+    "title": "Dream to Chat: Model-based Reinforcement Learning on Dialogues with User Belief Modeling",
+    "url": "https://arxiv.org/abs/2508.16876",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_9cabe700",
-    "title": "Scaling domain expertise in complex, regulated domains",
-    "url": "https://openai.com/index/blue-j",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-21",
+    "id": "rss_dae5c39e",
+    "title": "JUDGEBERT: Assessing Legal Meaning Preservation Between Sentences",
+    "url": "https://arxiv.org/abs/2508.16870",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_d76cc316",
-    "title": "Mixi reimagines communication with ChatGPT",
-    "url": "https://openai.com/index/mixi",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-20",
+    "id": "rss_dae5c386",
+    "title": "QFrCoLA: a Quebec-French Corpus of Linguistic Acceptability Judgments",
+    "url": "https://arxiv.org/abs/2508.16867",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_ce3f37d9",
-    "title": "Q&A with DoorDash’s CPO, Mariana Garavaglia",
-    "url": "https://openai.com/index/doordash-mariana-garavaglia",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-18",
+    "id": "rss_dae5c380",
+    "title": "Learning from Diverse Reasoning Paths with Routing and Collaboration",
+    "url": "https://arxiv.org/abs/2508.16861",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_3f112df9",
-    "title": "OpenAI’s letter to Governor Newsom on harmonized regulation",
-    "url": "https://openai.com/global-affairs/letter-to-governor-newsom-on-harmonized-regulation",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-12",
+    "id": "rss_dae5c32a",
+    "title": "If We May De-Presuppose: Robustly Verifying Claims through Presupposition-Free Question Decomposition",
+    "url": "https://arxiv.org/abs/2508.16838",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_158ce7d5",
-    "title": "Scaling accounting capacity with OpenAI",
-    "url": "https://openai.com/index/basis",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-12",
+    "id": "rss_dae5c329",
+    "title": "LLMs Learn Constructions That Humans Do Not Know",
+    "url": "https://arxiv.org/abs/2508.16837",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_d7abc61f",
-    "title": "First look at GPT-5",
-    "url": "https://openai.com/index/gpt-5-first-look",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5c325",
+    "title": "ReProCon: Scalable and Resource-Efficient Few-Shot Biomedical Named Entity Recognition",
+    "url": "https://arxiv.org/abs/2508.16833",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_3e61fdcb",
-    "title": "GPT-5 System Card",
-    "url": "https://openai.com/index/gpt-5-system-card",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5c004",
+    "title": "Assess and Prompt: A Generative RL Framework for Improving Engagement in Online Mental Health Communities",
+    "url": "https://arxiv.org/abs/2508.16788",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_7667bb41",
-    "title": "How Amgen uses GPT-5",
-    "url": "https://openai.com/index/gpt-5-amgen",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bfc0",
+    "title": "Toward Socially Aware Vision-Language Models: Evaluating Cultural Competence Through Multimodal Story Generation",
+    "url": "https://arxiv.org/abs/2508.16762",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_5a6f4f59",
-    "title": "How Cursor uses GPT-5",
-    "url": "https://openai.com/index/gpt-5-cursor",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bfa6",
+    "title": "How Good are LLM-based Rerankers? An Empirical Analysis of State-of-the-Art Reranking Models",
+    "url": "https://arxiv.org/abs/2508.16757",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_f31ed21a",
-    "title": "From hard refusals to safe-completions: toward output-centric safety training",
-    "url": "https://openai.com/index/gpt-5-safe-completions",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bfa2",
+    "title": "GAICo: A Deployed and Extensible Framework for Evaluating Diverse and Multimodal Generative AI Outputs",
+    "url": "https://arxiv.org/abs/2508.16753",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_9f8769b9",
-    "title": "Introducing GPT-5",
-    "url": "https://openai.com/index/introducing-gpt-5",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bf4b",
+    "title": "Error Reflection Prompting: Can Large Language Models Successfully Understand Errors?",
+    "url": "https://arxiv.org/abs/2508.16729",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_3acd19a",
-    "title": "Medical research with GPT-5",
-    "url": "https://openai.com/index/gpt-5-medical-research",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bf0b",
+    "title": "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
+    "url": "https://arxiv.org/abs/2508.16707",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_cb78101",
-    "title": "Creative writing with GPT-5",
-    "url": "https://openai.com/index/gpt-5-creative-writing",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bf09",
+    "title": "Assessing Consciousness-Related Behaviors in Large Language Models Using the Maze Test",
+    "url": "https://arxiv.org/abs/2508.16705",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_8939281e",
-    "title": "Coding and design with GPT-5",
-    "url": "https://openai.com/index/gpt-5-coding-design",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bc61",
+    "title": "QueryBandits for Hallucination Mitigation: Exploiting Semantic Features for No-Regret Rewriting",
+    "url": "https://arxiv.org/abs/2508.16697",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_1696a47e",
-    "title": "GPT-5 and the new era of work",
-    "url": "https://openai.com/index/gpt-5-new-era-of-work",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bc5f",
+    "title": "Do Cognitively Interpretable Reasoning Traces Improve LLM Performance?",
+    "url": "https://arxiv.org/abs/2508.16695",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_90fdc401",
-    "title": "Introducing GPT-5 for developers",
-    "url": "https://openai.com/index/introducing-gpt-5-for-developers",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-07",
+    "id": "rss_dae5bc02",
+    "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+    "url": "https://arxiv.org/abs/2508.16665",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_41e93b3b",
-    "title": "Providing ChatGPT to the Entire U.S. Federal Workforce",
-    "url": "https://openai.com/index/providing-chatgpt-to-the-entire-us-federal-workforce",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-06",
+    "id": "rss_dae5bba6",
+    "title": "Cognitive Decision Routing in Large Language Models: When to Think Fast, When to Think Slow",
+    "url": "https://arxiv.org/abs/2508.16636",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_78734bdd",
-    "title": "gpt-oss-120b & gpt-oss-20b Model Card",
-    "url": "https://openai.com/index/gpt-oss-model-card",
-    "source": "OpenAI Blog",
-    "publishedAt": "2025-08-05",
+    "id": "rss_dae5bb46",
+    "title": "GreenTEA: Gradient Descent with Topic-modeling and Evolutionary Auto-prompting",
+    "url": "https://arxiv.org/abs/2508.16603",
+    "source": "arXiv cs.CL",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a569",
+    "title": "CALR: Corrective Adaptive Low-Rank Decomposition for Efficient Large Language Model Layer Compression",
+    "url": "https://arxiv.org/abs/2508.16680",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a551",
+    "title": "Recall-Extend Dynamics: Enhancing Small Language Models through Controlled Exploration and Refined Offline Integration",
+    "url": "https://arxiv.org/abs/2508.16677",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a550",
+    "title": "WISCA: A Lightweight Model Transition Method to Improve LLM Training via Weight Scaling",
+    "url": "https://arxiv.org/abs/2508.16676",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a512",
+    "title": "OASIS: Open-world Adaptive Self-supervised and Imbalanced-aware System",
+    "url": "https://arxiv.org/abs/2508.16656",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a511",
+    "title": "A Laplace diffusion-based transformer model for heart rate forecasting within daily activity context",
+    "url": "https://arxiv.org/abs/2508.16655",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a50d",
+    "title": "HiCL: Hippocampal-Inspired Continual Learning",
+    "url": "https://arxiv.org/abs/2508.16651",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4f5",
+    "title": "LatentFlow: Cross-Frequency Experimental Flow Reconstruction from Sparse Pressure via Latent Mapping",
+    "url": "https://arxiv.org/abs/2508.16648",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4f4",
+    "title": "AdapSNE: Adaptive Fireworks-Optimized and Entropy-Guided Dataset Sampling for Edge DNN Training",
+    "url": "https://arxiv.org/abs/2508.16647",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4f0",
+    "title": "From Classical Probabilistic Latent Variable Models to Modern Generative AI: A Unified Perspective",
+    "url": "https://arxiv.org/abs/2508.16643",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4ee",
+    "title": "Enhancing Transformer-Based Foundation Models for Time Series Forecasting via Bagging, Boosting and Statistical Ensembles",
+    "url": "https://arxiv.org/abs/2508.16641",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4d2",
+    "title": "Few-shot Class-incremental Fault Diagnosis by Preserving Class-Agnostic Knowledge with Dual-Granularity Representations",
+    "url": "https://arxiv.org/abs/2508.16634",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4d1",
+    "title": "A Novel Unified Extended Matrix for Graph Signal Processing: Theory and Application",
+    "url": "https://arxiv.org/abs/2508.16633",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4d0",
+    "title": "Adaptive Variance-Penalized Continual Learning with Fisher Regularization",
+    "url": "https://arxiv.org/abs/2508.16632",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4cf",
+    "title": "Recurrent Transformer U-Net Surrogate for Flow Modeling and Data Assimilation in Subsurface Formations with Faults",
+    "url": "https://arxiv.org/abs/2508.16631",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4b8",
+    "title": "Learn to Memorize: Optimizing LLM-based Agents with Adaptive Memory Framework",
+    "url": "https://arxiv.org/abs/2508.16629",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4b2",
+    "title": "A Retrieval Augmented Spatio-Temporal Framework for Traffic Prediction",
+    "url": "https://arxiv.org/abs/2508.16623",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a4af",
+    "title": "STRelay: A Universal Spatio-Temporal Relaying Framework for Location Prediction with Future Spatiotemporal Contexts",
+    "url": "https://arxiv.org/abs/2508.16620",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a497",
+    "title": "Leveraging the Christoffel Function for Outlier Detection in Data Streams",
+    "url": "https://arxiv.org/abs/2508.16617",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a494",
+    "title": "CrystalDiT: A Diffusion Transformer for Crystal Generation",
+    "url": "https://arxiv.org/abs/2508.16614",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_46e5a491",
+    "title": "Quantum-Inspired DRL Approach with LSTM and OU Noise for Cut Order Planning Optimization",
+    "url": "https://arxiv.org/abs/2508.16611",
+    "source": "arXiv cs.LG",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d5553f",
+    "title": "L-XAIDS: A LIME-based eXplainable AI framework for Intrusion Detection Systems",
+    "url": "https://arxiv.org/abs/2508.17244",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d554fe",
+    "title": "MC3G: Model Agnostic Causally Constrained Counterfactual Generation",
+    "url": "https://arxiv.org/abs/2508.17221",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d554e0",
+    "title": "Reinforcement Learning enhanced Online Adaptive Clinical Decision Support via Digital Twin powered Policy and Treatment Effect optimized Reward",
+    "url": "https://arxiv.org/abs/2508.17212",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d554c6",
+    "title": "Explainable Counterfactual Reasoning in Depression Medication Selection at Multi-Levels (Personalized and Population)",
+    "url": "https://arxiv.org/abs/2508.17207",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d554bf",
+    "title": "Large Language Model-Based Automatic Formulation for Stochastic Optimization Models",
+    "url": "https://arxiv.org/abs/2508.17200",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d5521d",
+    "title": "From reactive to cognitive: brain-inspired spatial intelligence for embodied agents",
+    "url": "https://arxiv.org/abs/2508.17198",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d551fe",
+    "title": "PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs",
+    "url": "https://arxiv.org/abs/2508.17188",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d551f6",
+    "title": "MaRVL-QA: A Benchmark for Mathematical Reasoning over Visual Landscapes",
+    "url": "https://arxiv.org/abs/2508.17180",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d55102",
+    "title": "Rethinking How AI Embeds and Adapts to Human Values: Challenges and Opportunities",
+    "url": "https://arxiv.org/abs/2508.17104",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55d54e58",
+    "title": "PowerChain: Automating Distribution Grid Analysis with Agentic AI Workflows",
+    "url": "https://arxiv.org/abs/2508.17094",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-26",
     "tags": [
       "rss_feed"
     ]
