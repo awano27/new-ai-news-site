@@ -31,22 +31,24 @@ except Exception as e:  # pragma: no cover
     raise SystemExit(f"collect_integrated import error: {e}")
 
 
-def to_iso_date(s: str) -> str:
+def to_iso_datetime(s: str) -> str:
+    """Normalize various date strings to ISO8601 with timezone (UTC, Z)."""
     if not s:
-        return datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
     try:
-        if 'T' in s:
-            if s.endswith('Z'):
-                s = s[:-1] + '+00:00'
-            d = datetime.fromisoformat(s)
+        raw = str(s).strip()
+        if 'T' in raw:
+            if raw.endswith('Z'):
+                raw = raw[:-1] + '+00:00'
+            d = datetime.fromisoformat(raw)
         else:
-            d = datetime.fromisoformat(s + 'T00:00:00+00:00')
-        # Normalize to date in UTC
+            # Date only -> assume midnight UTC
+            d = datetime.fromisoformat(raw + 'T00:00:00+00:00')
         if d.tzinfo is None:
             d = d.replace(tzinfo=timezone.utc)
-        return d.astimezone(timezone.utc).date().isoformat()
+        return d.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
     except Exception:
-        return datetime.now(timezone.utc).strftime('%Y-%m-%d')
+        return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 
 
 def ensure_minimum_and_labels(items: list) -> list:
@@ -81,7 +83,7 @@ def ensure_minimum_and_labels(items: list) -> list:
     # 件数確保（20件）
     if len(sorted_items) < 20:
         need = 20 - len(sorted_items)
-        today = datetime.now(timezone.utc).date().isoformat()
+        now_iso = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
         for i in range(need):
             sorted_items.append({
                 'id': f'dummy_{i}',
@@ -90,7 +92,7 @@ def ensure_minimum_and_labels(items: list) -> list:
                 'url': 'https://example.com/',
                 'source': 'placeholder',
                 'source_tier': 2,
-                'publishedAt': today,
+                'publishedAt': now_iso,
                 'tags': ['placeholder'],
                 'label': 'consider',
                 'score': 45
@@ -116,7 +118,7 @@ def map_to_output(items: list) -> list:
             'summary': summary,
             'url': url,
             'source': src,
-            'publishedAt': to_iso_date(str(publishedAt)),
+            'publishedAt': to_iso_datetime(str(publishedAt)),
             'tags': tags,
             'label': label
         }
@@ -199,7 +201,7 @@ def collect_from_config_sources(sources: List[Dict[str, Any]], max_age_hours: in
                     'url': link,
                     'source': name,
                     'source_tier': tier,
-                    'publishedAt': d.date().isoformat(),
+                    'publishedAt': d.astimezone(timezone.utc).isoformat().replace('+00:00','Z'),
                     'tags': ['rss_feed']
                 })
         except Exception:
@@ -252,7 +254,7 @@ def scrape_ai_links(url: str, name: str, tier: int = 1, max_items: int = 10) -> 
                 'source': name,
                 'source_tier': tier,
                 # assume fresh (today) because many pages hide exact date; will pass 48h filter
-                'publishedAt': datetime.now(timezone.utc).date().isoformat(),
+                'publishedAt': datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
                 'tags': ['rss_feed']
             })
             if len(items) >= max_items:

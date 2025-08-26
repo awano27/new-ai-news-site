@@ -12,7 +12,7 @@ try:
 except Exception:
     feedparser = None
 from io import StringIO
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import hashlib
 import re
@@ -388,7 +388,7 @@ class IntegratedCollector:
                     'url': article_url,
                     'source': f'X(@{username})',
                     'source_tier': 2,
-                    'published_date': self.parse_date(created_at) if created_at else datetime.now().strftime('%Y-%m-%d'),
+                    'published_date': self.parse_date(created_at) if created_at else datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),
                     'content': content[:200] + "..." if len(content) > 200 else content,
                     'tags': ['x_post', 'ai_2025', 'community']
                 }
@@ -416,7 +416,7 @@ class IntegratedCollector:
             return []
         
         rss_articles = []
-        cutoff_date = datetime.utcnow() - timedelta(hours=48)  # 48時間以内のみ（naive UTC基準）
+        cutoff_date = datetime.now(timezone.utc) - timedelta(hours=48)  # 48時間以内のみ（UTC基準）
         
         for source_name, feed_config in self.rss_feeds.items():
             try:
@@ -433,12 +433,12 @@ class IntegratedCollector:
                     try:
                         # 日付チェック
                         if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                            pub_date = datetime(*entry.published_parsed[:6])
+                            pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc)
                             if pub_date < cutoff_date:
                                 continue
-                            date_str = pub_date.strftime('%Y-%m-%d')
+                            date_str = pub_date.astimezone(timezone.utc).isoformat().replace('+00:00','Z')
                         else:
-                            date_str = datetime.now().strftime('%Y-%m-%d')
+                            date_str = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
                         
                         # タイトルと内容を取得
                         title = getattr(entry, 'title', 'No Title')
@@ -537,19 +537,23 @@ class IntegratedCollector:
         return content[:50] + "..." if len(content) > 50 else content
     
     def parse_date(self, date_string):
-        """日付文字列を解析"""
+        """日付文字列を解析し、ISO8601(Z, UTC)で返す。"""
         try:
-            if 'T' in date_string:
-                if date_string.endswith('Z'):
-                    date_string = date_string[:-1] + '+00:00'
-                dt = datetime.fromisoformat(date_string)
-                if dt.tzinfo is not None:
-                    dt = dt.replace(tzinfo=None)
-                return dt.strftime('%Y-%m-%d')
+            raw = str(date_string).strip()
+            if 'T' in raw:
+                if raw.endswith('Z'):
+                    raw = raw[:-1] + '+00:00'
+                dt = datetime.fromisoformat(raw)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
             else:
-                return datetime.now().strftime('%Y-%m-%d')
-        except:
-            return datetime.now().strftime('%Y-%m-%d')
+                # 日付だけの場合はUTCの深夜0時とする
+                dt = datetime.fromisoformat(raw + 'T00:00:00+00:00')
+            # UTCに正規化
+            return dt.astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+        except Exception:
+            # 失敗時は現在時刻（UTC）のISO8601
+            return datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
     
     def generate_html(self, all_articles):
         """統合記事データからHTMLを生成（改善版テンプレート使用）"""
