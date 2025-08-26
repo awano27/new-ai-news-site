@@ -1,0 +1,26 @@
+name: CI Diag Minimal
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'trigger/diag-run.txt'
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sanity echo
+        run: |
+          echo "Runner OK"
+          uname -a
+          echo "Time: $(date -u)"
+          echo "Repo: $GITHUB_REPOSITORY"
+      - name: Print event info
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME ref: $GITHUB_REF"
+
