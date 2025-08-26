@@ -32,5 +32,11 @@
   {"type": "rss", "tier": 1, "name": "CB Insights Research", "url": "https://www.cbinsights.com/research/feed/"},
   {"type": "rss", "tier": 1, "name": "Gartner (AI tag)", "url": "https://blogs.gartner.com/tag/artificial-intelligence/feed/"},
   {"type": "rss", "tier": 1, "name": "Nikkei xTECH (AI)", "url": "https://xtech.nikkei.com/rss/ai.xml"},
-  {"type": "page", "tier": 1, "name": "The Information (Tech page)", "url": "https://www.theinformation.com/technology"}
+  {"type": "page", "tier": 1, "name": "The Information (Tech page)", "url": "https://www.theinformation.com/technology"},
+
+  {"type": "page", "tier": 2, "name": "ITmedia NEWS (AI)", "url": "https://www.itmedia.co.jp/news/subtop/ai/"},
+  {"type": "page", "tier": 2, "name": "Impress Watch", "url": "https://www.watch.impress.co.jp/"},
+  {"type": "page", "tier": 2, "name": "Gihyo.jp", "url": "https://gihyo.jp/"},
+  {"type": "page", "tier": 2, "name": "Qiita (AI tag)", "url": "https://qiita.com/tags/ai"},
+  {"type": "page", "tier": 2, "name": "Zenn (AI topic)", "url": "https://zenn.dev/topics/ai"}
 ]

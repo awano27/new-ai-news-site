@@ -56,7 +56,9 @@ def ensure_minimum_and_labels(items: list) -> list:
     TIER1_DOMAINS = {
         'openai.com','ai.googleblog.com','googleblog.com','anthropic.com',
         'techcrunch.com','venturebeat.com','deepmind.com','research.google','nature.com',
-        'science.org','arxiv.org','microsoft.com','blogs.nvidia.com','theinformation.com'
+        'science.org','arxiv.org','microsoft.com','blogs.nvidia.com','theinformation.com',
+        'xtech.nikkei.com','nikkei.com','itmedia.co.jp','impress.co.jp','gihyo.jp',
+        'qiita.com','zenn.dev','ledge.ai','ai-scholar.tech'
     }
 
     def extract_domain(url: str) -> str:
