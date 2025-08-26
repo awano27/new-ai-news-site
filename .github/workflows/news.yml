@@ -84,14 +84,14 @@ jobs:
           npm run lh:desktop || true
         working-directory: ${{ github.workspace }}
 
-      - name: Lighthouse CI (mobile) on Pages URL
-        uses: treosh/lighthouse-ci-action@v12
-        continue-on-error: true
-        with:
-          urls: |
-            https://awano27.github.io/new-ai-news-site/
-          configPath: ./lighthouserc-mobile.json
-          temporaryPublicStorage: true
+      #       - name: Lighthouse CI (mobile) on Pages URL
+      #         uses: treosh/lighthouse-ci-action@v12
+      #         continue-on-error: true
+      #         with:
+      #           urls: |
+      #             https://awano27.github.io/new-ai-news-site/
+      #           configPath: ./lighthouserc-mobile.json
+      #           temporaryPublicStorage: true
 
       - name: Commit updated data
         run: |
