@@ -12,37 +12,48 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install minimal dependencies
+      - name: Manual checkout (no external actions)
+        shell: bash
         run: |
-          python -m pip install --upgrade pip
-          pip install requests feedparser beautifulsoup4
-
-      - name: Run integrated collector
-        run: |
-          python collect_integrated.py
-
-      - name: Build integrated data (Python: X + RSS)
-        run: |
-          python scripts/integrated_build.py
-
-      - name: Commit updated docs
-        run: |
+          set -euo pipefail
+          token="${{ secrets.GITHUB_TOKEN }}"; repo="${{ github.repository }}"; sha="${{ github.sha }}"
+          git init .
+          git remote add origin "https://x-access-token:${token}@github.com/${repo}.git"
+          git fetch --depth 1 origin "$sha"
+          git checkout FETCH_HEAD
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Python env
+        shell: bash
+        run: |
+          python3 -V || true
+
+      - name: Install minimal dependencies
+        shell: bash
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install requests feedparser beautifulsoup4
+
+      - name: Run integrated collector
+        shell: bash
+        run: |
+          python3 collect_integrated.py
+
+      - name: Build integrated data (Python: X + RSS)
+        shell: bash
+        run: |
+          python3 scripts/integrated_build.py
+
+      - name: Commit updated docs
+        shell: bash
+        run: |
+          set -euo pipefail
           git add data docs/data docs || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "chore: refresh daily AI news (auto)"
-            git push
+            BR="${{ github.ref_name }}"; [ -z "$BR" ] && BR=main
+            git push origin HEAD:"$BR"
           fi
