@@ -52,40 +52,119 @@ def to_iso_datetime(s: str) -> str:
 
 
 def ensure_minimum_and_labels(items: list) -> list:
-    # ラベルが無い場合は engineer の recommendation を流用
+    # 高信頼ドメイン（Tier1相当）
+    TIER1_DOMAINS = {
+        'openai.com','ai.googleblog.com','googleblog.com','anthropic.com',
+        'techcrunch.com','venturebeat.com','deepmind.com','research.google','nature.com',
+        'science.org','arxiv.org','microsoft.com','blogs.nvidia.com','theinformation.com'
+    }
+
+    def extract_domain(url: str) -> str:
+        try:
+            from urllib.parse import urlparse
+            host = urlparse(url).hostname or ''
+            host = host.lower()
+            multi = ('co.jp','ne.jp','or.jp','ac.jp','go.jp','co.uk','org.uk','gov.uk')
+            if any(host.endswith(s) for s in multi):
+                ps = host.split('.')
+                return '.'.join(ps[-3:])
+            ps = host.split('.')
+            return '.'.join(ps[-2:]) if len(ps) >= 2 else host
+        except Exception:
+            return ''
+
+    def trust_rank(it: Dict[str, Any]) -> int:
+        if it.get('source_tier') == 1:
+            return 2
+        dom = (it.get('sourceDomain') or extract_domain(it.get('url','')) or it.get('source','')).lower()
+        return 2 if dom in TIER1_DOMAINS else 1
+
+    def is_x_item(it: Dict[str, Any]) -> bool:
+        if isinstance(it.get('tags'), list) and 'x_post' in it['tags']:
+            return True
+        return str(it.get('source','')).startswith('X(@')
+
+    def clamp01(x: float) -> float:
+        return max(0.0, min(1.0, x))
+
+    def persona_score(it: Dict[str, Any]) -> float:
+        ev = (it.get('evaluation') or {}).get('engineer') or {}
+        ts = ev.get('total_score')
+        if isinstance(ts, (int,float)):
+            return clamp01(float(ts))
+        if isinstance(it.get('score'), (int,float)):
+            return clamp01(float(it['score'])/100.0)
+        return clamp01(float(it.get('total_score') or 0.0))
+
+    def actionability(it: Dict[str, Any]) -> float:
+        ev = (it.get('evaluation') or {}).get('engineer') or {}
+        br = ev.get('breakdown') or {}
+        a = br.get('actionability')
+        if isinstance(a, (int,float)):
+            return clamp01(float(a))
+        # fallback: proxy from relevance
+        r = br.get('relevance')
+        if isinstance(r,(int,float)):
+            return clamp01(0.45*float(r))
+        return 0.3
+
+    # 値スコア: ペルソナ総合 + 信頼 + 実用性で評価（X/非Xとも公平）
+    for it in items:
+        v = 0.72*persona_score(it) + 0.10*(1 if trust_rank(it)==2 else 0) + 0.18*actionability(it)
+        it['_value_score'] = clamp01(v)
+
+    vals = [it.get('_value_score',0.0) for it in items]
+    vals_sorted = sorted(vals)
+    def percentile(p: float) -> float:
+        if not vals_sorted:
+            return 0.0
+        k = int(round((len(vals_sorted)-1) * p))
+        return vals_sorted[k]
+
+    # 動的閾値: must_read= max(0.75, P90), recommended= max(0.58, P70)
+    p90 = percentile(0.90)
+    p70 = percentile(0.70)
+    must_th = max(0.75, p90)
+    reco_th = max(0.58, p70)
+
+    # 既存ラベルが無いものに付与
     for it in items:
         if not it.get('label'):
-            rec = ((it.get('evaluation') or {}).get('engineer') or {}).get('recommendation')
-            it['label'] = rec or 'consider'
-    # 必読/注目の強制確保
+            if it['_value_score'] >= must_th:
+                it['label'] = 'must_read'
+                it['labelReason'] = 'dynamic_threshold_value_score_p90_or_min_075'
+            elif it['_value_score'] >= reco_th:
+                it['label'] = 'recommended'
+                it['labelReason'] = 'dynamic_threshold_value_score_p70_or_min_058'
+            else:
+                # 既存のエンジニア推奨があれば流用
+                rec = ((it.get('evaluation') or {}).get('engineer') or {}).get('recommendation')
+                it['label'] = rec or 'consider'
+
+    # 必読/注目の最低保証（非X優先で上位を補充）
     has_must = any(i.get('label') == 'must_read' for i in items)
     has_reco = any(i.get('label') == 'recommended' for i in items)
-    # スコアソート（engineer total_score 優先、なければ total_score/score）
-    def score_key(i):
-        ev = (i.get('evaluation') or {}).get('engineer') or {}
-        ts = ev.get('total_score')
-        if isinstance(ts, (int, float)):
-            return float(ts)
-        if isinstance(i.get('score'), (int, float)):
-            return float(i['score']) / 100.0
-        return float(i.get('total_score') or 0.0)
+    if not (has_must and has_reco):
+        non_x_sorted = sorted([i for i in items if not is_x_item(i)], key=lambda x: x.get('_value_score',0.0), reverse=True)
+        if not has_must and non_x_sorted:
+            non_x_sorted[0]['label'] = 'must_read'
+            non_x_sorted[0]['labelReason'] = 'dynamic_fallback_promoted_top_non_x_to_must_read'
+        if not has_reco:
+            cand = None
+            for it in non_x_sorted[1:]:
+                if it.get('label') != 'must_read':
+                    cand = it; break
+            cand = cand or (non_x_sorted[1] if len(non_x_sorted)>1 else (non_x_sorted[0] if non_x_sorted else None))
+            if cand:
+                cand['label'] = 'recommended'
+                cand['labelReason'] = 'dynamic_fallback_promoted_second_non_x_to_recommended'
 
-    sorted_items = sorted(items, key=score_key, reverse=True)
-    if not has_must and sorted_items:
-        sorted_items[0]['label'] = 'must_read'
-        sorted_items[0]['labelReason'] = 'fallback_promoted_top_to_must_read'
-    if not has_reco:
-        for it in sorted_items[1:]:
-            if it.get('label') != 'must_read':
-                it['label'] = 'recommended'
-                it['labelReason'] = 'fallback_promoted_second_to_recommended'
-                break
     # 件数確保（20件）
-    if len(sorted_items) < 20:
-        need = 20 - len(sorted_items)
+    if len(items) < 20:
+        need = 20 - len(items)
         now_iso = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
         for i in range(need):
-            sorted_items.append({
+            items.append({
                 'id': f'dummy_{i}',
                 'title': f'ダミー記事 {i+1}（プレースホルダー）',
                 'summary': 'データ不足時のプレースホルダー。最低表示件数を満たすために自動生成されました。',
@@ -95,9 +174,11 @@ def ensure_minimum_and_labels(items: list) -> list:
                 'publishedAt': now_iso,
                 'tags': ['placeholder'],
                 'label': 'consider',
-                'score': 45
+                'score': 45,
+                '_value_score': 0.45
             })
-    return sorted_items
+    # 値スコア順で返却
+    return sorted(items, key=lambda x: x.get('_value_score', 0.0), reverse=True)
 
 
 def map_to_output(items: list) -> list:
