@@ -1,5 +1,75 @@
 [
   {
+    "id": "rss_e4d9c8ea",
+    "title": "Google’s URL Context Grounding: Another Nail in RAG’s Coffin?",
+    "url": "https://towardsdatascience.com/googles-url-context-grounding-another-nail-in-rags-coffin/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_adb47098",
+    "title": "Positional Embeddings in Transformers: A Math Guide to RoPE & ALiBi",
+    "url": "https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_b30bc965",
+    "title": "Using Google’s LangExtract and Gemma for Structured Data Extraction",
+    "url": "https://towardsdatascience.com/using-googles-langextract-and-gemma-for-structured-data-extraction/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_4285dc63",
+    "title": "Plato’s Cave and the Shadows of Data",
+    "url": "https://towardsdatascience.com/platos-cave-and-the-shadows-of-data/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_23e14bea",
+    "title": "How to Develop Powerful Internal LLM Benchmarks",
+    "url": "https://towardsdatascience.com/how-to-develop-powerf-interal-llm-benchmarks/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_3c92788e",
+    "title": "Crescent library brings privacy to digital identity systems",
+    "url": "https://www.microsoft.com/en-us/research/blog/crescent-library-brings-privacy-to-digital-identity-systems/",
+    "source": "Microsoft Research Blog",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_bb859027",
+    "title": "Image editing in Gemini just got a major upgrade",
+    "url": "https://deepmind.google/discover/blog/image-editing-in-gemini-just-got-a-major-upgrade/",
+    "source": "DeepMind Blog",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
     "id": "rss_dae5c3c6",
     "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
     "url": "https://arxiv.org/abs/2508.16889",
@@ -423,76 +493,6 @@
     "id": "rss_55d554e0",
     "title": "Reinforcement Learning enhanced Online Adaptive Clinical Decision Support via Digital Twin powered Policy and Treatment Effect optimized Reward",
     "url": "https://arxiv.org/abs/2508.17212",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d554c6",
-    "title": "Explainable Counterfactual Reasoning in Depression Medication Selection at Multi-Levels (Personalized and Population)",
-    "url": "https://arxiv.org/abs/2508.17207",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d554bf",
-    "title": "Large Language Model-Based Automatic Formulation for Stochastic Optimization Models",
-    "url": "https://arxiv.org/abs/2508.17200",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d5521d",
-    "title": "From reactive to cognitive: brain-inspired spatial intelligence for embodied agents",
-    "url": "https://arxiv.org/abs/2508.17198",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d551fe",
-    "title": "PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs",
-    "url": "https://arxiv.org/abs/2508.17188",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d551f6",
-    "title": "MaRVL-QA: A Benchmark for Mathematical Reasoning over Visual Landscapes",
-    "url": "https://arxiv.org/abs/2508.17180",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d55102",
-    "title": "Rethinking How AI Embeds and Adapts to Human Values: Challenges and Opportunities",
-    "url": "https://arxiv.org/abs/2508.17104",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_55d54e58",
-    "title": "PowerChain: Automating Distribution Grid Analysis with Agentic AI Workflows",
-    "url": "https://arxiv.org/abs/2508.17094",
     "source": "arXiv cs.AI",
     "publishedAt": "2025-08-26",
     "tags": [

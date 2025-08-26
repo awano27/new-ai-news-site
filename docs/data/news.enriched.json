@@ -1,5 +1,89 @@
 [
   {
+    "id": "rss_e4d9c8ea",
+    "title": "Google’s URL Context Grounding: Another Nail in RAG’s Coffin? | Towards Data Science",
+    "url": "https://towardsdatascience.com/googles-url-context-grounding-another-nail-in-rags-coffin/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Google’s hot streak in AI-related releases continues unabated. Just a few days ago, it released a new tool for Gemini called URL context grounding. URL context grounding can be used stand-alone or combined with Google search grounding to conduct deep dives into internet content. What is URL conte…",
+    "sourceDomain": "towardsdatascience.com"
+  },
+  {
+    "id": "rss_adb47098",
+    "title": "Positional Embeddings in Transformers: A Math Guide to RoPE & ALiBi | Towards Data Science",
+    "url": "https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Learn APE, RoPE, and ALiBi positional embeddings for GPT — intuitions, math, PyTorch code, and experiments on TinyStories",
+    "sourceDomain": "towardsdatascience.com"
+  },
+  {
+    "id": "rss_b30bc965",
+    "title": "Using Google’s LangExtract and Gemma for Structured Data Extraction | Towards Data Science",
+    "url": "https://towardsdatascience.com/using-googles-langextract-and-gemma-for-structured-data-extraction/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Extracting structured information effectively and accurately from long unstructured text with LangExtract and LLMs",
+    "sourceDomain": "towardsdatascience.com"
+  },
+  {
+    "id": "rss_4285dc63",
+    "title": "Plato’s Cave and the Shadows of Data | Towards Data Science",
+    "url": "https://towardsdatascience.com/platos-cave-and-the-shadows-of-data/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "On truth, illusion, and the limits of what data can reveal",
+    "sourceDomain": "towardsdatascience.com"
+  },
+  {
+    "id": "rss_23e14bea",
+    "title": "How to Develop Powerful Internal LLM Benchmarks | Towards Data Science",
+    "url": "https://towardsdatascience.com/how-to-develop-powerf-interal-llm-benchmarks/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Learn how to compare LLMs using your own interal benchmark",
+    "sourceDomain": "towardsdatascience.com"
+  },
+  {
+    "id": "rss_3c92788e",
+    "title": "Crescent library brings privacy to digital identity systems",
+    "url": "https://www.microsoft.com/en-us/research/blog/crescent-library-brings-privacy-to-digital-identity-systems/",
+    "source": "Microsoft Research Blog",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Crescent helps make digital IDs private by preventing tracking across uses while letting users only disclose what’s necessary from their credentials:",
+    "sourceDomain": "microsoft.com"
+  },
+  {
+    "id": "rss_bb859027",
+    "title": "Image editing in Gemini just got a major upgrade",
+    "url": "https://deepmind.google/discover/blog/image-editing-in-gemini-just-got-a-major-upgrade/",
+    "source": "DeepMind Blog",
+    "publishedAt": "2025-08-26",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Transform images in amazing new ways with updated native image editing in the Gemini app.",
+    "sourceDomain": "deepmind.google"
+  },
+  {
     "id": "rss_dae5c3c6",
     "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
     "url": "https://arxiv.org/abs/2508.16889",
@@ -513,90 +597,6 @@
       "rss_feed"
     ],
     "summary": "Clinical decision support must adapt online under safety constraints. We present an online adaptive tool where reinforcement learning provides the policy, a patient digital twin provides the environment, and treatment effect defines the reward. The system initializes a batch-constrained policy fr…",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d554c6",
-    "title": "Explainable Counterfactual Reasoning in Depression Medication Selection at Multi-Levels (Personalized and Population)",
-    "url": "https://arxiv.org/abs/2508.17207",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Background: This study investigates how variations in Major Depressive Disorder (MDD) symptoms, quantified by the Hamilton Rating Scale for Depression (HAM-D), causally influence the prescription of SSRIs versus SNRIs. Methods: We applied explainable counterfactual reasoning with counterfactual e…",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d554bf",
-    "title": "Large Language Model-Based Automatic Formulation for Stochastic Optimization Models",
-    "url": "https://arxiv.org/abs/2508.17200",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "This paper presents the first integrated systematic study on the performance of large language models (LLMs), specifically ChatGPT, to automatically formulate and solve stochastic optimiza- tion problems from natural language descriptions. Focusing on three key categories, joint chance- constrain…",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d5521d",
-    "title": "From reactive to cognitive: brain-inspired spatial intelligence for embodied agents",
-    "url": "https://arxiv.org/abs/2508.17198",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Spatial cognition enables adaptive goal-directed behavior by constructing internal models of space. Robust biological systems consolidate spatial knowledge into three interconnected forms: \\textit{landmarks} for salient cues, \\textit{route knowledge} for movement trajectories, and \\textit{survey …",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d551fe",
-    "title": "PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs",
-    "url": "https://arxiv.org/abs/2508.17188",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Multi-agent systems built upon large language models (LLMs) have demonstrated remarkable capabilities in tackling complex compositional tasks. In this work, we apply this paradigm to the paper-to-poster generation problem, a practical yet time-consuming process faced by researchers preparing for …",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d551f6",
-    "title": "MaRVL-QA: A Benchmark for Mathematical Reasoning over Visual Landscapes",
-    "url": "https://arxiv.org/abs/2508.17180",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "A key frontier for Multimodal Large Language Models (MLLMs) is the ability to perform deep mathematical and spatial reasoning directly from images, moving beyond their established success in semantic description. Mathematical surface plots provide a rigorous testbed for this capability, as they i…",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d55102",
-    "title": "Rethinking How AI Embeds and Adapts to Human Values: Challenges and Opportunities",
-    "url": "https://arxiv.org/abs/2508.17104",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "The concepts of ``human-centered AI'' and ``value-based decision'' have gained significant attention in both research and industry. However, many critical aspects remain underexplored and require further investigation. In particular, there is a need to understand how systems incorporate human val…",
-    "sourceDomain": "arxiv.org"
-  },
-  {
-    "id": "rss_55d54e58",
-    "title": "PowerChain: Automating Distribution Grid Analysis with Agentic AI Workflows",
-    "url": "https://arxiv.org/abs/2508.17094",
-    "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Due to the rapid pace of electrification and decarbonization, distribution grid (DG) operation and planning are becoming more complex, necessitating advanced computational analyses to ensure grid reliability and resilience. State-of-the-art DG analyses rely on disparate workflows of complex model…",
     "sourceDomain": "arxiv.org"
   }
 ]
