@@ -1,48 +1,21 @@
+fix(time): preserve full ISO8601 timestamps with timezone for publish… #17
+Jobs
+Run details
+Triggered via push 6 minutes ago
+@awano27awano27
+pushed
+ 6a017d1
+main
+Status
+Failure
+Total duration
+–
+Artifacts
+–
+This workflow graph cannot be shown
+A graph will be generated the next time this workflow is run.
 
-PS C:\Users\yoshitaka\new-ai-news-site> scripts\run_integrated.ps1
-=== Daily AI News - Integrated Collect (X+RSS) ===
-Only last 48h / Ensure >=20 items
-STEP 1) Install Python deps (feedparser, requests)
-Requirement already satisfied: pip in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (25.2)
-Requirement already satisfied: feedparser in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (6.0.11)
-Requirement already satisfied: requests in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (2.32.5)
-Requirement already satisfied: sgmllib3k in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from feedparser) (1.0.0)
-Requirement already satisfied: charset_normalizer<4,>=2 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (3.4.2)
-Requirement already satisfied: idna<4,>=2.5 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (3.10)
-Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (2.5.0)
-Requirement already satisfied: certifi>=2017.4.17 in c:\users\yoshitaka\appdata\local\programs\python\python313\lib\site-packages (from requests) (2025.8.3)
-STEP 2) Run integrated build (scripts/integrated_build.py)
-Collecting X articles...
-X articles collected: 30
-Collecting RSS articles...
-Fetching from MIT Technology Review AI...
-Fetching from Reddit MachineLearning...
-Fetching from Reddit LocalLLaMA...
-Fetching from VentureBeat AI...
-No entries found for VentureBeat AI
-Fetching from TechCrunch AI...
-Fetching from Hacker News AI...
-RSS articles collected: 22
-C:\Users\yoshitaka\new-ai-news-site\scripts\integrated_build.py:145: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  now = datetime.utcnow()
-C:\Users\yoshitaka\new-ai-news-site\scripts\integrated_build.py:215: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  age_h = (datetime.utcnow() - d).total_seconds() / 3600.0
-Traceback (most recent call last):
-  File "C:\Users\yoshitaka\new-ai-news-site\scripts\integrated_build.py", line 229, in <module>
-    main()
-    ~~~~^^
-  File "C:\Users\yoshitaka\new-ai-news-site\scripts\integrated_build.py", line 218, in main
-    all_items = [it for it in (x_items + rss_items + cfg_rss) if is_fresh(it)]
-                                                                 ~~~~~~~~^^^^
-  File "C:\Users\yoshitaka\new-ai-news-site\scripts\integrated_build.py", line 215, in is_fresh
-    age_h = (datetime.utcnow() - d).total_seconds() / 3600.0
-             ~~~~~~~~~~~~~~~~~~^~~
-TypeError: can't subtract offset-naive and offset-aware datetimes
-integrated_build.py failed
-発生場所 C:\Users\yoshitaka\new-ai-news-site\scripts\run_integrated.ps1:27 文字:28
-+ if ($LASTEXITCODE -ne 0) { throw 'integrated_build.py failed' }
-+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : OperationStopped: (integrated_build.py failed:String) [], RuntimeException
-    + FullyQualifiedErrorId : integrated_build.py failed
-
-PS C:\Users\yoshitaka\new-ai-news-site> 
+Annotations
+1 error
+Invalid workflow file: .github/workflows/news.yml#L56
+You have an error in your yaml syntax on line 56
