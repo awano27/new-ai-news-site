@@ -1,602 +1,602 @@
 [
   {
-    "id": "rss_e4d9c8ea",
-    "title": "Google’s URL Context Grounding: Another Nail in RAG’s Coffin? | Towards Data Science",
-    "url": "https://towardsdatascience.com/googles-url-context-grounding-another-nail-in-rags-coffin/",
+    "id": "rss_373638a6",
+    "title": "The Math You Need to Pan and Tilt 360° Images | Towards Data Science",
+    "url": "https://towardsdatascience.com/math-to-tilt-pan-360-images/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Google’s hot streak in AI-related releases continues unabated. Just a few days ago, it released a new tool for Gemini called URL context grounding. URL context grounding can be used stand-alone or combined with Google search grounding to conduct deep dives into internet content. What is URL conte…",
+    "summary": "Panning a spherical image is just a horizontal roll, but tilting it vertically is much trickier. Let's see the math!",
     "sourceDomain": "towardsdatascience.com"
   },
   {
-    "id": "rss_adb47098",
-    "title": "Positional Embeddings in Transformers: A Math Guide to RoPE & ALiBi | Towards Data Science",
-    "url": "https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/",
+    "id": "rss_a7d52f82",
+    "title": "A Brief History of GPT Through Papers | Towards Data Science",
+    "url": "https://towardsdatascience.com/a-brief-history-of-gpt-through-papers/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Learn APE, RoPE, and ALiBi positional embeddings for GPT — intuitions, math, PyTorch code, and experiments on TinyStories",
+    "summary": "Language models are becoming really good. But where did they come from?",
     "sourceDomain": "towardsdatascience.com"
   },
   {
-    "id": "rss_b30bc965",
-    "title": "Using Google’s LangExtract and Gemma for Structured Data Extraction | Towards Data Science",
-    "url": "https://towardsdatascience.com/using-googles-langextract-and-gemma-for-structured-data-extraction/",
+    "id": "rss_a914993f",
+    "title": "Time Series Forecasting Made Simple (Part 4.1): Understanding Stationarity in a Time Series | Towards Data Science",
+    "url": "https://towardsdatascience.com/time-series-forecasting-made-simple-part-4-1-understanding-stationarity-in-a-time-series/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Extracting structured information effectively and accurately from long unstructured text with LangExtract and LLMs",
+    "summary": "An intuitive guide to stationarity in a time series",
     "sourceDomain": "towardsdatascience.com"
   },
   {
-    "id": "rss_4285dc63",
-    "title": "Plato’s Cave and the Shadows of Data | Towards Data Science",
-    "url": "https://towardsdatascience.com/platos-cave-and-the-shadows-of-data/",
+    "id": "rss_2f6ac00a",
+    "title": "Everything I Studied to Become a Machine Learning Engineer (No CS Background) | Towards Data Science",
+    "url": "https://towardsdatascience.com/everything-i-studied-to-become-a-machine-learning-engineer-no-cs-background/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "On truth, illusion, and the limits of what data can reveal",
+    "summary": "The books, courses, and resources I used in my journey.",
     "sourceDomain": "towardsdatascience.com"
   },
   {
-    "id": "rss_23e14bea",
-    "title": "How to Develop Powerful Internal LLM Benchmarks | Towards Data Science",
-    "url": "https://towardsdatascience.com/how-to-develop-powerf-interal-llm-benchmarks/",
+    "id": "rss_b8ed50f8",
+    "title": "Get AI-Ready: How to Prepare for a World of Agentic AI as Tech Professionals | Towards Data Science",
+    "url": "https://towardsdatascience.com/getting-ai-ready-preparing-for-a-world-of-agentic-ai-as-tech-professionals/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Learn how to compare LLMs using your own interal benchmark",
+    "summary": "Explore how Agentic AI is reshaping the tech careers, from data to decision-making, and how professionals can prepare for the future of work",
     "sourceDomain": "towardsdatascience.com"
   },
   {
-    "id": "rss_3c92788e",
-    "title": "Crescent library brings privacy to digital identity systems",
-    "url": "https://www.microsoft.com/en-us/research/blog/crescent-library-brings-privacy-to-digital-identity-systems/",
-    "source": "Microsoft Research Blog",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Crescent helps make digital IDs private by preventing tracking across uses while letting users only disclose what’s necessary from their credentials:",
-    "sourceDomain": "microsoft.com"
-  },
-  {
-    "id": "rss_bb859027",
-    "title": "Image editing in Gemini just got a major upgrade",
-    "url": "https://deepmind.google/discover/blog/image-editing-in-gemini-just-got-a-major-upgrade/",
-    "source": "DeepMind Blog",
-    "publishedAt": "2025-08-26",
-    "tags": [
-      "rss_feed"
-    ],
-    "summary": "Transform images in amazing new ways with updated native image editing in the Gemini app.",
-    "sourceDomain": "deepmind.google"
-  },
-  {
-    "id": "rss_dae5c3c6",
-    "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
-    "url": "https://arxiv.org/abs/2508.16889",
+    "id": "rss_dae6a4dd",
+    "title": "Tailored Teaching with Balanced Difficulty: Elevating Reasoning in Multimodal Chain-of-Thought via Prompt Curriculum",
+    "url": "https://arxiv.org/abs/2508.18673",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Large language models (LLMs) are increasingly used as judges of other models, yet it is unclear whether a judge can reliably infer the latent objective of the conversation it evaluates, especially when the goal is distributed across noisy, adversarial, multi-turn jailbreaks. We introduce OBJEX(MT…",
+    "summary": "The effectiveness of Multimodal Chain-of-Thought (MCoT) prompting is often limited by the use of randomly or manually selected examples. These examples fail to account for both model-specific knowledge distributions and the intrinsic complexity of the tasks, resulting in suboptimal and unstable m…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c3a4",
-    "title": "Dream to Chat: Model-based Reinforcement Learning on Dialogues with User Belief Modeling",
-    "url": "https://arxiv.org/abs/2508.16876",
+    "id": "rss_dae6a4a1",
+    "title": "Emotion Omni: Enabling Empathetic Speech Response Generation through Large Language Models",
+    "url": "https://arxiv.org/abs/2508.18655",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "World models have been widely utilized in robotics, gaming, and auto-driving. However, their applications on natural language tasks are relatively limited. In this paper, we construct the dialogue world model, which could predict the user's emotion, sentiment, and intention, and future utterances…",
+    "summary": "With the development of speech large language models (speech LLMs), users can now interact directly with assistants via speech. However, most existing models simply convert the response content into speech without fully understanding the rich emotional and paralinguistic cues embedded in the user…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c39e",
-    "title": "JUDGEBERT: Assessing Legal Meaning Preservation Between Sentences",
-    "url": "https://arxiv.org/abs/2508.16870",
+    "id": "rss_dae6a49d",
+    "title": "Breaking the Trade-Off Between Faithfulness and Expressiveness for Large Language Models",
+    "url": "https://arxiv.org/abs/2508.18651",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Simplifying text while preserving its meaning is a complex yet essential task, especially in sensitive domain applications like legal texts. When applied to a specialized field, like the legal domain, preservation differs significantly from its role in regular texts. This paper introduces FrJUDGE…",
+    "summary": "Grounding responses in external knowledge represents an effective strategy for mitigating hallucinations in Large Language Models (LLMs). However, current LLMs struggle to seamlessly integrate knowledge while simultaneously maintaining faithfulness (or fidelity) and expressiveness, capabilities t…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c386",
-    "title": "QFrCoLA: a Quebec-French Corpus of Linguistic Acceptability Judgments",
-    "url": "https://arxiv.org/abs/2508.16867",
+    "id": "rss_dae6a485",
+    "title": "Thinking Before You Speak: A Proactive Test-time Scaling Approach",
+    "url": "https://arxiv.org/abs/2508.18648",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Large and Transformer-based language models perform outstandingly in various downstream tasks. However, there is limited understanding regarding how these models internalize linguistic knowledge, so various linguistic benchmarks have recently been proposed to facilitate syntactic evaluation of la…",
+    "summary": "Large Language Models (LLMs) often exhibit deficiencies with complex reasoning tasks, such as maths, which we attribute to the discrepancy between human reasoning patterns and those presented in the LLMs' training data. When dealing with complex problems, humans tend to think carefully before exp…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c380",
-    "title": "Learning from Diverse Reasoning Paths with Routing and Collaboration",
-    "url": "https://arxiv.org/abs/2508.16861",
+    "id": "rss_dae6a40a",
+    "title": "Scaling Laws for Task-Stratified Knowledge in Post-Training Quantized Large Language Models",
+    "url": "https://arxiv.org/abs/2508.18609",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Advances in large language models (LLMs) significantly enhance reasoning capabilities but their deployment is restricted in resource-constrained scenarios. Knowledge distillation addresses this by transferring knowledge from powerful teacher models to compact and transparent students. However, ef…",
+    "summary": "Large language models (LLMs) present significant deployment challenges due to their scale, with post-training quantization (PTQ) emerging as a practical compression solution. However, a comprehensive understanding of how PTQ precisely impacts diverse LLM knowledge capabilities remains elusive, an…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c32a",
-    "title": "If We May De-Presuppose: Robustly Verifying Claims through Presupposition-Free Question Decomposition",
-    "url": "https://arxiv.org/abs/2508.16838",
+    "id": "rss_dae6a408",
+    "title": "A New NMT Model for Translating Clinical Texts from English to Spanish",
+    "url": "https://arxiv.org/abs/2508.18607",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Prior work has shown that presupposition in generated questions can introduce unverified assumptions, leading to inconsistencies in claim verification. Additionally, prompt sensitivity remains a significant challenge for large language models (LLMs), resulting in performance variance as high as 3…",
+    "summary": "Translating electronic health record (EHR) narratives from English to Spanish is a clinically important yet challenging task due to the lack of a parallel-aligned corpus and the abundant unknown words contained. To address such challenges, we propose \\textbf{NOOV} (for No OOV), a new neural machi…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c329",
-    "title": "LLMs Learn Constructions That Humans Do Not Know",
-    "url": "https://arxiv.org/abs/2508.16837",
+    "id": "rss_dae6a15f",
+    "title": "What do language models model? Transformers, automata, and the format of thought",
+    "url": "https://arxiv.org/abs/2508.18598",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "This paper investigates false positive constructions: grammatical structures which an LLM hallucinates as distinct constructions but which human introspection does not support. Both a behavioural probing task using contextual embeddings and a meta-linguistic probing task using prompts are include…",
+    "summary": "What do large language models actually model? Do they tell us something about human capacities, or are they models of the corpus we've trained them on? I give a non-deflationary defence of the latter position. Cognitive science tells us that linguistic capabilities in humans rely supralinear form…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c325",
-    "title": "ReProCon: Scalable and Resource-Efficient Few-Shot Biomedical Named Entity Recognition",
-    "url": "https://arxiv.org/abs/2508.16833",
+    "id": "rss_dae6a103",
+    "title": "The Mind's Eye: A Multi-Faceted Reward Framework for Guiding Visual Metaphor Generation",
+    "url": "https://arxiv.org/abs/2508.18569",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Named Entity Recognition (NER) in biomedical domains faces challenges due to data scarcity and imbalanced label distributions, especially with fine-grained entity types. We propose ReProCon, a novel few-shot NER framework that combines multi-prototype modeling, cosine-contrastive learning, and Re…",
+    "summary": "Visual metaphor generation is a challenging task that aims to generate an image given an input text metaphor. Inherently, it needs language understanding to bind a source concept with a target concept, in a way that preserves meaning while ensuring visual coherence. We propose a self-evaluating v…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5c004",
-    "title": "Assess and Prompt: A Generative RL Framework for Improving Engagement in Online Mental Health Communities",
-    "url": "https://arxiv.org/abs/2508.16788",
+    "id": "rss_dae6a0c5",
+    "title": "COMET-poly: Machine Translation Metric Grounded in Other Candidates",
+    "url": "https://arxiv.org/abs/2508.18549",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Online Mental Health Communities (OMHCs) provide crucial peer and expert support, yet many posts remain unanswered due to missing support attributes that signal the need for help. We present a novel framework that identifies these gaps and prompts users to enrich their posts, thereby improving en…",
+    "summary": "Automated metrics for machine translation attempt to replicate human judgment. Unlike humans, who often assess a translation in the context of multiple alternatives, these metrics typically consider only the source sentence and a single translation. This discrepancy in the evaluation setup may ne…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bfc0",
-    "title": "Toward Socially Aware Vision-Language Models: Evaluating Cultural Competence Through Multimodal Story Generation",
-    "url": "https://arxiv.org/abs/2508.16762",
+    "id": "rss_dae69d5b",
+    "title": "Principled Detection of Hallucinations in Large Language Models via Multiple Testing",
+    "url": "https://arxiv.org/abs/2508.18473",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "As Vision-Language Models (VLMs) achieve widespread deployment across diverse cultural contexts, ensuring their cultural competence becomes critical for responsible AI systems. While prior work has evaluated cultural awareness in text-only models and VLM object recognition tasks, no research has …",
+    "summary": "While Large Language Models (LLMs) have emerged as powerful foundational models to solve a variety of tasks, they have also been shown to be prone to hallucinations, i.e., generating responses that sound confident but are actually incorrect or even nonsensical. In this work, we formulate the prob…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bfa6",
-    "title": "How Good are LLM-based Rerankers? An Empirical Analysis of State-of-the-Art Reranking Models",
-    "url": "https://arxiv.org/abs/2508.16757",
+    "id": "rss_dae69d3f",
+    "title": "Integrating gender inclusivity into large language models via instruction tuning",
+    "url": "https://arxiv.org/abs/2508.18466",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "In this work, we present a systematic and comprehensive empirical evaluation of state-of-the-art reranking methods, encompassing large language model (LLM)-based, lightweight contextual, and zero-shot approaches, with respect to their performance in information retrieval tasks. We evaluate in tot…",
+    "summary": "Imagine a language with masculine, feminine, and neuter grammatical genders, yet, due to historical and political conventions, masculine forms are predominantly used to refer to men, women and mixed-gender groups. This is the reality of contemporary Polish. A social consequence of this unfair lin…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bfa2",
-    "title": "GAICo: A Deployed and Extensible Framework for Evaluating Diverse and Multimodal Generative AI Outputs",
-    "url": "https://arxiv.org/abs/2508.16753",
+    "id": "rss_dae69cff",
+    "title": "How Reliable are LLMs for Reasoning on the Re-ranking task?",
+    "url": "https://arxiv.org/abs/2508.18444",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "The rapid proliferation of Generative AI (GenAI) into diverse, high-stakes domains necessitates robust and reproducible evaluation methods. However, practitioners often resort to ad-hoc, non-standardized scripts, as common metrics are often unsuitable for specialized, structured outputs (e.g., au…",
+    "summary": "With the improving semantic understanding capability of Large Language Models (LLMs), they exhibit a greater awareness and alignment with human values, but this comes at the cost of transparency. Although promising results are achieved via experimental analysis, an in-depth understanding of the L…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bf4b",
-    "title": "Error Reflection Prompting: Can Large Language Models Successfully Understand Errors?",
-    "url": "https://arxiv.org/abs/2508.16729",
+    "id": "rss_dae69c86",
+    "title": "Can Out-of-Distribution Evaluations Uncover Reliance on Shortcuts? A Case Study in Question Answering",
+    "url": "https://arxiv.org/abs/2508.18407",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Prompting methods for language models, such as Chain-of-thought (CoT), present intuitive step-by-step processes for problem solving. These methodologies aim to equip models with a better understanding of the correct procedures for addressing a given task. Despite these advancements, CoT lacks the…",
+    "summary": "A majority of recent work in AI assesses models' generalization capabilities through the lens of performance on out-of-distribution (OOD) datasets. Despite their practicality, such evaluations build upon a strong assumption: that OOD evaluations can capture and reflect upon possible failures in a…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bf0b",
-    "title": "Sparse and Dense Retrievers Learn Better Together: Joint Sparse-Dense Optimization for Text-Image Retrieval",
-    "url": "https://arxiv.org/abs/2508.16707",
+    "id": "rss_dae699da",
+    "title": "Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning",
+    "url": "https://arxiv.org/abs/2508.18395",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Vision-Language Pretrained (VLP) models have achieved impressive performance on multimodal tasks, including text-image retrieval, based on dense representations. Meanwhile, Learned Sparse Retrieval (LSR) has gained traction in text-only settings due to its interpretability and efficiency with fas…",
+    "summary": "Probabilistic decoding in Large Language Models (LLMs) often yields inconsistent outputs, particularly on complex or long-form questions. Self-Consistency (SC) mitigates this for short-form QA by majority voting over exact strings, whereas Universal Self-Consistency (USC) and Weighted Unigram Con…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bf09",
-    "title": "Assessing Consciousness-Related Behaviors in Large Language Models Using the Maze Test",
-    "url": "https://arxiv.org/abs/2508.16705",
+    "id": "rss_dae699bd",
+    "title": "Integral Transformer: Denoising Attention, Not Too Much Not Too Little",
+    "url": "https://arxiv.org/abs/2508.18387",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "We investigate consciousness-like behaviors in Large Language Models (LLMs) using the Maze Test, challenging models to navigate mazes from a first-person perspective. This test simultaneously probes spatial awareness, perspective-taking, goal-directed behavior, and temporal sequencing-key conscio…",
+    "summary": "Softmax self-attention often assigns disproportionate weight to semantically uninformative tokens such as special tokens and punctuation, a phenomenon known as attention noise. While recent methods like Cog Attention and the Differential Transformer have addressed this by introducing negative att…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bc61",
-    "title": "QueryBandits for Hallucination Mitigation: Exploiting Semantic Features for No-Regret Rewriting",
-    "url": "https://arxiv.org/abs/2508.16697",
+    "id": "rss_dae699ba",
+    "title": "Backprompting: Leveraging Synthetic Production Data for Health Advice Guardrails",
+    "url": "https://arxiv.org/abs/2508.18384",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Advanced reasoning capabilities in Large Language Models (LLMs) have caused higher hallucination prevalence; yet most mitigation work focuses on after-the-fact filtering rather than shaping the queries that trigger them. We introduce QueryBandits, a bandit framework that designs rewrite strategie…",
+    "summary": "The pervasiveness of large language models (LLMs) in enterprise settings has also brought forth a significant amount of risks associated with their usage. Guardrails technologies aim to mitigate this risk by filtering LLMs' input/output text through various detectors. However, developing and main…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bc5f",
-    "title": "Do Cognitively Interpretable Reasoning Traces Improve LLM Performance?",
-    "url": "https://arxiv.org/abs/2508.16695",
+    "id": "rss_dae699b7",
+    "title": "Language-Specific Layer Matters: Efficient Multilingual Enhancement for Large Vision-Language Models",
+    "url": "https://arxiv.org/abs/2508.18381",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Recent progress in reasoning-oriented Large Language Models (LLMs) has been driven by introducing Chain-of-Thought (CoT) traces, where models generate intermediate reasoning traces before producing an answer. These traces, as in DeepSeek R1, are not only used to guide inference but also serve as …",
+    "summary": "Large vision-language models (LVLMs) have demonstrated exceptional capabilities in understanding visual information with human languages but also exhibit an imbalance in multilingual capabilities. In this work, we delve into the multilingual working pattern of LVLMs and identify a salient correla…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bc02",
-    "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
-    "url": "https://arxiv.org/abs/2508.16665",
+    "id": "rss_dae69904",
+    "title": "Not All Visitors are Bilingual: A Measurement Study of the Multilingual Web from an Accessibility Perspective",
+    "url": "https://arxiv.org/abs/2508.18328",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Test-time scaling (TTS) has emerged as a new frontier for scaling the performance of Large Language Models. In test-time scaling, by using more computational resources during inference, LLMs can improve their reasoning process and task performance. Several approaches have emerged for TTS such as …",
+    "summary": "English is the predominant language on the web, powering nearly half of the world's top ten million websites. Support for multilingual content is nevertheless growing, with many websites increasingly combining English with regional or native languages in both visible content and hidden metadata. …",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bba6",
-    "title": "Cognitive Decision Routing in Large Language Models: When to Think Fast, When to Think Slow",
-    "url": "https://arxiv.org/abs/2508.16636",
+    "id": "rss_dae698fd",
+    "title": "LLMs Can't Handle Peer Pressure: Crumbling under Multi-Agent Social Interactions",
+    "url": "https://arxiv.org/abs/2508.18321",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Large Language Models (LLMs) face a fundamental challenge in deciding when to rely on rapid, intuitive responses versus engaging in slower, more deliberate reasoning. Inspired by Daniel Kahneman's dual-process theory and his insights on human cognitive biases, we propose a novel Cognitive Decisio…",
+    "summary": "Large language models (LLMs) are increasingly deployed in multi-agent systems (MAS) as components of collaborative intelligence, where peer interactions dynamically shape individual decision-making. Although prior work has focused on conformity bias, we extend the analysis to examine how LLMs for…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_dae5bb46",
-    "title": "GreenTEA: Gradient Descent with Topic-modeling and Evolutionary Auto-prompting",
-    "url": "https://arxiv.org/abs/2508.16603",
+    "id": "rss_dae69614",
+    "title": "Semantic Attractors and the Emergence of Meaning: Towards a Teleological Model of AGI",
+    "url": "https://arxiv.org/abs/2508.18290",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "High-quality prompts are crucial for Large Language Models (LLMs) to achieve exceptional performance. However, manually crafting effective prompts is labor-intensive and demands significant domain expertise, limiting its scalability. Existing automatic prompt optimization methods either extensive…",
+    "summary": "This essay develops a theoretical framework for a semantic Artificial General Intelligence (AGI) based on the notion of semantic attractors in complex-valued meaning spaces. Departing from current transformer-based language models, which operate on statistical next-token prediction, we explore a …",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a569",
-    "title": "CALR: Corrective Adaptive Low-Rank Decomposition for Efficient Large Language Model Layer Compression",
-    "url": "https://arxiv.org/abs/2508.16680",
+    "id": "rss_46e68970",
+    "title": "Data Augmentation Improves Machine Unlearning",
+    "url": "https://arxiv.org/abs/2508.18502",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Large Language Models (LLMs) present significant deployment challenges due to their immense size and computational requirements. Model compression techniques are essential for making these models practical for resource-constrained environments. A prominent compression strategy is low-rank factori…",
+    "summary": "Machine Unlearning (MU) aims to remove the influence of specific data from a trained model while preserving its performance on the remaining data. Although a few works suggest connections between memorisation and augmentation, the role of systematic augmentation design in MU remains under-investi…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a551",
-    "title": "Recall-Extend Dynamics: Enhancing Small Language Models through Controlled Exploration and Refined Offline Integration",
-    "url": "https://arxiv.org/abs/2508.16677",
+    "id": "rss_46e6868a",
+    "title": "DRTA: Dynamic Reward Scaling for Reinforcement Learning in Time Series Anomaly Detection",
+    "url": "https://arxiv.org/abs/2508.18474",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Many existing studies have achieved significant improvements in the reasoning capabilities of large language models (LLMs) through reinforcement learning with verifiable rewards (RLVR), while the enhancement of reasoning abilities in small language models (SLMs) has not yet been sufficiently expl…",
+    "summary": "Anomaly detection in time series data is important for applications in finance, healthcare, sensor networks, and industrial monitoring. Traditional methods usually struggle with limited labeled data, high false-positive rates, and difficulty generalizing to novel anomaly types. To overcome these …",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a550",
-    "title": "WISCA: A Lightweight Model Transition Method to Improve LLM Training via Weight Scaling",
-    "url": "https://arxiv.org/abs/2508.16676",
+    "id": "rss_46e68669",
+    "title": "VERIRL: Boosting the LLM-based Verilog Code Generation via Reinforcement Learning",
+    "url": "https://arxiv.org/abs/2508.18462",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Transformer architecture gradually dominates the LLM field. Recent advances in training optimization for Transformer-based large language models (LLMs) primarily focus on architectural modifications or optimizer adjustments. However, these approaches lack systematic optimization of weight pattern…",
+    "summary": "Recent advancements in code generation have shown remarkable success across software domains, yet hardware description languages (HDLs) such as Verilog remain underexplored due to their concurrency semantics, syntactic rigidity, and simulation complexity. In this work, we address these challenges…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a512",
-    "title": "OASIS: Open-world Adaptive Self-supervised and Imbalanced-aware System",
-    "url": "https://arxiv.org/abs/2508.16656",
+    "id": "rss_46e685ee",
+    "title": "Enhancing Trust-Region Bayesian Optimization via Newton Methods",
+    "url": "https://arxiv.org/abs/2508.18423",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "The expansion of machine learning into dynamic environments presents challenges in handling open-world problems where label shift, covariate shift, and unknown classes emerge. Post-training methods have been explored to address these challenges, adapting models to newly emerging data. However, th…",
+    "summary": "Bayesian Optimization (BO) has been widely applied to optimize expensive black-box functions while retaining sample efficiency. However, scaling BO to high-dimensional spaces remains challenging. Existing literature proposes performing standard BO in multiple local trust regions (TuRBO) for heter…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a511",
-    "title": "A Laplace diffusion-based transformer model for heart rate forecasting within daily activity context",
-    "url": "https://arxiv.org/abs/2508.16655",
+    "id": "rss_46e685eb",
+    "title": "LLM-Driven Intrinsic Motivation for Sparse Reward Reinforcement Learning",
+    "url": "https://arxiv.org/abs/2508.18420",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "With the advent of wearable Internet of Things (IoT) devices, remote patient monitoring (RPM) emerged as a promising solution for managing heart failure. However, the heart rate can fluctuate significantly due to various factors, and without correlating it to the patient's actual physical activit…",
+    "summary": "This paper explores the combination of two intrinsic motivation strategies to improve the efficiency of reinforcement learning (RL) agents in environments with extreme sparse rewards, where traditional learning struggles due to infrequent positive feedback. We propose integrating Variational Stat…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a50d",
-    "title": "HiCL: Hippocampal-Inspired Continual Learning",
-    "url": "https://arxiv.org/abs/2508.16651",
+    "id": "rss_46e685b5",
+    "title": "Low-Rank Tensor Decompositions for the Theory of Neural Networks",
+    "url": "https://arxiv.org/abs/2508.18408",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "We propose HiCL, a novel hippocampal-inspired dual-memory continual learning architecture designed to mitigate catastrophic forgetting by using elements inspired by the hippocampal circuitry. Our system encodes inputs through a grid-cell-like layer, followed by sparse pattern separation using a d…",
+    "summary": "The groundbreaking performance of deep neural networks (NNs) promoted a surge of interest in providing a mathematical basis to deep learning theory. Low-rank tensor decompositions are specially befitting for this task due to their close connection to NNs and their rich theoretical results. Differ…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4f5",
-    "title": "LatentFlow: Cross-Frequency Experimental Flow Reconstruction from Sparse Pressure via Latent Mapping",
-    "url": "https://arxiv.org/abs/2508.16648",
+    "id": "rss_46e682cb",
+    "title": "DualSparse-MoE: Coordinating Tensor/Neuron-Level Sparsity with Expert Partition and Reconstruction",
+    "url": "https://arxiv.org/abs/2508.18376",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Acquiring temporally high-frequency and spatially high-resolution turbulent wake flow fields in particle image velocimetry (PIV) experiments remains a significant challenge due to hardware limitations and measurement noise. In contrast, temporal high-frequency measurements of spatially sparse wal…",
+    "summary": "Mixture of Experts (MoE) has become a mainstream architecture for building Large Language Models (LLMs) by reducing per-token computation while enabling model scaling. It can be viewed as partitioning a large Feed-Forward Network (FFN) at the tensor level into fine-grained sub-FFNs, or experts, a…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4f4",
-    "title": "AdapSNE: Adaptive Fireworks-Optimized and Entropy-Guided Dataset Sampling for Edge DNN Training",
-    "url": "https://arxiv.org/abs/2508.16647",
+    "id": "rss_46e68251",
+    "title": "Linear cost mutual information estimation and independence test of similar performance as HSIC",
+    "url": "https://arxiv.org/abs/2508.18338",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Training deep neural networks (DNNs) directly on edge devices has attracted increasing attention, as it offers promising solutions to challenges such as domain adaptation and privacy preservation. However, conventional DNN training typically requires large-scale datasets, which imposes prohibitiv…",
+    "summary": "Evaluation of statistical dependencies between two data samples is a basic problem of data science/machine learning, and HSIC (Hilbert-Schmidt Information Criterion)~\\cite{HSIC} is considered the state-of-art method. However, for size $n$ data sample it requires multiplication of $n\\times n$ matr…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4f0",
-    "title": "From Classical Probabilistic Latent Variable Models to Modern Generative AI: A Unified Perspective",
-    "url": "https://arxiv.org/abs/2508.16643",
+    "id": "rss_46e68213",
+    "title": "ZTFed-MAS2S: A Zero-Trust Federated Learning Framework with Verifiable Privacy and Trust-Aware Aggregation for Wind Power Data Imputation",
+    "url": "https://arxiv.org/abs/2508.18318",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "From large language models to multi-modal agents, Generative Artificial Intelligence (AI) now underpins state-of-the-art systems. Despite their varied architectures, many share a common foundation in probabilistic latent variable models (PLVMs), where hidden variables explain observed data for de…",
+    "summary": "Wind power data often suffers from missing values due to sensor faults and unstable transmission at edge sites. While federated learning enables privacy-preserving collaboration without sharing raw data, it remains vulnerable to anomalous updates and privacy leakage during parameter exchange. The…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4ee",
-    "title": "Enhancing Transformer-Based Foundation Models for Time Series Forecasting via Bagging, Boosting and Statistical Ensembles",
-    "url": "https://arxiv.org/abs/2508.16641",
+    "id": "rss_46e68211",
+    "title": "Evaluating Federated Learning for At-Risk Student Prediction: A Comparative Analysis of Model Complexity and Data Balancing",
+    "url": "https://arxiv.org/abs/2508.18316",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Time series foundation models (TSFMs) such as Lag-Llama, TimeGPT, Chronos, MOMENT, UniTS, and TimesFM have shown strong generalization and zero-shot capabilities for time series forecasting, anomaly detection, classification, and imputation. Despite these advantages, their predictions still suffe…",
+    "summary": "High dropout and failure rates in distance education pose a significant challenge for academic institutions, making the proactive identification of at-risk students crucial for providing timely support. This study develops and evaluates a machine learning model based on early academic performance…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4d2",
-    "title": "Few-shot Class-incremental Fault Diagnosis by Preserving Class-Agnostic Knowledge with Dual-Granularity Representations",
-    "url": "https://arxiv.org/abs/2508.16634",
+    "id": "rss_46e6820e",
+    "title": "ProtoEHR: Hierarchical Prototype Learning for EHR-based Healthcare Predictions",
+    "url": "https://arxiv.org/abs/2508.18313",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Few-Shot Class-Incremental Fault Diagnosis (FSC-FD), which aims to continuously learn from new fault classes with only a few samples without forgetting old ones, is critical for real-world industrial systems. However, this challenging task severely amplifies the issues of catastrophic forgetting …",
+    "summary": "Digital healthcare systems have enabled the collection of mass healthcare data in electronic healthcare records (EHRs), allowing artificial intelligence solutions for various healthcare prediction tasks. However, existing studies often focus on isolated components of EHR data, limiting their pred…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4d1",
-    "title": "A Novel Unified Extended Matrix for Graph Signal Processing: Theory and Application",
-    "url": "https://arxiv.org/abs/2508.16633",
+    "id": "rss_46e6820d",
+    "title": "What Matters in Data for DPO?",
+    "url": "https://arxiv.org/abs/2508.18312",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Graph signal processing has become an essential tool for analyzing data structured on irregular domains. While conventional graph shift operators (GSOs) are effective for certain tasks, they inherently lack flexibility in modeling dependencies between non-adjacent nodes, limiting their ability to…",
+    "summary": "Direct Preference Optimization (DPO) has emerged as a simple and effective approach for aligning large language models (LLMs) with human preferences, bypassing the need for a learned reward model. Despite its growing adoption, a fundamental question remains open: what characteristics of preferenc…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4d0",
-    "title": "Adaptive Variance-Penalized Continual Learning with Fisher Regularization",
-    "url": "https://arxiv.org/abs/2508.16632",
+    "id": "rss_46e681f4",
+    "title": "CoPE: A Lightweight Complex Positional Encoding",
+    "url": "https://arxiv.org/abs/2508.18308",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "The persistent challenge of catastrophic forgetting in neural networks has motivated extensive research in continual learning . This work presents a novel continual learning framework that integrates Fisher-weighted asymmetric regularization of parameter variances within a variational learning pa…",
+    "summary": "Recent studies have demonstrated the effectiveness of position encoding in transformer architectures. By incorporating positional information, this approach provides essential guidance for modeling dependencies between elements across different sequence positions. We introduce CoPE (a lightweight…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4cf",
-    "title": "Recurrent Transformer U-Net Surrogate for Flow Modeling and Data Assimilation in Subsurface Formations with Faults",
-    "url": "https://arxiv.org/abs/2508.16631",
+    "id": "rss_46e681f3",
+    "title": "Learning Spatio-Temporal Dynamics via Operator-Valued RKHS and Kernel Koopman Methods",
+    "url": "https://arxiv.org/abs/2508.18307",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Many subsurface formations, including some of those under consideration for large-scale geological carbon storage, include extensive faults that can strongly impact fluid flow. In this study, we develop a new recurrent transformer U-Net surrogate model to provide very fast predictions for pressur…",
+    "summary": "We introduce a unified framework for learning the spatio-temporal dynamics of vector valued functions by combining operator valued reproducing kernel Hilbert spaces (OV-RKHS) with kernel based Koopman operator methods. The approach enables nonparametric and data driven estimation of complex time …",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4b8",
-    "title": "Learn to Memorize: Optimizing LLM-based Agents with Adaptive Memory Framework",
-    "url": "https://arxiv.org/abs/2508.16629",
+    "id": "rss_46e681f2",
+    "title": "SALMAN: Stability Analysis of Language Models Through the Maps Between Graph-based Manifolds",
+    "url": "https://arxiv.org/abs/2508.18306",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "LLM-based agents have been extensively applied across various domains, where memory stands out as one of their most essential capabilities. Previous memory mechanisms of LLM-based agents are manually predefined by human experts, leading to higher labor costs and suboptimal performance. In additio…",
+    "summary": "Recent strides in pretrained transformer-based language models have propelled state-of-the-art performance in numerous NLP tasks. Yet, as these models grow in size and deployment, their robustness under input perturbations becomes an increasingly urgent question. Existing robustness methods often…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4b2",
-    "title": "A Retrieval Augmented Spatio-Temporal Framework for Traffic Prediction",
-    "url": "https://arxiv.org/abs/2508.16623",
+    "id": "rss_46e681ef",
+    "title": "Learning Explainable Imaging-Genetics Associations Related to a Neurological Disorder",
+    "url": "https://arxiv.org/abs/2508.18303",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Traffic prediction is a cornerstone of modern intelligent transportation systems and a critical task in spatio-temporal forecasting. Although advanced Spatio-temporal Graph Neural Networks (STGNNs) and pre-trained models have achieved significant progress in traffic prediction, two key challenges…",
+    "summary": "While imaging-genetics holds great promise for unraveling the complex interplay between brain structure and genetic variation in neurological disorders, traditional methods are limited to simplistic linear models or to black-box techniques that lack interpretability. In this paper, we present Neu…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a4af",
-    "title": "STRelay: A Universal Spatio-Temporal Relaying Framework for Location Prediction with Future Spatiotemporal Contexts",
-    "url": "https://arxiv.org/abs/2508.16620",
+    "id": "rss_46e681ed",
+    "title": "A Fast and Minimal System to Identify Depression Using Smartphones: Explainable Machine Learning-Based Approach",
+    "url": "https://arxiv.org/abs/2508.18301",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Next location prediction is a critical task in human mobility modeling, enabling applications like travel planning and urban mobility management. Existing methods mainly rely on historical spatiotemporal trajectory data to train sequence models that directly forecast future locations. However, th…",
+    "summary": "Background: Existing robust, pervasive device-based systems developed in recent years to detect depression require data collected over a long period and may not be effective in cases where early detection is crucial. Objective: Our main objective was to develop a minimalistic system to identify d…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a497",
-    "title": "Leveraging the Christoffel Function for Outlier Detection in Data Streams",
-    "url": "https://arxiv.org/abs/2508.16617",
+    "id": "rss_46e67f2c",
+    "title": "Data-driven models for production forecasting and decision supporting in petroleum reservoirs",
+    "url": "https://arxiv.org/abs/2508.18289",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Outlier detection holds significant importance in the realm of data mining, particularly with the growing pervasiveness of data acquisition methods. The ability to identify outliers in data streams is essential for maintaining data quality and detecting faults. However, dealing with data streams …",
+    "summary": "Forecasting production reliably and anticipating changes in the behavior of rock-fluid systems are the main challenges in petroleum reservoir engineering. This project proposes to deal with this problem through a data-driven approach and using machine learning methods. The objective is to develop…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a494",
-    "title": "CrystalDiT: A Diffusion Transformer for Crystal Generation",
-    "url": "https://arxiv.org/abs/2508.16614",
+    "id": "rss_46e67f27",
+    "title": "Multi-Modal Drift Forecasting of Leeway Objects via Navier-Stokes-Guided CNN and Sequence-to-Sequence Attention-Based Models",
+    "url": "https://arxiv.org/abs/2508.18284",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "We present CrystalDiT, a diffusion transformer for crystal structure generation that achieves state-of-the-art performance by challenging the trend of architectural complexity. Instead of intricate, multi-stream designs, CrystalDiT employs a unified transformer that imposes a powerful inductive b…",
+    "summary": "Accurately predicting the drift (displacement) of leeway objects in maritime environments remains a critical challenge, particularly in time-sensitive scenarios such as search and rescue operations. In this study, we propose a multi-modal machine learning framework that integrates Sentence Transf…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_46e5a491",
-    "title": "Quantum-Inspired DRL Approach with LSTM and OU Noise for Cut Order Planning Optimization",
-    "url": "https://arxiv.org/abs/2508.16611",
+    "id": "rss_46e67f0d",
+    "title": "Reasoning Steps as Curriculum: Using Depth of Thought as a Difficulty Signal for Tuning LLMs",
+    "url": "https://arxiv.org/abs/2508.18279",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Cut order planning (COP) is a critical challenge in the textile industry, directly impacting fabric utilization and production costs. Conventional methods based on static heuristics and catalog-based estimations often struggle to adapt to dynamic production environments, resulting in suboptimal s…",
+    "summary": "Curriculum learning for training LLMs requires a difficulty signal that aligns with reasoning while remaining scalable and interpretable. We propose a simple premise: tasks that demand deeper depth of thought for humans should also be harder for models. Accordingly, we define difficulty as depth …",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_55d5553f",
-    "title": "L-XAIDS: A LIME-based eXplainable AI framework for Intrusion Detection Systems",
-    "url": "https://arxiv.org/abs/2508.17244",
+    "id": "rss_55d5dc7f",
+    "title": "Stabilizing Open-Set Test-Time Adaptation via Primary-Auxiliary Filtering and Knowledge-Integrated Prediction",
+    "url": "https://arxiv.org/abs/2508.18751",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Recent developments in Artificial Intelligence (AI) and their applications in critical industries such as healthcare, fin-tech and cybersecurity have led to a surge in research in explainability in AI. Innovative research methods are being explored to extract meaningful insight from blackbox AI s…",
+    "summary": "Deep neural networks demonstrate strong performance under aligned training-test distributions. However, real-world test data often exhibit domain shifts. Test-Time Adaptation (TTA) addresses this challenge by adapting the model to test data during inference. While most TTA studies assume that the…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_55d554fe",
-    "title": "MC3G: Model Agnostic Causally Constrained Counterfactual Generation",
-    "url": "https://arxiv.org/abs/2508.17221",
+    "id": "rss_55d5dc68",
+    "title": "Reflection-Enhanced Meta-Optimization Integrating TextGrad-style Prompt Optimization with Memory-Driven Self-Evolution",
+    "url": "https://arxiv.org/abs/2508.18749",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Machine learning models increasingly influence decisions in high-stakes settings such as finance, law and hiring, driving the need for transparent, interpretable outcomes. However, while explainable approaches can help understand the decisions being made, they may inadvertently reveal the underly…",
+    "summary": "Recent advances in prompt optimization, exemplified by methods such as TextGrad, enable automatic, gradient-like refinement of textual prompts to enhance the performance of large language models (LLMs) on specific downstream tasks. However, current approaches are typically stateless and operate i…",
     "sourceDomain": "arxiv.org"
   },
   {
-    "id": "rss_55d554e0",
-    "title": "Reinforcement Learning enhanced Online Adaptive Clinical Decision Support via Digital Twin powered Policy and Treatment Effect optimized Reward",
-    "url": "https://arxiv.org/abs/2508.17212",
+    "id": "rss_55d5dc62",
+    "title": "CAC-CoT: Connector-Aware Compact Chain-of-Thought for Efficient Reasoning Data Synthesis Across Dual-System Cognitive Tasks",
+    "url": "https://arxiv.org/abs/2508.18743",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26",
+    "publishedAt": "2025-08-27",
     "tags": [
       "rss_feed"
     ],
-    "summary": "Clinical decision support must adapt online under safety constraints. We present an online adaptive tool where reinforcement learning provides the policy, a patient digital twin provides the environment, and treatment effect defines the reward. The system initializes a batch-constrained policy fr…",
+    "summary": "Long chain-of-thought (CoT) prompting helps Large Language Models (LLMs) solve difficult problems, but very long traces often slow or even degrade performance on fast, intuitive \"System-1\" tasks. We introduce Connector-Aware Compact CoT (CAC-CoT) -- a method that deliberately restricts reasoning …",
+    "sourceDomain": "arxiv.org"
+  },
+  {
+    "id": "rss_55d5dc25",
+    "title": "Bias Mitigation Agent: Optimizing Source Selection for Fair and Balanced Knowledge Retrieval",
+    "url": "https://arxiv.org/abs/2508.18724",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-27",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Large Language Models (LLMs) have transformed the field of artificial intelligence by unlocking the era of generative applications. Built on top of generative AI capabilities, Agentic AI represents a major shift toward autonomous, goal-driven systems that can reason, retrieve, and act. However, t…",
+    "sourceDomain": "arxiv.org"
+  },
+  {
+    "id": "rss_55d5dc23",
+    "title": "VistaWise: Building Cost-Effective Agent with Cross-Modal Knowledge Graph for Minecraft",
+    "url": "https://arxiv.org/abs/2508.18722",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-27",
+    "tags": [
+      "rss_feed"
+    ],
+    "summary": "Large language models (LLMs) have shown significant promise in embodied decision-making tasks within virtual open-world environments. Nonetheless, their performance is hindered by the absence of domain-specific knowledge. Methods that finetune on large-scale domain-specific data entail prohibitiv…",
     "sourceDomain": "arxiv.org"
   }
 ]

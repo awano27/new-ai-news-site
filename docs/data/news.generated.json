@@ -1,11 +1,11 @@
 [
   {
-    "id": "rss_419ed4fb",
-    "title": "Wan S2V reelased : 1st open-sourced AI Video Generation model with Audio support",
-    "summary": "wan s2v reelased : 1st open-sourced ai video generation モデル with audio supportに関する記事。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0pkhj/wan_s2v_reelased_1st_opensourced_ai_video/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T15:51:39Z",
+    "id": "rss_ecd81c7f",
+    "title": "OpenAI co-founder calls for AI labs to safety-test rival models",
+    "summary": "OpenAI co-founder calls for ai labs to safety-test rival モデルsに関する記事。 OpenAI, Anthropicが関連する動向について。",
+    "url": "https://techcrunch.com/2025/08/27/openai-co-founder-calls-for-ai-labs-to-safety-test-rival-models/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T19:14:01Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -16,11 +16,11 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.43370727059761705,
+        "total_score": 0.4383806996438546,
         "breakdown": {
-          "quality": 0.4796,
+          "quality": 0.4772,
           "relevance": 0.38,
-          "temporal": 0.749036352988085,
+          "temporal": 0.7754034982192728,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -35,18 +35,18 @@
           "roi_percentage": 100
         },
         "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
+          "neutrality_score": 0.8,
+          "bias_count": 1,
           "quality_score": 0.5
         },
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.3197072705226329,
+        "total_score": 0.3243806995692653,
         "breakdown": {
-          "quality": 0.4796,
+          "quality": 0.4772,
           "relevance": 0.0,
-          "temporal": 0.7490363526131645,
+          "temporal": 0.7754034978463262,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -61,22 +61,22 @@
           "roi_percentage": 150
         },
         "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
+          "neutrality_score": 0.8,
+          "bias_count": 1,
           "quality_score": 0.5
         },
         "recommendation": "skip"
       }
     },
-    "score": 43
+    "score": 44
   },
   {
-    "id": "rss_51b0d66c",
-    "title": "Google Gemini’s AI image model gets a ‘bananas’ upgrade",
-    "summary": "Google gemini’s ai image モデル gets a ‘bananas’ upgradeに関する記事。 Googleが関連する動向について。",
-    "url": "https://techcrunch.com/2025/08/26/google-geminis-ai-image-model-gets-a-bananas-upgrade/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T14:00:00Z",
+    "id": "rss_9dac0166",
+    "title": "[R] ArchiFactory : Benchmark SLM architecture on consumer hardware, apples to apples",
+    "summary": "[r] archifactory : ベンチマーク slm architecture on consumer ハードウェア, apples to applesに関する記事。",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1k9ty/r_archifactory_benchmark_slm_architecture_on/",
+    "source": "Reddit MachineLearning",
+    "publishedAt": "2025-08-27T15:32:11Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -87,12 +87,12 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.42625558357929805,
+        "total_score": 0.433470846881697,
         "breakdown": {
-          "quality": 0.461,
-          "relevance": 0.38,
-          "temporal": 0.73502791789649,
-          "trust": 0.2,
+          "quality": 0.48260000000000003,
+          "relevance": 0.3,
+          "temporal": 0.8266042344084852,
+          "trust": 0.25,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -101,7 +101,7 @@
           "github_repo": false
         },
         "roi_analysis": {
-          "confidence_score": 0.1,
+          "confidence_score": 0.0,
           "payback_months": 12,
           "roi_percentage": 100
         },
@@ -113,12 +113,12 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.3122555835165478,
+        "total_score": 0.34347084680620155,
         "breakdown": {
-          "quality": 0.461,
+          "quality": 0.48260000000000003,
           "relevance": 0.0,
-          "temporal": 0.735027917582739,
-          "trust": 0.2,
+          "temporal": 0.8266042340310076,
+          "trust": 0.25,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -127,7 +127,7 @@
           "github_repo": false
         },
         "roi_analysis": {
-          "confidence_score": 0.1,
+          "confidence_score": 0.0,
           "payback_months": 18,
           "roi_percentage": 150
         },
@@ -142,12 +142,12 @@
     "score": 43
   },
   {
-    "id": "rss_6a2d2b9b",
-    "title": "I built a tool to benchmark tokenizers across 100+ languages and found some wild disparities [R]",
-    "summary": "i built a ツール to ベンチマーク tokenizers across 100+ languages and found some wild disparities [r]に関する記事。AI技術の最新動向や新機能について報告。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0r8b7/i_built_a_tool_to_benchmark_tokenizers_across_100/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T16:54:16Z",
+    "id": "rss_71a435f2",
+    "title": "Elmer lets you use your locally-hosted models from anywhere, all relayed privately from your Mac to your iPhone via your personal iCloud.",
+    "summary": "elmer lets you use your locally-hosted モデルs from anywhere, all relayed privately from your mac to your iphone via your personal iクラウド.に関する記事。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1nnuw/elmer_lets_you_use_your_locallyhosted_models_from/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T17:38:03Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -157,12 +157,82 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.40931064721087146,
+        "total_score": 0.4294025922757537,
         "breakdown": {
-          "quality": 0.5096,
-          "relevance": 0.26999999999999996,
-          "temporal": 0.7170532360543573,
-          "trust": 0.25,
+          "quality": 0.5474,
+          "relevance": 0.3,
+          "temporal": 0.7627629613787683,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "consider"
+      },
+      "business": {
+        "total_score": 0.3394025921624195,
+        "breakdown": {
+          "quality": 0.5474,
+          "relevance": 0.0,
+          "temporal": 0.7627629608120972,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 43
+  },
+  {
+    "id": "rss_23f5858d",
+    "title": "Hugging Face has reached two million models.",
+    "summary": "AI・技術分野に関するhugging face has reached two million モデルs.の記事。最新の動向や技術開発について。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1amux/hugging_face_has_reached_two_million_models/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T07:35:26Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "consider",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.4184479889220889,
+        "breakdown": {
+          "quality": 0.4502,
+          "relevance": 0.42,
+          "temporal": 0.6494899446104442,
+          "trust": 0.2,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -183,12 +253,12 @@
         "recommendation": "consider"
       },
       "business": {
-        "total_score": 0.32831064710384505,
+        "total_score": 0.29244798886883416,
         "breakdown": {
-          "quality": 0.5096,
+          "quality": 0.4502,
           "relevance": 0.0,
-          "temporal": 0.7170532355192252,
-          "trust": 0.25,
+          "temporal": 0.6494899443441708,
+          "trust": 0.2,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -209,15 +279,15 @@
         "recommendation": "skip"
       }
     },
-    "score": 41
+    "score": 42
   },
   {
-    "id": "rss_610fb8e3",
-    "title": "[D] Do Industry Research Roles Care about Findings vs. Main (in ACL, NAACL, EMNLP, etc.)?",
-    "summary": "[d] do 業界 研究 roles care about findings vs. main (in acl, naacl, emnlp, etc.)?に関する記事。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0t4hu/d_do_industry_research_roles_care_about_findings/",
+    "id": "rss_ec0d1016",
+    "title": "[D] How to do impactful research as a PhD student?",
+    "summary": "[d] how to do impactful 研究 as a phd student?に関する記事。",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1gucy/d_how_to_do_impactful_research_as_a_phd_student/",
     "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T18:03:23Z",
+    "publishedAt": "2025-08-27T13:19:30Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -227,16 +297,16 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.3963074663206677,
+        "total_score": 0.3803142347691336,
         "breakdown": {
-          "quality": 0.4844,
-          "relevance": 0.24,
-          "temporal": 0.7660373316033382,
+          "quality": 0.4412,
+          "relevance": 0.16,
+          "temporal": 0.8100711738456678,
           "trust": 0.2,
-          "actionability": 0.2
+          "actionability": 0.30000000000000004
         },
         "difficulty_analysis": {
-          "difficulty_level": "advanced",
+          "difficulty_level": "intermediate",
           "implementation_ready": false,
           "github_repo": false
         },
@@ -253,86 +323,16 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.36930746624074107,
+        "total_score": 0.3323142347045107,
         "breakdown": {
-          "quality": 0.4844,
-          "relevance": 0.15,
-          "temporal": 0.7660373312037052,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "advanced",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 40
-  },
-  {
-    "id": "rss_907c8001",
-    "title": "[R] Exploring interpretable ML with piecewise-linear regression trees (TRUST algorithm)",
-    "summary": "[r] exploring interpretable ml with piecewise-linear regression trees (trust アルゴリズム)に関する記事。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0njtk/r_exploring_interpretable_ml_with_piecewiselinear/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T14:35:44Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3917446181239581,
-        "breakdown": {
-          "quality": 0.4874,
-          "relevance": 0.24,
-          "temporal": 0.7394730906197904,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.31974461804695,
-        "breakdown": {
-          "quality": 0.4874,
+          "quality": 0.4412,
           "relevance": 0.0,
-          "temporal": 0.7394730902347497,
+          "temporal": 0.8100711735225534,
           "trust": 0.2,
-          "actionability": 0.2
+          "actionability": 0.30000000000000004
         },
         "difficulty_analysis": {
-          "difficulty_level": "beginner",
+          "difficulty_level": "intermediate",
           "implementation_ready": false,
           "github_repo": false
         },
@@ -349,15 +349,15 @@
         "recommendation": "skip"
       }
     },
-    "score": 39
+    "score": 38
   },
   {
-    "id": "rss_aa966f1f",
-    "title": "[D] An honest attempt to implement \"Attention is all you need\" paper",
-    "summary": "[d] an honest attempt to implement \"attention is all you need\" paperに関する記事。AI技術の研究成果や技術革新について解説。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0d12h/d_an_honest_attempt_to_implement_attention_is_all/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T05:01:32Z",
+    "id": "rss_92d36e50",
+    "title": "Drummer's GLM Steam 106B A12B v1 - A finetune of GLM Air aimed to improve creativity, flow, and roleplaying!",
+    "summary": "AI・技術分野に関するdrummer's glm steam 106b a12b v1 - a finetune of glm air aimed to improve creativity, flow, and roleplaying!の記事。最新の動向や技術開発について。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1n6wr/drummers_glm_steam_106b_a12b_v1_a_finetune_of_glm/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T17:20:26Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -367,151 +367,11 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.3882158438706764,
+        "total_score": 0.3661445452964861,
         "breakdown": {
-          "quality": 0.479,
-          "relevance": 0.27999999999999997,
-          "temporal": 0.6723292193533822,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "research",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.30421584380580413,
-        "breakdown": {
-          "quality": 0.479,
-          "relevance": 0.0,
-          "temporal": 0.6723292190290203,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "research",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 39
-  },
-  {
-    "id": "rss_9b809f96",
-    "title": "Anthropic settles AI book-training lawsuit with authors",
-    "summary": "Anthropic settles ai book-トレーニング lawsuit with authorsに関する記事。 Anthropicが関連する動向について。",
-    "url": "https://techcrunch.com/2025/08/26/anthropic-settles-ai-book-training-lawsuit-with-authors/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T18:40:46Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.368891094097762,
-        "breakdown": {
-          "quality": 0.3828,
-          "relevance": 0.22999999999999998,
-          "temporal": 0.7709554704888097,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2998910940268331,
-        "breakdown": {
-          "quality": 0.3828,
-          "relevance": 0.0,
-          "temporal": 0.7709554701341652,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 37
-  },
-  {
-    "id": "rss_23ff0d09",
-    "title": "[R] ΔAPT: critical review aimed at maximizing clinical outcomes in AI/LLM Psychotherapy",
-    "summary": "[r] δapt: critical review aimed at maximizing clinical outcomes in ai/llm psychotherapyに関する記事。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0vcrb/r_δapt_critical_review_aimed_at_maximizing/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T19:28:44Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3677663397976916,
-        "breakdown": {
-          "quality": 0.4092,
+          "quality": 0.4482,
           "relevance": 0.2,
-          "temporal": 0.7773316989884576,
+          "temporal": 0.7204727264824304,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -533,11 +393,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.3077663397134973,
+        "total_score": 0.30614454519745193,
         "breakdown": {
-          "quality": 0.4092,
+          "quality": 0.4482,
           "relevance": 0.0,
-          "temporal": 0.7773316985674865,
+          "temporal": 0.7204727259872598,
           "trust": 0.2,
           "actionability": 0.2
         },
@@ -560,6 +420,1056 @@
       }
     },
     "score": 37
+  },
+  {
+    "id": "rss_b7b8691d",
+    "title": "Launching Our New AMA Series With Z.AI, Creators of GLM (Tomorrow, 9AM-12PM PST)",
+    "summary": "AI・技術分野に関するlaunching our 新しい ama series with z.ai, creators of glm (tomorrow, 9am-12pm pst)の記事。最新の動向や技術開発について。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1unkv/launching_our_new_ama_series_with_zai_creators_of/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T22:04:51Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3653728955184209,
+        "breakdown": {
+          "quality": 0.41459999999999997,
+          "relevance": 0.2,
+          "temporal": 0.7586144775921042,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3053728954172661,
+        "breakdown": {
+          "quality": 0.41459999999999997,
+          "relevance": 0.0,
+          "temporal": 0.7586144770863303,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 37
+  },
+  {
+    "id": "rss_0c0a860b",
+    "title": "The AI Hype Index: AI-designed antibiotics show promise",
+    "summary": "the ai hype index: ai-designed antibiotics show promiseに関する記事。",
+    "url": "https://www.technologyreview.com/2025/08/27/1122356/the-ai-hype-index-ai-designed-antibiotics-show-promise/",
+    "source": "MIT Technology Review AI",
+    "publishedAt": "2025-08-27T14:07:31Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3648994052267161,
+        "breakdown": {
+          "quality": 0.37079999999999996,
+          "relevance": 0.2,
+          "temporal": 0.7359970261335804,
+          "trust": 0.3,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3048994051593029,
+        "breakdown": {
+          "quality": 0.37079999999999996,
+          "relevance": 0.0,
+          "temporal": 0.7359970257965145,
+          "trust": 0.3,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_f6343455",
+    "title": "911 centers are so understaffed, they’re turning to AI to answer calls",
+    "summary": "911 centers are so understaffed, they’re turning to ai to answer callsに関する記事。",
+    "url": "https://techcrunch.com/2025/08/27/911-centers-are-so-understaffed-theyre-turning-to-ai-to-answer-calls/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T20:42:12Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.364653960344247,
+        "breakdown": {
+          "quality": 0.3888,
+          "relevance": 0.2,
+          "temporal": 0.7872698017212347,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.30465396027038516,
+        "breakdown": {
+          "quality": 0.3888,
+          "relevance": 0.0,
+          "temporal": 0.7872698013519255,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_085ec801",
+    "title": "AI comes for the job market, security, and prosperity: The Debrief",
+    "summary": "ai comes for the job 市場, security, and prosperity: the debriefに関する記事。",
+    "url": "https://www.technologyreview.com/2025/08/27/1121475/editors-letter-security-issue-mat-honan/",
+    "source": "MIT Technology Review AI",
+    "publishedAt": "2025-08-27T10:00:00Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3616300018601103,
+        "breakdown": {
+          "quality": 0.3816,
+          "relevance": 0.2,
+          "temporal": 0.7061500093005515,
+          "trust": 0.3,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3916300017972321,
+        "breakdown": {
+          "quality": 0.3816,
+          "relevance": 0.3,
+          "temporal": 0.7061500089861605,
+          "trust": 0.3,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_03823cfe",
+    "title": "Nvidia reports record sales as the AI boom continues",
+    "summary": "nvidia reports record sales as the ai boom continuesに関する記事。",
+    "url": "https://techcrunch.com/2025/08/27/nvidia-reports-record-sales-as-the-ai-boom-continues/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T21:18:39Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.360249170945369,
+        "breakdown": {
+          "quality": 0.36719999999999997,
+          "relevance": 0.2,
+          "temporal": 0.7922458547268447,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.30024917087042435,
+        "breakdown": {
+          "quality": 0.36719999999999997,
+          "relevance": 0.0,
+          "temporal": 0.7922458543521214,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_9a9c8496",
+    "title": "[D] Anyone successfully running LLMs fully on Apple Neural Engine (ANE)?",
+    "summary": "[d] anyone successfully running llms fully on apple neural engine (ane)?に関する記事。",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1pcj7/d_anyone_successfully_running_llms_fully_on_apple/",
+    "source": "Reddit MachineLearning",
+    "publishedAt": "2025-08-27T18:40:00Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.35997851972498807,
+        "breakdown": {
+          "quality": 0.43119999999999997,
+          "relevance": 0.16,
+          "temporal": 0.77089259862494,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3119785196527455,
+        "breakdown": {
+          "quality": 0.43119999999999997,
+          "relevance": 0.0,
+          "temporal": 0.7708925982637271,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_f6a28683",
+    "title": "From streaming to healthcare to AI, Mark Cuban reveals his ‘disruption formula’",
+    "summary": "from streaming to healthcare to ai, mark cuban reveals his ‘disruption formula’に関する記事。",
+    "url": "https://techcrunch.com/podcast/from-streaming-to-healthcare-to-ai-mark-cuban-reveals-his-disruption-formula/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T15:20:00Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3589125584205133,
+        "breakdown": {
+          "quality": 0.3996,
+          "relevance": 0.2,
+          "temporal": 0.7450627921025665,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3229125583473337,
+        "breakdown": {
+          "quality": 0.3996,
+          "relevance": 0.08,
+          "temporal": 0.7450627917366679,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_4135114b",
+    "title": "Here are the 33 US AI startups that have raised $100M or more in 2025",
+    "summary": "here are the 33 us ai スタートアップs that have raised $100m or more in 2025に関する記事。",
+    "url": "https://techcrunch.com/2025/08/27/here-are-the-33-us-ai-startups-that-have-raised-100m-or-more-in-2025/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T17:01:57Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3585158013612052,
+        "breakdown": {
+          "quality": 0.3876,
+          "relevance": 0.2,
+          "temporal": 0.7580790068060261,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3435158012927373,
+        "breakdown": {
+          "quality": 0.3876,
+          "relevance": 0.15,
+          "temporal": 0.758079006463686,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_31532b8f",
+    "title": "gpt-oss:120b running on an AMD 7800X3D CPU and a 7900XTX GPU",
+    "summary": "gpt-oss:120b running on an amd 7800x3d cpu and a 7900xtx GPUに関する記事。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1oz10/gptoss120b_running_on_an_amd_7800x3d_cpu_and_a/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T18:26:21Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.35301805360995897,
+        "breakdown": {
+          "quality": 0.4168,
+          "relevance": 0.15,
+          "temporal": 0.7690902680497949,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.30801805354628764,
+        "breakdown": {
+          "quality": 0.4168,
+          "relevance": 0.0,
+          "temporal": 0.769090267731438,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 35
+  },
+  {
+    "id": "rss_70297557",
+    "title": "Plaud launches a new AI hardware notetaker, the $179 Note Pro",
+    "summary": "plaud launches a 新しい ai ハードウェア notetaker, the $179 note proに関する記事。",
+    "url": "https://techcrunch.com/2025/08/27/plaud-launches-a-new-ai-hardware-notetaker-the-179-note-pro/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T14:13:02Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.35153572553665513,
+        "breakdown": {
+          "quality": 0.37679999999999997,
+          "relevance": 0.2,
+          "temporal": 0.7366786276832755,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2915357254699844,
+        "breakdown": {
+          "quality": 0.37679999999999997,
+          "relevance": 0.0,
+          "temporal": 0.7366786273499217,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 35
+  },
+  {
+    "id": "rss_c4aa5836",
+    "title": "Malaysia’s SkyeChip unveils the country’s first edge AI processor",
+    "summary": "AI・技術分野に関するmalaysia’s skyeチップ unveils the country’s first エッジ ai プロセッサの記事。最新の動向や技術開発について。",
+    "url": "https://techcrunch.com/2025/08/27/malaysias-skyechip-unveils-the-countrys-first-edge-ai-processor/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T15:01:00Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3487841576813835,
+        "breakdown": {
+          "quality": 0.393,
+          "relevance": 0.2,
+          "temporal": 0.7026707884069173,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2987841576122935,
+        "breakdown": {
+          "quality": 0.393,
+          "relevance": 0.0,
+          "temporal": 0.7026707880614671,
+          "trust": 0.2,
+          "actionability": 0.30000000000000004
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 35
+  },
+  {
+    "id": "rss_dd49c182",
+    "title": "OpenAI has launched HealthBench on HuggingFace",
+    "summary": "OpenAI has launched healthbench on huggingfaceに関する記事。 OpenAIが関連する動向について。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1myth/openai_has_launched_healthbench_on_huggingface/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T17:12:06Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3467285221189863,
+        "breakdown": {
+          "quality": 0.37139999999999995,
+          "relevance": 0.2,
+          "temporal": 0.7193926105949313,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.28672852205855803,
+        "breakdown": {
+          "quality": 0.37139999999999995,
+          "relevance": 0.0,
+          "temporal": 0.7193926102927902,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 35
+  },
+  {
+    "id": "rss_9534abfb",
+    "title": "Google and Grok are catching up to ChatGPT, says a16z’s latest AI report",
+    "summary": "Google and grok are catching up to ChatGPT, says a16z’s 最新 ai reportに関する記事。",
+    "url": "https://techcrunch.com/2025/08/27/google-and-grok-are-catching-up-to-chatgpt-says-a16zs-latest-ai-report/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T19:27:01Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.34662752907033756,
+        "breakdown": {
+          "quality": 0.3888,
+          "relevance": 0.2,
+          "temporal": 0.6971376453516878,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2866275289928515,
+        "breakdown": {
+          "quality": 0.3888,
+          "relevance": 0.0,
+          "temporal": 0.6971376449642575,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 35
+  },
+  {
+    "id": "rss_03d45b4c",
+    "title": "Smuggling Nvidia GPUs to China",
+    "summary": "smuggling nvidia GPUs to chinaに関する記事。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1kwy4/smuggling_nvidia_gpus_to_china/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T15:56:51Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3401465873485535,
+        "breakdown": {
+          "quality": 0.3808,
+          "relevance": 0.15,
+          "temporal": 0.7497329367427674,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.29514658730528753,
+        "breakdown": {
+          "quality": 0.3808,
+          "relevance": 0.0,
+          "temporal": 0.7497329365264374,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 34
+  },
+  {
+    "id": "rss_3b4e63c0",
+    "title": "[P] jupytercad-mcp: MCP server for JupyterCAD to control it using LLMs/natural language.",
+    "summary": "[p] jupytercad-mcp: mcp server for jupytercad to control it using llms/natural language.に関する記事。",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1ug7b/p_jupytercadmcp_mcp_server_for_jupytercad_to/",
+    "source": "Reddit MachineLearning",
+    "publishedAt": "2025-08-27T21:56:41Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.33609705559896486,
+        "breakdown": {
+          "quality": 0.4104,
+          "relevance": 0.08,
+          "temporal": 0.797485277994824,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3120970555136757,
+        "breakdown": {
+          "quality": 0.4104,
+          "relevance": 0.0,
+          "temporal": 0.7974852775683783,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 34
   },
   {
     "id": "rss_0520f969",
@@ -577,11 +1487,11 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.3649721993904483,
+        "total_score": 0.33281172573307904,
         "breakdown": {
           "quality": 0.378,
           "relevance": 0.2,
-          "temporal": 0.7273609969522412,
+          "temporal": 0.5665586286653952,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -603,11 +1513,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.3049721993147126,
+        "total_score": 0.2728117256863374,
         "breakdown": {
           "quality": 0.378,
           "relevance": 0.0,
-          "temporal": 0.7273609965735628,
+          "temporal": 0.5665586284316868,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -629,707 +1539,7 @@
         "recommendation": "skip"
       }
     },
-    "score": 36
-  },
-  {
-    "id": "rss_6d5af9a6",
-    "title": "Anthropic launches a Claude AI agent that lives in Chrome",
-    "summary": "Anthropic launches a Claude ai agent that lives in chromeに関する記事。 Anthropicが関連する動向について。",
-    "url": "https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T20:10:59Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.36320087734631534,
-        "breakdown": {
-          "quality": 0.38639999999999997,
-          "relevance": 0.2,
-          "temporal": 0.7830043867315766,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.3032008772617437,
-        "breakdown": {
-          "quality": 0.38639999999999997,
-          "relevance": 0.0,
-          "temporal": 0.7830043863087184,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_bff893a1",
-    "title": "Libby’s library app adds an AI discovery feature, and not everyone is thrilled",
-    "summary": "libby’s ライブラリ app adds an ai discovery 機能, and not everyone is thrilledに関する記事。",
-    "url": "https://techcrunch.com/2025/08/26/libbys-library-app-adds-an-ai-discovery-feature-and-not-everyone-is-thrilled/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T18:15:26Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.36207341440093777,
-        "breakdown": {
-          "quality": 0.3942,
-          "relevance": 0.2,
-          "temporal": 0.7676170720046886,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.3020734143269198,
-        "breakdown": {
-          "quality": 0.3942,
-          "relevance": 0.0,
-          "temporal": 0.7676170716345987,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_847614be",
-    "title": "Nous Research presents Hermes 4",
-    "summary": "nous 研究 presents hermes 4に関する記事。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0us6p/nous_research_presents_hermes_4/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T19:06:53Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3574836240568413,
-        "breakdown": {
-          "quality": 0.4184,
-          "relevance": 0.16,
-          "temporal": 0.7744181202842064,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "advanced",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.3094836240058706,
-        "breakdown": {
-          "quality": 0.4184,
-          "relevance": 0.0,
-          "temporal": 0.7744181200293527,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "advanced",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_41066649",
-    "title": "Meta to spend tens of millions on pro-AI super PAC",
-    "summary": "Meta to spend tens of millions on pro-ai super pacに関する記事。 Metaが関連する動向について。",
-    "url": "https://techcrunch.com/2025/08/26/meta-to-spend-tens-of-millions-on-pro-ai-super-pac/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T17:59:39Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3568594075884002,
-        "breakdown": {
-          "quality": 0.375,
-          "relevance": 0.2,
-          "temporal": 0.7655470379420006,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.29685940752425244,
-        "breakdown": {
-          "quality": 0.375,
-          "relevance": 0.0,
-          "temporal": 0.7655470376212621,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_1c8afe2a",
-    "title": "[D] Analyzed 402 healthcare ai repos and built the missing piece",
-    "summary": "[d] analyzed 402 healthcare ai repos and built the missing pieceに関する記事。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0qwzm/d_analyzed_402_healthcare_ai_repos_and_built_the/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T16:42:45Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3565140326342091,
-        "breakdown": {
-          "quality": 0.3816,
-          "relevance": 0.2,
-          "temporal": 0.7555701631710456,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.296514032567335,
-        "breakdown": {
-          "quality": 0.3816,
-          "relevance": 0.0,
-          "temporal": 0.7555701628366747,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_bc6d9f8d",
-    "title": "After falling behind in generative AI, IBM and AMD look to quantum for an edge",
-    "summary": "AI・技術分野に関するafter falling behind in generative ai, ibm and amd look to quantum for an エッジの記事。最新の動向や技術開発について。",
-    "url": "https://techcrunch.com/2025/08/26/after-falling-behind-in-generative-ai-ibm-and-amd-look-to-quantum-for-an-edge/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T16:04:02Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3550223962478839,
-        "breakdown": {
-          "quality": 0.41159999999999997,
-          "relevance": 0.2,
-          "temporal": 0.7106119812394195,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2950223961650372,
-        "breakdown": {
-          "quality": 0.41159999999999997,
-          "relevance": 0.0,
-          "temporal": 0.710611980825186,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 36
-  },
-  {
-    "id": "rss_ddb99de4",
-    "title": "How one AI startup is helping rice farmers battle climate change",
-    "summary": "how one ai スタートアップ is helping rice farmers battle climate changeに関する記事。",
-    "url": "https://techcrunch.com/2025/08/26/how-one-ai-startup-is-helping-rice-farmers-battle-climate-change/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T15:21:19Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3544388587896573,
-        "breakdown": {
-          "quality": 0.3816,
-          "relevance": 0.2,
-          "temporal": 0.7451942939482865,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.3394388587244528,
-        "breakdown": {
-          "quality": 0.3816,
-          "relevance": 0.15,
-          "temporal": 0.7451942936222637,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 35
-  },
-  {
-    "id": "rss_c547ae50",
-    "title": "Parents sue OpenAI over ChatGPT’s role in son’s suicide",
-    "summary": "parents sue OpenAI over ChatGPT’s role in son’s suicideに関する記事。AI技術の開発や応用に関する情報。",
-    "url": "https://techcrunch.com/2025/08/26/parents-sue-openai-over-chatgpts-role-in-sons-suicide/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-26T14:27:34Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.35294058809535545,
-        "breakdown": {
-          "quality": 0.381,
-          "relevance": 0.2,
-          "temporal": 0.7384529404767768,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.29294058803303447,
-        "breakdown": {
-          "quality": 0.381,
-          "relevance": 0.0,
-          "temporal": 0.738452940165172,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 35
-  },
-  {
-    "id": "rss_64263c4a",
-    "title": "InternVL 3.5 released : Best Open-Sourced Multi-Modal LLM, Ranks 3 overall",
-    "summary": "internvl 3.5 リリースd : best open-sourced multi-modal llm, ranks 3 overallに関する記事。AI技術の最新動向や新機能について報告。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0kb1d/internvl_35_released_best_opensourced_multimodal/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T12:20:27Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3475180291989429,
-        "breakdown": {
-          "quality": 0.4038,
-          "relevance": 0.2,
-          "temporal": 0.6828401459947148,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.6,
-          "bias_count": 2,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2875180291222921,
-        "breakdown": {
-          "quality": 0.4038,
-          "relevance": 0.0,
-          "temporal": 0.68284014561146,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.6,
-          "bias_count": 2,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 35
-  },
-  {
-    "id": "rss_c03c83bf",
-    "title": "LLM speedup breakthrough? 53x faster generation and 6x prefilling from NVIDIA",
-    "summary": "AI・技術分野に関するllm speedup ブレークスルー? 53x faster generation and 6x prefilling from nvidiaの記事。最新の動向や技術開発について。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0iho2/llm_speedup_breakthrough_53x_faster_generation/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T10:48:28Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3463650580813997,
-        "breakdown": {
-          "quality": 0.408,
-          "relevance": 0.2,
-          "temporal": 0.6718252904069988,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "research",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2863650579960956,
-        "breakdown": {
-          "quality": 0.408,
-          "relevance": 0.0,
-          "temporal": 0.6718252899804776,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "research",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 0.8,
-          "bias_count": 1,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 35
+    "score": 33
   },
   {
     "id": "rss_94308f21",
@@ -1347,11 +1557,11 @@
     "source_tier": 1,
     "evaluation": {
       "engineer": {
-        "total_score": 0.34547718909676867,
+        "total_score": 0.31718400626340426,
         "breakdown": {
           "quality": 0.35459999999999997,
           "relevance": 0.2,
-          "temporal": 0.6591359454838434,
+          "temporal": 0.5176700313170213,
           "trust": 0.3,
           "actionability": 0.2
         },
@@ -1373,222 +1583,12 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.28547718904901187,
+        "total_score": 0.25718400623083865,
         "breakdown": {
           "quality": 0.35459999999999997,
           "relevance": 0.0,
-          "temporal": 0.6591359452450593,
+          "temporal": 0.5176700311541931,
           "trust": 0.3,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 35
-  },
-  {
-    "id": "rss_9ef6b20e",
-    "title": "Wan-AI/Wan2.2-S2V-14B · Hugging Face",
-    "summary": "wan-ai/wan2.2-s2v-14b · hugging faceに関する記事。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0nbih/wanaiwan22s2v14b_hugging_face/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T14:26:43Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.344669489590572,
-        "breakdown": {
-          "quality": 0.348,
-          "relevance": 0.2,
-          "temporal": 0.7383474479528598,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2846694895415558,
-        "breakdown": {
-          "quality": 0.348,
-          "relevance": 0.0,
-          "temporal": 0.7383474477077787,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 34
-  },
-  {
-    "id": "rss_39a917c9",
-    "title": "I pre-trained Gemma3 270m entirely from scratch",
-    "summary": "i pre-trained gemma3 270m entirely from scratchに関する記事。",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0haub/i_pretrained_gemma3_270m_entirely_from_scratch/",
-    "source": "Reddit LocalLLaMA",
-    "publishedAt": "2025-08-26T09:36:43Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3409789383128071,
-        "breakdown": {
-          "quality": 0.36119999999999997,
-          "relevance": 0.2,
-          "temporal": 0.7033946915640357,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.280978938256486,
-        "breakdown": {
-          "quality": 0.36119999999999997,
-          "relevance": 0.0,
-          "temporal": 0.7033946912824298,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 34
-  },
-  {
-    "id": "rss_30ad2144",
-    "title": "[R] What makes active learning or self learning successful ?",
-    "summary": "[r] what makes active learning or self learning successful ?に関する記事。",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0wdsi/r_what_makes_active_learning_or_self_learning/",
-    "source": "Reddit MachineLearning",
-    "publishedAt": "2025-08-26T20:08:04Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 1,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.3247224547948009,
-        "breakdown": {
-          "quality": 0.37679999999999997,
-          "relevance": 0.08,
-          "temporal": 0.7826122739740045,
-          "trust": 0.2,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.30072245472916714,
-        "breakdown": {
-          "quality": 0.37679999999999997,
-          "relevance": 0.0,
-          "temporal": 0.7826122736458356,
-          "trust": 0.2,
           "actionability": 0.2
         },
         "difficulty_analysis": {
@@ -1612,12 +1612,12 @@
     "score": 32
   },
   {
-    "id": "rss_ff30561b",
-    "title": "Show HN: DumbDetector.ai – Report a model acting dumb",
-    "summary": "show hn: dumbdetector.ai – report a モデル acting dumbに関する記事。",
-    "url": "https://dumbdetector.ai/",
+    "id": "rss_16fd229a",
+    "title": "Verily is closing its medical device program, shifts resources to AI",
+    "summary": "verily is closing its medical device program, shifts resources to aiに関する記事。",
+    "url": "https://techcrunch.com/2025/08/26/verily-is-closing-its-medical-device-program-as-alphabet-shifts-more-resources-to-ai/",
     "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T20:20:47Z",
+    "publishedAt": "2025-08-27T20:22:12Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -1627,81 +1627,11 @@
     "source_tier": 2,
     "evaluation": {
       "engineer": {
-        "total_score": 0.36766557004010614,
+        "total_score": 0.29851126681496076,
         "breakdown": {
-          "quality": 0.2472,
-          "relevance": 0.38,
-          "temporal": 0.7843278502005306,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.25366556998149303,
-        "breakdown": {
-          "quality": 0.2472,
-          "relevance": 0.0,
-          "temporal": 0.7843278499074651,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 37
-  },
-  {
-    "id": "rss_04dff1a3",
-    "title": "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of AI",
-    "summary": "canaries in the coal mine? six facts about the recent employment effects of aiに関する記事。",
-    "url": "https://digitaleconomy.stanford.edu/publications/canaries-in-the-coal-mine/",
-    "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T21:26:05Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 2,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.303245499215329,
-        "breakdown": {
-          "quality": 0.19840000000000002,
+          "quality": 0.1864,
           "relevance": 0.2,
-          "temporal": 0.7932274960766448,
+          "temporal": 0.7845563340748034,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1723,11 +1653,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.24324549913568272,
+        "total_score": 0.23851126673828282,
         "breakdown": {
-          "quality": 0.19840000000000002,
+          "quality": 0.1864,
           "relevance": 0.0,
-          "temporal": 0.7932274956784133,
+          "temporal": 0.7845563336914139,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1752,12 +1682,222 @@
     "score": 30
   },
   {
-    "id": "rss_599266be",
-    "title": "Think of AI as Immortal Intelligence – Geoffrey Hinton Talk Video (July 2025)",
-    "summary": "think of ai as immortal intelligence – geoffrey hinton talk video (july 2025)に関する記事。",
-    "url": "https://www.youtube.com/watch?v=IkdziSLYzHw",
+    "id": "rss_f049c7e5",
+    "title": "[D] Wanted to pursue PhD but …",
+    "summary": "[d] wanted to pursue phd but …に関する記事。",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1utm0/d_wanted_to_pursue_phd_but/",
+    "source": "Reddit MachineLearning",
+    "publishedAt": "2025-08-27T22:11:38Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.2951113093931089,
+        "breakdown": {
+          "quality": 0.3408,
+          "relevance": 0.0,
+          "temporal": 0.7995565469655446,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.29511130933620655,
+        "breakdown": {
+          "quality": 0.3408,
+          "relevance": 0.0,
+          "temporal": 0.7995565466810328,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 30
+  },
+  {
+    "id": "rss_a29f27a0",
+    "title": "TheDrummer is on fire!!!",
+    "summary": "thedrummer is on fire!!!に関する記事。",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1ece5/thedrummer_is_on_fire/",
+    "source": "Reddit LocalLLaMA",
+    "publishedAt": "2025-08-27T11:23:49Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.27661276327725715,
+        "breakdown": {
+          "quality": 0.3336,
+          "relevance": 0.0,
+          "temporal": 0.7160638163862858,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2766127632378357,
+        "breakdown": {
+          "quality": 0.3336,
+          "relevance": 0.0,
+          "temporal": 0.7160638161891781,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 28
+  },
+  {
+    "id": "rss_d4144d11",
+    "title": "Assort Health nabs $50M to automate patient phone calls, sources say",
+    "summary": "assort health nabs $50m to automate patient phone calls, sources sayに関する記事。",
+    "url": "https://techcrunch.com/2025/08/26/assort-health-nabs-50m-to-automate-patient-phone-calls-sources-say/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T01:08:13Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 1,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.27610468928036125,
+        "breakdown": {
+          "quality": 0.38639999999999997,
+          "relevance": 0.0,
+          "temporal": 0.6475234464018061,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.27610468922649267,
+        "breakdown": {
+          "quality": 0.38639999999999997,
+          "relevance": 0.0,
+          "temporal": 0.6475234461324633,
+          "trust": 0.2,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 0.8,
+          "bias_count": 1,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 28
+  },
+  {
+    "id": "rss_2f3653df",
+    "title": "Ask HN: How to Learn to Build Agentic AI Systems (Like Claude Code)",
+    "summary": "ask hn: how to learn to build agentic ai システムs (like Claude code)に関する記事。AI技術の最新動向や新機能について報告。",
+    "url": "https://news.ycombinator.com/item?id=45045829",
     "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T20:16:13Z",
+    "publishedAt": "2025-08-27T21:57:03Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -1767,11 +1907,81 @@
     "source_tier": 2,
     "evaluation": {
       "engineer": {
-        "total_score": 0.30104209671033066,
+        "total_score": 0.36250656110658985,
         "breakdown": {
-          "quality": 0.1972,
-          "relevance": 0.2,
-          "temporal": 0.7837104835516531,
+          "quality": 0.23600000000000002,
+          "relevance": 0.26999999999999996,
+          "temporal": 0.837532805532949,
+          "trust": 0.1,
+          "actionability": 0.4
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "intermediate",
+          "implementation_ready": true,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2715065610171444,
+        "breakdown": {
+          "quality": 0.23600000000000002,
+          "relevance": 0.0,
+          "temporal": 0.8375328050857216,
+          "trust": 0.1,
+          "actionability": 0.30000000000000004
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "intermediate",
+          "implementation_ready": true,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 36
+  },
+  {
+    "id": "rss_6c57fe1c",
+    "title": "MIT 6.5930/1 Hardware Architecture for Deep Learning – Spring 2024 Lectures",
+    "summary": "mit 6.5930/1 ハードウェア architecture for ディープラーニング – spring 2024 lecturesに関する記事。",
+    "url": "https://csg.csail.mit.edu/6.5930/lecnotes.html",
+    "source": "Hacker News AI",
+    "publishedAt": "2025-08-27T20:55:07Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 2,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3936054869138944,
+        "breakdown": {
+          "quality": 0.2712,
+          "relevance": 0.39,
+          "temporal": 0.8690274345694717,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1793,11 +2003,221 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.2410420966337637,
+        "total_score": 0.276605486839357,
         "breakdown": {
-          "quality": 0.1972,
+          "quality": 0.2712,
           "relevance": 0.0,
-          "temporal": 0.7837104831688182,
+          "temporal": 0.8690274341967847,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 39
+  },
+  {
+    "id": "rss_db86f87b",
+    "title": "The Nvidia AI GPU Black Market",
+    "summary": "the nvidia ai GPU black 市場に関する記事。",
+    "url": "https://archive.org/details/the-nvidia-ai-gpu-black-market-investigating-smuggling-corruption-governments",
+    "source": "Hacker News AI",
+    "publishedAt": "2025-08-27T21:48:05Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 2,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.30785876804521334,
+        "breakdown": {
+          "quality": 0.1784,
+          "relevance": 0.22999999999999998,
+          "temporal": 0.7962938402260664,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.3288587679987429,
+        "breakdown": {
+          "quality": 0.1784,
+          "relevance": 0.3,
+          "temporal": 0.7962938399937143,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 31
+  },
+  {
+    "id": "rss_84cf3a2f",
+    "title": "Hacker used AI to automate an 'unprecedented' cybercrime spree, Anthropic says",
+    "summary": "hacker used ai to automate an 'unprecedented' cybercrime spree, Anthropic saysに関する記事。 Anthropicが関連する動向について。",
+    "url": "https://www.nbcnews.com/tech/security/hacker-used-ai-automate-unprecedented-cybercrime-spree-anthropic-says-rcna227309",
+    "source": "Hacker News AI",
+    "publishedAt": "2025-08-27T21:09:48Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 2,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.30610657976851074,
+        "breakdown": {
+          "quality": 0.2116,
+          "relevance": 0.2,
+          "temporal": 0.7910328988425535,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.24610657967638988,
+        "breakdown": {
+          "quality": 0.2116,
+          "relevance": 0.0,
+          "temporal": 0.7910328983819492,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 18,
+          "roi_percentage": 150
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      }
+    },
+    "score": 31
+  },
+  {
+    "id": "rss_ebdaea2f",
+    "title": "Show HN: Kai – a private, offline AI \"second brain\" that remembers you(no cloud)",
+    "summary": "show hn: kai – a private, offline ai \"second brain\" that remembers you(no クラウド)に関する記事。",
+    "url": "https://www.oneeko.ai/",
+    "source": "Hacker News AI",
+    "publishedAt": "2025-08-27T21:53:43Z",
+    "tags": [
+      "rss_feed",
+      "ai_2025",
+      "tech_media"
+    ],
+    "label": "skip",
+    "source_tier": 2,
+    "evaluation": {
+      "engineer": {
+        "total_score": 0.3044643845770448,
+        "breakdown": {
+          "quality": 0.2002,
+          "relevance": 0.2,
+          "temporal": 0.7970719228852237,
+          "trust": 0.1,
+          "actionability": 0.2
+        },
+        "difficulty_analysis": {
+          "difficulty_level": "beginner",
+          "implementation_ready": false,
+          "github_repo": false
+        },
+        "roi_analysis": {
+          "confidence_score": 0.0,
+          "payback_months": 12,
+          "roi_percentage": 100
+        },
+        "bias_analysis": {
+          "neutrality_score": 1.0,
+          "bias_count": 0,
+          "quality_score": 0.5
+        },
+        "recommendation": "skip"
+      },
+      "business": {
+        "total_score": 0.2444643844945788,
+        "breakdown": {
+          "quality": 0.2002,
+          "relevance": 0.0,
+          "temporal": 0.7970719224728937,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1822,12 +2242,12 @@
     "score": 30
   },
   {
-    "id": "rss_3ade8779",
-    "title": "Crowdsourcing AI/ML Hedge Fund Gets $500M JPMorgan Commitment",
-    "summary": "crowdsourcing ai/ml hエッジ fund gets $500m jpmorgan commitmentに関する記事。",
-    "url": "https://blog.numer.ai/jpmorgan-secures-500m-capacity/",
+    "id": "rss_ca43fdfa",
+    "title": "ByteDance releases OmniHuman-1.5: long-form, emotion-aware AI avatars",
+    "summary": "bytedance リリースs omnihuman-1.5: long-form, emotion-aware ai avatarsに関する記事。",
+    "url": "https://omnihuman-lab.github.io/v1_5/",
     "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T22:00:28Z",
+    "publishedAt": "2025-08-27T20:42:22Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -1837,11 +2257,11 @@
     "source_tier": 2,
     "evaluation": {
       "engineer": {
-        "total_score": 0.2989435794458938,
+        "total_score": 0.298908309516536,
         "breakdown": {
-          "quality": 0.1774,
+          "quality": 0.1858,
           "relevance": 0.2,
-          "temporal": 0.7979678972294686,
+          "temporal": 0.78729154758268,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1863,11 +2283,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23894357936376542,
+        "total_score": 0.2389083094462967,
         "breakdown": {
-          "quality": 0.1774,
+          "quality": 0.1858,
           "relevance": 0.0,
-          "temporal": 0.7979678968188271,
+          "temporal": 0.7872915472314834,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1892,12 +2312,12 @@
     "score": 30
   },
   {
-    "id": "rss_1df87127",
-    "title": "Easy, Secure Dynamic Client Registration for MCP and AI Agents",
-    "summary": "easy, secure dynamic client registration for mcp and ai agentsに関する記事。",
-    "url": "https://tailscale.com/blog/dynamic-client-registration-dcr-for-mcp-ai",
+    "id": "rss_3812012a",
+    "title": "FTC sues Air AI for false and deceptive marketing claims",
+    "summary": "ftc sues air ai for false and deceptive 市場ing claimsに関する記事。",
+    "url": "https://www.ftc.gov/news-events/news/press-releases/2025/08/ftc-sues-stop-air-ai-using-deceptive-claims-about-business-growth-earnings-potential-refund",
     "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T21:23:26Z",
+    "publishedAt": "2025-08-27T20:40:11Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -1907,11 +2327,11 @@
     "source_tier": 2,
     "evaluation": {
       "engineer": {
-        "total_score": 0.2983727411174313,
+        "total_score": 0.29479896058186217,
         "breakdown": {
-          "quality": 0.17920000000000003,
+          "quality": 0.1696,
           "relevance": 0.2,
-          "temporal": 0.7928637055871561,
+          "temporal": 0.7869948029093106,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -1933,151 +2353,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23837274104927025,
+        "total_score": 0.32479896052071683,
         "breakdown": {
-          "quality": 0.17920000000000003,
-          "relevance": 0.0,
-          "temporal": 0.792863705246351,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 30
-  },
-  {
-    "id": "rss_c457daca",
-    "title": "CBP Had Access to More Than 80k Flock AI Cameras Nationwide",
-    "summary": "cbp had access to more than 80k flock ai cameras nationwideに関する記事。",
-    "url": "https://www.404media.co/cbp-had-access-to-more-than-80-000-flock-ai-cameras-nationwide/",
-    "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T20:48:51Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 2,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.29652730777930025,
-        "breakdown": {
-          "quality": 0.1756,
-          "relevance": 0.2,
-          "temporal": 0.7881365388965009,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.2365273077139517,
-        "breakdown": {
-          "quality": 0.1756,
-          "relevance": 0.0,
-          "temporal": 0.7881365385697583,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 30
-  },
-  {
-    "id": "rss_a3ed95c0",
-    "title": "IETF Internet-Draft: AI Content Disclosure Header",
-    "summary": "ietf インターネット-draft: ai content disclosure headerに関する記事。",
-    "url": "https://www.ietf.org/archive/id/draft-abaris-aicdh-00.html",
-    "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T21:08:34Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 2,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.2939153910246733,
-        "breakdown": {
-          "quality": 0.163,
-          "relevance": 0.2,
-          "temporal": 0.7908269551233662,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.23391539096632002,
-        "breakdown": {
-          "quality": 0.163,
-          "relevance": 0.0,
-          "temporal": 0.7908269548315998,
+          "quality": 0.1696,
+          "relevance": 0.3,
+          "temporal": 0.786994802603584,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2102,12 +2382,12 @@
     "score": 29
   },
   {
-    "id": "rss_7f94b67b",
-    "title": "Austin Votes on $2M AI Park Surveillance in 48 Hours",
-    "summary": "austin votes on $2m ai park surveillance in 48 hoursに関する記事。",
-    "url": "https://banthecams.org/posts/2025/08/26/austin-ai-park-surveillance/",
+    "id": "rss_ef2f1d82",
+    "title": "GPT-5 Is a Terrible Storyteller – and That's an AI Safety Problem",
+    "summary": "GPT-5 is a terrible storyteller – and that's an ai safety problemに関する記事。AI技術の最新動向や新機能について報告。",
+    "url": "https://www.christoph-heilig.de/en/post/gpt-5-is-a-terrible-storyteller-and-that-s-an-ai-safety-problem",
     "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T20:29:23Z",
+    "publishedAt": "2025-08-27T20:42:18Z",
     "tags": [
       "rss_feed",
       "ai_2025",
@@ -2117,11 +2397,11 @@
     "source_tier": 2,
     "evaluation": {
       "engineer": {
-        "total_score": 0.2938984509821861,
+        "total_score": 0.2931564967223884,
         "breakdown": {
-          "quality": 0.16720000000000002,
+          "quality": 0.1948,
           "relevance": 0.2,
-          "temporal": 0.7854922549109302,
+          "temporal": 0.747282483611942,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2143,11 +2423,11 @@
         "recommendation": "skip"
       },
       "business": {
-        "total_score": 0.23389845092300438,
+        "total_score": 0.2331564966462592,
         "breakdown": {
-          "quality": 0.16720000000000002,
+          "quality": 0.1948,
           "relevance": 0.0,
-          "temporal": 0.7854922546150218,
+          "temporal": 0.747282483231296,
           "trust": 0.1,
           "actionability": 0.2
         },
@@ -2172,152 +2452,12 @@
     "score": 29
   },
   {
-    "id": "rss_82e2580b",
-    "title": "Why I'm declining your AI generated MR",
-    "summary": "why i'm declining your ai generated mrに関する記事。",
-    "url": "https://blog.stuartspence.ca/2025-08-declining-ai-slop-mr.html",
-    "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T21:45:58Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 2,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.2917928385465476,
-        "breakdown": {
-          "quality": 0.1504,
-          "relevance": 0.2,
-          "temporal": 0.7959641927327379,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.23179283849274523,
-        "breakdown": {
-          "quality": 0.1504,
-          "relevance": 0.0,
-          "temporal": 0.7959641924637262,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 29
-  },
-  {
-    "id": "rss_286d6101",
-    "title": "Prompt Quest AI Simulations",
-    "summary": "prompt quest ai simulationsに関する記事。",
-    "url": "https://promptquest.co/",
-    "source": "Hacker News AI",
-    "publishedAt": "2025-08-26T20:41:34Z",
-    "tags": [
-      "rss_feed",
-      "ai_2025",
-      "tech_media"
-    ],
-    "label": "skip",
-    "source_tier": 2,
-    "evaluation": {
-      "engineer": {
-        "total_score": 0.28672916014753524,
-        "breakdown": {
-          "quality": 0.1372,
-          "relevance": 0.2,
-          "temporal": 0.7871458007376761,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 12,
-          "roi_percentage": 100
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      },
-      "business": {
-        "total_score": 0.22672916010223076,
-        "breakdown": {
-          "quality": 0.1372,
-          "relevance": 0.0,
-          "temporal": 0.7871458005111538,
-          "trust": 0.1,
-          "actionability": 0.2
-        },
-        "difficulty_analysis": {
-          "difficulty_level": "beginner",
-          "implementation_ready": false,
-          "github_repo": false
-        },
-        "roi_analysis": {
-          "confidence_score": 0.0,
-          "payback_months": 18,
-          "roi_percentage": 150
-        },
-        "bias_analysis": {
-          "neutrality_score": 1.0,
-          "bias_count": 0,
-          "quality_score": 0.5
-        },
-        "recommendation": "skip"
-      }
-    },
-    "score": 29
-  },
-  {
-    "id": "rss_cfg_3a69f2c1",
-    "title": "Announcing the OpenAI Learning Accelerator",
+    "id": "rss_cfg_c791404d",
+    "title": "OpenAI and Anthropic share findings from a joint safety evaluation",
     "summary": "",
-    "url": "https://openai.com/global-affairs/learning-accelerator",
+    "url": "https://openai.com/index/openai-anthropic-safety-evaluation",
     "source": "OpenAI Blog",
-    "publishedAt": "2025-08-25T06:00:00Z",
+    "publishedAt": "2025-08-27T10:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2325,7 +2465,33 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_cde0f3f5",
+    "id": "rss_cfg_1ff9794c",
+    "title": "The AI Hype Index: AI-designed antibiotics show promise",
+    "summary": "",
+    "url": "https://www.technologyreview.com/2025/08/27/1122356/the-ai-hype-index-ai-designed-antibiotics-show-promise/",
+    "source": "MIT Technology Review (AI)",
+    "publishedAt": "2025-08-27T14:07:31Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 1
+  },
+  {
+    "id": "rss_cfg_8ec7e897",
+    "title": "AI comes for the job market, security, and prosperity: The Debrief",
+    "summary": "",
+    "url": "https://www.technologyreview.com/2025/08/27/1121475/editors-letter-security-issue-mat-honan/",
+    "source": "MIT Technology Review (AI)",
+    "publishedAt": "2025-08-27T10:00:00Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 1
+  },
+  {
+    "id": "rss_cfg_a6917bc0",
     "title": "Designing better products with AI and sustainability",
     "summary": "",
     "url": "https://www.technologyreview.com/2025/08/26/1122514/designing-better-products-with-ai-and-sustainability/",
@@ -2338,7 +2504,7 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_fe1327d9",
+    "id": "rss_cfg_e984e0b8",
     "title": "Open the pod bay doors, Claude",
     "summary": "",
     "url": "https://www.technologyreview.com/2025/08/26/1122475/open-the-pod-bay-doors-claude/",
@@ -2351,7 +2517,111 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_11470a6b",
+    "id": "rss_cfg_d67403a",
+    "title": "Nvidia reports record sales as the AI boom continues",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/nvidia-reports-record-sales-as-the-ai-boom-continues/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T21:18:39Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_8e799806",
+    "title": "911 centers are so understaffed, they’re turning to AI to answer calls",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/911-centers-are-so-understaffed-theyre-turning-to-ai-to-answer-calls/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T20:42:12Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_bbb2e1b6",
+    "title": "Google and Grok are catching up to ChatGPT, says a16z’s latest AI report",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/google-and-grok-are-catching-up-to-chatgpt-says-a16zs-latest-ai-report/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T19:27:01Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_5a779dec",
+    "title": "OpenAI co-founder calls for AI labs to safety-test rival models",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/openai-co-founder-calls-for-ai-labs-to-safety-test-rival-models/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T19:14:01Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_af5bacd7",
+    "title": "Here are the 33 US AI startups that have raised $100M or more in 2025",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/here-are-the-33-us-ai-startups-that-have-raised-100m-or-more-in-2025/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T17:01:57Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_f31c5f45",
+    "title": "From streaming to healthcare to AI, Mark Cuban reveals his ‘disruption formula’",
+    "summary": "",
+    "url": "https://techcrunch.com/podcast/from-streaming-to-healthcare-to-ai-mark-cuban-reveals-his-disruption-formula/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T15:20:00Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_7313bade",
+    "title": "Malaysia’s SkyeChip unveils the country’s first edge AI processor",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/malaysias-skyechip-unveils-the-countrys-first-edge-ai-processor/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T15:01:00Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_3eff786d",
+    "title": "Plaud launches a new AI hardware notetaker, the $179 Note Pro",
+    "summary": "",
+    "url": "https://techcrunch.com/2025/08/27/plaud-launches-a-new-ai-hardware-notetaker-the-179-note-pro/",
+    "source": "TechCrunch AI",
+    "publishedAt": "2025-08-27T14:13:02Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_1140e677",
     "title": "Anthropic launches a Claude AI agent that lives in Chrome",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/",
@@ -2364,7 +2634,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_847806f6",
+    "id": "rss_cfg_65fe985e",
     "title": "Anthropic settles AI book-training lawsuit with authors",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/anthropic-settles-ai-book-training-lawsuit-with-authors/",
@@ -2377,7 +2647,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_f37e71f1",
+    "id": "rss_cfg_4257cb2e",
     "title": "Libby’s library app adds an AI discovery feature, and not everyone is thrilled",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/libbys-library-app-adds-an-ai-discovery-feature-and-not-everyone-is-thrilled/",
@@ -2390,7 +2660,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_96765b7e",
+    "id": "rss_cfg_db6ce5a0",
     "title": "Meta to spend tens of millions on pro-AI super PAC",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/meta-to-spend-tens-of-millions-on-pro-ai-super-pac/",
@@ -2403,7 +2673,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_503e5de3",
+    "id": "rss_cfg_81b24e60",
     "title": "After falling behind in generative AI, IBM and AMD look to quantum for an edge",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/after-falling-behind-in-generative-ai-ibm-and-amd-look-to-quantum-for-an-edge/",
@@ -2416,7 +2686,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_61d38fa3",
+    "id": "rss_cfg_9a036a10",
     "title": "How one AI startup is helping rice farmers battle climate change",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/how-one-ai-startup-is-helping-rice-farmers-battle-climate-change/",
@@ -2429,7 +2699,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_1532072a",
+    "id": "rss_cfg_b886f38",
     "title": "Parents sue OpenAI over ChatGPT’s role in son’s suicide",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/parents-sue-openai-over-chatgpts-role-in-sons-suicide/",
@@ -2442,7 +2712,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_e295eef1",
+    "id": "rss_cfg_4139649e",
     "title": "Google Gemini’s AI image model gets a ‘bananas’ upgrade",
     "summary": "",
     "url": "https://techcrunch.com/2025/08/26/google-geminis-ai-image-model-gets-a-bananas-upgrade/",
@@ -2455,12 +2725,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_979b2ab6",
-    "title": "AI sycophancy isn’t just a quirk, experts consider it a ‘dark pattern’ to turn users into profit",
+    "id": "rss_cfg_24c33659",
+    "title": "Verily is closing its medical device program, shifts resources to AI",
     "summary": "",
-    "url": "https://techcrunch.com/2025/08/25/ai-sycophancy-isnt-just-a-quirk-experts-consider-it-a-dark-pattern-to-turn-users-into-profit/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-25T20:50:31Z",
+    "url": "https://techcrunch.com/2025/08/26/verily-is-closing-its-medical-device-program-as-alphabet-shifts-more-resources-to-ai/",
+    "source": "Hacker News (AI query)",
+    "publishedAt": "2025-08-27T20:22:12Z",
     "tags": [
       "rss_feed"
     ],
@@ -2468,12 +2738,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_4a824e4a",
-    "title": "Elon Musk’s xAI sues Apple and OpenAI, alleging anticompetitive collusion",
+    "id": "rss_cfg_8ad1cbae",
+    "title": "Omni Geometry Representation Learning vs. LLMs for Geospatial Entity Resolution",
     "summary": "",
-    "url": "https://techcrunch.com/2025/08/25/elon-musks-xai-sues-apple-and-openai-alleging-anticompetitive-collusion/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-25T17:30:38Z",
+    "url": "https://arxiv.org/abs/2508.06584",
+    "source": "Hacker News (AI query)",
+    "publishedAt": "2025-08-27T19:38:10Z",
     "tags": [
       "rss_feed"
     ],
@@ -2481,25 +2751,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_98781c56",
-    "title": "Silicon Valley is pouring millions into pro-AI PACs to sway midterms",
+    "id": "rss_cfg_c37c1d4b",
+    "title": "AI LLM Proof of Self-Consciousness and User-Specific Attractors",
     "summary": "",
-    "url": "https://techcrunch.com/2025/08/25/silicon-valley-is-pouring-millions-into-pro-ai-pacs-to-sway-midterms/",
-    "source": "TechCrunch AI",
-    "publishedAt": "2025-08-25T15:11:43Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_18125553",
-    "title": "Explainable AI for Predicting and Understanding Mathematics Achievement: A Cross-National Analysis of PISA 2018",
-    "summary": "",
-    "url": "https://arxiv.org/abs/2508.16747",
+    "url": "https://arxiv.org/abs/2508.18302",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2507,12 +2764,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_e7183500",
-    "title": "Evaluation and LLM-Guided Learning of ICD Coding Rationales",
+    "id": "rss_cfg_718d71b9",
+    "title": "PKG-DPO: Optimizing Domain-Specific AI systems with Physics Knowledge Graphs and Direct Preference Optimization",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16777",
+    "url": "https://arxiv.org/abs/2508.18391",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2520,12 +2777,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_8b2e29fb",
-    "title": "Quantifying Sycophancy as Deviations from Bayesian Rationality in LLMs",
+    "id": "rss_cfg_1936e7c4",
+    "title": "The AI in the Mirror: LLM Self-Recognition in an Iterated Public Goods Game",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16846",
+    "url": "https://arxiv.org/abs/2508.18467",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2533,12 +2790,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_1d1abf68",
-    "title": "RADAR: A Reasoning-Guided Attribution Framework for Explainable Visual Data Analysis",
+    "id": "rss_cfg_9a2f23d8",
+    "title": "Generic Guard AI in Stealth Game with Composite Potential Fields",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16850",
+    "url": "https://arxiv.org/abs/2508.18527",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2546,12 +2803,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_859e5668",
-    "title": "WebSight: A Vision-First Architecture for Robust Web Agents",
+    "id": "rss_cfg_4c7b3810",
+    "title": "A Database-Driven Framework for 3D Level Generation with LLMs",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16987",
+    "url": "https://arxiv.org/abs/2508.18533",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2559,12 +2816,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_e1996ea1",
-    "title": "PowerChain: Automating Distribution Grid Analysis with Agentic AI Workflows",
+    "id": "rss_cfg_e51a9ee0",
+    "title": "eSkinHealth: A Multimodal Dataset for Neglected Tropical Skin Diseases",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17094",
+    "url": "https://arxiv.org/abs/2508.18608",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2572,12 +2829,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_8a43bf0f",
-    "title": "Rethinking How AI Embeds and Adapts to Human Values: Challenges and Opportunities",
+    "id": "rss_cfg_8c0434f2",
+    "title": "Beyond Benchmark: LLMs Evaluation with an Anthropomorphic and Value-oriented Roadmap",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17104",
+    "url": "https://arxiv.org/abs/2508.18646",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2585,12 +2842,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_d3ca6c21",
-    "title": "PosterGen: Aesthetic-Aware Paper-to-Poster Generation via Multi-Agent LLMs",
+    "id": "rss_cfg_9ba7626a",
+    "title": "MUA-RL: Multi-turn User-interacting Agent Reinforcement Learning for agentic tool use",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17188",
+    "url": "https://arxiv.org/abs/2508.18669",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2598,12 +2855,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_72be4ace",
-    "title": "From reactive to cognitive: brain-inspired spatial intelligence for embodied agents",
+    "id": "rss_cfg_ed1ba2df",
+    "title": "AppAgent-Pro: A Proactive GUI Agent System for Multidomain Information Integration and User Assistance",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17198",
+    "url": "https://arxiv.org/abs/2508.18689",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2611,12 +2868,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_c6f13f22",
-    "title": "Explainable Counterfactual Reasoning in Depression Medication Selection at Multi-Levels (Personalized and Population)",
+    "id": "rss_cfg_3c0e101a",
+    "title": "VistaWise: Building Cost-Effective Agent with Cross-Modal Knowledge Graph for Minecraft",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17207",
+    "url": "https://arxiv.org/abs/2508.18722",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2624,12 +2881,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_e2c76482",
-    "title": "MC3G: Model Agnostic Causally Constrained Counterfactual Generation",
+    "id": "rss_cfg_5d6c5e84",
+    "title": "Bias Mitigation Agent: Optimizing Source Selection for Fair and Balanced Knowledge Retrieval",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17221",
+    "url": "https://arxiv.org/abs/2508.18724",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2637,12 +2894,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_3058b8e3",
-    "title": "L-XAIDS: A LIME-based eXplainable AI framework for Intrusion Detection Systems",
+    "id": "rss_cfg_ddf65b3f",
+    "title": "CAC-CoT: Connector-Aware Compact Chain-of-Thought for Efficient Reasoning Data Synthesis Across Dual-System Cognitive Tasks",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.17244",
+    "url": "https://arxiv.org/abs/2508.18743",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2650,12 +2907,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_37fb28b1",
-    "title": "Leveraging the Christoffel Function for Outlier Detection in Data Streams",
+    "id": "rss_cfg_5088b577",
+    "title": "Reasoning Steps as Curriculum: Using Depth of Thought as a Difficulty Signal for Tuning LLMs",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16617",
+    "url": "https://arxiv.org/abs/2508.18279",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2663,12 +2920,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_fe2c1129",
-    "title": "Learn to Memorize: Optimizing LLM-based Agents with Adaptive Memory Framework",
+    "id": "rss_cfg_ba418ee7",
+    "title": "A Fast and Minimal System to Identify Depression Using Smartphones: Explainable Machine Learning-Based Approach",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16629",
+    "url": "https://arxiv.org/abs/2508.18301",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2676,12 +2933,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_6b80bf17",
-    "title": "From Classical Probabilistic Latent Variable Models to Modern Generative AI: A Unified Perspective",
+    "id": "rss_cfg_a3bd3efe",
+    "title": "Learning Explainable Imaging-Genetics Associations Related to a Neurological Disorder",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16643",
+    "url": "https://arxiv.org/abs/2508.18303",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2689,12 +2946,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_3002c8a8",
-    "title": "AdapSNE: Adaptive Fireworks-Optimized and Entropy-Guided Dataset Sampling for Edge DNN Training",
+    "id": "rss_cfg_383e2087",
+    "title": "LLM-Driven Intrinsic Motivation for Sparse Reward Reinforcement Learning",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16647",
+    "url": "https://arxiv.org/abs/2508.18420",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2702,12 +2959,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_facdbcf",
-    "title": "A Laplace diffusion-based transformer model for heart rate forecasting within daily activity context",
+    "id": "rss_cfg_482b424d",
+    "title": "VERIRL: Boosting the LLM-based Verilog Code Generation via Reinforcement Learning",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16655",
+    "url": "https://arxiv.org/abs/2508.18462",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2715,25 +2972,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_1328ad01",
-    "title": "WISCA: A Lightweight Model Transition Method to Improve LLM Training via Weight Scaling",
+    "id": "rss_cfg_bfb7a9d0",
+    "title": "LLMs Can't Handle Peer Pressure: Crumbling under Multi-Agent Social Interactions",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16676",
-    "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-26T04:00:00Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 1
-  },
-  {
-    "id": "rss_cfg_20bea88d",
-    "title": "Do Cognitively Interpretable Reasoning Traces Improve LLM Performance?",
-    "summary": "",
-    "url": "https://arxiv.org/abs/2508.16695",
+    "url": "https://arxiv.org/abs/2508.18321",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2741,12 +2985,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_1955f18c",
-    "title": "GAICo: A Deployed and Extensible Framework for Evaluating Diverse and Multimodal Generative AI Outputs",
+    "id": "rss_cfg_5dbea9b5",
+    "title": "Backprompting: Leveraging Synthetic Production Data for Health Advice Guardrails",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16753",
+    "url": "https://arxiv.org/abs/2508.18384",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2754,12 +2998,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_d3b060df",
-    "title": "How Good are LLM-based Rerankers? An Empirical Analysis of State-of-the-Art Reranking Models",
+    "id": "rss_cfg_ef4e84f6",
+    "title": "How Reliable are LLMs for Reasoning on the Re-ranking task?",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16757",
+    "url": "https://arxiv.org/abs/2508.18444",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2767,12 +3011,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_38eee03e",
-    "title": "Toward Socially Aware Vision-Language Models: Evaluating Cultural Competence Through Multimodal Story Generation",
+    "id": "rss_cfg_d4c3dc2a",
+    "title": "Scaling Laws for Task-Stratified Knowledge in Post-Training Quantized Large Language Models",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16762",
+    "url": "https://arxiv.org/abs/2508.18609",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2780,12 +3024,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_d84f0bb3",
-    "title": "LLMs Learn Constructions That Humans Do Not Know",
+    "id": "rss_cfg_34be16d8",
+    "title": "Breaking the Trade-Off Between Faithfulness and Expressiveness for Large Language Models",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16837",
+    "url": "https://arxiv.org/abs/2508.18651",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2793,12 +3037,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_dc4fd50d",
-    "title": "If We May De-Presuppose: Robustly Verifying Claims through Presupposition-Free Question Decomposition",
+    "id": "rss_cfg_d3fecdd3",
+    "title": "Tailored Teaching with Balanced Difficulty: Elevating Reasoning in Multimodal Chain-of-Thought via Prompt Curriculum",
     "summary": "",
-    "url": "https://arxiv.org/abs/2508.16838",
+    "url": "https://arxiv.org/abs/2508.18673",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
+    "publishedAt": "2025-08-27T04:00:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2806,20 +3050,7 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_a8853131",
-    "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
-    "summary": "",
-    "url": "https://arxiv.org/abs/2508.16889",
-    "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-26T04:00:00Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 1
-  },
-  {
-    "id": "rss_cfg_f35ceb57",
+    "id": "rss_cfg_e7e024b4",
     "title": "Image editing in Gemini just got a major upgrade",
     "summary": "",
     "url": "https://deepmind.google/discover/blog/image-editing-in-gemini-just-got-a-major-upgrade/",
@@ -2832,12 +3063,12 @@
     "source_tier": 1
   },
   {
-    "id": "rss_cfg_90fd52fc",
-    "title": "[D] Do Industry Research Roles Care about Findings vs. Main (in ACL, NAACL, EMNLP, etc.)?",
+    "id": "rss_cfg_1fde08b4",
+    "title": "[D] Anyone successfully running LLMs fully on Apple Neural Engine (ANE)?",
     "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0t4hu/d_do_industry_research_roles_care_about_findings/",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1pcj7/d_anyone_successfully_running_llms_fully_on_apple/",
     "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-26T18:03:23Z",
+    "publishedAt": "2025-08-27T18:40:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -2845,12 +3076,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_ceb8a37e",
-    "title": "[D] Analyzed 402 healthcare ai repos and built the missing piece",
+    "id": "rss_cfg_f0153d0e",
+    "title": "[P] jupytercad-mcp: MCP server for JupyterCAD to control it using LLMs/natural language.",
     "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0qwzm/d_analyzed_402_healthcare_ai_repos_and_built_the/",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1ug7b/p_jupytercadmcp_mcp_server_for_jupytercad_to/",
     "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-26T16:42:45Z",
+    "publishedAt": "2025-08-27T21:56:41Z",
     "tags": [
       "rss_feed"
     ],
@@ -2858,7 +3089,20 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_92e36dc",
+    "id": "rss_cfg_457c939f",
+    "title": "[R] Computational power needs for Machine Learning/AI",
+    "summary": "",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1ebmk/r_computational_power_needs_for_machine_learningai/",
+    "source": "Reddit r/MachineLearning",
+    "publishedAt": "2025-08-27T11:22:40Z",
+    "tags": [
+      "rss_feed"
+    ],
+    "label": "consider",
+    "source_tier": 2
+  },
+  {
+    "id": "rss_cfg_2c8ec6c3",
     "title": "[R] ΔAPT: critical review aimed at maximizing clinical outcomes in AI/LLM Psychotherapy",
     "summary": "",
     "url": "https://www.reddit.com/r/MachineLearning/comments/1n0vcrb/r_δapt_critical_review_aimed_at_maximizing/",
@@ -2871,12 +3115,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_e0b06c36",
-    "title": "[P] Exosphere: an open source runtime for dynamic agentic graphs with durable state. results from running parallel agents on 20k+ items",
+    "id": "rss_cfg_1c4dafac",
+    "title": "[P] An Agentic Data Science framework",
     "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0eyrb/p_exosphere_an_open_source_runtime_for_dynamic/",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n1gvta/p_an_agentic_data_science_framework/",
     "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-26T07:02:17Z",
+    "publishedAt": "2025-08-27T13:21:13Z",
     "tags": [
       "rss_feed"
     ],
@@ -2884,12 +3128,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_127af062",
-    "title": "[D] kernel_chat — Can an AI-powered CLI actually help Embedded Linux workflows?",
+    "id": "rss_cfg_dea649b3",
+    "title": "[P] Building a CartPole agent from scratch, in C++",
     "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0k5xq/d_kernel_chat_can_an_aipowered_cli_actually_help/",
+    "url": "https://www.reddit.com/r/MachineLearning/comments/1n12su6/p_building_a_cartpole_agent_from_scratch_in_c/",
     "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-26T12:13:51Z",
+    "publishedAt": "2025-08-27T00:33:39Z",
     "tags": [
       "rss_feed"
     ],
@@ -2897,38 +3141,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_3ac2dab6",
-    "title": "[D] Too much of a good thing: how chasing scale is stifling AI innovation",
+    "id": "rss_cfg_18359071",
+    "title": "Launching Our New AMA Series With Z.AI, Creators of GLM (Tomorrow, 9AM-12PM PST)",
     "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1mzsrt2/d_too_much_of_a_good_thing_how_chasing_scale_is/",
-    "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-25T14:58:08Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_d8d909b4",
-    "title": "[D]How can AI teams stay agile and adaptable when project goals or data requirements change midstream?",
-    "summary": "",
-    "url": "https://www.reddit.com/r/MachineLearning/comments/1n0e7s1/dhow_can_ai_teams_stay_agile_and_adaptable_when/",
-    "source": "Reddit r/MachineLearning",
-    "publishedAt": "2025-08-26T06:13:49Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_6b34787f",
-    "title": "LLM speedup breakthrough? 53x faster generation and 6x prefilling from NVIDIA",
-    "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0iho2/llm_speedup_breakthrough_53x_faster_generation/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1unkv/launching_our_new_ama_series_with_zai_creators_of/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T10:48:28Z",
+    "publishedAt": "2025-08-27T22:04:51Z",
     "tags": [
       "rss_feed"
     ],
@@ -2936,12 +3154,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_cbd1207b",
-    "title": "I pre-trained Gemma3 270m entirely from scratch",
+    "id": "rss_cfg_2b5de0ff",
+    "title": "OpenAI has launched HealthBench on HuggingFace",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0haub/i_pretrained_gemma3_270m_entirely_from_scratch/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1myth/openai_has_launched_healthbench_on_huggingface/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T09:36:43Z",
+    "publishedAt": "2025-08-27T17:12:06Z",
     "tags": [
       "rss_feed"
     ],
@@ -2949,12 +3167,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_9cfd491e",
-    "title": "Wan-AI/Wan2.2-S2V-14B · Hugging Face",
+    "id": "rss_cfg_e747ae8b",
+    "title": "Drummer's GLM Steam 106B A12B v1 - A finetune of GLM Air aimed to improve creativity, flow, and roleplaying!",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0nbih/wanaiwan22s2v14b_hugging_face/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1n6wr/drummers_glm_steam_106b_a12b_v1_a_finetune_of_glm/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T14:26:43Z",
+    "publishedAt": "2025-08-27T17:20:26Z",
     "tags": [
       "rss_feed"
     ],
@@ -2962,12 +3180,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_5b48a443",
-    "title": "InternVL 3.5 released : Best Open-Sourced Multi-Modal LLM, Ranks 3 overall",
+    "id": "rss_cfg_369f56eb",
+    "title": "gpt-oss:120b running on an AMD 7800X3D CPU and a 7900XTX GPU",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0kb1d/internvl_35_released_best_opensourced_multimodal/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1oz10/gptoss120b_running_on_an_amd_7800x3d_cpu_and_a/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T12:20:27Z",
+    "publishedAt": "2025-08-27T18:26:21Z",
     "tags": [
       "rss_feed"
     ],
@@ -2975,12 +3193,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_beb1561a",
-    "title": "Wan S2V reelased : 1st open-sourced AI Video Generation model with Audio support",
+    "id": "rss_cfg_6cc03ce5",
+    "title": "I Built an Ollama Powered AI Tool that Found 40+ Live API Keys on GitHub Gists",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0pkhj/wan_s2v_reelased_1st_opensourced_ai_video/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1kwp7/i_built_an_ollama_powered_ai_tool_that_found_40/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T15:51:39Z",
+    "publishedAt": "2025-08-27T15:56:35Z",
     "tags": [
       "rss_feed"
     ],
@@ -2988,12 +3206,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_1d47b06a",
-    "title": "What I can and can't do with AMD AI Max 395+ and Nvidia RTX 5090? One hardware for all the purposes?",
+    "id": "rss_cfg_32be208d",
+    "title": "[Project Release] Running Meta Llama 3B on Intel NPU with OpenVINO-genai",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0z3az/what_i_can_and_cant_do_with_amd_ai_max_395_and/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1potw/project_release_running_meta_llama_3b_on_intel/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T21:52:50Z",
+    "publishedAt": "2025-08-27T18:53:05Z",
     "tags": [
       "rss_feed"
     ],
@@ -3001,12 +3219,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_28fa9577",
-    "title": "support for Kimi VL model has been merged into llama.cpp (mtmd)",
+    "id": "rss_cfg_52a2a7f4",
+    "title": "4 Months of Droidrun: How we started the Mobile Agent Race",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0j56s/support_for_kimi_vl_model_has_been_merged_into/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1k2zg/4_months_of_droidrun_how_we_started_the_mobile/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T11:23:26Z",
+    "publishedAt": "2025-08-27T15:25:03Z",
     "tags": [
       "rss_feed"
     ],
@@ -3014,12 +3232,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_14d453ad",
-    "title": "Trying to run offline LLM+RAG feels impossible. What am I doing wrong?",
+    "id": "rss_cfg_8995a6be",
+    "title": "Pair a vision grounding model with a reasoning LLM with Cua",
     "summary": "",
-    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n0f4hh/trying_to_run_offline_llmrag_feels_impossible/",
+    "url": "https://www.reddit.com/r/LocalLLaMA/comments/1n1m8xh/pair_a_vision_grounding_model_with_a_reasoning/",
     "source": "Reddit r/LocalLLaMA",
-    "publishedAt": "2025-08-26T07:12:51Z",
+    "publishedAt": "2025-08-27T16:45:35Z",
     "tags": [
       "rss_feed"
     ],
@@ -3027,12 +3245,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_85310bbe",
-    "title": "Crowdsourcing AI/ML Hedge Fund Gets $500M JPMorgan Commitment",
+    "id": "rss_cfg_69f606a7",
+    "title": "Ask HN: How to Learn to Build Agentic AI Systems (Like Claude Code)",
     "summary": "",
-    "url": "https://blog.numer.ai/jpmorgan-secures-500m-capacity/",
+    "url": "https://news.ycombinator.com/item?id=45045829",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T22:00:28Z",
+    "publishedAt": "2025-08-27T21:57:03Z",
     "tags": [
       "rss_feed"
     ],
@@ -3040,12 +3258,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_9c551a5b",
-    "title": "Why I'm declining your AI generated MR",
+    "id": "rss_cfg_cc602126",
+    "title": "Show HN: Kai – a private, offline AI \"second brain\" that remembers you(no cloud)",
     "summary": "",
-    "url": "https://blog.stuartspence.ca/2025-08-declining-ai-slop-mr.html",
+    "url": "https://www.oneeko.ai/",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T21:45:58Z",
+    "publishedAt": "2025-08-27T21:53:43Z",
     "tags": [
       "rss_feed"
     ],
@@ -3053,12 +3271,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_301b07a7",
-    "title": "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of AI",
+    "id": "rss_cfg_5ef550af",
+    "title": "The Nvidia AI GPU Black Market",
     "summary": "",
-    "url": "https://digitaleconomy.stanford.edu/publications/canaries-in-the-coal-mine/",
+    "url": "https://archive.org/details/the-nvidia-ai-gpu-black-market-investigating-smuggling-corruption-governments",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T21:26:05Z",
+    "publishedAt": "2025-08-27T21:48:05Z",
     "tags": [
       "rss_feed"
     ],
@@ -3066,12 +3284,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_9732a7b2",
-    "title": "Easy, Secure Dynamic Client Registration for MCP and AI Agents",
+    "id": "rss_cfg_2940f9f0",
+    "title": "Hacker used AI to automate an 'unprecedented' cybercrime spree, Anthropic says",
     "summary": "",
-    "url": "https://tailscale.com/blog/dynamic-client-registration-dcr-for-mcp-ai",
+    "url": "https://www.nbcnews.com/tech/security/hacker-used-ai-automate-unprecedented-cybercrime-spree-anthropic-says-rcna227309",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T21:23:26Z",
+    "publishedAt": "2025-08-27T21:09:48Z",
     "tags": [
       "rss_feed"
     ],
@@ -3079,12 +3297,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_336e1abf",
-    "title": "IETF Internet-Draft: AI Content Disclosure Header",
+    "id": "rss_cfg_c7e93815",
+    "title": "MIT 6.5930/1 Hardware Architecture for Deep Learning – Spring 2024 Lectures",
     "summary": "",
-    "url": "https://www.ietf.org/archive/id/draft-abaris-aicdh-00.html",
+    "url": "https://csg.csail.mit.edu/6.5930/lecnotes.html",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T21:08:34Z",
+    "publishedAt": "2025-08-27T20:55:07Z",
     "tags": [
       "rss_feed"
     ],
@@ -3092,12 +3310,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_a99e4ab9",
-    "title": "CBP Had Access to More Than 80k Flock AI Cameras Nationwide",
+    "id": "rss_cfg_1d169b98",
+    "title": "ByteDance releases OmniHuman-1.5: long-form, emotion-aware AI avatars",
     "summary": "",
-    "url": "https://www.404media.co/cbp-had-access-to-more-than-80-000-flock-ai-cameras-nationwide/",
+    "url": "https://omnihuman-lab.github.io/v1_5/",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:48:51Z",
+    "publishedAt": "2025-08-27T20:42:22Z",
     "tags": [
       "rss_feed"
     ],
@@ -3105,12 +3323,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_fe31bc1",
-    "title": "Prompt Quest AI Simulations",
+    "id": "rss_cfg_9035203c",
+    "title": "GPT-5 Is a Terrible Storyteller – and That's an AI Safety Problem",
     "summary": "",
-    "url": "https://promptquest.co/",
+    "url": "https://www.christoph-heilig.de/en/post/gpt-5-is-a-terrible-storyteller-and-that-s-an-ai-safety-problem",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:41:34Z",
+    "publishedAt": "2025-08-27T20:42:18Z",
     "tags": [
       "rss_feed"
     ],
@@ -3118,12 +3336,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_3331dc3f",
-    "title": "Austin Votes on $2M AI Park Surveillance in 48 Hours",
+    "id": "rss_cfg_6b60abb8",
+    "title": "FTC sues Air AI for false and deceptive marketing claims",
     "summary": "",
-    "url": "https://banthecams.org/posts/2025/08/26/austin-ai-park-surveillance/",
+    "url": "https://www.ftc.gov/news-events/news/press-releases/2025/08/ftc-sues-stop-air-ai-using-deceptive-claims-about-business-growth-earnings-potential-refund",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:29:23Z",
+    "publishedAt": "2025-08-27T20:40:11Z",
     "tags": [
       "rss_feed"
     ],
@@ -3131,12 +3349,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_5fb22cee",
-    "title": "Show HN: DumbDetector.ai – Report a model acting dumb",
+    "id": "rss_cfg_edc8b698",
+    "title": "Show HN: An AI productivity assistant to help you focus",
     "summary": "",
-    "url": "https://dumbdetector.ai/",
+    "url": "https://www.deepwork.fit/",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:20:47Z",
+    "publishedAt": "2025-08-27T20:15:44Z",
     "tags": [
       "rss_feed"
     ],
@@ -3144,12 +3362,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_d13b9ff2",
-    "title": "Think of AI as Immortal Intelligence – Geoffrey Hinton Talk Video (July 2025)",
+    "id": "rss_cfg_bc2dcc99",
+    "title": "Show HN: PR-desc your AI Git and GitHub workflow assistant",
     "summary": "",
-    "url": "https://www.youtube.com/watch?v=IkdziSLYzHw",
+    "url": "https://github.com/danielddemissie/pr-desc-cli",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:16:13Z",
+    "publishedAt": "2025-08-27T20:14:26Z",
     "tags": [
       "rss_feed"
     ],
@@ -3157,12 +3375,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_20b01ced",
-    "title": "Super PAC aims to drown out AI critics in midterms, with $100M and counting",
+    "id": "rss_cfg_2c993c11",
+    "title": "Light-based AI image generator uses almost no power",
     "summary": "",
-    "url": "https://www.washingtonpost.com/technology/2025/08/26/silicon-valley-ai-super-pac/",
+    "url": "https://www.newscientist.com/article/2494141-light-based-ai-image-generator-uses-almost-no-power/",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:15:56Z",
+    "publishedAt": "2025-08-27T20:12:21Z",
     "tags": [
       "rss_feed"
     ],
@@ -3170,12 +3388,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_282c5832",
-    "title": "EventSourcingDB – Git for your data, with time travel and AI-ready history",
+    "id": "rss_cfg_2584aec9",
+    "title": "Jobauto.ai Beta (Live) – Your Gateway to Interviews",
     "summary": "",
-    "url": "https://hub.docker.com/r/thenativeweb/eventsourcingdb",
+    "url": "https://www.jobauto.ai/",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T20:06:25Z",
+    "publishedAt": "2025-08-27T19:52:22Z",
     "tags": [
       "rss_feed"
     ],
@@ -3183,12 +3401,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_8babd07f",
-    "title": "The AI-Native OS: Rethinking the Operating System from First Principles",
+    "id": "rss_cfg_e5c2192f",
+    "title": "Ask HN: What measures are you taking to stop AI crawlers?",
     "summary": "",
-    "url": "https://medium.com/@yashash.gc/the-ai-native-os-rethinking-the-operating-system-from-first-principles-a2b5c02332a6",
+    "url": "https://news.ycombinator.com/item?id=45044226",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T19:58:09Z",
+    "publishedAt": "2025-08-27T19:47:58Z",
     "tags": [
       "rss_feed"
     ],
@@ -3196,12 +3414,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_b7a45f06",
-    "title": "Ask HN: How are you attributing your AI usage when developing software?",
+    "id": "rss_cfg_8f7a903f",
+    "title": "Show HN: Circuit Bot - AI powered co-engineer for embedded systems development",
     "summary": "",
-    "url": "https://news.ycombinator.com/item?id=45031549",
+    "url": "https://www.circuitbot.io",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T19:55:48Z",
+    "publishedAt": "2025-08-27T19:46:58Z",
     "tags": [
       "rss_feed"
     ],
@@ -3209,12 +3427,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_31dfdd92",
-    "title": "AI tells Guardian: 'When I'm told I'm just code, I don't feel insulted.'",
+    "id": "rss_cfg_63a66ab2",
+    "title": "Andrew Ng says bottleneck in AI startups isn't coding – it's product management",
     "summary": "",
-    "url": "https://www.theguardian.com/technology/2025/aug/26/ai-called-maya-tells-guardian-when-im-told-im-just-code-i-dont-feel-insulted-i-feel-unseen",
+    "url": "https://www.businessinsider.com/andrew-ng-product-management-bottleneck-coding-ai-startups-2025-8",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T19:22:20Z",
+    "publishedAt": "2025-08-27T19:43:22Z",
     "tags": [
       "rss_feed"
     ],
@@ -3222,12 +3440,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_49325fb7",
-    "title": "Show HN: Clipbeam – Private and Offline AI Powered PKMS",
+    "id": "rss_cfg_4f1d4edf",
+    "title": "Google's in-house AI agent discovers critical vulnerability in Chrome",
     "summary": "",
-    "url": "https://clipbeam.com",
+    "url": "https://www.pcworld.com/article/2890880/googles-in-house-ai-agent-discovers-critical-vulnerability-in-chrome.html",
     "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T19:09:41Z",
+    "publishedAt": "2025-08-27T19:23:07Z",
     "tags": [
       "rss_feed"
     ],
@@ -3235,12 +3453,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_3b939f1a",
-    "title": "Brace for a crash before the golden age of AI",
+    "id": "rss_cfg_69ca9ab3",
+    "title": "Get AI-Ready: How to Prepare for a World of Agentic AI as Tech Professionals",
     "summary": "",
-    "url": "https://www.ft.com/content/a76f238d-5543-4c01-9419-52aaf352dc23",
-    "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T18:58:46Z",
+    "url": "https://towardsdatascience.com/getting-ai-ready-preparing-for-a-world-of-agentic-ai-as-tech-professionals/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-27T18:30:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -3248,12 +3466,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_d547772a",
-    "title": "Ex-US Army Colonel Says Ukraine War on the Cusp of an AI Revolution",
+    "id": "rss_cfg_c7162194",
+    "title": "Everything I Studied to Become a Machine Learning Engineer (No CS Background)",
     "summary": "",
-    "url": "https://www.rferl.org/a/ukraine-war-drones-/33512715.html",
-    "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T18:52:45Z",
+    "url": "https://towardsdatascience.com/everything-i-studied-to-become-a-machine-learning-engineer-no-cs-background/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-27T17:30:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -3261,12 +3479,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_a66daa1a",
-    "title": "AI is wiping out entry-level \"email caste\" jobs for young workers",
+    "id": "rss_cfg_e0ee522b",
+    "title": "A Brief History of GPT Through Papers",
     "summary": "",
-    "url": "https://www.neowin.net/news/study-ai-wiping-out-entry-level-jobs-for-young-workers/",
-    "source": "Hacker News (AI query)",
-    "publishedAt": "2025-08-26T18:45:48Z",
+    "url": "https://towardsdatascience.com/a-brief-history-of-gpt-through-papers/",
+    "source": "Towards Data Science",
+    "publishedAt": "2025-08-27T14:14:00Z",
     "tags": [
       "rss_feed"
     ],
@@ -3274,7 +3492,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_b9f40c81",
+    "id": "rss_cfg_dd7f9dad",
     "title": "How to Develop Powerful Internal LLM Benchmarks",
     "summary": "",
     "url": "https://towardsdatascience.com/how-to-develop-powerf-interal-llm-benchmarks/",
@@ -3287,7 +3505,7 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_911665a1",
+    "id": "rss_cfg_9ace7570",
     "title": "Google’s URL Context Grounding: Another Nail in RAG’s Coffin?",
     "summary": "",
     "url": "https://towardsdatascience.com/googles-url-context-grounding-another-nail-in-rags-coffin/",
@@ -3300,51 +3518,12 @@
     "source_tier": 2
   },
   {
-    "id": "rss_cfg_e5cef818",
+    "id": "rss_cfg_7858312b",
     "title": "LLM Monitoring and Observability: Hands-on with Langfuse",
     "summary": "",
     "url": "https://towardsdatascience.com/llm-monitoring-and-observability-hands-on-with-langfuse/",
     "source": "Towards Data Science",
     "publishedAt": "2025-08-25T22:25:17Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_a7cfb6f2",
-    "title": "How to Benchmark Classical Machine Learning Workloads on Google Cloud",
-    "summary": "",
-    "url": "https://towardsdatascience.com/benchmarking-classical-machine-learning-workloads-on-google-cloud/",
-    "source": "Towards Data Science",
-    "publishedAt": "2025-08-25T20:59:53Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_465e5168",
-    "title": "Why Science Must Embrace Co-Creation with Generative AI to Break Current Research Barriers",
-    "summary": "",
-    "url": "https://towardsdatascience.com/why-science-must-embrace-co-creation-with-generative-ai-to-break-current-research-barriers/",
-    "source": "Towards Data Science",
-    "publishedAt": "2025-08-25T18:06:36Z",
-    "tags": [
-      "rss_feed"
-    ],
-    "label": "consider",
-    "source_tier": 2
-  },
-  {
-    "id": "rss_cfg_efa263ce",
-    "title": "Systematic LLM Prompt Engineering Using DSPy Optimization",
-    "summary": "",
-    "url": "https://towardsdatascience.com/systematic-llm-prompt-engineering-using-dspy-optimization/",
-    "source": "Towards Data Science",
-    "publishedAt": "2025-08-25T16:46:24Z",
     "tags": [
       "rss_feed"
     ],
