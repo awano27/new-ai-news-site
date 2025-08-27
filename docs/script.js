@@ -632,6 +632,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Snapshot inline articles embedded in index.html (if present)
+    const inlineArticles = Array.isArray(window.articles) ? [...window.articles] : [];
     const tryFetch = async (p) => {
       try { const r = await fetch(p, { cache: 'no-store' }); if (!r.ok) return null; const j = await r.json(); return Array.isArray(j) ? j : null; } catch { return null; }
     };
@@ -658,6 +660,23 @@
       }
       if (isValid(data)) {
         window.articles = data.filter(isFresh);
+        // Fallback merge: if fetched data lacks X posts but inline has them, merge inline X items
+        try {
+          const isXItem = (a) => (typeof a?.source === 'string' && a.source.startsWith('X(@')) || (Array.isArray(a?.tags) && a.tags.includes('x_post'));
+          const freshInline = (inlineArticles || []).filter(isFresh);
+          const hasXInFetched = Array.isArray(window.articles) && window.articles.some(isXItem);
+          const hasXInline = freshInline.some(isXItem);
+          if (!hasXInFetched && hasXInline) {
+            const seen = new Set();
+            const merged = [...(window.articles || []), ...freshInline].filter(it => {
+              const k = it && (it.id || it.url);
+              if (!k || seen.has(k)) return false;
+              seen.add(k);
+              return true;
+            });
+            window.articles = merged;
+          }
+        } catch {}
       }
       ensureEvaluations(window.articles);
       // Fallback: ensure at least one must_read and one recommended exist
