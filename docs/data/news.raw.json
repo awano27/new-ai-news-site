@@ -1,500 +1,500 @@
 [
   {
-    "id": "rss_d7624223",
-    "title": "Air for Tomorrow: Why Openness in Air Quality Research and Implementation Matters for Global Equity",
-    "url": "https://towardsdatascience.com/air-for-tomorrow-why-openness-in-air-quality-research-and-implementation-matters-for-global-equity/",
+    "id": "rss_b7fabe37",
+    "title": "How to Import Pre-Annotated Data into Label Studio and Run the Full Stack with Docker",
+    "url": "https://towardsdatascience.com/how-to-import-pre-annotated-data-into-label-studio-and-run-the-full-stack-with-docker/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_a552e0f4",
-    "title": "A Visual Guide to Tuning Decision-Tree Hyperparameters",
-    "url": "https://towardsdatascience.com/visualising-decision-trees/",
+    "id": "rss_ebbc1fa8",
+    "title": "Unlocking Multimodal Video Transcription with Gemini",
+    "url": "https://towardsdatascience.com/unlocking-multimodal-video-transcription-with-gemini/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_12564bd",
-    "title": "Graph Coloring for Data Science: A Comprehensive Guide",
-    "url": "https://towardsdatascience.com/graph-coloring-for-data-science/",
+    "id": "rss_8d151cf4",
+    "title": "Toward Digital Well-Being: Using Generative AI to Detect and Mitigate Bias in Social Networks",
+    "url": "https://towardsdatascience.com/toward-digital-well-being-using-generative-ai-to-detect-and-mitigate-bias-in-social-networks/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_2fc151a7",
-    "title": "Stepwise Selection Made Simple: Improve Your Regression Models in Python",
-    "url": "https://towardsdatascience.com/model-selection-in-linear-regression/",
+    "id": "rss_a6407d0e",
+    "title": "Marginal Effect of Hyperparameter Tuning with XGBoost",
+    "url": "https://towardsdatascience.com/marginal-effect-of-hyperparameter-tuning-with-xgboost/",
     "source": "Towards Data Science",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_d9eacf9",
-    "title": "Implementing the Hangman Game in Python",
-    "url": "https://towardsdatascience.com/implementing-the-hangman-game-in-python/",
-    "source": "Towards Data Science",
-    "publishedAt": "2025-08-28",
-    "tags": [
-      "rss_feed"
-    ]
-  },
-  {
-    "id": "rss_dae714e6",
-    "title": "Blockwise SFT for Diffusion Language Models: Reconciling Bidirectional Attention and Autoregressive Decoding",
-    "url": "https://arxiv.org/abs/2508.19529",
+    "id": "rss_daf11528",
+    "title": "Overview of BioASQ 2024: The twelfth BioASQ challenge on Large-Scale Biomedical Semantic Indexing and Question Answering",
+    "url": "https://arxiv.org/abs/2508.20532",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae711da",
-    "title": "Rule Synergy Analysis using LLMs: State of the Art and Implications",
-    "url": "https://arxiv.org/abs/2508.19484",
+    "id": "rss_daf114ec",
+    "title": "SciTopic: Enhancing Topic Discovery in Scientific Literature through Advanced LLM",
+    "url": "https://arxiv.org/abs/2508.20514",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae711d7",
-    "title": "Improving Low-Resource Translation with Dictionary-Guided Fine-Tuning and RL: A Spanish-to-Wayuunaiki Study",
-    "url": "https://arxiv.org/abs/2508.19481",
+    "id": "rss_daf114e9",
+    "title": "Languages Still Left Behind: Toward a Better Multilingual Machine Translation Benchmark",
+    "url": "https://arxiv.org/abs/2508.20511",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae711bc",
-    "title": "Automatic Question & Answer Generation Using Generative Large Language Model (LLM)",
-    "url": "https://arxiv.org/abs/2508.19475",
+    "id": "rss_daf111ca",
+    "title": "ConspirED: A Dataset for Cognitive Traits of Conspiracy Theories and Large Language Model Safety",
+    "url": "https://arxiv.org/abs/2508.20468",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae7119f",
-    "title": "Inference Gap in Domain Expertise and Machine Intelligence in Named Entity Recognition: Creation of and Insights from a Substance Use-related Dataset",
-    "url": "https://arxiv.org/abs/2508.19467",
+    "id": "rss_daf111c2",
+    "title": "Prediction of mortality and resource utilization in critical care: a deep learning approach using multimodal electronic health records with natural language processing techniques",
+    "url": "https://arxiv.org/abs/2508.20460",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae7119c",
-    "title": "Bridging Language Gaps: Enhancing Few-Shot Language Adaptation",
-    "url": "https://arxiv.org/abs/2508.19464",
+    "id": "rss_daf111a6",
+    "title": "MCP-Bench: Benchmarking Tool-Using LLM Agents with Complex Real-World Tasks via MCP Servers",
+    "url": "https://arxiv.org/abs/2508.20453",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae71124",
-    "title": "Heterogeneous LLM Methods for Ontology Learning (Few-Shot Prompting, Ensemble Typing, and Attention-Based Taxonomies)",
-    "url": "https://arxiv.org/abs/2508.19428",
+    "id": "rss_daf11186",
+    "title": "Searching the Title of Practical Work of the Informatics Engineering Bachelor Program with the Case Base Reasoning Method",
+    "url": "https://arxiv.org/abs/2508.20442",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae71123",
-    "title": "A perishable ability? The future of writing in the face of generative artificial intelligence",
-    "url": "https://arxiv.org/abs/2508.19427",
+    "id": "rss_daf11146",
+    "title": "CAMB: A comprehensive industrial LLM benchmark on civil aviation maintenance",
+    "url": "https://arxiv.org/abs/2508.20420",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae710e0",
-    "title": "One Joke to Rule them All? On the (Im)possibility of Generalizing Humor",
-    "url": "https://arxiv.org/abs/2508.19402",
+    "id": "rss_daf1112e",
+    "title": "KG-CQR: Leveraging Structured Relation Representations in Knowledge Graphs for Contextual Query Retrieval",
+    "url": "https://arxiv.org/abs/2508.20417",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70df8",
-    "title": "Database Entity Recognition with Data Augmentation and Deep Learning",
-    "url": "https://arxiv.org/abs/2508.19372",
+    "id": "rss_daf1112d",
+    "title": "DentalBench: Benchmarking and Advancing LLMs Capability for Bilingual Dentistry Understanding",
+    "url": "https://arxiv.org/abs/2508.20416",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70dda",
-    "title": "LongReasonArena: A Long Reasoning Benchmark for Large Language Models",
-    "url": "https://arxiv.org/abs/2508.19363",
+    "id": "rss_daf11127",
+    "title": "UI-Bench: A Benchmark for Evaluating Design Capabilities of AI Text-to-App Tools",
+    "url": "https://arxiv.org/abs/2508.20410",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70dc1",
-    "title": "Reflective Agreement: Combining Self-Mixture of Agents with a Sequence Tagger for Robust Event Extraction",
-    "url": "https://arxiv.org/abs/2508.19359",
+    "id": "rss_daf10e63",
+    "title": "Measuring Reasoning Utility in LLMs via Conditional Entropy Reduction",
+    "url": "https://arxiv.org/abs/2508.20395",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70dbf",
-    "title": "Context-Adaptive Synthesis and Compression for Enhanced Retrieval-Augmented Generation in Complex Domains",
-    "url": "https://arxiv.org/abs/2508.19357",
+    "id": "rss_daf10e44",
+    "title": "CAPE: Context-Aware Personality Evaluation Framework for Large Language Models",
+    "url": "https://arxiv.org/abs/2508.20385",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a56",
-    "title": "CORE: Lossless Compression for Retrieval-Augmented LLMs via Reinforcement Learning",
-    "url": "https://arxiv.org/abs/2508.19282",
+    "id": "rss_daf10e23",
+    "title": "Graph-R1: Unleashing LLM Reasoning with NP-Hard Graph Problems",
+    "url": "https://arxiv.org/abs/2508.20373",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a3e",
-    "title": "FLAIRR-TS -- Forecasting LLM-Agents with Iterative Refinement and Retrieval for Time Series",
-    "url": "https://arxiv.org/abs/2508.19279",
+    "id": "rss_daf10de3",
+    "title": "Joint Enhancement of Relational Reasoning for Long-Context LLMs",
+    "url": "https://arxiv.org/abs/2508.20351",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a39",
-    "title": "Leveraging Language Models and Machine Learning in Verbal Autopsy Analysis",
-    "url": "https://arxiv.org/abs/2508.19274",
+    "id": "rss_daf10d8a",
+    "title": "GUARD: Guideline Upholding Test through Adaptive Role-play and Jailbreak Diagnostics for LLMs",
+    "url": "https://arxiv.org/abs/2508.20325",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a37",
-    "title": "RAGAPHENE: A RAG Annotation Platform with Human Enhancements and Edits",
-    "url": "https://arxiv.org/abs/2508.19272",
+    "id": "rss_daf10d89",
+    "title": "Can Compact Language Models Search Like Agents? Distillation-Guided Policy Optimization for Preserving Agentic RAG Capabilities",
+    "url": "https://arxiv.org/abs/2508.20324",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a36",
-    "title": "Rethinking Reasoning in LLMs: Neuro-Symbolic Local RetoMaton Beyond ICL and CoT",
-    "url": "https://arxiv.org/abs/2508.19271",
+    "id": "rss_daf109c7",
+    "title": "Integrating SystemC TLM into FMI 3.0 Co-Simulations with an Open-Source Approach",
+    "url": "https://arxiv.org/abs/2508.20223",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a35",
-    "title": "Whisper based Cross-Lingual Phoneme Recognition between Vietnamese and English",
-    "url": "https://arxiv.org/abs/2508.19270",
+    "id": "rss_daf109ac",
+    "title": "Prompting Strategies for Language Model-Based Item Generation in K-12 Education: Bridging the Gap Between Small and Large Language Models",
+    "url": "https://arxiv.org/abs/2508.20217",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_dae70a1e",
-    "title": "MultiPL-MoE: Multi-Programming-Lingual Extension of Large Language Models through Hybrid Mixture-of-Experts",
-    "url": "https://arxiv.org/abs/2508.19268",
+    "id": "rss_daf10987",
+    "title": "Social Bias in Multilingual Language Models: A Survey",
+    "url": "https://arxiv.org/abs/2508.20201",
     "source": "arXiv cs.CL",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa8b",
-    "title": "Efficiently Generating Multidimensional Calorimeter Data with Tensor Decomposition Parameterization",
-    "url": "https://arxiv.org/abs/2508.19443",
+    "id": "rss_46f0f6d7",
+    "title": "Dynamic Synthetic Controls vs. Panel-Aware Double Machine Learning for Geo-Level Marketing Impact Estimation",
+    "url": "https://arxiv.org/abs/2508.20335",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa89",
-    "title": "Data-Augmented Few-Shot Neural Stencil Emulation for System Identification of Computer Models",
-    "url": "https://arxiv.org/abs/2508.19441",
+    "id": "rss_46f0f6d5",
+    "title": "Poison Once, Refuse Forever: Weaponizing Alignment for Injecting Bias in LLMs",
+    "url": "https://arxiv.org/abs/2508.20333",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa4e",
-    "title": "MS-ConTab: Multi-Scale Contrastive Learning of Mutation Signatures for Pan Cancer Representation and Stratification",
-    "url": "https://arxiv.org/abs/2508.19424",
+    "id": "rss_46f0f6d2",
+    "title": "FORGE: Foundational Optimization Representations from Graph Embeddings",
+    "url": "https://arxiv.org/abs/2508.20330",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa34",
-    "title": "Differentiable multiphase flow model for physics-informed machine learning in reservoir pressure management",
-    "url": "https://arxiv.org/abs/2508.19419",
+    "id": "rss_46f0f6bb",
+    "title": "Multi-View Graph Convolution Network for Internal Talent Recommendation Based on Enterprise Emails",
+    "url": "https://arxiv.org/abs/2508.20328",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa2f",
-    "title": "Even Heads Fix Odd Errors: Mechanistic Discovery and Surgical Repair in Transformer Attention",
-    "url": "https://arxiv.org/abs/2508.19414",
+    "id": "rss_46f0f699",
+    "title": "Multi-Agent Reinforcement Learning in Intelligent Transportation Systems: A Comprehensive Survey",
+    "url": "https://arxiv.org/abs/2508.20315",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6fa2b",
-    "title": "Kolmogorov-Arnold Representation for Symplectic Learning: Advancing Hamiltonian Neural Networks",
-    "url": "https://arxiv.org/abs/2508.19410",
+    "id": "rss_46f0f3d0",
+    "title": "FedReFT: Federated Representation Fine-Tuning with All-But-Me Aggregation",
+    "url": "https://arxiv.org/abs/2508.20295",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f766",
-    "title": "Quantum-Classical Hybrid Molecular Autoencoder for Advancing Classical Decoding",
-    "url": "https://arxiv.org/abs/2508.19394",
+    "id": "rss_46f0f3cf",
+    "title": "Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization",
+    "url": "https://arxiv.org/abs/2508.20294",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f74c",
-    "title": "DETNO: A Diffusion-Enhanced Transformer Neural Operator for Long-Term Traffic Forecasting",
-    "url": "https://arxiv.org/abs/2508.19389",
+    "id": "rss_46f0f3ce",
+    "title": "Beacon: Post-Training Quantization with Integrated Grid Selection",
+    "url": "https://arxiv.org/abs/2508.20293",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f744",
-    "title": "Towards Quantum Machine Learning for Malicious Code Analysis",
-    "url": "https://arxiv.org/abs/2508.19381",
+    "id": "rss_46f0f3cb",
+    "title": "Objective Value Change and Shape-Based Accelerated Optimization for the Neural Network Approximation",
+    "url": "https://arxiv.org/abs/2508.20290",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f72a",
-    "title": "Fine-Tuning Vision-Language Models for Neutrino Event Analysis in High-Energy Physics Experiments",
-    "url": "https://arxiv.org/abs/2508.19376",
+    "id": "rss_46f0f392",
+    "title": "A Systematic Review on the Generative AI Applications in Human Medical Genomics",
+    "url": "https://arxiv.org/abs/2508.20275",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f70b",
-    "title": "Grounding the Ungrounded: A Spectral-Graph Framework for Quantifying Hallucinations in multimodal LLMs",
-    "url": "https://arxiv.org/abs/2508.19366",
+    "id": "rss_46f0f36e",
+    "title": "Generalizable AI Model for Indoor Temperature Forecasting Across Sub-Saharan Africa",
+    "url": "https://arxiv.org/abs/2508.20260",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f706",
-    "title": "Atrial Fibrillation Prediction Using a Lightweight Temporal Convolutional and Selective State Space Architecture",
-    "url": "https://arxiv.org/abs/2508.19361",
+    "id": "rss_46f0f358",
+    "title": "Latent Variable Modeling for Robust Causal Effect Estimation",
+    "url": "https://arxiv.org/abs/2508.20259",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f6ec",
-    "title": "Graph Data Modeling: Molecules, Proteins, & Chemical Processes",
-    "url": "https://arxiv.org/abs/2508.19356",
+    "id": "rss_46f0f356",
+    "title": "Discovering equations from data: symbolic regression in dynamical systems",
+    "url": "https://arxiv.org/abs/2508.20257",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f6e9",
-    "title": "Efficient Multi-Source Knowledge Transfer by Model Merging",
-    "url": "https://arxiv.org/abs/2508.19353",
+    "id": "rss_46f0f353",
+    "title": "Beyond Optimization: Exploring Novelty Discovery in Autonomous Experiments",
+    "url": "https://arxiv.org/abs/2508.20254",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f6e8",
-    "title": "Memorization in Graph Neural Networks",
-    "url": "https://arxiv.org/abs/2508.19352",
+    "id": "rss_46f0f312",
+    "title": "Bounds on Perfect Node Classification: A Convex Graph Clustering Perspective",
+    "url": "https://arxiv.org/abs/2508.20231",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f6cb",
-    "title": "Re:Frame -- Retrieving Experience From Associative Memory",
-    "url": "https://arxiv.org/abs/2508.19344",
+    "id": "rss_46f0f311",
+    "title": "Coresets from Trajectories: Selecting Data via Correlation of Loss Differences",
+    "url": "https://arxiv.org/abs/2508.20230",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f672",
-    "title": "(DEMO) Deep Reinforcement Learning Based Resource Allocation in Distributed IoT Systems",
-    "url": "https://arxiv.org/abs/2508.19318",
+    "id": "rss_46f0f2f6",
+    "title": "The Role of Teacher Calibration in Knowledge Distillation",
+    "url": "https://arxiv.org/abs/2508.20224",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f36a",
-    "title": "POT: Inducing Overthinking in LLMs via Black-Box Iterative Optimization",
-    "url": "https://arxiv.org/abs/2508.19277",
+    "id": "rss_46f0f2d4",
+    "title": "What can we learn from signals and systems in a transformer? Insights for probabilistic modeling and inference architecture",
+    "url": "https://arxiv.org/abs/2508.20211",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f347",
-    "title": "Lossless Compression of Neural Network Components: Weights, Checkpoints, and K/V Caches in Low-Precision Formats",
-    "url": "https://arxiv.org/abs/2508.19263",
+    "id": "rss_46f0f2ba",
+    "title": "Filter then Attend: Improving attention-based Time Series Forecasting with Spectral Filtering",
+    "url": "https://arxiv.org/abs/2508.20206",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_46e6f30f",
-    "title": "Physics-Informed Regression: Parameter Estimation in Parameter-Linear Nonlinear Dynamic Models",
-    "url": "https://arxiv.org/abs/2508.19249",
+    "id": "rss_46f0ef72",
+    "title": "CrystalICL: Enabling In-Context Learning for Crystal Generation",
+    "url": "https://arxiv.org/abs/2508.20143",
     "source": "arXiv cs.LG",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_55d63e19",
-    "title": "MuSpike: A Benchmark and Evaluation Framework for Symbolic Music Generation with Spiking Neural Networks",
-    "url": "https://arxiv.org/abs/2508.19251",
+    "id": "rss_55e05168",
+    "title": "Single Agent Robust Deep Reinforcement Learning for Bus Fleet Control",
+    "url": "https://arxiv.org/abs/2508.20784",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_55d636dc",
-    "title": "Federated Fine-Tuning of Sparsely-Activated Large Language Models on Resource-Constrained Devices",
-    "url": "https://arxiv.org/abs/2508.19078",
+    "id": "rss_55e050b3",
+    "title": "Re4: Scientific Computing Agent with Rewriting, Resolution, Review and Revision",
+    "url": "https://arxiv.org/abs/2508.20729",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_55d6363f",
-    "title": "MovieCORE: COgnitive REasoning in Movies",
-    "url": "https://arxiv.org/abs/2508.19026",
+    "id": "rss_55e0506d",
+    "title": "Transparent Semantic Spaces: A Categorical Approach to Explainable Word Embeddings",
+    "url": "https://arxiv.org/abs/2508.20701",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_55e036a1",
-    "title": "Model Science: getting serious about verification, explanation and control of AI systems",
-    "url": "https://arxiv.org/abs/2508.20040",
+    "id": "rss_55e04d88",
+    "title": "Bridging Minds and Machines: Toward an Integration of AI and Cognitive Science",
+    "url": "https://arxiv.org/abs/2508.20674",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
   },
   {
-    "id": "rss_55e0364c",
-    "title": "SWIRL: A Staged Workflow for Interleaved Reinforcement Learning in Mobile GUI Control",
-    "url": "https://arxiv.org/abs/2508.20018",
+    "id": "rss_55e049cb",
+    "title": "Human-AI Collaborative Bot Detection in MMORPGs",
+    "url": "https://arxiv.org/abs/2508.20578",
     "source": "arXiv cs.AI",
-    "publishedAt": "2025-08-28",
+    "publishedAt": "2025-08-29",
+    "tags": [
+      "rss_feed"
+    ]
+  },
+  {
+    "id": "rss_55e0492d",
+    "title": "Enhancing Health Fact-Checking with LLM-Generated Synthetic Data",
+    "url": "https://arxiv.org/abs/2508.20525",
+    "source": "arXiv cs.AI",
+    "publishedAt": "2025-08-29",
     "tags": [
       "rss_feed"
     ]
